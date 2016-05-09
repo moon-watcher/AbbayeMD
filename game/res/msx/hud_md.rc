@@ -1,0 +1,5 @@
+BITMAP hud_heart_msx    "game/data/msx/hud/heart.bmp"    0
+BITMAP hud_cross_msx    "game/data/msx/hud/cross.bmp"    0
+BITMAP hud_numbers_msx  "game/data/msx/hud/numbers.bmp"  0
+BITMAP hud_blackbar_msx "game/data/msx/hud/blackbar.bmp" 0
+;

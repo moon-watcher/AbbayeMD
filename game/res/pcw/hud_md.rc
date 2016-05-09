@@ -1,0 +1,5 @@
+BITMAP hud_heart_pcw    "game/data/pcw/hud/heart.bmp"    0
+BITMAP hud_cross_pcw    "game/data/pcw/hud/cross.bmp"    0
+BITMAP hud_numbers_pcw  "game/data/pcw/hud/numbers.bmp"  0
+BITMAP hud_blackbar_pcw "game/data/pcw/hud/blackbar.bmp" 0
+;

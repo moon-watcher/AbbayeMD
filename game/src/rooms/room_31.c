@@ -1,0 +1,119 @@
+#include "../inc/include.h"
+
+
+
+//static struct
+//{
+//	Item       *items [ 2 ];
+//	GameObject *gos [ 20 ];
+//	s32         aux1;
+//	s32         aux2;
+//	s32         aux3;
+//	s32         aux4;
+//	s32         counter;
+//	s32         array [ 7 ];
+//}
+//local;
+
+
+static GameObject *hatch;
+static GameObject *door;
+
+static Item       *bell;
+static Item       *sw;
+
+
+
+static void _set ( bool solid )
+{
+	solid = solid ? 1 : 0;
+	currentMask.array[20][27] = solid;
+
+	if ( game.version == VERSION_PC || game.version == VERSION_GB || game.version == VERSION_CGA )
+	{
+		currentMask.array[20][26] = solid;
+	}
+
+
+//	currentMask.array[20][27] = currentRoom->mask->array[20][26];
+//	currentMask.array[20][27] = currentRoom->mask->array[20][27];
+}
+
+
+
+static void _room_enter ( Room *room )
+{
+	hatch = goManagerFindByEntityId ( &waObjects, 36, 0 ); // Hatch
+	door  = goManagerFindByEntityId ( &waObjects, 35, 0 ); // Door
+
+	bell  = (Item*) itemManagerFind ( &waItems, 0, 2, 0 ); // the bell   at 2,0 opens the hatch
+	sw    = (Item*) itemManagerFind ( &waItems, 9, 0, 2 ); // the switch at 0,2 opens the door
+
+
+	if ( itemGetChecked ( bell )  )
+	{
+		_set ( false );                                     // remove solid
+
+		if ( itemIsVisible ( hatch->item ) )
+		{
+			itemSetValue ( hatch->item, getHz() );           // set a countdown to open
+		}
+	}
+	else
+	{
+		VDP_setTileMapXY ( APLAN, 0, 26, 20 );              // remove that tile
+		_set ( true );                                      // make it solid
+	}
+
+
+	if ( itemGetChecked ( sw ) &&  itemIsVisible ( door->item ) )
+	{
+		itemSetValue ( door->item, getHz() );               // set a countdown to open
+	}
+}
+
+
+static void _room_stay ( Room *room )
+{
+	if ( itemGetValue ( hatch->item ) > 0 )
+	{
+		itemIncValue ( hatch->item, -1 );
+	}
+
+	else if ( itemGetChecked ( bell )  &&  itemIsVisible ( hatch->item ) )
+	{
+		hide_door ( hatch );
+		_set( false ); // remove solid
+	}
+
+
+	if ( itemGetValue ( door->item ) > 0 )
+	{
+		itemIncValue ( door->item, -1 );
+	}
+
+	else if ( itemGetChecked ( sw )  &&  itemIsVisible ( door->item ) )
+	{
+		hide_door ( door );
+	}
+}
+
+
+
+void room_funct_31_all ( Room *room, u8 action )
+{
+	if ( action == ROOM_ACTION_ENTER ) // enter
+	{
+		_room_enter ( room );
+	}
+
+	else if ( action == ROOM_ACTION_STAY ) // stay
+	{
+		_room_stay ( room );
+	}
+
+	else if ( action == ROOM_ACTION_LEAVE ) // leave
+	{
+		//_room_leave ( room );
+	}
+}

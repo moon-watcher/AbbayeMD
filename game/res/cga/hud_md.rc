@@ -1,0 +1,5 @@
+BITMAP hud_heart_cga    "game/data/cga/hud/heart.bmp"    0
+BITMAP hud_cross_cga    "game/data/cga/hud/cross.bmp"    0
+BITMAP hud_numbers_cga  "game/data/cga/hud/numbers.bmp"  0
+BITMAP hud_blackbar_cga "game/data/cga/hud/blackbar.bmp" 0
+;

@@ -1,0 +1,5 @@
+BITMAP hud_heart_gb    "game/data/gb/hud/heart.bmp"    0
+BITMAP hud_cross_gb    "game/data/gb/hud/cross.bmp"    0
+BITMAP hud_numbers_gb  "game/data/gb/hud/numbers.bmp"  0
+BITMAP hud_blackbar_gb "game/data/gb/hud/blackbar.bmp" 0
+;

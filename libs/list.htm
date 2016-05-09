@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="author" content="David Muto">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Implementing a Generic Linked List in C &middot; pseudomuto.com
+    
+  </title>
+
+  <link rel="canonical" href="http://pseudomuto.com/development/2013/05/02/implementing-a-generic-linked-list-in-c/">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="/public/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/public/apple-touch-icon-57x57.png">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          pseudomuto.com
+        </a>
+      </h1>
+      <p class="lead">The ramblings of <a href="https://twitter.com/pseudomuto">@pseudomuto</a>, a software developer in our nation's capital</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/pseudomuto/pseudomuto.github.io">GitHub source</a>
+      <span class="sidebar-nav-item">Currently v2.1.0</span>
+    </nav>
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Implementing a Generic Linked List in C</h1>
+  <span class="post-date">02 May 2013</span>
+  <p>Because I am a totally shameless nerd, I find myself writing applications in C from time to time just to make sure I still can. Aside from iOS development, I rarely have to work with C directly (without the help of a superset like C++ or Objective-C), but every once in a while I like to try and challenge myself to write an application in pure C.</p>
+
+<p>I&#39;ve found that doing this has led to a much more profound understanding of modern languages and has really opened my eyes to the challenges faced by developers who write their own languages or work with compiler optimization (I know a few...it sounds like tough work!).</p>
+
+<p>I also continue to attend several universities in order to further my education and C seems to be the language of choice when trying to focus on the concepts of data structures and algorithms since much of the problem space is left up to the developer to solve as opposed to our modern languages of choice.</p>
+
+<p>Ok enough babbling! The goal of this article is to describe how we would go about creating a generic implementation of a linked list in pure C. So without further ado, let&#39;s take a look at the header file.</p>
+
+<h2>List Header File</h2>
+
+<script src="https://gist.github.com/6334796.js?file=list.h"> </script>
+
+<p>Line 5 declares a function pointer for a generic <code>free</code> function that will be called for each element in the list when it is destroyed. The function must be supplied by the caller when they call <code>list_new</code>. Essentially we are saying that the name <code>freeFunction</code> will be used to mean &quot;a pointer to a function that returns void and accepts a single void * argument containing the item to be freed.&quot; - More on this soon.</p>
+
+<p>Next we define a bool type. C does not have a boolean, but things are truthy or false, like JavaScript or Ruby. We use this to our advantage by creating a bool type and specifying FALSE first. Feel free to write a quick test to show that !FALSE is truthy while !TRUE is falsy. (Slightly more info found here <a href="http://stackoverflow.com/questions/1921539/using-boolean-values-in-c">http://stackoverflow.com/questions/1921539/using-boolean-values-in-c</a>).</p>
+
+<p>Finally we define a <code>listIterator</code> type that is a pointer to a method that returns a bool and accepts a <code>void *</code>. This function will be called for each element in the list during <code>list_for_each</code>.</p>
+
+<h3>Structs</h3>
+
+<p>The next few lines define a couple of structs we will use for the list.</p>
+
+<p>The first is a typical linked list node that has a void * field for storing whatever the implementer likes and a <code>next</code> pointer pointing to the next node in the list. This struct will not be used by the caller, rather it will be used by the internal implementation of the linked list.</p>
+
+<p>The second struct is the actual list and is much more interesting. We start by defining a <code>logicalLength</code>, which will be used to keep track of the number of elements in the list, and <code>elementSize</code>, which will store the size of each element. The element size is important, since C&#39;s generics are limited to void pointers, which means we need the caller to tell us how big each element is in order to <code>malloc/memcpy</code> values. This information should always be dynamically supplied. Meaning, we (the caller) should use <code>sizeof(int)</code> rather than <code>4</code> to allow for 32/64 bit implementations, etc.</p>
+
+<p>Lastly we store two pointers to listNodes, <code>head</code> and <code>tail</code> respectively, and a pointer to a function that will be called for each list element when the list is destroyed in order to support lists of complex items (like strings or other structs).</p>
+
+<h3>Functions</h3>
+
+<p><em>When I develop C code, I&#39;m always working with the premise that we should not rely on knowing anything about the contents of a struct, rather we should use the supplied functions to gain access to the internal information (i.e. we should use <code>list_size(list *)</code> to get the size rather than <code>list.logicalLength</code> or <code>list-&gt;logicalLength</code>).</em></p>
+
+<p>The next few lines define the function prototypes that will be available for working with linked lists. Here&#39;s brief summary of each method:</p>
+
+<ul>
+<li><code>list_new</code> - initializes a linked list to store elements of <code>elementSize</code> and to call <code>freeFunction</code> for each element when destroying a list</li>
+<li><code>list_destroy</code> - frees dynamically allocated nodes and optionally calls <code>freeFunction</code> with each node&#39;s <code>data</code> pointer</li>
+<li><code>list_prepend</code> - adds a node to the head of the list</li>
+<li><code>list_append</code> - adds a node to the tail of the list</li>
+<li><code>list_size</code> - returns the number of items in the list</li>
+<li><code>list_for_each</code> - calles the supplied iterator function with the data element of each node (iterates over the list)</li>
+<li><code>list_head</code> - returns the head of the list (optionally removing it at the same time)</li>
+<li><code>list_tail</code> - returns the tail of the list</li>
+</ul>
+
+<p>That pretty much sums up the header file. Now down to brass tacks...the implementation.</p>
+
+<h2>List Implementation</h2>
+
+<script src="https://gist.github.com/6334796.js?file=list.c"> </script>
+
+<p>We start by including some system headers and of course <code>list.h</code>. I generally try to include as few headers as possible, and only in the implementation files whenever possible. Here are the included headers and a quick description of why we need them.</p>
+
+<ul>
+<li><code>stdlib.h</code> - in order to use <code>malloc/free</code></li>
+<li><code>string.h</code> - in order to use <code>memcpy</code></li>
+<li><code>assert.h</code> - in order to use the <code>assert</code> macro</li>
+<li><code>list.h</code> - in order to have linked list typedefs, structs and function prototypes available to us</li>
+</ul>
+
+<h3>list_new</h3>
+
+<p>This function takes three arguments: a pointer to the list, the size of the elements being stored, and a function to be called for each element when the list is destroyed.</p>
+
+<p>This function will assert that the <code>elementSize</code> supplied is greater than 0. You could work with a list of elements of size &lt;= 0, but not with my implementation! It then sets the default values for <code>logicalLength</code>, <code>head</code> and <code>tail</code>, followed by the <code>freeFunction</code> (which can be <code>NULL</code> for simple/stack types).</p>
+
+<h3>list_destroy</h3>
+
+<p>This function takes a single argument; a pointer to the list to be destroyed.</p>
+
+<p>It will free each node&#39;s <code>data</code> and the node itself. If a <em>freeFunction</em> was supplied with the call to <code>list_new</code> for this list, it will be called on each node&#39;s <code>data</code> element before freeing any malloc&#39;d (that&#39;s now a word) memory.</p>
+
+<h3>list_prepend</h3>
+
+<p>This method takes two arguments; a pointer to the list and a void * pointing to the element to be inserted.</p>
+
+<p>We start by creating a new node to store this data and dynamically allocating <code>list-&gt;elementSize</code> bytes to store the data. We then copy the raw bytes sent in via element to <code>node-&gt;data</code>.</p>
+
+<p>If the caller passes in an <code>int</code> value (and presumably <code>sizeof(int)</code> during <code>list_new</code>), we copy that integer to <code>node-&gt;data</code>. If however the caller sends in a pointer to something (like a <code>char **</code>) we copy the pointer, not the thing being pointed to. These situations require the caller to pass in a custom <em>freeFunction</em> that will be called to free the memory. (The example below shows how to store strings).</p>
+
+<p>Lastly we update <code>head</code> to point to the new node, and <code>tail</code> and <code>logicalLength</code> are updated to reflect the changes.</p>
+
+<h3>list_append</h3>
+
+<p>This method is almost identical to prepend, except that it puts the new node at the end of the list rather than at the beginning.</p>
+
+<h3>list<em>for</em>each</h3>
+
+<p>This method takes two arguments; a pointer to the list and a <code>listIterator</code> function to be called for each node. We then get a hold of <code>head</code>, and store a boolean value indicating whether or not to continue.</p>
+
+<p>The iterator function will be passed a pointer to the node&#39;s <code>data</code> element. I&#39;ve elected not to copy the pointer here as done in <code>head/tail</code>, but to simply pass the original pointer to the iterator function. We stop iterating when either we are out of nodes, or the iterator function returns <code>FALSE</code>.</p>
+
+<h3>list_head</h3>
+
+<p>This method takes three arguments; a pointer to the list, a void * representing a place to populate with the node&#39;s <code>data</code> and a bool indicating whether or not we should remove the item from the list.</p>
+
+<p>We start by finding the head node (easy enough with <code>list-&gt;head</code>) and copying <code>list-&gt;elementSize</code> bytes from the node&#39;s <code>data</code> into the address specified by <em>element</em>.</p>
+
+<p>If the caller supplied <code>TRUE</code> for the last argument, we remove the head node from the list, updating <code>head/tail</code> values along the way, and free the malloc&#39;d memory for <code>node-&gt;data</code> and <code>node</code>.</p>
+
+<h3>list_tail</h3>
+
+<p>This method accepts two arguments; a pointer to the list (this should start to seem like Deja Vu by now) and a void * indicating the address to copy the tail node&#39;s <code>data</code> to.</p>
+
+<h3>list_size</h3>
+
+<p>The method take a single argument; a pointer to the list. It returns the number of nodes in that list (via <code>list-&gt;logicalLength</code>).</p>
+
+<h2>Finally...How To Use It</h2>
+
+<script src="https://gist.github.com/6334796.js?file=sample_app.c"> </script>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/development/2015/09/04/monitoring-rails-requests-statsd/">
+            Monitoring Rails Requests with StatsD
+            <small>04 Sep 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/development/2015/01/27/compiling-vim-with-ruby-support/">
+            Compiling Vim with Ruby and Python Support
+            <small>27 Jan 2015</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/development/2014/12/27/running-rails-inside-vagrant/">
+            Running Rails Inside Vagrant
+            <small>27 Dec 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-521a7d057b074526"></script>
+<script type="text/javascript">
+  addthis.layers({
+    'theme': 'transparent',
+    'share': {
+      'position': 'right',
+      'numPreferredServices': 4
+    }
+  });
+</script>
+
+    </div>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-43533697-1', 'pseudomuto.com');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

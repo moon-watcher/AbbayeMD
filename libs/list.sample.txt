@@ -1,0 +1,121 @@
+bool iterate_int(void *data);
+bool iterate_string(void *data);
+bool iterate_struct(void *data);
+void free_string(void *data);
+void free_struct(void *data);
+
+struct stAaa { u8 numero; u8 string[10]; } ;
+
+void main_list (int argc, char *argv[])
+{
+	int i;
+	list list;
+
+
+
+
+	drawUInt(MEM_getFree(),0,0,10); waitMs(1000);
+
+	list_new ( &list, sizeof(int), NULL);
+
+	for(i = 1; i <= 10; i++)
+	{
+		list_append(&list, &i);
+	}
+
+	drawUInt(MEM_getFree(),0,0,10); waitMs(1000);
+
+	list_for_each(&list, iterate_int);
+	list_destroy(&list);
+
+
+
+
+
+
+	drawUInt(MEM_getFree(),0,0,10); waitMs(1000);
+
+	const char *names[] = { "David", "Kevin", "Michael", "Craig", "Jimi" };
+
+	list_new(&list, sizeof(char *), free_string);
+
+	for(i = 0; i < 5; i++)
+	{
+		char *name = (u8*) names[i];
+		list_append(&list, &name );
+	}
+
+	drawUInt(MEM_getFree(),0,0,10); waitMs(1000);
+
+	list_for_each(&list, iterate_string);
+	list_destroy(&list);
+
+
+
+
+
+
+	drawUInt(MEM_getFree(),0,0,10); waitMs(1000);
+
+	struct stAaa aaa [ ] = { { 1, "uno" }, { 3, "dos" }, { 3, "tres" }, { 4, "cuatro" } };
+
+	list_new(&list, sizeof(aaa), free_struct);
+
+	for(i = 0; i < 4; i++)
+	{
+		list_append(&list, (struct stAaa*)&aaa[i] );
+	}
+
+	drawUInt(MEM_getFree(),0,0,10); waitMs(1000);
+
+	list_for_each(&list, iterate_struct);
+	list_destroy(&list);
+
+
+
+	drawUInt(MEM_getFree(),0,0,10); waitMs(1000);
+}
+
+
+bool iterate_int(void *data)
+{
+	drawUInt ( *(int *) data, 0, 4+devs0++,4 );
+	return TRUE;
+}
+
+bool iterate_string(void *data)
+{
+	VDP_drawText ( *(char **)data, 6, 4+devs1++ );
+	return TRUE;
+}
+
+bool iterate_struct(void *data)
+{
+	struct stAaa *x = data;
+
+	VDP_drawText ( x->string, 18, 4+devs2++ );
+	drawUInt( x->numero, 28, 4+devs3++,4);
+	drawUInt ( devs5, 38, 4+devs5++, 2 );
+
+	return TRUE;
+}
+
+void free_string(void *data)
+{
+	// no necesario el MEM_free, pero es útil para
+	// demostrar cómo funciona al destruir el bojeto
+
+	MEM_free(*(char **)data);
+}
+
+
+void free_struct(void *data)
+{
+	// no necesario el MEM_free, pero es útil para
+	// demostrar cómo funciona al destruir el bojeto
+
+	struct stAaa *x = data;
+	MEM_free( x->string ) ;
+}
+
+

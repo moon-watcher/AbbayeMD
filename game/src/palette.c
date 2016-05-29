@@ -24,3 +24,17 @@ void palette_init ( )
 
 	prepareColor ( 15, palette_list [ game.version ] [ 0 ]->data [ 15 ] );
 }
+
+
+
+u8 palette_alt_palettes ( )
+{
+	u8 count = 0;
+
+	while ( palette_alt_list [ game.version ] [ count ]  &&  count < PALETTE_ALT_MAX )
+	{
+		++count;
+	}
+
+	return count;
+}

@@ -22,7 +22,7 @@ void screen_burning ( )
 ////	palette_init ( );
 
 
-	displayOff();
+	displayOff(0);
 
 	vram_init ( VRAM_DEFAULT );
 
@@ -33,6 +33,12 @@ void screen_burning ( )
 	Screen *s = (Screen*) screen_get(10);
 
 	drawImage ( (Image*) s->foreground, APLAN );
+
+	if ( s->background )
+	{
+		drawImage ( (Image*) s->background, BPLAN );
+	}
+
 
 	u16 i;
 
@@ -60,7 +66,7 @@ void screen_burning ( )
 		pack_vram_add ( go );
 	}
 
-	show_screen();
+	show_screen ( 10 );
 
 
 	play_music( MUSIC_GAMEOVER );
@@ -107,7 +113,7 @@ void screen_burning ( )
 	}
 
 
-	displayOff();
+	displayOff(0);
 
 	vram_destroy();
 

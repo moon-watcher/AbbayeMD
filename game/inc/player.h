@@ -43,8 +43,8 @@ typedef struct
 	u8            burning;
 	u8            plunge;
 	bool          in_passage;
-	bool          invulnerable;
 	bool          grial;
+	bool          invulnerable;
 
 	struct
 	{

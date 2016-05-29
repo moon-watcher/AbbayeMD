@@ -8,7 +8,7 @@ static s16 y;
 
 
 
-void d ( const char *str, u16 pal, s16 inc )
+void write ( const char *str, u16 pal, s16 inc )
 {
 	u16 x = VDP_getScreenWidth() / 8 / 2 - strlen(str) / 2;
 
@@ -25,7 +25,9 @@ void screen_credits ( )
 {
 	if ( DEVELOPEMENT ) return;
 
-	displayOff();
+	displayOff(0);
+	displayInit();
+
 	VDP_setScreenWidth320( );
 	VDP_setPlanSize(64,32);
 
@@ -36,44 +38,44 @@ void screen_credits ( )
 	resetScroll ( );
 	resetScreen ( );
 
-
 	preparePal ( PAL1, palette_get(6)->data );
-	prepareColor( PAL1 * 16 + 1, 0xf0f );
-	prepareColor( PAL2 * 16 + 1, 0xf88 );
+	prepareColor ( PAL1 * 16 + 1, 0xf0f );
+	prepareColor ( PAL2 * 16 + 1, 0xf88 );
 
-	y = 2;
+	y = 3;
 
-	d ( "L'Abbaye des morts for", PAL1, 1 );
-	d ( "Sega Genesis/Megadrive by", PAL1, 1 );
-	d ( "Mun - @MoonWatcherMD", PAL2, 1  );
-	d ( "2011-2016", PAL2, 2  );
+	write ( "L'Abbaye des morts for", PAL1, 1 );
+	write ( "Sega Genesis/Megadrive by", PAL1, 1 );
+	write ( "Mun - @MoonWatcherMD", PAL2, 1  );
+	write ( "2011-2016", PAL2, 3  );
 
-	d ( "Original game by", PAL1, 1 );
-	d ( "Locomalito & Gryzor87", PAL2, 1 );
-	d ( "2010", PAL2, 2 );
+	write ( "Original game by", PAL1, 1 );
+	write ( "Locomalito & Gryzor87", PAL2, 1 );
+	write ( "2010", PAL2, 2 );
 
-	d ( "MSX skin", PAL1, 1 );
-	d ( "Gerardo Herce - @pipagerardo", PAL2, 2  );
+	write ( "MSX skin", PAL1, 1 );
+	write ( "Gerardo Herce - @pipagerardo", PAL2, 2  );
 
-	d ( "GB, CGA & PCW skin", PAL1, 1 );
-	d ( "Felipe Monge - @vakapp", PAL2, 2 );
+	write ( "GB, CGA & PCW skin", PAL1, 1 );
+	write ( "Felipe Monge - @vakapp", PAL2, 2 );
 
-	d ( "Megadrive skin", PAL1, 1 );
-	d ( "Daniel Nevado - @DanySnowyman", PAL2, 2 );
+	write ( "Megadrive skin", PAL1, 1 );
+	write ( "Daniel Nevado - @DanySnowyman", PAL2, 2 );
 
-	d ( "NES skin", PAL1, 1 );
-	d ( "Juan Valencia - @calvellido", PAL2, 2 );
+	//write ( "NES skin", PAL1, 1 );
+	//write ( "Juan Valencia - @calvellido", PAL2, 2 );
 
-	d ( "Music & SFX", PAL1, 1 );
-	d ( "David Sanchez - @DavidBonus", PAL2, 2 );
+	write ( "Music & SFX", PAL1, 1 );
+	write ( "David Sanchez - @DavidBonus", PAL2, 2 );
 
 
 
-	show_screen ( );
+	show_screen ( 10 );
 
-	JOY_waitPress ( JOY_1, BUTTON_ABCS );
+	waitJoySc ( 6 );
 
-	displayOff();
+
+	displayOff ( 10 );
 	VDP_setScreenWidth256 ( );
 	VDP_setPlanSize(32,64);
 

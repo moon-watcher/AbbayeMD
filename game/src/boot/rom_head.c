@@ -23,10 +23,10 @@ const struct
     char region[16];                /* Country Support (16) */
 } rom_header = {
     "SEGA MEGA DRIVE ",
-    "(C)LGM 2010-2016",
-    "L'Abbaye des morts | #AbbayeMD                  ",
-    "L'Abbaye des morts | #AbbayeMD                  ",
-    "LGM-01-0 v1.00",
+    "(C)FLEMTEAM 2013",
+    "SAMPLE PROGRAM                                  ",
+    "SAMPLE PROGRAM                                  ",
+    "GM 00000000-00",
     0x0000,
     "JD              ",
     0x00000000,
@@ -38,6 +38,6 @@ const struct
     0x00200000,
     0x002001FF,
     "            ",
-    "SKINS: PC, MD, MSX, PCW, GB, NES, CGA   ",
+    "DEMONSTRATION PROGRAM                   ",
     "JUE             "
 };

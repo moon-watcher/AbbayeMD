@@ -36,7 +36,7 @@ static void _draw_screen()
 {
 	u16 pal = PAL1;
 
-	displayOff();
+	displayOff(0);
 
 	palette_init();
 
@@ -83,7 +83,7 @@ static void _draw_screen()
 	SPR_update ( (Sprite*) &lSprites, lSpriteCounter );
 
 
-	show_screen ( );
+	show_screen ( 10 );
 }
 
 
@@ -124,7 +124,7 @@ void screen_info ()
 		VDP_waitVSync ( );
 	}
 
-	displayOff();
+	displayOff(0);
 
 	//vram_destroy();
 

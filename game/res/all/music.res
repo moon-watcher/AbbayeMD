@@ -8,3 +8,7 @@
 #WAV music_woods_all    "../../data/all/music/woods.wav"    3
 #WAV music_prologue_all "../../data/all/music/prologue.wav" 3
 #WAV music_hope_all     "../../data/all/music/hope.wav"     3
+
+# manhunt
+#XGM music_woods_all     "../../data/all/music/01_manhunt_ntsc.xgm"
+XGM music_manhunt_all  "../../data/all/music/01_manhunt_ntsc.xgm"

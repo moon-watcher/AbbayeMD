@@ -33,7 +33,7 @@ void screen_prologue ( )
 {
 	if ( DEVELOPEMENT ) return;
 
-	displayOff();
+	displayOff(0);
 
 
 
@@ -61,7 +61,7 @@ void screen_prologue ( )
 	goManagerInit ( &lObjects );
 	_add_objects ( screen->objects );
 
-	show_screen();
+	show_screen ( 10 );
 
 
 	u16 count = getHz() * 10;
@@ -92,9 +92,16 @@ void screen_prologue ( )
 			VDP_fadeOutAll ( 20, 0 );
 			SYS_enableInts();
 		}
+
+		JoyReader_update();
+
+		if ( joy1_pressed_abc || joy1_pressed_start )
+		{
+			break;
+		}
 	}
 
-	displayOff();
+	displayOff(10);
 
 	vram_destroy();
 

@@ -212,7 +212,7 @@ static void drawDisclaimerGraphics( void )
 {
 	u16 tileIndex;
 
-	displayOff();
+	displayOff(0);
 
 	//VDP_waitVSync( );
 	//VDP_setEnable( FALSE );
@@ -231,8 +231,8 @@ static void drawDisclaimerGraphics( void )
 	preparePal(PAL1, screen_disclaimerLogoImage_all.palette->data);
 	preparePal(PAL2, screen_disclaimerLogoLedImage_all.palette->data);
 
-//	VDP_setEnable ( TRUE );
-	//displayOn();
+	//VDP_setEnable ( TRUE );
+	//show_screen ( 0 ); //displayOn();
 }
 
 
@@ -265,7 +265,7 @@ static void _disclaimer_cool ( void )
 	ledUpdate = 0;
 	doDisclaimerLogoFadeOut ( );
 
-	displayOff();
+	displayOff(0);
 	resetScreen();
 }
 
@@ -279,15 +279,10 @@ extern const struct genresTiles screen_disclaimer_all;
 
 static void _disclaimer_simple ( )
 {
-	displayOff();
-
-//	palette_init();
-
+	displayOff ( 0 );
 
 	resetScroll();
 	resetScreen();
-
-
 
 	u16 size = screen_disclaimer_all.width * screen_disclaimer_all.height;
 	u16 pos = vram_new ( size );
@@ -296,13 +291,12 @@ static void _disclaimer_simple ( )
 
 	preparePal( PAL1, screen_disclaimer_all.pal);
 
-	show_screen();
+	show_screen ( 10 );
 
+	waitJoySc ( 3 );
 
-	waitSc(3);
+	displayOff ( 10 );
 
-
-	displayOff();
 	VDP_resetSprites();
 	VDP_updateSprites();
 }
@@ -316,18 +310,16 @@ void screen_disclaimer ( )
 	vram_init ( VRAM_DEFAULT );
 
 
+	bool nolddor_released_ZoS = false;
 
-	bool jack_released_ZoS = false;
-
-	if ( jack_released_ZoS )
+	if ( nolddor_released_ZoS )
 	{
 		_disclaimer_cool ();
 	}
 	else
 	{
-		_disclaimer_simple();
+		_disclaimer_simple ( );
 	}
 
 	vram_destroy();
-
 }

@@ -62,7 +62,7 @@ void screen_sega ( )
 		{  { 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000 },  50 },
 	};
 
-	displayOff();
+	displayOff(0);
 	resetScreen();
 	waitSc(1);
 
@@ -87,6 +87,14 @@ void screen_sega ( )
 		while ( j-- )
 		{
 			VDP_waitVSync();
+
+			JoyReader_update();
+
+			if ( joy1_pressed_abc || joy1_pressed_start )
+			{
+				displayOff(10);
+				return ;
+			}
 		}
 	}
 }

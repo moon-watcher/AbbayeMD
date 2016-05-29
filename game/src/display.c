@@ -18,7 +18,7 @@ void preparePal ( u16 pal, u16 *colors )
 }
 
 
-void preparePalettes ( u16 *colors )
+void prepareColors ( u16 *colors )
 {
 	memcpyU16 ( _cache, colors, 64 );
 }
@@ -30,13 +30,18 @@ void prepareColor ( u16 index, u16 color )
 }
 
 
-void displayOff ( )
+void displayOff ( u16 frames )
 {
+	if ( frames )
+	{
+		VDP_fadeOutAll ( frames, 0 );
+	}
+
 	const u16 blacks[64] = { [0 ... 63] = 0x0000 };
 
-	VDP_waitVSync();
+	VDP_waitVSync ( );
 	VDP_setPaletteColors ( 0, (u16*)blacks, 64 );
-	VDP_waitVSync();
+	VDP_waitVSync ( );
 }
 
 

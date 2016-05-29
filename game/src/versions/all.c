@@ -9,7 +9,7 @@
 #include "../../inc/versions/msx.h"
 #include "../../inc/versions/pcw.h"
 #include "../../inc/versions/gb.h"
-#include "../../inc/versions/nes.h"
+//#include "../../inc/versions/nes.h"
 #include "../../inc/versions/cga.h"
 
 
@@ -43,10 +43,10 @@
 #include "../../res/gb/font.h"
 #include "../../res/gb/hint.h"
 
-#include "../../res/nes/palettes.h"
-#include "../../res/nes/screens.h"
-#include "../../res/nes/font.h"
-#include "../../res/nes/hint.h"
+//#include "../../res/nes/palettes.h"
+//#include "../../res/nes/screens.h"
+//#include "../../res/nes/font.h"
+//#include "../../res/nes/hint.h"
 
 #include "../../res/cga/palettes.h"
 #include "../../res/cga/screens.h"
@@ -63,7 +63,7 @@ const u8 versions_list [ VERSION_MAX ] [ 15 ] =
       "MSX",
       "PCW",
       "Game Boy",
-      "NES",
+      //"NES",
       "CGA",
 };
 
@@ -75,7 +75,7 @@ const u8 versions_upper_list [ VERSION_MAX ] [ 15 ] =
       "MSX       ",
       "PCW       ",
       "GAME BOY  ",
-      "NES       ",
+      //"NES       ",
       "CGA       ",
 };
 
@@ -114,11 +114,11 @@ const PlayerData player_data [ VERSION_MAX ] =
             9
       },
 
-	// VERSION_NES
-	{
-            -FIX32(2.8),
-            9
-      },
+//	// VERSION_NES
+//	{
+//            -FIX32(2.8),
+//            9
+//      },
 
 	// VERSION_CGA
 	{
@@ -138,8 +138,8 @@ const Music music_04_all = { MUSIC_SATAN,    "Evil Fight",     }; // (u8*) music
 const Music music_05_all = { MUSIC_GAMEOVER, "Game Over",      }; // (u8*) music_gameover_all, Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 0, sizeof(music_gameover_all) };
 const Music music_06_all = { MUSIC_START,    "Game Start",     }; // (u8*) music_start_all,    Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 0, sizeof(music_start_all)    };
 const Music music_07_all = { MUSIC_TITLE,    "Main Title",     }; // (u8*) music_title_all,    Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 0, sizeof(music_title_all)    };
-const Music music_08_all = { MUSIC_WOODS,    "Manhunt wood",   }; // (u8*) music_woods_all,    Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 1, sizeof(music_woods_all)    };
-const Music music_09_all = { MUSIC_PROLOGUE, "Manhunt",        }; // (u8*) music_prologue_all, Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 0, sizeof(music_prologue_all) };
+const Music music_08_all = { MUSIC_WOODS,    "Manhunt wood"    }; // (u8*) music_woods_all,    Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 1, sizeof(music_woods_all)    };
+const Music music_09_all = { MUSIC_PROLOGUE, "Manhunt",        (u8*) music_manhunt_all, Z80_DRIVER_XGM }; // (u8*) music_prologue_all, Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 0, sizeof(music_prologue_all) };
 const Music music_10_all = { MUSIC_HOPE,     "Prayer of Hope", }; // (u8*) music_hope_all,     Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 0, sizeof(music_hope_all)     };
 
 
@@ -995,20 +995,20 @@ const Music *music_list [ VERSION_MAX ] [ MUSIC_MAX ] =
             (Music*) &music_10_all,
       },
 
-	// VERSION_NES
-	{
-            (Music*) &music_00_all,
-            (Music*) &music_01_all,
-            (Music*) &music_02_all,
-            (Music*) &music_03_all,
-            (Music*) &music_04_all,
-            (Music*) &music_05_all,
-            (Music*) &music_06_all,
-            (Music*) &music_07_all,
-            (Music*) &music_08_all,
-            (Music*) &music_09_all,
-            (Music*) &music_10_all,
-      },
+//	// VERSION_NES
+//	{
+//            (Music*) &music_00_all,
+//            (Music*) &music_01_all,
+//            (Music*) &music_02_all,
+//            (Music*) &music_03_all,
+//            (Music*) &music_04_all,
+//            (Music*) &music_05_all,
+//            (Music*) &music_06_all,
+//            (Music*) &music_07_all,
+//            (Music*) &music_08_all,
+//            (Music*) &music_09_all,
+//            (Music*) &music_10_all,
+//      },
 
 	// VERSION_CGA
 	{
@@ -1091,17 +1091,17 @@ const Fx *fx_list [ VERSION_MAX ] [ FX_MAX ] =
             (Fx*) &fx_08_all,
       },
 
-	// VERSION_NES
-	{
-            (Fx*) &fx_01_all,
-            (Fx*) &fx_02_all,
-            (Fx*) &fx_03_all,
-            (Fx*) &fx_04_all,
-            (Fx*) &fx_05_all,
-            (Fx*) &fx_06_all,
-            (Fx*) &fx_07_all,
-            (Fx*) &fx_08_all,
-      },
+//	// VERSION_NES
+//	{
+//            (Fx*) &fx_01_all,
+//            (Fx*) &fx_02_all,
+//            (Fx*) &fx_03_all,
+//            (Fx*) &fx_04_all,
+//            (Fx*) &fx_05_all,
+//            (Fx*) &fx_06_all,
+//            (Fx*) &fx_07_all,
+//            (Fx*) &fx_08_all,
+//      },
 
 	// VERSION_CGA
 	{
@@ -1167,16 +1167,16 @@ const Room *room_list [ VERSION_MAX ] [ ROOMS_MAX_HEIGHT ] [ ROOMS_MAX_WIDTH ] =
             { &room_04_gb, &room_14_gb, &room_24_gb, &room_34_gb, &room_44_gb },
       },
 
-      // VERSION_NES
-      {
-            { &room_00_nes, &room_10_nes, &room_20_nes, &room_30_nes, &room_40_nes },
-            { &room_01_nes, &room_11_nes, &room_21_nes, &room_31_nes, &room_41_nes },
-            { &room_02_nes, &room_12_nes, &room_22_nes, &room_32_nes, &room_42_nes },
-            { &room_03_nes, &room_13_nes, &room_23_nes, &room_33_nes, &room_43_nes },
-            { &room_04_nes, &room_14_nes, &room_24_nes, &room_34_nes, &room_44_nes },
-      },
+//      // VERSION_NES
+//      {
+//            { &room_00_nes, &room_10_nes, &room_20_nes, &room_30_nes, &room_40_nes },
+//            { &room_01_nes, &room_11_nes, &room_21_nes, &room_31_nes, &room_41_nes },
+//            { &room_02_nes, &room_12_nes, &room_22_nes, &room_32_nes, &room_42_nes },
+//            { &room_03_nes, &room_13_nes, &room_23_nes, &room_33_nes, &room_43_nes },
+//            { &room_04_nes, &room_14_nes, &room_24_nes, &room_34_nes, &room_44_nes },
+//      },
 
-      // VERSION_NES
+      // VERSION_CGA
       {
             { &room_00_cga, &room_10_cga, &room_20_cga, &room_30_cga, &room_40_cga },
             { &room_01_cga, &room_11_cga, &room_21_cga, &room_31_cga, &room_41_cga },
@@ -1228,11 +1228,11 @@ const Object *checkpoint_list [ VERSION_MAX ] [ 2 ] =
             (Object*) &entity_09_gb
       },
 
-      // VERSION_MSX
-      {
-            (Object*) &entity_08_msx,
-            (Object*) &entity_09_msx
-      },
+//      // VERSION_NES
+//      {
+//            (Object*) &entity_08_nes,
+//            (Object*) &entity_09_nes
+//      },
 
       // VERSION_CGA
       {
@@ -1314,18 +1314,18 @@ const Hint hint_list [ VERSION_MAX ] [ HINT_MAX ] =
             { (Image*) &hint_09_gb,  99, 99 }
       },
 
-      // VERSION_NES
-      {
-            { (Image*) &hint_01_nes,  3,  0 },
-            { (Image*) &hint_02_nes,  3,  1 },
-            { (Image*) &hint_03_nes,  2,  2 },
-            { (Image*) &hint_04_nes,  4,  2 },
-            { (Image*) &hint_05_nes,  1,  3 },
-            { (Image*) &hint_06_nes,  1,  4 },
-            { (Image*) &hint_07_nes,  4,  4 },
-            { (Image*) &hint_08_nes, 99, 99 },
-            { (Image*) &hint_09_nes, 99, 99 }
-      },
+//      // VERSION_NES
+//      {
+//            { (Image*) &hint_01_nes,  3,  0 },
+//            { (Image*) &hint_02_nes,  3,  1 },
+//            { (Image*) &hint_03_nes,  2,  2 },
+//            { (Image*) &hint_04_nes,  4,  2 },
+//            { (Image*) &hint_05_nes,  1,  3 },
+//            { (Image*) &hint_06_nes,  1,  4 },
+//            { (Image*) &hint_07_nes,  4,  4 },
+//            { (Image*) &hint_08_nes, 99, 99 },
+//            { (Image*) &hint_09_nes, 99, 99 }
+//      },
 
       // VERSION_CGA
       {
@@ -1429,21 +1429,21 @@ const Object player_actions [ VERSION_MAX ] [ PLAYER_MAX_ACTIONS ] =
             { (Entity*) &entity_56_gb }  // 11: plunge:jumps
       },
 
-	// VERSION_NES
-	{
-            { (Entity*) &entity_01_nes }, //  0: stay
-            { (Entity*) &entity_02_nes }, //  1: walks right
-            { (Entity*) &entity_02_nes }, //  2: walks left
-            { (Entity*) &entity_03_nes }, //  3: jumps
-            { (Entity*) &entity_03_nes }, //  4: jumps right
-            { (Entity*) &entity_03_nes }, //  5: jumps left
-            { (Entity*) &entity_04_nes }, //  6: burns
-            { (Entity*) &entity_05_nes }, //  7: lie down
-            { (Entity*) &entity_06_nes }, //  8: sneaks right
-            { (Entity*) &entity_06_nes }, //  9: sneaks left
-            { (Entity*) &entity_01_nes }, // 10: stay:captured
-            { (Entity*) &entity_56_nes }  // 11: plunge:jumps
-      },
+//	// VERSION_NES
+//	{
+//            { (Entity*) &entity_01_nes }, //  0: stay
+//            { (Entity*) &entity_02_nes }, //  1: walks right
+//            { (Entity*) &entity_02_nes }, //  2: walks left
+//            { (Entity*) &entity_03_nes }, //  3: jumps
+//            { (Entity*) &entity_03_nes }, //  4: jumps right
+//            { (Entity*) &entity_03_nes }, //  5: jumps left
+//            { (Entity*) &entity_04_nes }, //  6: burns
+//            { (Entity*) &entity_05_nes }, //  7: lie down
+//            { (Entity*) &entity_06_nes }, //  8: sneaks right
+//            { (Entity*) &entity_06_nes }, //  9: sneaks left
+//            { (Entity*) &entity_01_nes }, // 10: stay:captured
+//            { (Entity*) &entity_56_nes }  // 11: plunge:jumps
+//      },
 
 	// VERSION_CGA
 	{
@@ -1497,10 +1497,10 @@ extern const struct genresTiles hud_cross_gb;
 extern const struct genresTiles hud_numbers_gb;
 extern const struct genresTiles hud_blackbar_gb;
 
-extern const struct genresTiles hud_heart_nes;
-extern const struct genresTiles hud_cross_nes;
-extern const struct genresTiles hud_numbers_nes;
-extern const struct genresTiles hud_blackbar_nes;
+//extern const struct genresTiles hud_heart_nes;
+//extern const struct genresTiles hud_cross_nes;
+//extern const struct genresTiles hud_numbers_nes;
+//extern const struct genresTiles hud_blackbar_nes;
 
 extern const struct genresTiles hud_heart_cga;
 extern const struct genresTiles hud_cross_cga;
@@ -1551,13 +1551,13 @@ const struct genresTiles *hud_objects [ VERSION_MAX ] [ 4 ] =
             &hud_blackbar_gb
       },
 
-	// VERSION_NES
-	{
-            &hud_heart_nes,
-            &hud_cross_nes,
-            &hud_numbers_nes,
-            &hud_blackbar_nes
-      },
+//	// VERSION_NES
+//	{
+//            &hud_heart_nes,
+//            &hud_cross_nes,
+//            &hud_numbers_nes,
+//            &hud_blackbar_nes
+//      },
 
 	// VERSION_CGA
 	{
@@ -1573,8 +1573,7 @@ const struct genresTiles *hud_objects [ VERSION_MAX ] [ 4 ] =
 
 
 
-
-const Palette *palette_list [ VERSION_MAX ] [ 7 ] =
+const Palette *palette_list [ VERSION_MAX ] [ PALETTE_MAX ] =
 {
 	// VERSION_PC
 	{
@@ -1615,7 +1614,6 @@ const Palette *palette_list [ VERSION_MAX ] [ 7 ] =
             (Palette*) &palette_0_pcw,
             (Palette*) &palette_0_pcw,
             (Palette*) &palette_0_pcw,
-
             (Palette*) &palette_0_pcw,
             (Palette*) &palette_0_pcw,
             (Palette*) &palette_font_all
@@ -1632,16 +1630,16 @@ const Palette *palette_list [ VERSION_MAX ] [ 7 ] =
             (Palette*) &palette_font_all
       },
 
-	// VERSION_NES
-	{
-            (Palette*) &palette_0_nes,
-            (Palette*) &palette_0_nes,
-            (Palette*) &palette_0_nes,
-            (Palette*) &palette_0_nes,
-            (Palette*) &palette_font_nes,
-            (Palette*) &palette_font_sel_nes,
-            (Palette*) &palette_font_all
-      },
+//	// VERSION_NES
+//	{
+//            (Palette*) &palette_0_nes,
+//            (Palette*) &palette_0_nes,
+//            (Palette*) &palette_0_nes,
+//            (Palette*) &palette_0_nes,
+//            (Palette*) &palette_font_nes,
+//            (Palette*) &palette_font_sel_nes,
+//            (Palette*) &palette_font_all
+//      },
 
 	// VERSION_CGA
 	{
@@ -1653,8 +1651,6 @@ const Palette *palette_list [ VERSION_MAX ] [ 7 ] =
             (Palette*) &palette_font_sel_cga,
             (Palette*) &palette_font_all
       },
-
-
 };
 
 
@@ -1684,22 +1680,22 @@ const Screen screen_list [ VERSION_MAX ] [ 20 ] =
 
 	// VERSION_MD
 	{
-            { (Image*) &screen_gameover_md,                       NULL,                            NULL },
-            { (Image*) &screen_prologue_md,                       NULL, (Objects*) &objects_prologue_md },
-            { NULL,                                               NULL,                            NULL },
+            { (Image*) &screen_gameover_md,                          NULL,                            NULL },
+            { (Image*) &screen_prologue_md,                          NULL, (Objects*) &objects_prologue_md },
+            { NULL,                                                  NULL,                            NULL },
 
-            { (Image*) &screen_ending_1_md,                       NULL,                            NULL }, // 3
-            { (Image*) &screen_ending_2_md,                       NULL,                            NULL },
-            { (Image*) &screen_ending_3_md,                       NULL,                            NULL },
-            { (Image*) &screen_ending_4_md,                       NULL,                            NULL },
-            { (Image*) &screen_ending_5_md,                       NULL,                            NULL },
-            { (Image*) &screen_ending_6_md,                       NULL,                            NULL },
-            { (Image*) &screen_ending_7_md,                       NULL,                            NULL },
+            { (Image*) &screen_ending_1_md,                          NULL,                            NULL }, // 3
+            { (Image*) &screen_ending_2_md,                          NULL,                            NULL },
+            { (Image*) &screen_ending_3_md,                          NULL,                            NULL },
+            { (Image*) &screen_ending_4_md,                          NULL,                            NULL },
+            { (Image*) &screen_ending_5_md,                          NULL,                            NULL },
+            { (Image*) &screen_ending_6_md,                          NULL,                            NULL },
+            { (Image*) &screen_ending_7_md,                          NULL,                            NULL },
 
-            { (Image*) &screen_burnhim_md,                        NULL,  (Objects*) &objects_burnhim_md }, // 10
-            { (Image*) &screen_title_md,    ( Image*) &screen_abbey_md,                            NULL },
+            { (Image*) &screen_burnhim_f_md, (Image*) &screen_burnhim_b_md, (Objects*) &objects_burnhim_md }, // 10
+            { (Image*) &screen_title_md,    ( Image*) &screen_abbey_md,                               NULL },
 
-            {                         NULL,                       NULL,     (Objects*) &objects_info_md }, // 12
+            {                         NULL,                           NULL,     (Objects*) &objects_info_md }, // 12
       },
 
 	// VERSION_MSX
@@ -1762,25 +1758,25 @@ const Screen screen_list [ VERSION_MAX ] [ 20 ] =
             {                         NULL,                       NULL,     (Objects*) &objects_info_gb }, // 12
       },
 
-	// VERSION_NES
-	{
-            { (Image*) &screen_gameover_all,                      NULL,                             NULL },
-            { (Image*) &screen_prologue_all,                      NULL, (Objects*) &objects_prologue_nes },
-            { NULL,                                               NULL,                             NULL },
-
-            { (Image*) &screen_ending_1_all,                      NULL,                             NULL }, // 3
-            { (Image*) &screen_ending_2_all,                      NULL,                             NULL },
-            { (Image*) &screen_ending_3_all,                      NULL,                             NULL },
-            { (Image*) &screen_ending_4_all,                      NULL,                             NULL },
-            { (Image*) &screen_ending_5_all,                      NULL,                             NULL },
-            { (Image*) &screen_ending_6_all,                      NULL,                             NULL },
-            { (Image*) &screen_ending_7_all,                      NULL,                             NULL },
-
-            { (Image*) &screen_burnhim_nes,                       NULL,  (Objects*) &objects_burnhim_nes }, // 10
-            { (Image*) &screen_title_nes,   (Image*) &screen_abbey_nes,                             NULL },
-
-            {                         NULL,                       NULL,     (Objects*) &objects_info_nes }, // 12
-      },
+//	// VERSION_NES
+//	{
+//            { (Image*) &screen_gameover_all,                      NULL,                             NULL },
+//            { (Image*) &screen_prologue_all,                      NULL, (Objects*) &objects_prologue_nes },
+//            { NULL,                                               NULL,                             NULL },
+//
+//            { (Image*) &screen_ending_1_all,                      NULL,                             NULL }, // 3
+//            { (Image*) &screen_ending_2_all,                      NULL,                             NULL },
+//            { (Image*) &screen_ending_3_all,                      NULL,                             NULL },
+//            { (Image*) &screen_ending_4_all,                      NULL,                             NULL },
+//            { (Image*) &screen_ending_5_all,                      NULL,                             NULL },
+//            { (Image*) &screen_ending_6_all,                      NULL,                             NULL },
+//            { (Image*) &screen_ending_7_all,                      NULL,                             NULL },
+//
+//            { (Image*) &screen_burnhim_nes,                       NULL,  (Objects*) &objects_burnhim_nes }, // 10
+//            { (Image*) &screen_title_nes,   (Image*) &screen_abbey_nes,                             NULL },
+//
+//            {                         NULL,                       NULL,     (Objects*) &objects_info_nes }, // 12
+//      },
 
 	// VERSION_CGA
 	{
@@ -1854,14 +1850,14 @@ const Switch switch_list [ VERSION_MAX ] [ SWITCH_MAX ] =
             { 2, 3, (Object) { (Entity*) &entity_42_gb }, (Object) {                           }, (Object) { (Entity*) &entity_43_gb  }, true,    switch_crosses }  // Wheel of faith
       },
 
-	// VERSION_NES
-	{
-            { 2, 0, (Object) { (Entity*) &entity_20_nes }, (Object) { (Entity*) &entity_63_nes }, (Object) { (Entity*) &entity_44_nes }, false, switch_ring_bell }, // opens hatch at 3, 1
-            { 4, 1, (Object) { (Entity*) &entity_22_nes }, (Object) {                          }, (Object) { (Entity*) &entity_45_nes }, false,             NULL }, // opens door  at 4, 3
-            { 0, 2, (Object) { (Entity*) &entity_22_nes }, (Object) {                          }, (Object) { (Entity*) &entity_45_nes }, false,             NULL }, // opens door  at 3, 1
-            { 0, 4, (Object) { (Entity*) &entity_22_nes }, (Object) {                          }, (Object) { (Entity*) &entity_45_nes }, false,             NULL }, // opens door  at 0, 4
-            { 2, 3, (Object) { (Entity*) &entity_42_nes }, (Object) {                          }, (Object) { (Entity*) &entity_43_nes }, true,    switch_crosses }  // Wheel of faith
-      },
+//	// VERSION_NES
+//	{
+//            { 2, 0, (Object) { (Entity*) &entity_20_nes }, (Object) { (Entity*) &entity_63_nes }, (Object) { (Entity*) &entity_44_nes }, false, switch_ring_bell }, // opens hatch at 3, 1
+//            { 4, 1, (Object) { (Entity*) &entity_22_nes }, (Object) {                          }, (Object) { (Entity*) &entity_45_nes }, false,             NULL }, // opens door  at 4, 3
+//            { 0, 2, (Object) { (Entity*) &entity_22_nes }, (Object) {                          }, (Object) { (Entity*) &entity_45_nes }, false,             NULL }, // opens door  at 3, 1
+//            { 0, 4, (Object) { (Entity*) &entity_22_nes }, (Object) {                          }, (Object) { (Entity*) &entity_45_nes }, false,             NULL }, // opens door  at 0, 4
+//            { 2, 3, (Object) { (Entity*) &entity_42_nes }, (Object) {                          }, (Object) { (Entity*) &entity_43_nes }, true,    switch_crosses }  // Wheel of faith
+//      },
 
 	// VERSION_CGA
 	{
@@ -1886,8 +1882,8 @@ const Passage passage_list [ VERSION_MAX ] [ PASSAGE_MAX ] =
 
 	// VERSION_MD
 	{
-            { (Entity*) &entity_46_md, { 0, 2 }, { 4, 3 } },
-            { (Entity*) &entity_46_md, { 4, 3 }, { 0, 2 } }
+            { (Entity*) &entity_md_83, { 0, 2 }, { 4, 3 } },
+            { (Entity*) &entity_md_84, { 4, 3 }, { 0, 2 } }
       },
 
 	// VERSION_MSX
@@ -1908,11 +1904,11 @@ const Passage passage_list [ VERSION_MAX ] [ PASSAGE_MAX ] =
             { (Entity*) &entity_46_gb, { 4, 3 }, { 0, 2 } }
       },
 
-	// VERSION_NES
-	{
-            { (Entity*) &entity_46_nes, { 0, 2 }, { 4, 3 } },
-            { (Entity*) &entity_46_nes, { 4, 3 }, { 0, 2 } }
-      },
+//	// VERSION_NES
+//	{
+//            { (Entity*) &entity_46_nes, { 0, 2 }, { 4, 3 } },
+//            { (Entity*) &entity_46_nes, { 4, 3 }, { 0, 2 } }
+//      },
 
 	// VERSION_CGA
 	{
@@ -1956,11 +1952,11 @@ const Object crosses_list [ VERSION_MAX ] [ 2 ] =
             { (Entity*) &entity_13_gb }  // Inverted cross
       },
 
-	// VERSION_NES
-	{
-            { (Entity*) &entity_12_nes }, // Cross
-            { (Entity*) &entity_13_nes }  // Inverted cross
-      },
+//	// VERSION_NES
+//	{
+//            { (Entity*) &entity_12_nes }, // Cross
+//            { (Entity*) &entity_13_nes }  // Inverted cross
+//      },
 
 	// VERSION_CGA
 	{
@@ -2196,49 +2192,49 @@ const EnemyData enemy_data [ VERSION_MAX ] [ 30 ] =
             { (Entity*) &entity_57_gb, 4, 4,   0, { 70 } }, // 23
       },
 
-	// VERSION_NES
-	{
-            // Toxic drop
-            { (Entity*) &entity_54_nes, 0, 3, 100, {   0,  10, 60 } }, // 0
-            { (Entity*) &entity_54_nes, 0, 3,  80, {   0,  10, 60 } },
-            { (Entity*) &entity_54_nes, 0, 3,  90, {   0,  10, 60 } },
-            { (Entity*) &entity_54_nes, 0, 3, 120, {   0,  10, 60 } },
-            { (Entity*) &entity_54_nes, 0, 3, 150, {   0,  10, 60 } },
-            { (Entity*) &entity_54_nes, 4, 3, 120, {   0,  10, 60 } },
-            { (Entity*) &entity_54_nes, 4, 3,  90, {   0,  10, 60 } },
-
-            // Fish
-            { (Entity*) &entity_55_nes, 1, 3, 120, {  60 } }, //  7
-            { (Entity*) &entity_55_nes, 1, 3, 150, {  60 } },
-            { (Entity*) &entity_55_nes, 1, 3,  90, {  60 } },
-            { (Entity*) &entity_55_nes, 4, 3,  90, {  60 } },
-            { (Entity*) &entity_55_nes, 4, 3, 120, {  60 } },
-            { (Entity*) &entity_55_nes, 4, 3, 160, {  60 } },
-
-            // Archer
-            { (Entity*) &entity_33_nes, 1, 4,   0, { 120 } }, // 13
-            { (Entity*) &entity_33_nes, 2, 3,   0, { 120 } },
-            { (Entity*) &entity_33_nes, 2, 3,   0, { 120 } },
-            { (Entity*) &entity_33_nes, 2, 3,   0, { 120 } },
-
-            // Death
-            { (Entity*) &entity_39_nes, 3, 3,   0, {  75 } }, // 17
-
-            // Spitting plant
-            { (Entity*) &entity_27_nes, 4, 2, 120, { 180 } }, // 18
-            { (Entity*) &entity_27_nes, 4, 2, 150, { 180 } },
-            { (Entity*) &entity_27_nes, 4, 2, 180, { 180 } },
-
-            // Gargoyle
-            { (Entity*) &entity_51_nes, 2, 4,   0, { 100 } }, // 21
-            { (Entity*) &entity_51_nes, 0, 4,   0, { 120 } },
-
-            // Dragon head
-            { (Entity*) &entity_47_nes, 0, 2,   0, { 50, 90, 150, 160 } }, // 22
-
-            // Satan
-            { (Entity*) &entity_57_nes, 4, 4,   0, { 70 } }, // 23
-      },
+//	// VERSION_NES
+//	{
+//            // Toxic drop
+//            { (Entity*) &entity_54_nes, 0, 3, 100, {   0,  10, 60 } }, // 0
+//            { (Entity*) &entity_54_nes, 0, 3,  80, {   0,  10, 60 } },
+//            { (Entity*) &entity_54_nes, 0, 3,  90, {   0,  10, 60 } },
+//            { (Entity*) &entity_54_nes, 0, 3, 120, {   0,  10, 60 } },
+//            { (Entity*) &entity_54_nes, 0, 3, 150, {   0,  10, 60 } },
+//            { (Entity*) &entity_54_nes, 4, 3, 120, {   0,  10, 60 } },
+//            { (Entity*) &entity_54_nes, 4, 3,  90, {   0,  10, 60 } },
+//
+//            // Fish
+//            { (Entity*) &entity_55_nes, 1, 3, 120, {  60 } }, //  7
+//            { (Entity*) &entity_55_nes, 1, 3, 150, {  60 } },
+//            { (Entity*) &entity_55_nes, 1, 3,  90, {  60 } },
+//            { (Entity*) &entity_55_nes, 4, 3,  90, {  60 } },
+//            { (Entity*) &entity_55_nes, 4, 3, 120, {  60 } },
+//            { (Entity*) &entity_55_nes, 4, 3, 160, {  60 } },
+//
+//            // Archer
+//            { (Entity*) &entity_33_nes, 1, 4,   0, { 120 } }, // 13
+//            { (Entity*) &entity_33_nes, 2, 3,   0, { 120 } },
+//            { (Entity*) &entity_33_nes, 2, 3,   0, { 120 } },
+//            { (Entity*) &entity_33_nes, 2, 3,   0, { 120 } },
+//
+//            // Death
+//            { (Entity*) &entity_39_nes, 3, 3,   0, {  75 } }, // 17
+//
+//            // Spitting plant
+//            { (Entity*) &entity_27_nes, 4, 2, 120, { 180 } }, // 18
+//            { (Entity*) &entity_27_nes, 4, 2, 150, { 180 } },
+//            { (Entity*) &entity_27_nes, 4, 2, 180, { 180 } },
+//
+//            // Gargoyle
+//            { (Entity*) &entity_51_nes, 2, 4,   0, { 100 } }, // 21
+//            { (Entity*) &entity_51_nes, 0, 4,   0, { 120 } },
+//
+//            // Dragon head
+//            { (Entity*) &entity_47_nes, 0, 2,   0, { 50, 90, 150, 160 } }, // 22
+//
+//            // Satan
+//            { (Entity*) &entity_57_nes, 4, 4,   0, { 70 } }, // 23
+//      },
 
 	// VERSION_CGA
 	{
@@ -2307,4 +2303,50 @@ const EnemyData enemy_data [ VERSION_MAX ] [ 30 ] =
 //};
 
 
+
+
+
+const Palette *palette_alt_list [ VERSION_MAX ] [ PALETTE_ALT_MAX ] =
+{
+	// VERSION_PC
+	{
+      },
+
+	// VERSION_MD
+	{
+      },
+
+	// VERSION_MSX
+	{
+      },
+
+      // VERSION_PCW
+	{
+      },
+
+	// VERSION_GB
+	{
+            (Palette*) &palette_gb_00,
+            (Palette*) &palette_gb_01,
+            (Palette*) &palette_gb_02,
+            (Palette*) &palette_gb_03,
+            (Palette*) &palette_gb_04,
+            (Palette*) &palette_gb_05,
+            (Palette*) &palette_gb_06,
+      },
+
+//	// VERSION_NES
+//	{
+//    },
+
+	// VERSION_CGA
+	{
+            (Palette*) &palette_cga_00,
+            (Palette*) &palette_cga_01,
+            (Palette*) &palette_cga_02,
+            (Palette*) &palette_cga_03,
+            (Palette*) &palette_cga_04,
+            (Palette*) &palette_cga_05,
+      },
+};
 

@@ -69,6 +69,11 @@ void switch_touched ( GameObject *go )
 			goSetObject ( go, checked ? &s->on : &s->off );
 
 			play_fx ( FX_SWITCH );
+
+			// update the sprite before waitHz()
+			SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+			VDP_waitVSync ( );
+
 			waitHz ( getHz() );
 		}
 

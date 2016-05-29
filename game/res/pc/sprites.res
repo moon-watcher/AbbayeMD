@@ -12,7 +12,7 @@ SPRITE enemies_2x3_pc  "../../data/pc/sprites/enemies_2x3.bmp"   2 3 0   7
 SPRITE enemies_3x3_pc  "../../data/pc/sprites/enemies_3x3.bmp"   3 3 0   7
 SPRITE enemies_3x2_pc  "../../data/pc/sprites/enemies_3x2.bmp"   3 2 0   5
 
-SPRITE jean_2x3_pc     "../../data/pc/sprites/jean_2x3.bmp"      2 3 0   9
+SPRITE jean_2x3_pc     "../../data/pc/sprites/jean_2x3.bmp"      2 3 0   6
 SPRITE jean_3x2_pc     "../../data/pc/sprites/jean_3x2.bmp"      3 2 0  21
 
 SPRITE objects_2x2_pc  "../../data/pc/sprites/objects_2x2.bmp"   2 2 0   7

@@ -126,10 +126,20 @@ static void _go_next_room ()
 void game_init ()
 {
 	//game.version = ;
-	game.status = GAME_STATUS_OK;
-	game.room.x = checkpoint_get()->room_x;
-	game.room.y = checkpoint_get()->room_y;
+	game.status       = GAME_STATUS_OK;
+	game.room.x       = checkpoint_get()->room_x;
+	game.room.y       = checkpoint_get()->room_y;
+	game.rnd          = random();
+	game.alt_palettes = true;
 }
+
+
+
+void game_set_alt_palettes ( bool value )
+{
+	game.alt_palettes = value;
+}
+
 
 
 u8 game_room_x ( s8 inc )
@@ -150,16 +160,12 @@ u8 game_room_y ( s8 inc )
 
 
 
-
-
-
-
 void game_loop ( )
 {
 	while ( game.status == GAME_STATUS_OK )
 	{
-		displayOff();
-		//displayOn();
+		displayOff(0);
+		//show_screen ( 0 ); //displayOn();
 
 
 		devu1 = 0;
@@ -171,8 +177,8 @@ void game_loop ( )
 		currentRoom = room_get ( );
 		memcpy ( &currentMask, currentRoom->mask, sizeof(Mask) );
 
-		VDP_clearPlan ( APLAN, 1 );
-		VDP_clearPlan ( BPLAN, 1 );
+		VDP_clearPlan ( APLAN, 0 );
+		VDP_clearPlan ( BPLAN, 0 );
 
 		VDP_setHorizontalScroll ( PLAN_B, 0 );
 		VDP_setHorizontalScroll ( PLAN_A, 0 );
@@ -204,8 +210,8 @@ void game_loop ( )
 		musicPlay ( currentRoom->track );
 
 
-		//show_screen(); // fade effect
-		displayOn(); // very fast
+		//show_screen ( 10 ); // fade effect
+		show_screen ( 0 ); // displayOn(); // very fast
 
 
 
@@ -216,6 +222,8 @@ void game_loop ( )
 		while ( game.status == GAME_STATUS_OK )
 		{
 			JoyReader_update ( );
+
+			update_palette_pressed ( );
 
 			if ( joy1_pressed_start )
 			{
@@ -273,7 +281,7 @@ void game_loop ( )
 			VDP_waitVSync ( );
 		}
 
-		displayOff();
+		displayOff(0);
 
 		room_function ( currentRoom, ROOM_ACTION_LEAVE );
 

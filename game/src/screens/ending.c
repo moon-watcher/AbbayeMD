@@ -8,7 +8,7 @@ static const u16 waits [ 7 ] = { 300, 100, 50, 50, 50, 150, 200 };
 
 void screen_ending ( )
 {
-	displayOff();
+	displayOff(0);
 
 	vram_init ( VRAM_DEFAULT );
 
@@ -31,11 +31,11 @@ void screen_ending ( )
 
 		if ( i == 0 )
 		{
-			show_screen();
+			show_screen ( 10 );
 		}
 		else
 		{
-			displayOn();
+			show_screen ( 0 );
 		}
 
 		waitHz ( waits[i] * hz / 100 );
@@ -43,9 +43,8 @@ void screen_ending ( )
 
 	vram_destroy();
 
+	waitSc(6);
+	waitJoySc(7);
 
-	waitMs(3000);
-	JOY_waitPressBtn();
-
-	displayOff();
+	displayOff(0);
 }

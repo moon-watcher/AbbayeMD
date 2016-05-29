@@ -494,8 +494,8 @@ u16 drawImage ( Image *image, u16 plan )
 
 	SYS_disableInts();
 
-	VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 1 ); VDP_waitDMACompletion();
-	//VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 0 );
+	//VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 1 ); VDP_waitDMACompletion();
+	VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 0 );
 
 	SYS_enableInts();
 
@@ -520,8 +520,8 @@ u16 drawImageXY ( Image *image, u16 plan, u16 x, u16 y )
 
 	SYS_disableInts();
 
-	VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 1 ); VDP_waitDMACompletion();
-	//VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 0 );
+	//VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 1 ); VDP_waitDMACompletion();
+	VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 0 );
 
 	SYS_enableInts();
 
@@ -575,6 +575,50 @@ void waitSc ( u16 sc )
 	}
 }
 
+void waitJoy ( )
+{
+	JoyReader_update();
+
+	while ( 1 )
+	{
+		VDP_waitVSync();
+
+		JoyReader_update();
+
+		if ( joy1_pressed_abc || joy1_pressed_start )
+		{
+			return ;
+		}
+	}
+}
+
+void waitJoySc ( u16 sc )
+{
+	JoyReader_update();
+
+	sc *= getHz();
+
+	while ( 1 )
+	{
+		--sc;
+
+		if ( !sc )
+		{
+			return;
+		}
+
+		VDP_waitVSync();
+
+		JoyReader_update();
+
+		if ( joy1_pressed_abc || joy1_pressed_start )
+		{
+			return ;
+		}
+	}
+}
+
+
 
 
 u16 between ( s32 min, s32 nb, s32 max )
@@ -607,8 +651,11 @@ void resetVRAM ( )
 
 void resetScreen ( )
 {
-	VDP_clearPlan ( APLAN, 1 ); VDP_waitDMACompletion ( );
-	VDP_clearPlan ( BPLAN, 1 ); VDP_waitDMACompletion ( );
+//	VDP_clearPlan ( APLAN, 1 ); VDP_waitDMACompletion ( );
+//	VDP_clearPlan ( BPLAN, 1 ); VDP_waitDMACompletion ( );
+
+	VDP_clearPlan ( APLAN, 0 );
+	VDP_clearPlan ( BPLAN, 0 );
 }
 
 
@@ -818,15 +865,6 @@ void setActive ( GameObject *go, u8 active )
 	if ( go->sprite != NULL )
 	{
 		SPR_setVisible ( go->sprite, active );
-
-//		if ( active )
-//		{
-//			SPR_setAlwaysVisible ( go->sprite, 1 );
-//		}
-//		else
-//		{
-//			SPR_setNeverVisible ( go->sprite, 1 );
-//		}
 	}
 
 	goSetActive ( go, active );
@@ -834,9 +872,63 @@ void setActive ( GameObject *go, u8 active )
 
 
 
-void show_screen ( )
+
+void update_palette ( )
 {
-	VDP_fadeAllTo ( getColors(), getHz()/10, 0 );
+	if ( game.alt_palettes )
+	{
+		u8 pal = 0;
+
+		if ( game.version == VERSION_GB  )
+		{
+			pal = session.palette_gb;
+		}
+		else if ( game.version == VERSION_CGA )
+		{
+			pal = session.palette_cga;
+		}
+		else
+		{
+			return;
+		}
+
+		preparePal ( PAL0, palette_alt_list [ game.version ] [ pal ]->data );
+		preparePal ( PAL1, palette_alt_list [ game.version ] [ pal ]->data );
+		preparePal ( PAL2, palette_alt_list [ game.version ] [ pal ]->data );
+		preparePal ( PAL3, palette_alt_list [ game.version ] [ pal ]->data );
+
+		prepareColor ( 0, palette_alt_list [ game.version ] [ pal ]->data [ 1 ] );
+	}
+}
+
+
+
+void update_palette_pressed ( )
+{
+	u8 count = 0;
+
+	if ( joy1_pressed_mode  &&  ( count = palette_alt_palettes ( ) ) )
+	{
+		session_inc_alt_palette ( count );
+		update_palette ( );
+		displayOn ( );
+	}
+}
+
+
+
+void show_screen ( u16 wait )
+{
+	update_palette ( );
+
+	if ( wait )
+	{
+		VDP_fadeAllTo ( getColors(), wait, 0 );
+	}
+	else
+	{
+		displayOn ( );
+	}
 }
 
 
@@ -857,7 +949,7 @@ void pack_vram_init ( )
 
 void pack_vram_add ( GameObject *go )
 {
-	#define PACKED_OBJECTS   11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 23, 24, 25, 28, 29, 32, 33, 34, 37, 38, 41, 50, 53, 55, 58, 61, 81
+	#define PACKED_OBJECTS   11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 23, 24, 25, 28, 29, 32, 33, 34, 37, 38, 41, 50, 53, 55, 58, 61, 81, 82
 
 	if ( in_array ( go->object->entity->id, (u16[]) {PACKED_OBJECTS, 0 } ) )
 	{
@@ -912,3 +1004,6 @@ void swap_tiles ( Vect2D_u16 exception[], u8 count, u16 x1, u16 y1, u16 x2, u16 
 		VDP_setTileMapXY ( APLAN, tile1, x2, y2 );
 	}
 }
+
+
+

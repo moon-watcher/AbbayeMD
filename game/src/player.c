@@ -211,8 +211,8 @@ void playerInit ( Player *player )
 	player->burning             = 0;
 	player->plunge              = 0;
 	player->in_passage          = false;
-	player->invulnerable        = INVULNERABLE; // false;
 	player->grial               = false;
+	player->invulnerable        = INVULNERABLE;
 
 	player->saved.object.entity = (Entity*) player_actions [ game.version ] [ player->action ].entity;
 	player->saved.object.x      = checkpoint_get()->pos_x-8;
@@ -318,6 +318,7 @@ PlayerAction playerGetAction ( Player *player )
 			action = PLAYER_LIEDOWN;
 		}
 
+		//if ( joy1_pressed_b | joy1_pressed_c )
 		if ( joy1_pressed_abc )
 		{
 			_make_jean_jumps ( player, &action );

@@ -15,12 +15,11 @@ enum
 	VERSION_MSX,
 	VERSION_PCW,
 	VERSION_GB,
-	VERSION_NES,
+	//VERSION_NES,
 	VERSION_CGA,
 
 	VERSION_MAX
 };
-
 
 
 
@@ -48,16 +47,21 @@ struct
 	room;
 
 	GameStatus status;
+
+	u16 rnd;
+	bool alt_palettes;
 }
 game;
 
 
 
-void game_init       ( );
-u8   game_room_x     ( s8 inc );
-u8   game_room_y     ( s8 inc );
-void game_loop_room  ( );
-void game_loop       ( );
+void game_init             ( );
+void game_set_alt_palettes ( bool value );
+u8   game_room_x           ( s8 inc );
+u8   game_room_y           ( s8 inc );
+void game_loop_room        ( );
+void game_loop             ( );
+
 
 
 #endif

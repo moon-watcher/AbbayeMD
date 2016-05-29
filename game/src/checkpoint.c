@@ -25,10 +25,17 @@ void checkpoint_save ( GameObject *check )
 {
 	_checkpoint = (Checkpoint) { check->x, check->y, game.room.x, game.room.y };
 
+	play_fx ( FX_SWITCH );
+
 	_set_object ( check );
 	SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
 
-	play_fx ( FX_SWITCH );
+	goUpdate ( player.go );
+	PlayerAction action = playerGetAction ( &player );
+	playerUpdate ( &player, action );
+
+	VDP_waitVSync ( );
+
 	waitHz ( getHz ( ) );
 }
 

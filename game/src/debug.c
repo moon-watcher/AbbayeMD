@@ -1,5 +1,7 @@
 #include "../inc/include.h"
 
+
+
 void debug_info ( )
 {
 	if ( !DEVELOPEMENT )
@@ -41,10 +43,10 @@ void debug_info ( )
 //	}
 
 
-//	// current room
-//	drawUInt ( game.room.x, 26, 25, 1 );
-//	drawText ( ",", 27,25 );
-//	drawUInt ( game.room.y, 28, 25, 1 );
+	// current room
+	drawUInt ( game.room.x, 26, 25, 1 );
+	drawText ( ",", 27,25 );
+	drawUInt ( game.room.y, 28, 25, 1 );
 
 
 	//frames per second
@@ -69,7 +71,7 @@ void debug_info ( )
 		else
 		{
 			SYS_disableInts();
-			VDP_clearPlan ( BPLAN, 1 );
+			VDP_clearPlan ( BPLAN, 0 );
 			SYS_enableInts();
 
 			room_draw ( currentRoom );
@@ -81,10 +83,17 @@ void debug_info ( )
 	// fast move
 	if ( joy1_active_z )
 	{
+		player.go->vel_y = FIX32(0);
+		player.go->grabity = false;
+
 		     if ( joy1_pressed_up    ) { game_room_y ( -1 ); game.status = GAME_STATUS_GONEXT; }
 		else if ( joy1_pressed_down  ) { game_room_y ( +1 ); game.status = GAME_STATUS_GONEXT; }
 		else if ( joy1_pressed_left  ) { game_room_x ( -1 ); game.status = GAME_STATUS_GONEXT; }
 		else if ( joy1_pressed_right ) { game_room_x ( +1 ); game.status = GAME_STATUS_GONEXT; }
+	}
+	else if ( joy1_released_z )
+	{
+		player.go->grabity = true;
 	}
 }
 

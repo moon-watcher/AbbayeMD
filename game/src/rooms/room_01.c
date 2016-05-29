@@ -17,7 +17,7 @@ static void _room_enter ( Room *room )
 {
 	if ( game.version == VERSION_MD )
 	{
-		nb_leaf = goManagerFindAllByEntityId ( &waObjects, leaf, 81 );   // Leaf
+		nb_leaf = goManagerFindAllByEntityId ( &waObjects, leaf, 81 );   // Leaf (outside)
 
 		enemy_leaf_init ( 96, 160 );
 

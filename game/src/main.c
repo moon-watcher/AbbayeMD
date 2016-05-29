@@ -59,14 +59,12 @@
  *  SPECIAL THANKS TO
  * --------------------------------------------------------------------------------------------------------------------------------
  * @GODFATHER-OF-THIS-RELEASE => Leander                        | Twitter: @leanderpixel
- * @PC-SKIN                   => Locomalito                     | Twitter: @locomalito
- * @MD-SKIN                   => Locomalito                     | Twitter: @locomalito
- * @MD-SKIN                   => Dani Nevado                    | Twitter: @DanySnowyman
  * @MSX-SKIN                  => Gerardo Herce                  | Twitter: @pipagerardo
+ * @GB-SKIN                   => Felipe Monge Corbalán          | Twitter: @vakapp
  * @PCW-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp
- * @MUSIC                     => Gryzor87                       | Twitter: @gryzor87
+ * @CGA-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp
+ * @MD-SKIN                   => Dani Nevado                    | Twitter: @DanySnowyman
  * @MUSIC                     => David Sánchez                  | Twitter: @DavidBonus
- * @FX                        => Gryzor87                       | Twitter: @gryzor87
  * @FX                        => David Sánchez                  | Twitter: @DavidBonus
  * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp
  * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp
@@ -83,7 +81,6 @@
  *  - Go gendev.spritesmind.net/page-genres.html
  *  - Download GenRes v1.1
  *  - Extract and replace all genres.* files in the zip into SGDK's bin directory
- *  - Compile SGDK
  *  - Compile #AbbayeMD
  *  - Tadah!
  *
@@ -107,22 +104,21 @@
 
 static void _init ( u16 hard )
 {
-	return;
-
 	// 0 is soft reset
    if ( hard == 0 )
    {
+		//displayOff(0);
 		//VDP_drawText ( "You pressed reset", 11, 9 );
 
       _start_entry(); // even more reset
       MEM_init();
    }
 
-
-	//sd_reset();
-	//SYS_reset();
-   SYS_assertReset(); // makes gensKmod crash, WTF?!
+	////sd_reset();
+	////SYS_reset();
+   //SYS_assertReset(); // makes gensKmod crash, WTF?!
 }
+
 
 
 void demo1()
@@ -212,11 +208,13 @@ int main ( int argc, char *argv[] )
 	//demo2();
 
 
-	displayInit();
-	displayOff();
+	game_set_alt_palettes ( false );
 
-	DEVELOPEMENT = true;
-	INVULNERABLE = true;
+	displayInit();
+	displayOff(0);
+
+	DEVELOPEMENT = 1;
+	INVULNERABLE = 1;
 	game.version = VERSION_MD;
 
 	JoyReader_init ( 1 );
@@ -228,7 +226,7 @@ int main ( int argc, char *argv[] )
 	screen_disclaimer ( );
 	screen_sega ( );
 
-	displayOff();
+	displayOff(0);
 	resetScreen();
 
 	VDP_setScreenWidth256 ( );
@@ -252,14 +250,17 @@ int main ( int argc, char *argv[] )
 //				screen_soundtest();
 
 
-	initial_hearts = 9;
+
+	session_init ();
 
 
 	while ( TRUE )
 	{
+		game_set_alt_palettes ( false );
+
 		screen_credits ( );
 
-		displayOff();
+		displayOff(0);
 
 		resetScroll ( );
 		resetScreen ( );
@@ -300,8 +301,8 @@ int main ( int argc, char *argv[] )
 			{
 				screen_burning ( );
 				screen_ending ( );
-				screen_credits ( );
-				screen_tfp ( );
+				//screen_credits ( );
+				screen_tfp ( ); // thanks for playing
 			}
 
 			if ( game.status == GAME_STATUS_GAMEOVER )

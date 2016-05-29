@@ -3,12 +3,19 @@
 
 
 
+#define PALETTE_MAX      7
+#define PALETTE_ALT_MAX  7
+
+
+
 //const Palette *palette_list [ VERSION_MAX ][ 4 ];
 
 
 
-void     palette_init ( );
-Palette *palette_get  ( u8 id );
+void     palette_init          ( );
+Palette *palette_get           ( u8 id );
+u8       palette_alt_palettes  ( );
+
 
 
 #endif // _PALETTE_H_

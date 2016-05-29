@@ -14,7 +14,7 @@ void hudIncCrosses ( s8 inc );
 void hudIncHearts  ( s8 inc );
 u8   hudGetHearts  ( );
 u8   hudGetCrosses ( );
-void hudSetHearts  ( u16 x );
+
 
 
 #endif // _HUD_H_

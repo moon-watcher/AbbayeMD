@@ -20,7 +20,7 @@ static void _room_enter ( Room *room )
 {
 	if ( game.version == VERSION_MD )
 	{
-		nb_leaf = goManagerFindAllByEntityId ( &waObjects, leaf, 81 );   // Leaf
+		nb_leaf = goManagerFindAllByEntityId ( &waObjects, leaf, 88 );   // Leaf (4,0)
 
 		enemy_leaf_init ( 96, 160 );
 
@@ -44,7 +44,7 @@ static void _room_stay ( Room *room )
 			enemy_leaf ( leaf[i] );
 		}
 
-		enemy_star ( (Vect2D_u16*) exceptions, 30, 12,  0, 16, 5, APLAN );
+		enemy_star ( (Vect2D_u16*) exceptions, 30, 12,  0, 16, 5, BPLAN );
 	}
 }
 

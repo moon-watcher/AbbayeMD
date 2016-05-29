@@ -96,6 +96,8 @@ u32   ntsc2pal                   ( u32 value );
 u8    getHz                      ( );
 void  waitHz                     ( u16 hzs );
 void  waitSc                     ( u16 sc );
+void  waitJoy                    ( );
+void  waitJoySc                  ( u16 sc );
 u16   between                    ( s32 min, s32 nb, s32 max );
 void  resetPalettes              ( );
 void  resetVRAM                  ( );
@@ -128,7 +130,9 @@ void  setDoor                    ( GameObject *door, bool value );
 
 void  invert_cross               ( GameObject *cross );
 void  setActive                  ( GameObject *go, u8 active );
-void  show_screen                ( );
+void  update_palette_pressed     ( );
+void  update_palette             ( );
+void  show_screen                ( u16 wait );
 //u16   find_values                ( u16 needle, u16 value, ... );
 
 void  pack_vram_init             ( );

@@ -23,6 +23,60 @@ static s8 sequence;
 
 
 
+
+      static s16 _steps = 0;
+const static u16 _colors [ 2 ] [ 34 ] =
+{
+	{ 0x000, 0x000, 0x000, 0x000, 0x000, 0x000, 0x000, 0x001, 0x002, 0x003, 0x004, 0x005, 0x006, 0x006, 0x006, 0x006, 0x006, 0x006, 0x006, 0x006, 0x006, 0x006, 0x005, 0x004, 0x003, 0x002, 0x001, 0x000, 0x000, 0x000, 0x000, 0x000, 0x000, 0x000 },
+	{ 0x000, 0x001, 0x002, 0x003, 0x004, 0x005, 0x006, 0x007, 0x008, 0x009, 0x00A, 0x00B, 0x00C, 0x00C, 0x00C, 0x00C, 0x00C, 0x00C, 0x00C, 0x00C, 0x00C, 0x00C, 0x00B, 0x00A, 0x009, 0x008, 0x007, 0x006, 0x005, 0x004, 0x003, 0x002, 0x001, 0x000 }
+};
+
+static _voidCallback *_md_palette_swap ( )
+{
+	if ( game.version == VERSION_MD && _steps >= 0  )
+	{
+		if ( vtimer % 3 != 0 )
+		{
+			return 0;
+		}
+
+		if ( _steps == 34 )
+		{
+			_steps = 0;
+		}
+
+		VDP_setPaletteColor ( PAL1*16 + 8, _colors[0][_steps] );
+		VDP_setPaletteColor ( PAL1*16 + 9, _colors[1][_steps] );
+
+		++_steps;
+	}
+
+	return 0;
+}
+
+static void _md_palette_init ( )
+{
+	_steps = 0;
+
+	prepareColor ( PAL1*16 + 8, _colors[0][_steps] );
+	prepareColor ( PAL1*16 + 9, _colors[1][_steps] );
+
+	SYS_setVIntCallback ( (_voidCallback*) _md_palette_swap );
+}
+
+static void _md_palette_stop ( )
+{
+	_steps = -1;
+
+	VDP_setPaletteColor ( PAL1*16 + 8, _colors[0][0] );
+	VDP_setPaletteColor ( PAL1*16 + 9, _colors[1][0] );
+
+	SYS_setVIntCallback ( (_voidCallback*) NULL );
+}
+
+
+
+
 static s8 _inc_secuence ( s8 expr )
 {
 	if ( expr )
@@ -149,6 +203,7 @@ static void _fight ( )
 			setActive ( bullet[i], 0 );
 		}
 
+		_md_palette_stop ( );
 		_remove_crosses();
 		setActive ( cross, 0 );
 
@@ -201,7 +256,15 @@ static void _catch_the_hint ( )
 
 static void _activate_crusaders ( )
 {
-	for ( i=0; i<nb_crusader; i++ ) setActive ( crusader[i], 1 );
+	if ( game.version == VERSION_MD )
+	{
+		VDP_setPalette ( PAL2, crusader[0]->object->entity->sd->palette->data );
+	}
+
+	for ( i=0; i<nb_crusader; i++ )
+	{
+		setActive ( crusader[i], 1 );
+	}
 
 	play_music ( MUSIC_WOODS ) ;
 
@@ -273,14 +336,14 @@ static void _room_enter ( Room *room )
 	{
 		hudIncCrosses(5);
 	}
+
+	_md_palette_init ( );
 }
 
 
 
 static void _room_stay ( Room *room )
 {
-//	enemy_death ( death, scythe );
-
 	if ( sequence == 0 )
 	{
 		_show_starts ( );
@@ -320,6 +383,7 @@ static void _room_stay ( Room *room )
 static void _room_leave ( room )
 {
 	enemy_bullet_delete ( );
+	_md_palette_stop ( );
 }
 
 

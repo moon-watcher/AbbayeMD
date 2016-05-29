@@ -10,7 +10,6 @@
 
 
 static s8 opcion = 0;
-static s8 difficult = 0;
 static s8 music = 0;
 static s8 fx = 0;
 
@@ -57,36 +56,21 @@ void _change_version ( )
 
 
 
-void _change_difficult ( bool init )
+void _change_difficult ( bool update )
 {
-	if ( init )
+	if ( update && ( click | joy1_pressed_horizontal ) )
 	{
-		if ( initial_hearts == 9 ) difficult = 0;
-		if ( initial_hearts == 1 ) difficult = 1;
+		++session.level;
+		session.level %= 2;
 	}
 
-
-
-	if ( right ) difficult++;
-	if ( left  ) difficult--;
-
-	if ( difficult < 0 ) difficult = 1;
-	if ( difficult > 1 ) difficult = 0;
-
-
-	drawText ( "       ", 16, 11 );
-
-	if ( difficult == 0 )
+	const u8 *str [ 2 ] =
 	{
-		drawText ( "Normal", 16, 11 );
-		initial_hearts = 9;
-	}
+		"Normal",
+		"Hard  "
+	};
 
-	if ( difficult == 1 )
-	{
-		drawText ( "Hard", 16, 11 );
-		initial_hearts = 1;
-	}
+	drawText ( str[session.level], 16, 11 );
 }
 
 
@@ -137,7 +121,7 @@ static void _change_fx(bool init )
 
 static void _loop ( )
 {
-	JoyReader_reset();
+	//JoyReader_reset();
 
 	while ( true )
 	{
@@ -155,7 +139,7 @@ static void _loop ( )
 		switch ( opcion )
 		{
 			case 0:
-				_change_difficult ( false );
+				_change_difficult ( true );
 				break;
 
 			case 1:
@@ -187,17 +171,12 @@ static void _loop ( )
 
 static void _draw_screen ( )
 {
-	displayOff();
+	displayOff(0);
 
 	palette_init();
 
-
 	resetScroll();
 	resetScreen();
-
-
-
-
 
 
 
@@ -225,11 +204,11 @@ static void _draw_screen ( )
 	VDP_setTextPalette ( PAL3 );
 
 	_show_version ( );
-	_change_difficult ( true );
+	_change_difficult ( false );
 	_change_music ( true );
 	_change_fx ( true );
 
-	show_screen ( );
+	show_screen ( 10 );
 }
 
 
@@ -255,7 +234,7 @@ u16 screen_options ( )
 	_loop();
 
 
-	displayOff();
+	displayOff(0);
 	VDP_resetSprites();
 	VDP_updateSprites();
 

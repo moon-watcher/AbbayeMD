@@ -31,12 +31,16 @@ static void _blink_option ( )
 	VDP_getPaletteColors (  0, saved_b, 16 );
 	VDP_getPaletteColors ( 16, saved_a, 16 );
 
-	#define LIGHTING(nb)    if ( !DEVELOPEMENT ) \
-									{ \
-										for ( j=1; j<16; j++) pal[j] = palette_lighting_all.data[(nb)]; \
-										VDP_setPalette ( PAL0, pal ); \
-										VDP_setPalette ( PAL1, pal ); \
-										for ( j=0; j<wait; j++ ) VDP_waitVSync(); \
+	#define LIGHTING(nb)    if ( !DEVELOPEMENT )                                  \
+									{                                                     \
+										for ( j = 1; j < 16; j++ )                         \
+										{                                                  \
+											pal [ j ] = palette_lighting_all.data [ (nb) ]; \
+										}                                                  \
+										                                                   \
+										VDP_setPalette ( PAL0, pal );                      \
+										VDP_setPalette ( PAL1, pal );                      \
+										waitHz(wait);                                      \
 									}
 
 
@@ -60,7 +64,7 @@ static void _blink_option ( )
 	LIGHTING(5);      // dark blue
 	LIGHTING(6);      // balck
 
-	displayOff();
+	displayOff(0);
 
 
 	if ( !DEVELOPEMENT )
@@ -88,7 +92,7 @@ static void _draw_screen ( )
 	vram_delete ( vrampos_copy );
 
 
-	displayOff();
+	displayOff(0);
 
 	palette_init();
 
@@ -96,13 +100,10 @@ static void _draw_screen ( )
 	resetScreen();
 
 
-
-
 	Screen *screen = (Screen*) screen_get ( 11 );
 
 
-
-	if ( game.version == VERSION_PCW )
+	if ( game.version == VERSION_PCW  ||  game.version == VERSION_GB )
 	{
 		u16 i;
 
@@ -249,8 +250,6 @@ u16 screen_title ( )
 
 	bool repeat = true;
 
-	opcion = 0;
-
 	vram_init ( VRAM_DEFAULT );
 	vrampos_a = 0;
 	vrampos_b = 0;
@@ -258,6 +257,8 @@ u16 screen_title ( )
 
 	while ( repeat )
 	{
+		opcion = 0;
+
 		_draw_screen ( );
 
 		switch ( _control() )
@@ -287,7 +288,7 @@ u16 screen_title ( )
 		}
 	}
 
-	displayOff();
+	displayOff(0);
 	VDP_resetSprites();
 	VDP_updateSprites();
 

@@ -19,7 +19,7 @@ static u16 _vram_crosses;
 void hudInit ( )
 {
 	_num_crosses   = 0;
-	_num_hearts    = initial_hearts;
+	_num_hearts    = session.level == 0 ? 9 : 1;
 
 	hudResetVram ( );
 }
@@ -153,12 +153,6 @@ void hudIncHearts ( s8 inc )
 u8 hudGetHearts ( )
 {
 	return _num_hearts;
-}
-
-
-void hudSetHearts ( u16 x )
-{
-	_num_hearts = set_value_in ( x, 0, 9 );
 }
 
 

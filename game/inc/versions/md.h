@@ -67,6 +67,19 @@ const Entity entity_61_md;
 const Entity entity_62_md;
 const Entity entity_63_md;
 
+const Entity entity_md_81;
+const Entity entity_md_82;
+const Entity entity_md_83;
+const Entity entity_md_84;
+const Entity entity_md_85;
+const Entity entity_md_86;
+const Entity entity_md_87;
+const Entity entity_md_88;
+const Entity entity_md_89;
+const Entity entity_md_90;
+const Entity entity_md_91;
+const Entity entity_md_92;
+
 
 
 

@@ -10,7 +10,8 @@ extern const Image screen_ending_4_md;
 extern const Image screen_ending_5_md;
 extern const Image screen_ending_6_md;
 extern const Image screen_ending_7_md;
-extern const Image screen_burnhim_md;
+extern const Image screen_burnhim_f_md;
+extern const Image screen_burnhim_b_md;
 extern const Image screen_abbey_md;
 extern const Image screen_title_md;
 

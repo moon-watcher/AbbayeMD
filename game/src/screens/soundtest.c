@@ -7,7 +7,7 @@ static const u8 positions[4] = { 8, 13, 15, 18 };
 
 static void _draw_screen()
 {
-	displayOff();
+	displayOff(0);
 
 
 	resetScroll ( );
@@ -23,7 +23,7 @@ static void _draw_screen()
 
 	VDP_setSprite ( 0, 10, positions[1]*8, 1, TILE_ATTR_FULL ( PAL1, 0, 0, 0, TILE_FONTINDEX + 95 ), 0 );
 
-	show_screen ( );
+	show_screen ( 10 );
 }
 
 
@@ -111,7 +111,7 @@ void screen_soundtest ()
 	_draw_screen();
 	_control();
 
-	displayOff();
+	displayOff(0);
 
 	VDP_resetSprites();
 	VDP_updateSprites();
@@ -150,7 +150,7 @@ void screen_soundtest ()
 //
 //	//VDP_setEnable(false);
 //
-//	displayOff();
+//	displayOff(0);
 //
 //	goManagerEnd ( &lObjects );
 //	SPR_clear ( );

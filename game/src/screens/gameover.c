@@ -4,14 +4,9 @@
 
 void screen_gameover ( )
 {
+	displayOff(0);
 
-
-	displayOff();
-
-//	SPR_clear();
-//	SPR_end();
-
-	palette_init();
+	palette_init ( );
 	vram_init ( VRAM_DEFAULT );
 
 	resetScreen();
@@ -30,16 +25,10 @@ void screen_gameover ( )
 	}
 
 
-//	VDP_setEnable ( TRUE );
-//	show_screen();
-	displayOn();
+	show_screen ( 0 );
 
-
-	waitMs ( 7000 );
-	JOY_waitPressBtn();
+	waitSc ( 6 );
+	waitJoySc ( 7 );
 
 	vram_destroy();
-
-
-	//while ( !joy1_pressed_btn ) JoyReader_update();
 }

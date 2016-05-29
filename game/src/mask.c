@@ -14,7 +14,7 @@ void mask_draw ( Mask *mask )
 {
    u8 y, x;
 
-   VDP_clearPlan( BPLAN, 1 );
+   VDP_clearPlan( BPLAN, 0 );
 
    for ( y=0; y<22; y++ )
    {

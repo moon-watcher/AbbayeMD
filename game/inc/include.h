@@ -61,6 +61,7 @@ bool;
 #include "../inc/scroll.h"
 #include "../inc/fx.h"
 #include "../inc/music.h"
+#include "../inc/session.h"
 #include "../inc/game.h"
 #include "../inc/hud.h"
 #include "../inc/palette.h"
@@ -149,16 +150,16 @@ enum
 
 
 
-const Fx      *fx_list      [ VERSION_MAX ] [ FX_MAX      ];
-const Music   *music_list   [ VERSION_MAX ] [ MUSIC_MAX   ];
-const Hint     hint_list    [ VERSION_MAX ] [ HINT_MAX    ];
-const Switch   switch_list  [ VERSION_MAX ] [ SWITCH_MAX  ];
-const Passage  passage_list [ VERSION_MAX ] [ PASSAGE_MAX ];
-const Object   crosses_list [ VERSION_MAX ] [ 2 ];
-//const TileSet *font_list    [ VERSION_MAX ] [ 1 ];
-const Palette *palette_list [ VERSION_MAX ] [ 7 ];
+const Fx      *fx_list          [ VERSION_MAX ] [ FX_MAX          ];
+const Music   *music_list       [ VERSION_MAX ] [ MUSIC_MAX       ];
+const Hint     hint_list        [ VERSION_MAX ] [ HINT_MAX        ];
+const Switch   switch_list      [ VERSION_MAX ] [ SWITCH_MAX      ];
+const Passage  passage_list     [ VERSION_MAX ] [ PASSAGE_MAX     ];
+const Object   crosses_list     [ VERSION_MAX ] [ 2 ];
+//const TileSet *font_list        [ VERSION_MAX ] [ 1 ];
+const Palette *palette_list     [ VERSION_MAX ] [ PALETTE_MAX     ];
+const Palette *palette_alt_list [ VERSION_MAX ] [ PALETTE_ALT_MAX ];
 
-u8 initial_hearts;
 
 
 

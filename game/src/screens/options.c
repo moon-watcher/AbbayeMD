@@ -216,7 +216,7 @@ static void _draw_screen ( )
 
 u16 screen_options ( )
 {
-	//if ( DEVELOPEMENT )return 1;
+	//if ( DEV )return 1;
 
 	VDP_setSprite ( 0, -10, -1, 1, TILE_ATTR_FULL ( PAL2, 0, 0, 0, TILE_FONTINDEX+95 ), 0 );
 	VDP_setSpritePosition ( 0, -20, -20 );

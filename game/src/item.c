@@ -80,7 +80,7 @@ u16 ItemManagerLength ( listptr *list )
 
 void itemManagerShow (  listptr *list )
 {
-	if ( !DEVELOPEMENT )
+	if ( !DEV )
 	{
 		return;
 	}

@@ -31,7 +31,7 @@ static void _blink_option ( )
 	VDP_getPaletteColors (  0, saved_b, 16 );
 	VDP_getPaletteColors ( 16, saved_a, 16 );
 
-	#define LIGHTING(nb)    if ( !DEVELOPEMENT )                                  \
+	#define LIGHTING(nb)    if ( !DEV )                                  \
 									{                                                     \
 										for ( j = 1; j < 16; j++ )                         \
 										{                                                  \
@@ -52,7 +52,7 @@ static void _blink_option ( )
 	VDP_setPalette ( PAL0, saved_b );
 	VDP_setPalette ( PAL1, saved_a );
 
-	if ( !DEVELOPEMENT )
+	if ( !DEV )
 	{
 		for ( j=0; j<10; j++ ) VDP_waitVSync();
 	}
@@ -67,7 +67,7 @@ static void _blink_option ( )
 	displayOff(0);
 
 
-	if ( !DEVELOPEMENT )
+	if ( !DEV )
 	{
 		waitSc(1);
 	}
@@ -84,7 +84,7 @@ static void _show_version ( )
 
 static void _draw_screen ( )
 {
-	u16 speed = DEVELOPEMENT ? 1 : getHz() * 2;
+	u16 speed = DEV ? 1 : getHz() * 2;
 
 
 	vram_delete ( vrampos_a );
@@ -125,7 +125,7 @@ static void _draw_screen ( )
 	vrampos_b = drawImage   ( (Image*) screen->background, BPLAN );
 	VDP_fadePalTo ( PAL0, screen->background->palette->data, speed, 0 );
 
-	if ( !DEVELOPEMENT )
+	if ( !DEV )
 	{
 		waitSc(1);
 	}
@@ -246,7 +246,7 @@ static s8 _control ( )
 
 u16 screen_title ( )
 {
-	if ( DEVELOPEMENT ) return 1;
+	if ( DEV ) return 1;
 
 	bool repeat = true;
 

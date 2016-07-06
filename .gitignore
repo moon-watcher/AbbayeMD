@@ -7,7 +7,15 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+
+
 game/data/
+out/
+sgdk/
+AbbayeMD*.*
+*.bat
+*.gen
+*.conf
 
 
 # Windows Installer files

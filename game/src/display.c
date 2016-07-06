@@ -14,6 +14,11 @@ void displayInit ( )
 
 void preparePal ( u16 pal, u16 *colors )
 {
+	if ( DEV )
+	{
+		VDP_setPalette ( pal, colors );
+	}
+
 	memcpyU16 ( _cache + pal * 16, colors, 16 );
 }
 

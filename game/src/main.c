@@ -213,7 +213,7 @@ int main ( int argc, char *argv[] )
 	displayInit();
 	displayOff(0);
 
-	DEVELOPEMENT = 1;
+	DEV          = 1;
 	INVULNERABLE = 1;
 	game.version = VERSION_MD;
 
@@ -281,10 +281,6 @@ int main ( int argc, char *argv[] )
 			hudInit ( );
 			scrollSet ( SCROLL_INIT );
 			itemManagerInit ( &waItems );
-			playerInit ( &player );
-
-			invertedCross = false;
-
 
 
 
@@ -315,6 +311,10 @@ int main ( int argc, char *argv[] )
 
 
 
+
+			playerInit ( &player );
+
+			invertedCross = false;
 
 			game_loop ( );
 

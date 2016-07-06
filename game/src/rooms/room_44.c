@@ -142,7 +142,7 @@ static void _show_starts ( )
 
 				play_fx ( FX_DOOR );
 
-				if ( !DEVELOPEMENT )
+				if ( !DEV )
 				{
 					waitHz ( 20 );
 				}
@@ -284,7 +284,7 @@ static void _wait_for_crusaders ( )
 			VDP_fadeOutAll ( getHz() * 2, 1 );
 		}
 
-		else if ( i == getHz() * 10  ||  DEVELOPEMENT )
+		else if ( i == getHz() * 10  ||  DEV )
 		{
 			cm_activate ( );
 			_inc_secuence ( true );
@@ -378,7 +378,7 @@ static void _room_enter ( Room *room )
 	for ( i=0; i<nb_crusader; i++ ) setActive ( crusader[i], 0 );
 	for ( i=0; i<nb_bullet;   i++ ) setActive ( bullet[i],   0 );
 
-	if ( DEVELOPEMENT )
+	if ( DEV )
 	{
 		hudIncCrosses(15);
 	}

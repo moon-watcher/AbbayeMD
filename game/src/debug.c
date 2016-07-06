@@ -4,7 +4,7 @@
 
 void debug_info ( )
 {
-	if ( !DEVELOPEMENT )
+	if ( !DEV )
 	{
 		return;
 	}

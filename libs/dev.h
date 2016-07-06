@@ -2,7 +2,7 @@
 #define _DEV_H_
 
 
-unsigned int DEVELOPEMENT;
+unsigned int DEV;
 unsigned int INVULNERABLE;
 
 long          devs0, devs1, devs2, devs3, devs4, devs5;

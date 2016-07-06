@@ -443,7 +443,7 @@ void playerUpdate ( Player *player, PlayerAction action )
 
 void playerSetAction ( Player *player, PlayerAction action )
 {
-	if ( DEVELOPEMENT  &&  player->invulnerable  &&  action == PLAYER_BURNS )
+	if ( DEV  &&  player->invulnerable  &&  action == PLAYER_BURNS )
 	{
 		action = PLAYER_STAY;
 	}

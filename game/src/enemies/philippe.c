@@ -70,7 +70,7 @@ void philippe_update()
 			bool can_change = true;
 			s16 x = goGetCenterX ( philippe[i] );
 
-			if ( 0 && DEVELOPEMENT )
+			if ( 0 && DEV )
 			{
 				drawInt ( x, 0, i, 0 );
 				drawInt ( _x1[i], 10, i, 0 );

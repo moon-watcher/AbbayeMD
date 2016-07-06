@@ -23,7 +23,7 @@ void write ( const char *str, u16 pal, s16 inc )
 
 void screen_credits ( )
 {
-	if ( DEVELOPEMENT ) return;
+	if ( DEV ) return;
 
 	displayOff(0);
 	displayInit();

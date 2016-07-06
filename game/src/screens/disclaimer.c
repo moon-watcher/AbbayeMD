@@ -305,7 +305,7 @@ static void _disclaimer_simple ( )
 
 void screen_disclaimer ( )
 {
-	if ( DEVELOPEMENT ) return;
+	if ( DEV ) return;
 
 	vram_init ( VRAM_DEFAULT );
 

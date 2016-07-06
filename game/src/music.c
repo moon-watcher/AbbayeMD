@@ -15,8 +15,9 @@ void musicInit ( )
 
 void musicPlay ( Music *track )
 {
-	//if ( track == NULL  ||  !track->track )
-	if ( track == NULL  )
+	return;
+
+	if ( track == NULL )
 	{
 		musicStop ( _current );
 		_current = track;
@@ -29,14 +30,8 @@ void musicPlay ( Music *track )
 		return;
 	}
 
-
 	musicStop ( _current );
 	_current = track;
-
-	if ( track->driver == Z80_DRIVER_XGM )
-	{
-		SND_startPlay_XGM ( (u8*) track->track );
-	}
 
 	if ( track->driver == Z80_DRIVER_4PCM_ENV )
 	{

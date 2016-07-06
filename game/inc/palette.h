@@ -3,8 +3,8 @@
 
 
 
-#define PALETTE_MAX      7
-#define PALETTE_ALT_MAX  7
+#define PALETTE_MAX       7
+#define PALETTE_ALT_MAX  10
 
 
 

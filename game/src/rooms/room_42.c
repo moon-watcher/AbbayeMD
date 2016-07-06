@@ -21,6 +21,10 @@ static void _room_enter ( Room *room )
 	{
 		setActive ( spit[i], 0 );
 	}
+
+	philippe_init ( );
+	philippe_add ( 60, 88 );
+	philippe_add ( 188, 212 );
 }
 
 
@@ -31,6 +35,8 @@ static void _room_stay ( Room *room )
 	{
 		enemy_plant ( plant, spit, i );
 	}
+
+	philippe_update();
 }
 
 

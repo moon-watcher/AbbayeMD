@@ -14,11 +14,12 @@ static GameObject *hint;
 static GameObject *rosette;
 
 
-static u8 nb_crusader;
-static u8 nb_bullet;
-static u8 i;
+static u16 nb_crusader;
+static u16 nb_bullet;
+static u16 i;
 
 static s8 sequence;
+
 
 
 
@@ -87,6 +88,8 @@ static s8 _inc_secuence ( s8 expr )
 	{
 		sequence = -1;
 	}
+
+	i = 0;
 
 	return sequence;
 }
@@ -159,7 +162,7 @@ static void _close_door ( )
 	if ( player.go->x == 10  &&  !door->active )
 	{
 		setActive ( door, 1 );
-		SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+		updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
 
 		play_fx ( FX_DOOR );
 		waitHz(getHz());
@@ -168,6 +171,25 @@ static void _close_door ( )
 		setDoor(door,1);
 	}
 }
+
+
+
+static void _update_door ( )
+{
+	if ( door->x > 0 )
+	{
+		goIncX ( door, -1 );
+	}
+
+	else if ( door->x == 0  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
+	{
+		play_fx ( FX_JUMP );
+		goIncX ( door, 2 );
+	}
+}
+
+
+
 
 
 
@@ -195,7 +217,6 @@ static void _fight ( )
 	enemy_satan ( satan, bullet );
 
 
-
 	if ( player.grial )
 	{
 		for ( i=0; i<nb_bullet; i++ )
@@ -207,7 +228,7 @@ static void _fight ( )
 		_remove_crosses();
 		setActive ( cross, 0 );
 
-		i = 0;
+
 		_inc_secuence ( true );
 	}
 }
@@ -236,18 +257,40 @@ static void _catch_the_hint ( )
 {
 	if ( enemy_reset_satan == false )
 	{
-		if ( door->x > 0 )
-		{
-			goIncX ( door, -1 );
-		}
-
-		else if ( door->x == 0  &&  ( vtimer % 30 == 0 )  &&  ( random() % 3 == 0 ) )
-		{
-			play_fx ( FX_JUMP );
-			goIncX ( door, 2 );
-		}
+		_update_door ( );
 	}
 	else
+	{
+		_inc_secuence ( true );
+	}
+}
+
+
+
+static void _wait_for_crusaders ( )
+{
+	JoyReader_init ( 0 );
+
+	playerSetAction ( &player, PLAYER_CAPTURED );
+
+	_update_door ();
+
+	++i;
+
+	if ( cm_can_be_activated() )
+	{
+		if (  i == getHz() * 4 )
+		{
+			VDP_fadeOutAll ( getHz() * 2, 1 );
+		}
+
+		else if ( i == getHz() * 10  ||  DEVELOPEMENT )
+		{
+			cm_activate ( );
+			_inc_secuence ( true );
+		}
+	}
+	else if ( i == getHz() * 2 )
 	{
 		_inc_secuence ( true );
 	}
@@ -261,6 +304,11 @@ static void _activate_crusaders ( )
 		VDP_setPalette ( PAL2, crusader[0]->object->entity->sd->palette->data );
 	}
 
+	if ( hudGetHearts() == 0 )
+	{
+		--nb_crusader;
+	}
+
 	for ( i=0; i<nb_crusader; i++ )
 	{
 		setActive ( crusader[i], 1 );
@@ -268,11 +316,11 @@ static void _activate_crusaders ( )
 
 	play_music ( MUSIC_WOODS ) ;
 
-	JoyReader_init(0);
+//	JoyReader_init(0);
+//
+//	playerSetAction ( &player, PLAYER_CAPTURED );
 
-	playerSetAction ( &player, PLAYER_CAPTURED );
-
-	waitHz(getHz());
+	waitSc ( 1 );
 	setActive ( door, 0 );
 	play_fx(FX_DOOR);
 
@@ -330,51 +378,54 @@ static void _room_enter ( Room *room )
 	for ( i=0; i<nb_crusader; i++ ) setActive ( crusader[i], 0 );
 	for ( i=0; i<nb_bullet;   i++ ) setActive ( bullet[i],   0 );
 
-	sequence = 0;
-
 	if ( DEVELOPEMENT )
 	{
-		hudIncCrosses(5);
+		hudIncCrosses(15);
 	}
 
 	_md_palette_init ( );
+
+
+	sequence = 0;
+
+	if ( game.crusader )
+	{
+		setActive ( door, 1 );
+
+		sequence = 7;
+		game.crusader = false;
+
+		playerSetAction ( &player, PLAYER_CAPTURED );
+		playerUpdate ( &player, PLAYER_CAPTURED );
+
+		SPR_setPosition ( player.go->sprite, 220, 120 ); // update sprite
+		goSetXY ( player.go, 220, 120 );
+//		goUpdate ( player.go );
+
+		updateSprites ( );
+		//VDP_updateSprites ( );
+		VDP_waitVSync ( );
+	}
+
 }
+
+
 
 
 
 static void _room_stay ( Room *room )
 {
-	if ( sequence == 0 )
+	switch ( sequence )
 	{
-		_show_starts ( );
-	}
-	else if ( sequence == 1 )
-	{
-		_close_door();
-	}
-	else if ( sequence == 2 )
-	{
-		_show_objects();
-	}
-	else if ( sequence == 3 )
-	{
-		_fight();
-	}
-	else if ( sequence == 4 )
-	{
-		_satan_kill ( );
-	}
-	else if ( sequence == 5 )
-	{
-		_catch_the_hint ( );
-	}
-	else if ( sequence == 6 )
-	{
-		_activate_crusaders();
-	}
-	else if ( sequence == 7 )
-	{
-		_move_crusaders ( );
+		case 0: _show_starts ( );        break;
+		case 1: _close_door ( );         break;
+		case 2: _show_objects ( );       break;
+		case 3: _fight ( );              break;
+		case 4: _satan_kill ( );         break;
+		case 5: _catch_the_hint ( );     break;
+		case 6: _wait_for_crusaders ( ); break;
+		case 7: _activate_crusaders ( ); break;
+		case 8: _move_crusaders ( );     break;
 	}
 }
 

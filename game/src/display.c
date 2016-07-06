@@ -8,7 +8,7 @@ static u16 _cache [ 64 ];
 
 void displayInit ( )
 {
-	memsetU16 ( _cache, 0x0000, 64 );
+	memcpyU16 ( _cache, palette_black, 64);
 }
 
 
@@ -37,11 +37,8 @@ void displayOff ( u16 frames )
 		VDP_fadeOutAll ( frames, 0 );
 	}
 
-	const u16 blacks[64] = { [0 ... 63] = 0x0000 };
-
 	VDP_waitVSync ( );
-	VDP_setPaletteColors ( 0, (u16*)blacks, 64 );
-	VDP_waitVSync ( );
+	VDP_setPaletteColors ( 0, (u16*) palette_black, 64 );
 }
 
 
@@ -50,7 +47,7 @@ void displayOn ()
 	waitMs(5);
 
 	VDP_waitVSync ( );
-	VDP_setPaletteColors ( 0, (u16*)_cache, 64 );
+	VDP_setPaletteColors ( 0, (u16*) _cache, 64 );
 }
 
 

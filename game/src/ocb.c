@@ -71,7 +71,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 			play_fx ( FX_ITEM );
 			//hint_show ( go );
 			hint_show ( false );
-			itemSetHidden ( go->item );
+			itemSetVisible ( go->item, false );
 			setActive ( go, 0 );
 
 			enemy_reset_satan = true;
@@ -83,7 +83,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 
 			play_fx ( FX_ITEM );
 			hudIncCrosses ( +1 );
-			itemSetHidden ( go->item );
+			itemSetVisible ( go->item, false );
 			setActive ( go, 0 );
 
 			break;
@@ -93,7 +93,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 
 			play_fx ( FX_ITEM );
 			hudIncHearts ( +1 );
-			itemSetHidden ( go->item );
+			itemSetVisible ( go->item, false );
 			setActive ( go, 0 );
 
 			break;
@@ -124,7 +124,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 
 		case ENTITY_GRIAL:
 
-			itemSetHidden ( go->item );
+			itemSetVisible ( go->item, false );
 			setActive ( go, 0 );
 
 			musicStop();

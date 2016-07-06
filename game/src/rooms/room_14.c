@@ -68,6 +68,8 @@ static void _room_enter ( Room *room )
 	enemy_bullet_init ( arrow[0], explosion );
 
 	_md_palette_init();
+	philippe_init ( );
+	philippe_add ( 220, 228 );
 }
 
 
@@ -79,6 +81,8 @@ static void _room_stay ( Room *room )
 		enemy_archer ( archer, arrow, i );
 		enemy_bullet ( arrow[i] );
 	}
+
+	philippe_update();
 }
 
 

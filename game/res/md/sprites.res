@@ -36,6 +36,7 @@ SPRITE objects_1x1_md       "../../data/md/sprites/grupo10/objects_1x1.bmp"     
 SPRITE objects_4x2_md       "../../data/md/sprites/grupo10/objects_4x2.bmp"       4 2 0  10
 SPRITE bonfire_6x8_md       "../../data/md/sprites/grupo10/bonfire_6x8.bmp"       6 8 0   0
 SPRITE fire_2x2_md          "../../data/md/sprites/grupo10/fire_2x2.bmp"          2 2 0   2
+SPRITE philippe_2x3_md      "../../data/md/sprites/grupo10/philippe_2x3.bmp"      2 3 0   8
 
 SPRITE hatch_2x2_md         "../../data/md/sprites/grupo11/hatch_2x2.bmp"         2 2 0   0
 
@@ -54,4 +55,6 @@ SPRITE passage1_2x3_md      "../../data/md/sprites/grupo17/passage1_2x3.bmp"    
 SPRITE passage2_2x3_md      "../../data/md/sprites/grupo18/passage2_2x3.bmp"      2 3 0   8
 
 SPRITE leaf6_1x1_md         "../../data/md/sprites/grupo19/leaf6_1x1.bmp"         1 1 0   6
+
+SPRITE leaf7_1x1_md         "../../data/md/sprites/grupo20/leaf7_1x1.bmp"         1 1 0   6
 

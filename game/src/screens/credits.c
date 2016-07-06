@@ -42,7 +42,7 @@ void screen_credits ( )
 	prepareColor ( PAL1 * 16 + 1, 0xf0f );
 	prepareColor ( PAL2 * 16 + 1, 0xf88 );
 
-	y = 3;
+	y = 1;
 
 	write ( "L'Abbaye des morts for", PAL1, 1 );
 	write ( "Sega Genesis/Megadrive by", PAL1, 1 );
@@ -51,7 +51,7 @@ void screen_credits ( )
 
 	write ( "Original game by", PAL1, 1 );
 	write ( "Locomalito & Gryzor87", PAL2, 1 );
-	write ( "2010", PAL2, 2 );
+	write ( "2010", PAL2, 3 );
 
 	write ( "MSX skin", PAL1, 1 );
 	write ( "Gerardo Herce - @pipagerardo", PAL2, 2  );
@@ -62,11 +62,10 @@ void screen_credits ( )
 	write ( "Megadrive skin", PAL1, 1 );
 	write ( "Daniel Nevado - @DanySnowyman", PAL2, 2 );
 
-	//write ( "NES skin", PAL1, 1 );
-	//write ( "Juan Valencia - @calvellido", PAL2, 2 );
-
 	write ( "Music & SFX", PAL1, 1 );
-	write ( "David Sanchez - @DavidBonus", PAL2, 2 );
+	write ( "David Sanchez - @DavidBonus", PAL2, 4 );
+
+	write ( "Made with Stef's SGDK 1.12", PAL1, 0 );
 
 
 

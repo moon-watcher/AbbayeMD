@@ -9,7 +9,6 @@ static const Vect2D_u16 exceptions [ 0 ] = { };
 
 
 
-
 static void _scroll_init ( )
 {
 	scroll = 0;
@@ -60,6 +59,9 @@ static void _room_enter ( Room *room )
 	if ( game.version == VERSION_MD )
 	{
 		enemy_star_init (  );
+
+		philippe_init ( );
+		philippe_add ( 16, 56 );
 	}
 }
 
@@ -73,6 +75,8 @@ static void _room_stay ( Room *room )
 	if ( game.version == VERSION_MD )
 	{
 		enemy_star ( (Vect2D_u16*) exceptions, 30, 16,  0, 16, 3, APLAN );
+
+		philippe_update();
 	}
 }
 

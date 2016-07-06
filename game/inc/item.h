@@ -23,40 +23,34 @@ typedef struct
 	u8           room_x;
 	u8           room_y;
 
-	u8           hidden;
-	u8           checked;
-	s16          value;
+	bool         checked;
+	bool         visible;
+	s32          value;
 
 	listptrNode *node;
-
-	//void        *go; // GameObject
 }
 Item;
 
 
 
 void  itemManagerInit      ( listptr *list );
-Item *itemManagerAdd       ( listptr *list, u8 id, u8 room_x, u8 room_y, u8 checked, u8 hidden, s16 value );
+Item *itemManagerAdd       ( listptr *list, u8 id, u8 room_x, u8 room_y, bool checked, bool visible, s32 value );
 Item *itemManagerFind      ( listptr *list, u8 id, u8 room_x, u8 room_y );
 void  ItemManagerDelete    ( listptr *list, Item *item );
 u16   ItemManagerLength    ( listptr *list );
-void  itemManagerShow      ( listptr *list, u8 x, u8 y );
+void  itemManagerShow      ( listptr *list );
 void  itemManagerEnd       ( listptr *list );
 
 Item *itemCreate           ( );
 void  itemDelete           ( Item *item );
 
-void  itemSetGameObject    ( Item *item, void *gameobject );
-void  itemSetRoom          ( Item *item, u8 x, u8 y );
-u8    itemIsHidden         ( Item *item );
-u8    itemIsVisible        ( Item *item );
-void  itemSetHidden        ( Item *item );
-void  itemSetVisible       ( Item *item );
-u8    itemGetChecked       ( Item *item );
-bool  itemSetChecked       ( Item *item, u16 value );
-s16   itemGetValue         ( Item *item );
-void  itemSetValue         ( Item *item, s16 value );
-s16   itemIncValue         ( Item *item, s16 value );
+bool  itemGetVisible       ( Item *item );
+void  itemSetVisible       ( Item *item, bool value );
+bool  itemGetChecked       ( Item *item );
+void  itemSetChecked       ( Item *item, bool value );
+s32   itemGetValue         ( Item *item );
+s32   itemIncValue         ( Item *item, s32 value );
+void  itemSetValue         ( Item *item, s32 value );
 
 
 #endif // _ITEM_H_

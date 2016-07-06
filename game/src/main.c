@@ -58,18 +58,18 @@
  * --------------------------------------------------------------------------------------------------------------------------------
  *  SPECIAL THANKS TO
  * --------------------------------------------------------------------------------------------------------------------------------
- * @GODFATHER-OF-THIS-RELEASE => Leander                        | Twitter: @leanderpixel
- * @MSX-SKIN                  => Gerardo Herce                  | Twitter: @pipagerardo
- * @GB-SKIN                   => Felipe Monge Corbalán          | Twitter: @vakapp
- * @PCW-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp
- * @CGA-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp
- * @MD-SKIN                   => Dani Nevado                    | Twitter: @DanySnowyman
- * @MUSIC                     => David Sánchez                  | Twitter: @DavidBonus
- * @FX                        => David Sánchez                  | Twitter: @DavidBonus
- * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp
- * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp
- * @                          =>                                | Twitter: @                | Mail:
- *
+ * @GODFATHER-OF-THIS-RELEASE => Leander                        | Twitter: @leanderpixel      | Mail:
+ * @MSX-SKIN                  => Gerardo Herce                  | Twitter: @pipagerardo       | Mail:
+ * @GB-SKIN                   => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
+ * @PCW-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
+ * @CGA-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
+ * @MD-SKIN                   => Dani Nevado                    | Twitter: @DanySnowyman      | Mail:
+ * @MUSIC                     => David Sánchez                  | Twitter: @DavidBonus        | Mail:
+ * @FX                        => David Sánchez                  | Twitter: @DavidBonus        | Mail:
+ * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
+ * @ILLUSTRATION              => Urza                           | Twitter: @Urza2             | Mail:
+ * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
+ * @CRUSADER-MODE             => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  *
  *
  * --------------------------------------------------------------------------------------------------------------------------------
@@ -104,19 +104,19 @@
 
 static void _init ( u16 hard )
 {
-	// 0 is soft reset
-   if ( hard == 0 )
-   {
-		//displayOff(0);
-		//VDP_drawText ( "You pressed reset", 11, 9 );
-
-      _start_entry(); // even more reset
-      MEM_init();
-   }
-
-	////sd_reset();
-	////SYS_reset();
-   //SYS_assertReset(); // makes gensKmod crash, WTF?!
+//	// 0 is soft reset
+//   if ( hard == 0 )
+//   {
+//		//displayOff(0);
+//		//VDP_drawText ( "You pressed reset", 11, 9 );
+//
+//      _start_entry(); // even more reset
+//      MEM_init();
+//   }
+//
+//	////sd_reset();
+//	////SYS_reset();
+//   //SYS_assertReset(); // makes gensKmod crash, WTF?!
 }
 
 
@@ -267,20 +267,15 @@ int main ( int argc, char *argv[] )
 		scrollSet ( 0 );
 		font_load ( 0 );
 
-		u16 title = 1;
 
-		title = screen_title ( );
+		u16 title = screen_title ( );
 
 		if ( title )
 		{
 			screen_prologue ( );
+			cm_init ( );
 			checkpoint_init ( );
 			game_init ( );
-
-//							game.room.x = 4;
-//							game.room.y = 4;
-//							game.version = VERSION_PC;
-
 			switch_init ( );
 			musicInit ( );
 			hudInit ( );
@@ -289,6 +284,37 @@ int main ( int argc, char *argv[] )
 			playerInit ( &player );
 
 			invertedCross = false;
+
+
+
+
+//						// desde el inicio para matar a Satán
+//						game.version  = VERSION_MD;
+//						session.level = 1;
+//						game.room.x = 4;
+//						game.room.y = 4;
+//						//
+
+
+
+
+//						// activate the crusader mode
+//						game.version  = VERSION_MD;
+//						session.level = 1;
+//						hudIncHearts(-8);
+//						game.crusader = false;
+//						cm_activate();
+//						game.status = GAME_STATUS_OK;
+//						//
+
+
+
+//						game.room.x = 3;
+//						game.room.y = 2;
+						game.version  = VERSION_GB;
+
+
+
 
 			game_loop ( );
 

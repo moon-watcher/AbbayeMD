@@ -70,9 +70,6 @@ static void _room_enter ( Room *room )
 	{
 		itemSetValue ( door->item, getHz() );               // set a countdown to open
 	}
-
-	philippe_init ( );
-	philippe_add ( 150, 175 );
 }
 
 
@@ -99,8 +96,6 @@ static void _room_stay ( Room *room )
 	{
 		hide_door ( door );
 	}
-
-	philippe_update();
 }
 
 

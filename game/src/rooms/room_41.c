@@ -45,6 +45,9 @@ static void _room_enter ( Room *room )
 		{
 			enemy_leaf_reset ( leaf[i], true );
 		}
+
+		philippe_init ( );
+		philippe_add ( 40, 100 );
 	}
 }
 
@@ -64,6 +67,8 @@ static void _room_stay ( Room *room )
 		{
 			enemy_leaf ( leaf[i] );
 		}
+
+		philippe_update();
 	}
 }
 

@@ -44,13 +44,17 @@ void debug_info ( )
 
 
 	// current room
-	drawUInt ( game.room.x, 26, 25, 1 );
-	drawText ( ",", 27,25 );
-	drawUInt ( game.room.y, 28, 25, 1 );
+	if ( debug_show_nb_room )
+	{
+		drawUInt ( game.room.x, 26, 25, 1 );
+		drawText ( ",", 27,25 );
+		drawUInt ( game.room.y, 28, 25, 1 );
+		debug_show_nb_room = false;
+	}
 
 
-	//frames per second
-	showFps ( );
+//	//frames per second
+//	showFps ( );
 
 
 

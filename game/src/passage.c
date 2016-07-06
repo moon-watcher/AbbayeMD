@@ -42,6 +42,6 @@ void passage_touched ( )
 		player.action      = PLAYER_STAY;
 		player.saved.vel_x = zero;
 		player.saved.vel_y = zero;
-		player.saved.object = player_actions [ game.version ] [ PLAYER_STAY ];
+		player.saved.object = player_actions [ game.version ] [ PLAYER_STAY ] [ game.crusader ];
 	}
 }

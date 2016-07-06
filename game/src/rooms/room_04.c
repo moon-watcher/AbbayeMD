@@ -23,6 +23,10 @@ static void _room_enter ( Room *room )
 	explosion = goManagerFindByEntityId ( &waObjects, 66, 0 ); // Gargoyle spit explosion
 
 	enemy_bullet_init ( spit[0], explosion );
+
+	philippe_init ( );
+	philippe_add ( 198, 212 );
+	philippe_add (  44,  70 );
 }
 
 
@@ -45,11 +49,11 @@ static void _room_stay ( Room *room )
 
 		if ( itemGetValue ( door->item ) == 0 )
 		{
-			itemSetHidden ( door->item );
+			itemSetVisible ( door->item, false );
 
 			setActive ( door, 0 );
 
-			SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+			updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
 
 			play_fx ( FX_DOOR );
 			waitHz ( getHz ( ) );
@@ -57,6 +61,8 @@ static void _room_stay ( Room *room )
 
 		itemIncValue ( door->item, -1 );
 	}
+
+	philippe_update();
 }
 
 

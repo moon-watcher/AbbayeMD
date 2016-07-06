@@ -87,7 +87,7 @@ void hint_show ( bool pause )
 
 	vram_delete ( pos );
 
-	SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+	updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
 
 
 	if ( game.status == GAME_STATUS_ENDING )

@@ -1097,7 +1097,7 @@ const Room room_30_pc = { (Image*) &room_30_f_pc, NULL, (Objects*) &objects_30_p
 const Room room_31_pc = { (Image*) &room_31_f_pc, NULL, (Objects*) &objects_31_pc, (Mask*) &mask_31_pc,  (Image*) &text_31_all, (Music*) &music_01_all, room_funct_31_all };
 const Room room_32_pc = { (Image*) &room_32_f_pc, NULL, (Objects*) &objects_32_pc, (Mask*) &mask_32_all, (Image*) &text_32_all, (Music*) &music_01_all,         room_null };
 const Room room_33_pc = { (Image*) &room_33_f_pc, NULL, (Objects*) &objects_33_pc, (Mask*) &mask_33_pc,  (Image*) &text_33_all, (Music*) &music_04_all, room_funct_33_all };
-const Room room_34_pc = { (Image*) &room_34_f_pc, NULL, (Objects*) &objects_34_pc, (Mask*) &mask_34_pc,  (Image*) &text_34_all, (Music*) &music_03_all,         room_null };
+const Room room_34_pc = { (Image*) &room_34_f_pc, NULL, (Objects*) &objects_34_pc, (Mask*) &mask_34_pc,  (Image*) &text_34_all, (Music*) &music_03_all, room_funct_34_all };
 
 const Room room_40_pc = { (Image*) &room_40_f_pc, NULL, (Objects*) &objects_null,  (Mask*) &mask_40_all, (Image*) &text_40_all, (Music*) &music_00_all,         room_null };
 const Room room_41_pc = { (Image*) &room_41_f_pc, NULL, (Objects*) &objects_41_pc, (Mask*) &mask_41_pc,  (Image*) &text_41_all, (Music*) &music_00_all, room_funct_41_all };

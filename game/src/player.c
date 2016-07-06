@@ -3,9 +3,18 @@
 
 u16 _blocks_over_jean ( Player *player )
 {
-	s16 left   = ( goGetLeft  ( player->go ) - 0 ) >> 3;
-	s16 right  = ( goGetRight ( player->go ) - 1 ) >> 3;
-	s16 top    = ( goGetTop   ( player->go ) - 0 ) >> 3;
+	s16 left   = goGetLeft  ( player->go );
+	s16 right  = goGetRight ( player->go );
+	s16 top    = goGetTop   ( player->go );
+
+	if ( left  <            0 ) left  =               0;
+	if ( right >= screenWidth ) right = screenWidth - 1;
+
+	left   = ( left  - 0 ) >> 3;
+	right  = ( right - 1 ) >> 3;
+	top    = ( top   - 0 ) >> 3;
+
+
 	u8  value1 = currentMask.array [ top - 1 ] [ left  ];
 	u8  value2 = currentMask.array [ top - 1 ] [ right ];
 	u8  value3 = currentMask.array [ top - 2 ] [ left  ];
@@ -65,7 +74,7 @@ static void _relocate_player ( Player *player, PlayerAction action )
 
 
 	GameObject *go  = player->go;
-	Object     *obj = (Object *) &player_actions [ game.version ] [ action ];
+	Object     *obj = (Object *) &player_actions [ game.version ] [ action ] [ game.crusader ] ;
 
 
 	//if ( SPR_getVFlip ( go->sprite ) == 0 )
@@ -127,7 +136,7 @@ static void _process_burning ( Player *player )
 		}
 
 		//_relocate_player ( player, player->action );
-		goSetObject ( player->go, (Object*) &player_actions [ game.version ] [ player->action ] );
+		goSetObject ( player->go, (Object*) &player_actions [ game.version ] [ player->action ] [ game.crusader ] );
 
 		player->burning = getHz() * 2;
 
@@ -159,7 +168,7 @@ static void _process_plunge ( Player *player )
 			play_fx ( FX_HIT );
 		}
 
-		goSetObject ( player->go, (Object*) &player_actions [ game.version ] [ player->action ] );
+		goSetObject ( player->go, (Object*) &player_actions [ game.version ] [ player->action ] [ game.crusader ] );
 
 		player->plunge = getHz() * 2;
 
@@ -192,7 +201,7 @@ static void _process_captured ( Player *player )
 
 	SPR_setHFlip (  player->go->sprite,  ( vtimer / getHz ( ) ) % 2  );
 
-	goSetObject ( player->go, (Object*) &player_actions [ game.version ] [ PLAYER_CAPTURED ] );
+	goSetObject ( player->go, (Object*) &player_actions [ game.version ] [ PLAYER_CAPTURED ] [ game.crusader ] );
 }
 
 
@@ -207,14 +216,13 @@ void playerInit ( Player *player )
 {
 	player->go                  = NULL;
 	player->action              = PLAYER_STAY;
-	//player->action              = PLAYER_BURNS;
 	player->burning             = 0;
 	player->plunge              = 0;
 	player->in_passage          = false;
 	player->grial               = false;
 	player->invulnerable        = INVULNERABLE;
 
-	player->saved.object.entity = (Entity*) player_actions [ game.version ] [ player->action ].entity;
+	player->saved.object.entity = (Entity*) player_actions [ game.version ] [ player->action ] [ game.crusader ].entity;
 	player->saved.object.x      = checkpoint_get()->pos_x-8;
 	player->saved.object.y      = checkpoint_get()->pos_y + scrollVertical - 4;
 	player->saved.object.dir_x  = 0;
@@ -382,10 +390,10 @@ void playerUpdate ( Player *player, PlayerAction action )
 
 
 	_relocate_player ( player, action );
-	goSetObject ( go, (Object*) &player_actions [ game.version ] [ action ] );
+	goSetObject ( go, (Object*) &player_actions [ game.version ] [ action ] [ game.crusader ] );
 
-	fix32 vx = player_actions [ game.version ] [ action ].entity->vel_x;
-	//fix32 vy = player_actions [ game.version ] [ action ].entity->vel_y;
+	fix32 vx = player_actions [ game.version ] [ action ] [ game.crusader ].entity->vel_x;
+	//fix32 vy = player_actions [ game.version ] [ action ] [ game.crusader ].entity->vel_y;
 
 	switch ( action )
 	{

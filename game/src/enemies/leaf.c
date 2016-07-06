@@ -1,9 +1,9 @@
 #include "../inc/include.h"
 
 
-static const fix32 vels_x [ 5 ] = { FIX32(4.5), FIX32(4.7), FIX32(4.9), FIX32(5.2), FIX32(5.5) };
-static const fix32 vels_y [ 5 ] = { FIX32(1.0), FIX32(1.1), FIX32(1.2), FIX32(1.3), FIX32(1.4) };
-static const fix32 incs   [ 3 ] = { FIX32(0.03), FIX32(0.04), FIX32(0.06)                         };
+static const fix32 vels_x [ 5 ] = { FIX32(4.0),  FIX32(4.6),  FIX32(4.9), FIX32(5.3), FIX32(5.7) };
+static const fix32 vels_y [ 5 ] = { FIX32(1.0),  FIX32(1.1),  FIX32(1.2), FIX32(1.3), FIX32(1.4) };
+static const fix32 incs   [ 3 ] = { FIX32(0.03), FIX32(0.04), FIX32(0.06)                        };
 
 static s16 y1  = 96;
 static s16 y2 = 160;

@@ -234,9 +234,11 @@ JoyReader joysticks [ JOY_MAX ];
 
 
 //Public Functions
-void      JoyReader_init     ( u8 joys );
-void      JoyReader_update   ( void );
-void      JoyReader_reset    ( );
+void      JoyReader_init   ( u8 joys );
+void      JoyReader_update ( void );
+void      JoyReader_reset  ( );
+void      JoyReader_pause  ( );
+void      JoyReader_resume ( );
 
 
 #endif // _JOYREADER_H_

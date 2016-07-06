@@ -33,7 +33,7 @@ void  room_draw          ( Room *room );
 u8    room_objects_count ( Room *room );
 void  room_null          ( Room *room, u8 action );
 void  room_function      ( Room *room, u8 action );
-
+u16   room_get_vrampos   ( u16 plan );
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -51,6 +51,8 @@ void room_funct_41_all    ( Room *room, u8 action );
 
 void room_funct_02_all    ( Room *room, u8 action );
 void room_funct_12_all    ( Room *room, u8 action );
+void room_funct_22_all    ( Room *room, u8 action );
+void room_funct_32_all    ( Room *room, u8 action );
 void room_funct_42_all    ( Room *room, u8 action );
 
 void room_funct_03_all    ( Room *room, u8 action );
@@ -62,6 +64,7 @@ void room_funct_43_all    ( Room *room, u8 action );
 void room_funct_04_all    ( Room *room, u8 action );
 void room_funct_14_all    ( Room *room, u8 action );
 void room_funct_24_all    ( Room *room, u8 action );
+void room_funct_34_all    ( Room *room, u8 action );
 void room_funct_44_all    ( Room *room, u8 action );
 
 

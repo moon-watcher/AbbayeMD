@@ -138,7 +138,7 @@ const Music music_04_all = { MUSIC_SATAN,    "Evil Fight",     }; // (u8*) music
 const Music music_05_all = { MUSIC_GAMEOVER, "Game Over",      }; // (u8*) music_gameover_all, Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 0, sizeof(music_gameover_all) };
 const Music music_06_all = { MUSIC_START,    "Game Start",     }; // (u8*) music_start_all,    Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 0, sizeof(music_start_all)    };
 const Music music_07_all = { MUSIC_TITLE,    "Main Title",     }; // (u8*) music_title_all,    Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 0, sizeof(music_title_all)    };
-const Music music_08_all = { MUSIC_WOODS,    "Manhunt wood"    }; // (u8*) music_woods_all,    Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 1, sizeof(music_woods_all)    };
+const Music music_08_all = { MUSIC_WOODS,    "Manhunt wood",   }; // (u8*) music_woods_all,    Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 1, sizeof(music_woods_all)    };
 const Music music_09_all = { MUSIC_PROLOGUE, "Manhunt",        (u8*) music_manhunt_all, Z80_DRIVER_XGM }; // (u8*) music_prologue_all, Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 0, sizeof(music_prologue_all) };
 const Music music_10_all = { MUSIC_HOPE,     "Prayer of Hope", }; // (u8*) music_hope_all,     Z80_DRIVER_4PCM_ENV, SOUND_PCM_CH1, 0, sizeof(music_hope_all)     };
 
@@ -1347,118 +1347,118 @@ const Hint hint_list [ VERSION_MAX ] [ HINT_MAX ] =
 
 
 
-const Object player_actions [ VERSION_MAX ] [ PLAYER_MAX_ACTIONS ] =
+const Object player_actions [ VERSION_MAX ] [ PLAYER_MAX_ACTIONS ] [ 2 ] =
 {
 	// VERSION_PC
 	{
-            { (Entity*) &entity_01_pc }, //  0: stay
-            { (Entity*) &entity_02_pc }, //  1: walks right
-            { (Entity*) &entity_02_pc }, //  2: walks left
-            { (Entity*) &entity_03_pc }, //  3: jumps
-            { (Entity*) &entity_03_pc }, //  4: jumps right
-            { (Entity*) &entity_03_pc }, //  5: jumps left
-            { (Entity*) &entity_04_pc }, //  6: burns
-            { (Entity*) &entity_05_pc }, //  7: lie down
-            { (Entity*) &entity_06_pc }, //  8: sneaks right
-            { (Entity*) &entity_06_pc }, //  9: sneaks left
-            { (Entity*) &entity_01_pc }, // 10: stay:captured
-            { (Entity*) &entity_56_pc }  // 11: plunge:jumps
+            { { (Entity*) &entity_01_pc }, { } }, //  0: stay
+            { { (Entity*) &entity_02_pc }, { } }, //  1: walks right
+            { { (Entity*) &entity_02_pc }, { } }, //  2: walks left
+            { { (Entity*) &entity_03_pc }, { } }, //  3: jumps
+            { { (Entity*) &entity_03_pc }, { } }, //  4: jumps right
+            { { (Entity*) &entity_03_pc }, { } }, //  5: jumps left
+            { { (Entity*) &entity_04_pc }, { } }, //  6: burns
+            { { (Entity*) &entity_05_pc }, { } }, //  7: lie down
+            { { (Entity*) &entity_06_pc }, { } }, //  8: sneaks right
+            { { (Entity*) &entity_06_pc }, { } }, //  9: sneaks left
+            { { (Entity*) &entity_01_pc }, { } }, // 10: stay:captured
+            { { (Entity*) &entity_56_pc }, { } }  // 11: plunge:jumps
       },
 
 	// VERSION_MD
 	{
-            { (Entity*) &entity_01_md }, //  0: stay
-            { (Entity*) &entity_02_md }, //  1: walks right
-            { (Entity*) &entity_02_md }, //  2: walks left
-            { (Entity*) &entity_03_md }, //  3: jumps
-            { (Entity*) &entity_03_md }, //  4: jumps right
-            { (Entity*) &entity_03_md }, //  5: jumps left
-            { (Entity*) &entity_04_md }, //  6: burns
-            { (Entity*) &entity_05_md }, //  7: lie down
-            { (Entity*) &entity_06_md }, //  8: sneaks right
-            { (Entity*) &entity_06_md }, //  9: sneaks left
-            { (Entity*) &entity_01_md }, // 10: stay:captured
-            { (Entity*) &entity_56_md }  // 11: plunge:jumps
+            { { (Entity*) &entity_01_md }, { (Entity*) &entity_md_93 } }, //  0: stay
+            { { (Entity*) &entity_02_md }, { (Entity*) &entity_md_94 } }, //  1: walks right
+            { { (Entity*) &entity_02_md }, { (Entity*) &entity_md_94 } }, //  2: walks left
+            { { (Entity*) &entity_03_md }, { (Entity*) &entity_md_95 } }, //  3: jumps
+            { { (Entity*) &entity_03_md }, { (Entity*) &entity_md_95 } }, //  4: jumps right
+            { { (Entity*) &entity_03_md }, { (Entity*) &entity_md_95 } }, //  5: jumps left
+            { { (Entity*) &entity_04_md }, { (Entity*) &entity_04_md } }, //  6: burns
+            { { (Entity*) &entity_05_md }, { (Entity*) &entity_md_93 } }, //  7: lie down
+            { { (Entity*) &entity_06_md }, { (Entity*) &entity_md_94 } }, //  8: sneaks right
+            { { (Entity*) &entity_06_md }, { (Entity*) &entity_md_94 } }, //  9: sneaks left
+            { { (Entity*) &entity_01_md }, { (Entity*) &entity_md_93 } }, // 10: stay:captured
+            { { (Entity*) &entity_56_md }, { (Entity*) &entity_56_md } }  // 11: plunge:jumps
       },
 
 	// VERSION_MSX
 	{
-            { (Entity*) &entity_01_msx }, //  0: stay
-            { (Entity*) &entity_02_msx }, //  1: walks right
-            { (Entity*) &entity_02_msx }, //  2: walks left
-            { (Entity*) &entity_03_msx }, //  3: jumps
-            { (Entity*) &entity_03_msx }, //  4: jumps right
-            { (Entity*) &entity_03_msx }, //  5: jumps left
-            { (Entity*) &entity_04_msx }, //  6: burns
-            { (Entity*) &entity_05_msx }, //  7: lie down
-            { (Entity*) &entity_06_msx }, //  8: sneaks right
-            { (Entity*) &entity_06_msx }, //  9: sneaks left
-            { (Entity*) &entity_01_msx }, // 10: stay:captured
-            { (Entity*) &entity_56_msx }  // 11: plunge:jumps
+            { { (Entity*) &entity_01_msx }, { } }, //  0: stay
+            { { (Entity*) &entity_02_msx }, { } }, //  1: walks right
+            { { (Entity*) &entity_02_msx }, { } }, //  2: walks left
+            { { (Entity*) &entity_03_msx }, { } }, //  3: jumps
+            { { (Entity*) &entity_03_msx }, { } }, //  4: jumps right
+            { { (Entity*) &entity_03_msx }, { } }, //  5: jumps left
+            { { (Entity*) &entity_04_msx }, { } }, //  6: burns
+            { { (Entity*) &entity_05_msx }, { } }, //  7: lie down
+            { { (Entity*) &entity_06_msx }, { } }, //  8: sneaks right
+            { { (Entity*) &entity_06_msx }, { } }, //  9: sneaks left
+            { { (Entity*) &entity_01_msx }, { } }, // 10: stay:captured
+            { { (Entity*) &entity_56_msx }, { } }  // 11: plunge:jumps
       },
 
 	// VERSION_PCW
 	{
-            { (Entity*) &entity_01_pcw }, //  0: stay
-            { (Entity*) &entity_02_pcw }, //  1: walks right
-            { (Entity*) &entity_02_pcw }, //  2: walks left
-            { (Entity*) &entity_03_pcw }, //  3: jumps
-            { (Entity*) &entity_03_pcw }, //  4: jumps right
-            { (Entity*) &entity_03_pcw }, //  5: jumps left
-            { (Entity*) &entity_04_pcw }, //  6: burns
-            { (Entity*) &entity_05_pcw }, //  7: lie down
-            { (Entity*) &entity_06_pcw }, //  8: sneaks right
-            { (Entity*) &entity_06_pcw }, //  9: sneaks left
-            { (Entity*) &entity_01_pcw }, // 10: stay:captured
-            { (Entity*) &entity_56_pcw }  // 11: plunge:jumps
+            { { (Entity*) &entity_01_pcw }, { } }, //  0: stay
+            { { (Entity*) &entity_02_pcw }, { } }, //  1: walks right
+            { { (Entity*) &entity_02_pcw }, { } }, //  2: walks left
+            { { (Entity*) &entity_03_pcw }, { } }, //  3: jumps
+            { { (Entity*) &entity_03_pcw }, { } }, //  4: jumps right
+            { { (Entity*) &entity_03_pcw }, { } }, //  5: jumps left
+            { { (Entity*) &entity_04_pcw }, { } }, //  6: burns
+            { { (Entity*) &entity_05_pcw }, { } }, //  7: lie down
+            { { (Entity*) &entity_06_pcw }, { } }, //  8: sneaks right
+            { { (Entity*) &entity_06_pcw }, { } }, //  9: sneaks left
+            { { (Entity*) &entity_01_pcw }, { } }, // 10: stay:captured
+            { { (Entity*) &entity_56_pcw }, { } }  // 11: plunge:jumps
       },
 
 	// VERSION_GB
 	{
-            { (Entity*) &entity_01_gb }, //  0: stay
-            { (Entity*) &entity_02_gb }, //  1: walks right
-            { (Entity*) &entity_02_gb }, //  2: walks left
-            { (Entity*) &entity_03_gb }, //  3: jumps
-            { (Entity*) &entity_03_gb }, //  4: jumps right
-            { (Entity*) &entity_03_gb }, //  5: jumps left
-            { (Entity*) &entity_04_gb }, //  6: burns
-            { (Entity*) &entity_05_gb }, //  7: lie down
-            { (Entity*) &entity_06_gb }, //  8: sneaks right
-            { (Entity*) &entity_06_gb }, //  9: sneaks left
-            { (Entity*) &entity_01_gb }, // 10: stay:captured
-            { (Entity*) &entity_56_gb }  // 11: plunge:jumps
+            { { (Entity*) &entity_01_gb }, { } }, //  0: stay
+            { { (Entity*) &entity_02_gb }, { } }, //  1: walks right
+            { { (Entity*) &entity_02_gb }, { } }, //  2: walks left
+            { { (Entity*) &entity_03_gb }, { } }, //  3: jumps
+            { { (Entity*) &entity_03_gb }, { } }, //  4: jumps right
+            { { (Entity*) &entity_03_gb }, { } }, //  5: jumps left
+            { { (Entity*) &entity_04_gb }, { } }, //  6: burns
+            { { (Entity*) &entity_05_gb }, { } }, //  7: lie down
+            { { (Entity*) &entity_06_gb }, { } }, //  8: sneaks right
+            { { (Entity*) &entity_06_gb }, { } }, //  9: sneaks left
+            { { (Entity*) &entity_01_gb }, { } }, // 10: stay:captured
+            { { (Entity*) &entity_56_gb }, { } }  // 11: plunge:jumps
       },
 
 //	// VERSION_NES
 //	{
-//            { (Entity*) &entity_01_nes }, //  0: stay
-//            { (Entity*) &entity_02_nes }, //  1: walks right
-//            { (Entity*) &entity_02_nes }, //  2: walks left
-//            { (Entity*) &entity_03_nes }, //  3: jumps
-//            { (Entity*) &entity_03_nes }, //  4: jumps right
-//            { (Entity*) &entity_03_nes }, //  5: jumps left
-//            { (Entity*) &entity_04_nes }, //  6: burns
-//            { (Entity*) &entity_05_nes }, //  7: lie down
-//            { (Entity*) &entity_06_nes }, //  8: sneaks right
-//            { (Entity*) &entity_06_nes }, //  9: sneaks left
-//            { (Entity*) &entity_01_nes }, // 10: stay:captured
-//            { (Entity*) &entity_56_nes }  // 11: plunge:jumps
+//            { { (Entity*) &entity_01_nes }, { } }, //  0: stay
+//            { { (Entity*) &entity_02_nes }, { } }, //  1: walks right
+//            { { (Entity*) &entity_02_nes }, { } }, //  2: walks left
+//            { { (Entity*) &entity_03_nes }, { } }, //  3: jumps
+//            { { (Entity*) &entity_03_nes }, { } }, //  4: jumps right
+//            { { (Entity*) &entity_03_nes }, { } }, //  5: jumps left
+//            { { (Entity*) &entity_04_nes }, { } }, //  6: burns
+//            { { (Entity*) &entity_05_nes }, { } }, //  7: lie down
+//            { { (Entity*) &entity_06_nes }, { } }, //  8: sneaks right
+//            { { (Entity*) &entity_06_nes }, { } }, //  9: sneaks left
+//            { { (Entity*) &entity_01_nes }, { } }, // 10: stay:captured
+//            { { (Entity*) &entity_56_nes }, { } }  // 11: plunge:jumps
 //      },
 
 	// VERSION_CGA
 	{
-            { (Entity*) &entity_01_cga }, //  0: stay
-            { (Entity*) &entity_02_cga }, //  1: walks right
-            { (Entity*) &entity_02_cga }, //  2: walks left
-            { (Entity*) &entity_03_cga }, //  3: jumps
-            { (Entity*) &entity_03_cga }, //  4: jumps right
-            { (Entity*) &entity_03_cga }, //  5: jumps left
-            { (Entity*) &entity_04_cga }, //  6: burns
-            { (Entity*) &entity_05_cga }, //  7: lie down
-            { (Entity*) &entity_06_cga }, //  8: sneaks right
-            { (Entity*) &entity_06_cga }, //  9: sneaks left
-            { (Entity*) &entity_01_cga }, // 10: stay:captured
-            { (Entity*) &entity_56_cga }  // 11: plunge:jumps
+            { { (Entity*) &entity_01_cga }, { } }, //  0: stay
+            { { (Entity*) &entity_02_cga }, { } }, //  1: walks right
+            { { (Entity*) &entity_02_cga }, { } }, //  2: walks left
+            { { (Entity*) &entity_03_cga }, { } }, //  3: jumps
+            { { (Entity*) &entity_03_cga }, { } }, //  4: jumps right
+            { { (Entity*) &entity_03_cga }, { } }, //  5: jumps left
+            { { (Entity*) &entity_04_cga }, { } }, //  6: burns
+            { { (Entity*) &entity_05_cga }, { } }, //  7: lie down
+            { { (Entity*) &entity_06_cga }, { } }, //  8: sneaks right
+            { { (Entity*) &entity_06_cga }, { } }, //  9: sneaks left
+            { { (Entity*) &entity_01_cga }, { } }, // 10: stay:captured
+            { { (Entity*) &entity_56_cga }, { } }  // 11: plunge:jumps
       },
 
 };
@@ -2333,6 +2333,9 @@ const Palette *palette_alt_list [ VERSION_MAX ] [ PALETTE_ALT_MAX ] =
             (Palette*) &palette_gb_04,
             (Palette*) &palette_gb_05,
             (Palette*) &palette_gb_06,
+            (Palette*) &palette_gb_07,
+            (Palette*) &palette_gb_08,
+            (Palette*) &palette_gb_09,
       },
 
 //	// VERSION_NES

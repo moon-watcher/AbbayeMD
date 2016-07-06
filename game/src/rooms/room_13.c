@@ -26,6 +26,9 @@ static void _room_enter ( Room *room )
 		SPR_setVisible ( fish   [ i ]->sprite, 1 );
 		SPR_setVisible ( splash [ i ]->sprite, 0 );
 	}
+
+	philippe_init ( );
+	philippe_add ( 80, 100 );
 }
 
 
@@ -36,6 +39,8 @@ static void _room_stay ( Room *room )
 	{
 		enemy_fish ( fish, splash, i );
 	}
+
+	philippe_update();
 }
 
 

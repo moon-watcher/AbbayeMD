@@ -140,5 +140,7 @@ void  pack_vram_add              ( GameObject *go );
 
 void swap_tiles                  ( Vect2D_u16 exception[], u8 count, u16 x1, u16 y1, u16 x2, u16 y2 );
 
+void alternate_color_in_cm       ( );
+void updateSprites               ( );
 
 #endif

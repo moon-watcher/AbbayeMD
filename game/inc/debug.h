@@ -2,6 +2,8 @@
 #define _DEBUG_H_
 
 
+bool debug_show_nb_room;
+
 
 void debug_info ( );
 void showFps    ( );

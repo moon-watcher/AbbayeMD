@@ -33,14 +33,8 @@ void screen_burning ( )
 	Screen *s = (Screen*) screen_get(10);
 
 	drawImage ( (Image*) s->foreground, APLAN );
+	drawImage ( (Image*) s->background, BPLAN );
 
-	if ( s->background )
-	{
-		drawImage ( (Image*) s->background, BPLAN );
-	}
-
-
-	u16 i;
 
 	lSpriteCounter = 0;
 
@@ -50,6 +44,7 @@ void screen_burning ( )
 	SPR_init ( 1 ); // SPR_init ( 200 );
 	goManagerInit ( &lObjects );
 
+	u16 i;
 	for ( i = 0; i < 9; i++ )
 	{
 		GameObject *go = goManagerAdd ( &lObjects, (Object*)&s->objects->array [ i ] );

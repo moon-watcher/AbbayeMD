@@ -19,6 +19,11 @@ static void _room_enter ( Room *room )
 	explosion = goManagerFindByEntityId ( &waObjects, 65, 0 ); // Arrow explosion
 
 	enemy_bullet_init ( arrow[0], explosion );
+
+	alternate_color_in_cm ( );
+
+	philippe_init ( );
+	philippe_add ( 172, 196 );
 }
 
 
@@ -30,6 +35,8 @@ static void _room_stay ( Room *room )
 		enemy_archer ( archer, arrow, i );
 		enemy_bullet ( arrow[i] );
 	}
+
+	philippe_update();
 }
 
 

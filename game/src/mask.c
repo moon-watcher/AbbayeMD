@@ -59,7 +59,7 @@ void mask_ini_priorities ( )
 	_line    = set_value_in ( ( goGetLeft(player.go) >> 3 ) - _dir, 0, 31 );
 
 	mask_set_priorities ( &currentMask );
-	mask_set_priorities ( &currentMask );
+	//mask_set_priorities ( &currentMask );
 }
 
 

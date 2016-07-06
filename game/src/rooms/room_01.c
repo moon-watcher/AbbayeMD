@@ -2,13 +2,12 @@
 
 
 
-static GameObject *leaf [ 6 ];
+static GameObject *leaf     [ 6 ];
+static GameObject *crusader [ 8 ];
 
-static u8          nb_leaf;
+static u16         nb_crusader;
+static u16         nb_leaf;
 static u16         i;
-
-
-//u16 tile ;
 
 
 
@@ -25,58 +24,51 @@ static void _room_enter ( Room *room )
 		{
 			enemy_leaf_reset ( leaf[i], true );
 		}
+
+
+
+//		for ( i=0; i<7; i++ )
+//		{
+//			currentMask.array [ i+12 ] [ 0 ] = 1;
+//		}
+
+		if ( game.crusader )
+		{
+			nb_crusader = goManagerFindAllByEntityId ( &waObjects, crusader, 14 ); // Crusader
+
+			for ( i=0; i<nb_crusader; i++ )
+			{
+				setActive ( crusader[i], 0 );
+			}
+
+			currentMask.array [ 21 ] [ 3 ] =
+			currentMask.array [ 21 ] [ 4 ] =
+			currentMask.array [ 20 ] [ 3 ] =
+			currentMask.array [ 20 ] [ 4 ] = 0;
+		}
+		else
+		{
+			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN,  0, 20 ), 3, 20 );
+			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN,  1, 20 ), 4, 20 );
+
+			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN, 10, 21 ), 2, 21 );
+			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN, 11, 21 ), 3, 21 );
+			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN, 12, 21 ), 4, 21 );
+			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN, 13, 21 ), 5, 21 );
+			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN, 14, 21 ), 6, 21 );
+
+			s16 x, y;
+
+			for ( y = 0; y < 7; y++ )
+			{
+				for ( x = 0; x < 6; x++ )
+				{
+					currentMask.array [ y + 13 ] [ x + 1 ] = 0;
+				}
+			}
+		}
+
 	}
-
-
-
-//	tile = ( ( VDP_getTile ( APLAN, 0, 0 ) >> 11 ) << 11 );
-//	tile =  VDP_getTile ( APLAN, 0, 0 );
-
-
-
-
-//			#include "../../inc/versions/md.h"
-//			#include "../../res/md/sprites.h"
-//
-//
-//
-//			//drawUInt ( enemies_2x2_md.animations[0]->frames[0]->frameSprites[0]->tileset->numTile, 0, 0, 3 );
-//
-//
-//
-//			SpriteDefinition *sd1 = &enemies_2x2_md;
-//			drawUInt ( sd1->animations[0]->frames[0]->frameSprites[0]->tileset->numTile, 0, 0, 3 );
-//
-//
-//
-//			Entity *e = (Entity*) &entity_17_md;
-//
-//			if ( e == NULL )
-//			{
-//				drawText ( "NULL", 0, 1);
-//			}
-//			else
-//			{
-//				drawText ( e->name, 0, 1);
-//			}
-//
-//			drawText ( currentRoom->objects->array [ 0 ].entity->name, 1, 2 );
-//
-//			SpriteDefinition *sd2;
-//
-//			//sd2 = *(&e->sd);
-//
-////			drawUInt ( sd2->animations[0]->frames[0]->frameSprites[0]->tileset->numTile, 0, 2, 3 );
-//
-//
-//			FrameSprite* frameSprite = enemies_2x2_md.animations[0]->frames[0]->frameSprites[0];
-//			TileSet* tileset = frameSprite->tileset;
-//			TC_uploadAtVBlank ( tileset, 450 );
-//
-//
-////			VDP_loadTileSet ( player_sprite.animations[0]->frames[0]->frameSprites[0]->tileset, 450, 0 );
-////			VDP_loadTileSet ( (TileSet*) , 16, 0 );
-
 }
 
 
@@ -89,17 +81,6 @@ static void _room_stay ( Room *room )
 		{
 			enemy_leaf ( leaf[i] );
 		}
-
-
-//			#include "../../res/md/sprites.h"
-//	if ( random() % 193 == 0 )
-//		VDP_loadTileData ( (u32*)tree_1x1_md.animations[0]->frames[0]->frameSprites[0]->tileset, tile, 1, 0 );
-
-//	if ( random() % 143 == 0 )
-//		VDP_loadTileData ( 0, tile, 0, 0 );
-
-
-
 	}
 }
 

@@ -30,6 +30,7 @@ extern const SpriteDefinition objects_1x1_md;
 extern const SpriteDefinition objects_4x2_md;
 extern const SpriteDefinition bonfire_6x8_md;
 extern const SpriteDefinition fire_2x2_md;
+extern const SpriteDefinition philippe_2x3_md;
 extern const SpriteDefinition hatch_2x2_md;
 extern const SpriteDefinition leaf1_1x1_md;
 extern const SpriteDefinition leaf2_1x1_md;
@@ -39,5 +40,6 @@ extern const SpriteDefinition leaf5_1x1_md;
 extern const SpriteDefinition passage1_2x3_md;
 extern const SpriteDefinition passage2_2x3_md;
 extern const SpriteDefinition leaf6_1x1_md;
+extern const SpriteDefinition leaf7_1x1_md;
 
 #endif // _GAME_RES_MD_SPRITES_H_

@@ -30,6 +30,7 @@ typedef enum
 	GAME_STATUS_RESTART,
 	GAME_STATUS_GAMEOVER,
 	GAME_STATUS_ENDING,
+	GAME_STATUS_CRUSADER,
 }
 GameStatus;
 
@@ -50,6 +51,7 @@ struct
 
 	u16 rnd;
 	bool alt_palettes;
+	bool crusader;
 }
 game;
 

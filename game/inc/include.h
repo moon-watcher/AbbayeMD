@@ -70,6 +70,7 @@ bool;
 #include "../inc/mask.h"
 #include "../inc/object.h"
 #include "../inc/objects.h"
+#include "../inc/crusader_mode.h"
 #include "../inc/room.h"
 #include "../inc/rooms.h"
 #include "../inc/item.h"
@@ -86,7 +87,7 @@ bool;
 #include "../inc/debug.h"
 #include "../inc/font.h"
 #include "../inc/display.h"
-#include "../inc/vramcache.h"
+
 
 
 

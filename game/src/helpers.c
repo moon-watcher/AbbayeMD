@@ -485,25 +485,11 @@ u16 drawImage ( Image *image, u16 plan )
 		return 0;
 	}
 
-	s16 x   = VDP_getScreenWidth  ( ) / 8 / 2 - image->map->w / 2;
-	s16 y   = VDP_getScreenHeight ( ) / 8 / 2 - image->map->h / 2;
-	u16 pos = vram_new ( image->tileset->numTile );
-	u16 pal = ( plan == APLAN ) ? PAL1 : PAL0;
+	s16 x = VDP_getScreenWidth  ( ) / 8 / 2 - image->map->w / 2;
+	s16 y = VDP_getScreenHeight ( ) / 8 / 2 - image->map->h / 2;
 
-	//VDP_waitVSync();
-
-	SYS_disableInts();
-
-	//VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 1 ); VDP_waitDMACompletion();
-	VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 0 );
-
-	SYS_enableInts();
-
-	preparePal ( pal, image->palette->data );
-
-	return pos;
+	return drawImageXY ( image, plan, x, y );
 }
-
 
 
 u16 drawImageXY ( Image *image, u16 plan, u16 x, u16 y )
@@ -630,11 +616,9 @@ u16 between ( s32 min, s32 nb, s32 max )
 
 void resetPalettes ( )
 {
-	const u16 colores [ 64 ] = { };
-
 	SYS_disableInts();
 
-	VDP_setPaletteColors ( 0, (u16*)colores, 64 );
+	VDP_setPaletteColors ( 0, (u16*) palette_black, 64 );
 
 	SYS_enableInts();
 }
@@ -651,9 +635,6 @@ void resetVRAM ( )
 
 void resetScreen ( )
 {
-//	VDP_clearPlan ( APLAN, 1 ); VDP_waitDMACompletion ( );
-//	VDP_clearPlan ( BPLAN, 1 ); VDP_waitDMACompletion ( );
-
 	VDP_clearPlan ( APLAN, 0 );
 	VDP_clearPlan ( BPLAN, 0 );
 }
@@ -662,16 +643,12 @@ void resetScreen ( )
 
 void resetScroll ( )
 {
-	SYS_disableInts();
-
 	VDP_setScrollingMode ( HSCROLL_PLANE, VSCROLL_PLANE );
 
 	VDP_setHorizontalScroll ( PLAN_A, 0 );
 	VDP_setVerticalScroll   ( PLAN_A, 0 );
 	VDP_setHorizontalScroll ( PLAN_B, 0 );
 	VDP_setVerticalScroll   ( PLAN_B, 0 );
-
-	SYS_enableInts();
 }
 
 
@@ -826,12 +803,12 @@ void setDoor ( GameObject *door, bool value )
 
 void hide_door ( GameObject *door )
 {
-	itemSetHidden ( door->item );
+	itemSetVisible ( door->item, false );
 
 	setDoor ( door, 0 );
 	setActive ( door, 0 );
 
-	SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+	updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
 
 	play_fx ( FX_DOOR );
 	waitHz ( getHz() );
@@ -949,7 +926,15 @@ void pack_vram_init ( )
 
 void pack_vram_add ( GameObject *go )
 {
-	#define PACKED_OBJECTS   11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 23, 24, 25, 28, 29, 32, 33, 34, 37, 38, 41, 50, 53, 55, 58, 61, 81, 82
+	#define PACKED_OBJECTS   11, 12, 13, 14, 15, 16, 17, 18, 19, \
+	                         21, 23, 24, 25, 28, 29, \
+	                         30, 32, 33, 34, 37, 38, \
+	                         41, \
+	                         50, 53, 55, 58, \
+	                         61, \
+	                         81, 82, 86, 87, 88, 89, \
+	                         90, 96, 97
+
 
 	if ( in_array ( go->object->entity->id, (u16[]) {PACKED_OBJECTS, 0 } ) )
 	{
@@ -963,10 +948,8 @@ void pack_vram_add ( GameObject *go )
 		{
 			vram_delete ( go->vram );
 
-			//SYS_disableInts();
 			go->sprite->fixedIndex = *pos;
 			go->vram               = *pos;
-			//SYS_enableInts();
 		}
 	}
 }
@@ -1006,4 +989,32 @@ void swap_tiles ( Vect2D_u16 exception[], u8 count, u16 x1, u16 y1, u16 x2, u16 
 }
 
 
+void alternate_color_in_cm ( )
+{
+	if ( !game.crusader )
+	{
+		return;
+	}
 
+	const struct
+	{
+		u16 pos1, color1;
+		u16 pos2, color2;
+	}
+	variations [ 2 ] =
+	{
+		{ 5, 0x024, 6, 0x048 },
+		{ 5, 0x202, 6, 0x404 },
+	};
+
+	u8 i = session.rnd % 2;
+
+	prepareColor ( variations[i].pos1, variations[i].color1 );
+	prepareColor ( variations[i].pos2, variations[i].color2 );
+}
+
+
+void updateSprites ( )
+{
+	SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+}

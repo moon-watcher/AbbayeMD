@@ -26,6 +26,10 @@ static void _room_enter ( Room *room )
 	{
 		setActive ( running_fire[i], 0 );
 	}
+
+	philippe_init ( );
+	philippe_add ( 160, 170 );
+	philippe_add (  14,  23 );
 }
 
 
@@ -33,6 +37,8 @@ static void _room_enter ( Room *room )
 static void _room_stay ( Room *room )
 {
 	enemy_dragon ( dragon_head, dragon_body, dragon_fire, running_fire );
+
+	philippe_update ( );
 }
 
 

@@ -28,7 +28,7 @@ static void _room_enter ( Room *room )
 
 
 	// the switch at 4,1 opens the door
-	item = (Item*) itemManagerFind ( &waItems, 22, 4, 1 );
+	item = (Item*) itemManagerFind ( &waItems, 17, 4, 1 );
 
 	if ( itemGetChecked ( item )  &&  itemGetVisible ( door->item ) )
 	{
@@ -40,10 +40,6 @@ static void _room_enter ( Room *room )
 	for ( i = 0; i < nb_fish;   i++ ) { fish   [ i ]->grabity = false; fish   [ i ]->counter = 0; SPR_setVisible ( fish   [ i ]->sprite, 1 );  }
 	for ( i = 0; i < nb_splash; i++ ) { splash [ i ]->grabity = false; splash [ i ]->counter = 0; SPR_setVisible ( splash [ i ]->sprite, 0 ); }
 	for ( i = 0; i < nb_drop;   i++ ) { drop   [ i ]->grabity = false; drop   [ i ]->counter = 0; SPR_setVisible ( drop   [ i ]->sprite, 1 ); }
-
-	philippe_init ( );
-	philippe_add ( 10, 40);
-	philippe_add ( 188, 210 );
 }
 
 
@@ -70,8 +66,6 @@ static void _room_stay ( Room *room )
 	{
 		enemy_drop ( drop, i );
 	}
-
-	philippe_update();
 }
 
 

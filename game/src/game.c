@@ -22,11 +22,11 @@ static void _add_objects()
 
 		if ( itemtype )
 		{
-			Item *item = (Item*) itemManagerAdd ( &waItems, i, game.room.x, game.room.y, 0, 0, 0 );
+			Item *item = (Item*) itemManagerAdd ( &waItems, i, game.room.x, game.room.y, false, true, 0 );
 
 			goSetItem ( go, item );
 
-			if ( itemIsHidden ( item ) )
+			if ( !itemGetVisible ( item ) )
 			{
 				setActive ( go, 0 );
 
@@ -80,7 +80,8 @@ static void _go_next_room ()
 	#define 	height_div_2  ( goGetHeight(go) >> 1 )
 
 
-	if ( go->vel_x > zero  &&  goGetRight(go) - width_div_2 >= GAME_AREA_WIDTH )
+	//if ( go->vel_x > zero  &&  goGetRight(go) - width_div_2 >= GAME_AREA_WIDTH )
+	if ( SPR_getHFlip(go->sprite) == 0  &&  goGetRight(go) - width_div_2 >= GAME_AREA_WIDTH )
 	{
 		goSetX ( go, 0 - go->object->entity->padding.left - width_div_2  + 1 );
 		goSetY ( go, goGetTop(go) - go->object->entity->padding.top ) ;
@@ -89,7 +90,8 @@ static void _go_next_room ()
 		game.status = GAME_STATUS_GONEXT;
 	}
 
-	else if ( go->vel_x < zero  &&  goGetLeft(go) + width_div_2 <= 0 )
+	//else if ( go->vel_x < zero  &&  goGetLeft(go) + width_div_2 <= 0 )
+	else if ( SPR_getHFlip(go->sprite) == 1  &&  goGetLeft(go) + width_div_2 <= 0 )
 	{
 		goSetX ( go, GAME_AREA_WIDTH + (scrollHorizontal>>1) - go->object->entity->padding.right - width_div_2  - 1 );
 		goSetY ( go, goGetTop(go) - go->object->entity->padding.top );
@@ -131,6 +133,7 @@ void game_init ()
 	game.room.y       = checkpoint_get()->room_y;
 	game.rnd          = random();
 	game.alt_palettes = true;
+	game.crusader     = false;
 }
 
 
@@ -204,19 +207,15 @@ void game_loop ( )
 
 		room_function ( currentRoom, ROOM_ACTION_ENTER );
 
-		SPR_setPosition ( player.go->sprite, player.go->x, player.go->y );
-		SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
-
 		musicPlay ( currentRoom->track );
-
-
-		//show_screen ( 10 ); // fade effect
-		show_screen ( 0 ); // displayOn(); // very fast
-
 
 
 		listptrNode *node = NULL;
 		GameObject  *go   = NULL;
+
+
+		bool first_time = true;
+
 
 
 		while ( game.status == GAME_STATUS_OK )
@@ -277,7 +276,15 @@ void game_loop ( )
 			}
 
 
-			SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+			updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+
+
+			if ( first_time )
+			{
+				show_screen ( 0 );
+				first_time = false;
+			}
+
 			VDP_waitVSync ( );
 		}
 
@@ -306,6 +313,14 @@ void game_loop ( )
 			{
 				// goes to game over
 				game.status = GAME_STATUS_GAMEOVER;
+
+				if ( game.crusader )
+				{
+					// resumes ending secuence
+					game.room.x = 4;
+					game.room.y = 4;
+					game.status = GAME_STATUS_OK;
+				}
 			}
 			else
 			{

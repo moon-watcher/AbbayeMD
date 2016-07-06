@@ -17,6 +17,11 @@ static void _set_object ( GameObject *check )
 void checkpoint_init ( )
 {
 	_checkpoint = (Checkpoint) { 120, 156, 0, 1 };
+
+	if ( game.crusader )
+	{
+		_checkpoint.room_x = 1;
+	}
 }
 
 
@@ -28,7 +33,7 @@ void checkpoint_save ( GameObject *check )
 	play_fx ( FX_SWITCH );
 
 	_set_object ( check );
-	SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+	updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
 
 	goUpdate ( player.go );
 	PlayerAction action = playerGetAction ( &player );

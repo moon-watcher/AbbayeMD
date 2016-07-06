@@ -9,7 +9,7 @@ void itemManagerInit ( listptr *list )
 
 
 
-Item *itemManagerAdd ( listptr *list, u8 id, u8 room_x, u8 room_y, u8 checked, u8 hidden, s16 value )
+Item *itemManagerAdd ( listptr *list, u8 id, u8 room_x, u8 room_y, bool checked, bool visible, s32 value )
 {
 	Item *item = (Item*) itemManagerFind ( &waItems, id, room_x, room_y );
 
@@ -24,7 +24,7 @@ Item *itemManagerAdd ( listptr *list, u8 id, u8 room_x, u8 room_y, u8 checked, u
 	item->room_x  = room_x;
 	item->room_y  = room_y;
 	item->checked = checked;
-	item->hidden  = hidden;
+	item->visible = visible;
 	item->value   = value;
 	item->node    = (listptrNode*) listptr_append ( list, (Item*) item );
 
@@ -78,25 +78,35 @@ u16 ItemManagerLength ( listptr *list )
 
 
 
-void itemManagerShow (  listptr *list, u8 x, u8 y )
+void itemManagerShow (  listptr *list )
 {
-//	listptrNode *node = list->head;
-//
-//	u8 cnt = 0;
-//
-//	while ( node )
-//	{
-//		Item *item = (Item*) node->pointer;
-//
-//		GameObject *go = (GameObject*) item->go;
-//
-//		drawUInt( goGetEntityType(go) , x, y+cnt, 0);
-//
-//		node = node->next;
-//		++cnt;
-//	}
-//
-//	drawUInt(ItemManagerLength(list), x, y+cnt, 0);
+	if ( !DEVELOPEMENT )
+	{
+		return;
+	}
+
+
+	listptrNode *node = list->head;
+
+
+	drawUInt ( ItemManagerLength ( &waItems ), 0, 0, 0 );
+
+	u8 i = 1;
+
+	while ( node )
+	{
+		Item *item = ( Item * ) node->pointer;
+
+		drawUInt ( item->id,       0, i, 1 );
+		drawUInt ( item->room_x,   2, i, 1 );
+		drawUInt ( item->room_y,   4, i, 1 );
+		drawUInt ( item->checked,  6, i, 1 );
+		drawUInt ( item->visible,  8, i, 1 );
+		drawUInt ( item->value,   10, i, 1 );
+
+		node = node->next;
+		++i;
+	}
 }
 
 
@@ -105,6 +115,7 @@ void itemManagerEnd ( listptr *list )
 {
 	listptr_destroy ( list );
 }
+
 
 
 
@@ -120,7 +131,6 @@ Item *itemCreate ( )
 }
 
 
-
 void itemDelete ( Item *item )
 {
 	item->node = NULL;
@@ -133,64 +143,70 @@ void itemDelete ( Item *item )
 
 
 
-u8 itemIsHidden ( Item *item )
+bool itemGetVisible ( Item *item )
 {
-	return item->hidden ? 1 : 0;
+	if ( item )
+	{
+		return item->visible;
+	}
+
+	return false;
 }
 
-u8 itemIsVisible ( Item *item )
+void itemSetVisible ( Item *item, bool value )
 {
-	return item->hidden ? 0 : 1;
-}
-
-
-
-void itemSetHidden ( Item *item )
-{
-	item->hidden = 1;
-}
-
-void itemSetVisible ( Item *item )
-{
-	item->hidden = 0;
+	if ( item )
+	{
+		item->visible = value;
+	}
 }
 
 
 
-u8 itemGetChecked ( Item *item )
+bool itemGetChecked ( Item *item )
 {
-	return item->checked;
+	if ( item )
+	{
+		return item->checked;
+	}
+
+	return false;
+}
+
+void itemSetChecked ( Item *item, bool value )
+{
+	if ( item )
+	{
+		item->checked = value;
+	}
 }
 
 
 
-bool itemSetChecked ( Item *item, u16 value )
+s32 itemIncValue ( Item *item, s32 value )
 {
-	item->checked = value;
+	if ( item )
+	{
+		return ( item->value += value );
+	}
 
-	return value ? true : false;
+	return 0;
 }
 
-
-
-s16 itemGetValue ( Item *item )
+s32 itemGetValue ( Item *item )
 {
-	return item->value;
+	if ( item )
+	{
+		return item->value;
+	}
+
+	return 0;
 }
 
-
-
-void itemSetValue ( Item *item, s16 value )
+void itemSetValue ( Item *item, s32 value )
 {
-	item->value = value;
+	if ( item )
+	{
+		item->value = value;
+	}
 }
-
-
-
-s16 itemIncValue ( Item *item, s16 value )
-{
-	item->value += value;
-
-	return item->value;
-}
-

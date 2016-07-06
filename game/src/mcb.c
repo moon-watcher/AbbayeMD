@@ -371,6 +371,14 @@ void mcb_crusader ( void *data )
 {
 	GameObject *go = (GameObject*) data;
 
+	if ( goGetRight(go) >= screenWidth + 10 )
+	{
+		setActive(go, 0);
+
+		return;
+	}
+
+
 	if ( goGetLeft(go) < 0 || goGetRight(go) >= screenWidth - 8 )
 	{
 		go->vel_y = zero;
@@ -393,6 +401,12 @@ void mcb_crusader ( void *data )
 
 
 	s16 x = goGetRight ( go );
+
+	if ( game.room.x == 2 && ( x == 16 ) )
+	{
+		go->vel_y = -FIX32 ( 1.9 );
+		return;
+	}
 
 	if ( game.room.x == 1 && ( x == 78 || x == 126 || x == 158 ) )
 	{

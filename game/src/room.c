@@ -2,6 +2,9 @@
 
 
 
+static u16 _vrampos[2];
+
+
 
 Room *room_get ( )
 {
@@ -12,24 +15,10 @@ Room *room_get ( )
 
 void room_draw ( Room *room )
 {
-	SYS_disableInts();
+	debug_show_nb_room = true;
 
-	u16 pos = vram_new ( room->foreground->tileset->numTile );
-
-	VDP_drawImageEx ( APLAN, (Image*) room->foreground, TILE_ATTR_FULL(PAL1,0,0,0, pos), 0, 0, 0, 0 );
-
-	preparePal ( PAL1, room->foreground->palette->data );
-
-   if ( room->background != NULL )
-   {
-   	pos = vram_new ( room->background->tileset->numTile );
-
-		VDP_drawImageEx ( BPLAN, (Image*) room->background, TILE_ATTR_FULL(PAL0,0,0,0,pos), 0, 0, 0, 0 );
-
-		preparePal ( PAL0, room->background->palette->data );
-	}
-
-	SYS_enableInts();
+	_vrampos [ 0 ] = drawImageXY ( room->foreground, APLAN, 0, 0 );
+	_vrampos [ 1 ] = drawImageXY ( room->background, BPLAN, 0, 0 );
 }
 
 
@@ -58,4 +47,13 @@ void room_function ( Room *room, u8 action )
 void room_null ( Room * room, u8 action )
 {
 
+}
+
+
+u16 room_get_vrampos ( u16 plan )
+{
+	if ( plan == APLAN ) return _vrampos [ 0 ];
+	if ( plan == BPLAN ) return _vrampos [ 1 ];
+
+	return 0;
 }

@@ -61,6 +61,10 @@ void enemy_star              ( Vect2D_u16 exception[], u8 stars, u8 x, u8 y, u8 
 void enemy_lighting_init     ( );
 void enemy_lighting          ( );
 
+void philippe_init           ( );
+void philippe_add            ( s16 x1, s16 x2 );
+void philippe_update         ( );
+
 
 
 #endif // _ENEMIES_H_

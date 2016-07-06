@@ -62,7 +62,7 @@ Player player;
 
 
 
-const Object player_actions [ VERSION_MAX ] [ PLAYER_MAX_ACTIONS ];
+const Object     player_actions [ VERSION_MAX ] [ PLAYER_MAX_ACTIONS ] [ 2 ];
 const PlayerData player_data [ VERSION_MAX ];
 
 

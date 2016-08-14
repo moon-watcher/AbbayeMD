@@ -64,10 +64,10 @@
  * @PCW-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @CGA-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @MD-SKIN                   => Dani Nevado                    | Twitter: @DanySnowyman      | Mail:
- * @MUSIC                     => David Sánchez                  | Twitter: @DavidBonus        | Mail:
- * @FX                        => David Sánchez                  | Twitter: @DavidBonus        | Mail:
- * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
+ * @MUSIC                     => Paolo Arus                     | Twitter:                    | Mail:
+ * @FX                        => Paolo Arus                     | Twitter:                    | Mail:
  * @ILLUSTRATION              => Urza                           | Twitter: @Urza2             | Mail:
+ * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @CRUSADER-MODE             => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  *
@@ -104,6 +104,7 @@
 
 static void _init ( u16 hard )
 {
+   return;
 //	// 0 is soft reset
 //   if ( hard == 0 )
 //   {
@@ -123,6 +124,8 @@ static void _init ( u16 hard )
 
 void demo1()
 {
+   return;
+
 	extern const struct genresTiles demo_lightfold64;
 
 	u16 pos  = 16;
@@ -157,6 +160,8 @@ void demo1()
 
 void demo2 ( )
 {
+   return;
+
 	extern const struct genresTiles demo_rainbars16b;
 
 	VDP_setScreenWidth256();
@@ -203,9 +208,11 @@ int main ( int argc, char *argv[] )
 {
    _init ( argc );
 
+	demo1();
+	demo2();
 
-	//demo1();
-	//demo2();
+   dev_init ( 1, 1 );
+
 
 
 	game_set_alt_palettes ( false );
@@ -213,8 +220,6 @@ int main ( int argc, char *argv[] )
 	displayInit();
 	displayOff(0);
 
-	DEV          = 1;
-	INVULNERABLE = 1;
 	game.version = VERSION_MD;
 
 	JoyReader_init ( 1 );
@@ -307,7 +312,7 @@ int main ( int argc, char *argv[] )
 
 //						game.room.x = 3;
 //						game.room.y = 2;
-						game.version  = VERSION_GB;
+//						game.version  = VERSION_GB;
 
 
 

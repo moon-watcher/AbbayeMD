@@ -7,11 +7,11 @@
 
 
 
-static u8  _num_crosses;
-static u8  _num_hearts;
+static u8  _num_crosses = 0;
+static u8  _num_hearts = 0;
 
-static u16 _vram_hearts;
-static u16 _vram_crosses;
+static u16 _vram_hearts = 0;
+static u16 _vram_crosses = 0;
 
 
 
@@ -142,7 +142,7 @@ void hudIncHearts ( s8 inc )
 	}
 	else
 	{
-		// if _num_hearts decrease update isn't required since the screen will be gone to black
+		// if _num_hearts decrease, update isn't required since the screen will be gone to black
 	}
 
 	SYS_enableInts();

@@ -3,8 +3,8 @@
 
 
 
-static u8  set;
-static u16 time;
+static u8  set = 0;
+static u16 time = 0;
 
 
 static void _setFrame ( Sprite *sp, u8 frame )

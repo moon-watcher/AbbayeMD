@@ -1,18 +1,18 @@
 #include "../inc/include.h"
 
 
-static GameObject *door;
-static GameObject *fish   [ 3 ];
-static GameObject *splash [ 3 ];
-static GameObject *drop   [ 2 ];
+static GameObject *door = NULL;
+static GameObject *fish   [ 3 ] = { };
+static GameObject *splash [ 3 ] = { };
+static GameObject *drop   [ 2 ] = { };
 
-static Item       *item;
+static Item       *item = NULL;
 
-static u8          nb_fish;
-static u8          nb_splash;
-static u8          nb_drop;
+static u8          nb_fish = 0;
+static u8          nb_splash = 0;
+static u8          nb_drop = 0;
 
-static u16         i;
+static u16         i = 0;
 
 
 

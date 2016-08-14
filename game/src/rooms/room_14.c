@@ -1,12 +1,12 @@
 #include "../inc/include.h"
 
 
-static GameObject *archer [ 1 ];
-static GameObject *arrow [ 1 ];
-static GameObject *explosion;
+static GameObject *archer [ 1 ] = { };
+static GameObject *arrow [ 1 ] = { };
+static GameObject *explosion = NULL;
 
-static u8          nb_archer;
-static u16         i;
+static u8          nb_archer = 0;
+static u16         i = 0;
 
 
 

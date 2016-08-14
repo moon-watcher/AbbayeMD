@@ -1,11 +1,11 @@
 #include "../inc/include.h"
 
 
-static GameObject *fish   [ 3 ];
-static GameObject *splash [ 3 ];
+static GameObject *fish   [ 3 ] = { };
+static GameObject *splash [ 3 ] = { };
 
-static u8          nb_fish;
-static u16         i;
+static u8          nb_fish = 0;
+static u16         i = 0;
 
 
 

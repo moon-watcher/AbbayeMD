@@ -7,7 +7,7 @@
 
 
 
-static u32 _countdown;
+static u32 _countdown = 0;
 
 
 

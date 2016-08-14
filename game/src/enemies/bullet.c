@@ -1,9 +1,9 @@
 #include "../inc/include.h"
 
 
-static u16  vram_bullet;
-static u16  vram_explosion;
-static bool init;
+static u16  vram_bullet = 0;
+static u16  vram_explosion = 0;
+static bool init = false;
 
 
 

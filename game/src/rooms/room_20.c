@@ -1,7 +1,7 @@
 #include "../inc/include.h"
 
 
-static s16 scroll;
+static s16 scroll = 0;
 
 
 static const Vect2D_u16 exceptions [ 0 ] = { };

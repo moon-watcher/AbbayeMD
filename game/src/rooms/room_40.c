@@ -1,10 +1,10 @@
 #include "../inc/include.h"
 
 
-static GameObject *leaf [ 6 ];
+static GameObject *leaf [ 6 ] = { };
 
-static u8          nb_leaf;
-static u8          i;
+static u8          nb_leaf = 0;
+static u8          i = 0;
 
 
 static const Vect2D_u16 exceptions [ 3 ]  =

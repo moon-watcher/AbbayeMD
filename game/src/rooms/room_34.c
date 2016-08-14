@@ -1,14 +1,14 @@
 #include "../inc/include.h"
 
 
-static GameObject *door;
-static GameObject *philippe [6];
+static GameObject *door = NULL;
+static GameObject *philippe [6] = { };
 
-static u16 nb_philippe;
-static u16 i;
+static u16 nb_philippe = 0;
+static u16 i = 0;
 
-static Item *iDoorAt21;
-static u16 goEnding;
+static Item *iDoorAt21 = NULL;
+static u16 goEnding = 0;
 
 
 

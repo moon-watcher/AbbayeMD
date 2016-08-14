@@ -2,7 +2,7 @@
 
 
 
-static Music *_current;
+static Music *_current = NULL;
 
 
 

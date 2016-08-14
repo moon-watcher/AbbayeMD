@@ -1,14 +1,14 @@
 #include "../inc/include.h"
 
 
-static GameObject *gargoyle [ 2 ];
-static GameObject *spit [ 2 ];
-static GameObject *door;
-static GameObject *sw;
-static GameObject *explosion;
+static GameObject *gargoyle [ 2 ] = { };
+static GameObject *spit [ 2 ] = { };
+static GameObject *door = NULL;
+static GameObject *sw = NULL;
+static GameObject *explosion = NULL;
 
-static u8          nb_gargoyle;
-static u16         i;
+static u8          nb_gargoyle = 0;
+static u16         i = 0;
 
 
 

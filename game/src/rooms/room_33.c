@@ -1,8 +1,8 @@
 #include "../inc/include.h"
 
 
-static GameObject *death;
-static GameObject *scythe [ 5 ];
+static GameObject *death = NULL;
+static GameObject *scythe [ 5 ]  = { };
 
 
 

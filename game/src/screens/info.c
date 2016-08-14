@@ -4,9 +4,9 @@
 
 
 
-static listptr lObjects;
-static Sprite  lSprites [ 12 ] ;
-static u16     lSpriteCounter;
+static listptr lObjects = { };
+static Sprite  lSprites [ 12 ] = { };
+static u16     lSpriteCounter = 0;
 
 
 

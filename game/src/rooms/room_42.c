@@ -2,13 +2,13 @@
 
 
 
-static GameObject *plant [ 3 ];
-static GameObject *spit  [ 6 ];
+static GameObject *plant [ 3 ] = { };
+static GameObject *spit  [ 6 ] = { };
 
-static u8          nb_plant;
-static u8          nb_spit;
+static u8          nb_plant = 0;
+static u8          nb_spit = 0;
 
-static u16         i;
+static u16         i = 0;
 
 
 

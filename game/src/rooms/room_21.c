@@ -2,14 +2,14 @@
 
 
 
-static GameObject *door;
-static GameObject *leaf     [ 6 ];
-static GameObject *crusader [ 6 ];
+static GameObject *door = NULL;
+static GameObject *leaf     [ 6 ] = { };
+static GameObject *crusader [ 6 ] = { };
 
-static u16         nb_crusader;
-static u16         nb_leaf;
-static u16         i;
-static u16         _wait_cm;
+static u16         nb_crusader = 0;
+static u16         nb_leaf = 0;
+static u16         i = 0;
+static u16         _wait_cm = 0;
 
 
 

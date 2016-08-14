@@ -2,12 +2,12 @@
 
 
 
-static GameObject *leaf     [ 6 ];
-static GameObject *crusader [ 8 ];
+static GameObject *leaf     [ 6 ] = { };
+static GameObject *crusader [ 8 ] = { };
 
-static u16         nb_crusader;
-static u16         nb_leaf;
-static u16         i;
+static u16         nb_crusader = 0;
+static u16         nb_leaf = 0;
+static u16         i = 0;
 
 
 

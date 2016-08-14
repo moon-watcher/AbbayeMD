@@ -4,7 +4,7 @@
 
 
 
-static s16 y;
+static s16 y = 0;
 
 
 
@@ -63,7 +63,7 @@ void screen_credits ( )
 	write ( "Daniel Nevado - @DanySnowyman", PAL2, 2 );
 
 	write ( "Music & SFX", PAL1, 1 );
-	write ( "David Sanchez - @DavidBonus", PAL2, 4 );
+	write ( "Paolo Arus", PAL2, 4 );
 
 	write ( "Made with Stef's SGDK 1.12", PAL1, 0 );
 

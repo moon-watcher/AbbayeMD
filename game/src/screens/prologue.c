@@ -1,8 +1,8 @@
 #include "../../inc/include.h"
 
-static listptr lObjects;
-static Sprite  lSprites [ 10 ] ;
-static u16     lSpriteCounter;
+static listptr lObjects = { };
+static Sprite  lSprites [ 10 ] = { } ;
+static u16     lSpriteCounter = 0;
 
 
 

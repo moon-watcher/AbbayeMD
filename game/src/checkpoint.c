@@ -2,7 +2,7 @@
 
 
 
-static Checkpoint  _checkpoint;
+static Checkpoint  _checkpoint = {};
 
 
 

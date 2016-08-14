@@ -2,9 +2,10 @@
 
 
 
-static EnemyData  *data;
-static GameObject *go;
-static u8          i, current_fire;
+static EnemyData  *data = NULL;
+static GameObject *go = NULL;
+static u8          i = 0;
+static u8          current_fire = 0;
 
 
 

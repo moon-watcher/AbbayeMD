@@ -122,7 +122,7 @@ void cm_start ( )
 	//
 
 
-	itemManagerShow ( &waItems );
+//	itemManagerShow ( &waItems );
 }
 
 

@@ -1,11 +1,11 @@
 #include "../inc/include.h"
 
 
-static GameObject *drop [ 5 ];
+static GameObject *drop [ 5 ] = { };
 
 
-static u8          nb_drop;
-static u16         i;
+static u8          nb_drop = 0;
+static u16         i = 0;
 
 
 

@@ -2,14 +2,13 @@
 
 
 
-static GameObject *dragon_head;
-static GameObject *dragon_body;
-static GameObject *dragon_fire;
-static GameObject *running_fire [ 6 ];
+static GameObject *dragon_head = NULL;
+static GameObject *dragon_body = NULL;
+static GameObject *dragon_fire = NULL;
+static GameObject *running_fire [ 6 ] = { };
 
-static u8          nb_running_fire;
-
-static u8          i;
+static u8          nb_running_fire = 0;
+static u8          i = 0;
 
 
 

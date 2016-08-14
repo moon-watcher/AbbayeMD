@@ -8,7 +8,7 @@ struct
 	u8 countdown;
 	u16 tile;
 }
-star_list [ 30 ];
+star_list [ 30 ] = { };
 
 
 

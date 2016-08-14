@@ -9,7 +9,7 @@ long          devs0, devs1, devs2, devs3, devs4, devs5;
 unsigned long devu0, devu1, devu2, devu3, devu4, devu5;
 
 
-void dev_init ( );
+void dev_init ( u16 dev, u16 inv );
 
 
 #endif // _DEV_H_

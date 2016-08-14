@@ -10,9 +10,26 @@ extern const struct genresTiles screen_title_year_all;
 
 
 static s8  opcion = 0;
-static u16 vrampos_a;
-static u16 vrampos_b;
-static u16 vrampos_copy;
+static u16 vrampos_a = 0;
+static u16 vrampos_b = 0;
+static u16 vrampos_copy = 0;
+
+
+static void _lighting ( int nb )
+{
+   u16 j, wait = 8;
+	u16 pal [ 16 ] = { VDP_getPaletteColor(0) };
+
+   for ( j = 1; j < 16; j++ )
+   {
+      pal [ j ] = palette_lighting_all.data [ (nb) ];
+   }
+
+	VDP_setPalette ( PAL0, pal );
+	VDP_setPalette ( PAL1, pal );
+
+	waitHz ( wait );
+}
 
 
 static void _blink_option ( )
@@ -23,54 +40,30 @@ static void _blink_option ( )
 	}
 
 
-	u16 j, wait = 8;
-	u16 pal [ 16 ] = { VDP_getPaletteColor(0) };
+   u16 j;
 	u16 saved_a [ 16 ];
 	u16 saved_b [ 16 ];
 
 	VDP_getPaletteColors (  0, saved_b, 16 );
 	VDP_getPaletteColors ( 16, saved_a, 16 );
 
-	#define LIGHTING(nb)    if ( !DEV )                                  \
-									{                                                     \
-										for ( j = 1; j < 16; j++ )                         \
-										{                                                  \
-											pal [ j ] = palette_lighting_all.data [ (nb) ]; \
-										}                                                  \
-										                                                   \
-										VDP_setPalette ( PAL0, pal );                      \
-										VDP_setPalette ( PAL1, pal );                      \
-										waitHz(wait);                                      \
-									}
-
-
-
-	LIGHTING(1);      // white
-
+	_lighting(1);      // white
 
 	// restore
 	VDP_setPalette ( PAL0, saved_b );
 	VDP_setPalette ( PAL1, saved_a );
 
-	if ( !DEV )
-	{
-		for ( j=0; j<10; j++ ) VDP_waitVSync();
-	}
+   for ( j=0; j<10; j++ ) VDP_waitVSync();
 
+	_lighting(2);      // yellow
+	_lighting(3);      // dark yellow
+	_lighting(4);      // blue
+	_lighting(5);      // dark blue
+	_lighting(6);      // balck
 
-	LIGHTING(2);      // yellow
-	LIGHTING(3);      // dark yellow
-	LIGHTING(4);      // blue
-	LIGHTING(5);      // dark blue
-	LIGHTING(6);      // balck
+	displayOff(40);
 
-	displayOff(0);
-
-
-	if ( !DEV )
-	{
-		waitSc(1);
-	}
+   waitSc(1);
 }
 
 
@@ -146,6 +139,8 @@ static void _draw_screen ( )
 	_show_version();
 	drawText ( "OPTIONS", 13, 20 );
 	drawText ( "INFO",    13, 22 );
+
+	drawText ( "      #AbbayeMD 1.0-BETA      ",    1, 1 );
 }
 
 
@@ -246,7 +241,7 @@ static s8 _control ( )
 
 u16 screen_title ( )
 {
-	if ( DEV ) return 1;
+//	if ( DEV ) return 1;
 
 	bool repeat = true;
 

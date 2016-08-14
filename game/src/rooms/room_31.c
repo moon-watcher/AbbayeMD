@@ -16,11 +16,11 @@
 //local;
 
 
-static GameObject *hatch;
-static GameObject *door;
+static GameObject *hatch = NULL;
+static GameObject *door = NULL;
 
-static Item       *bell;
-static Item       *sw;
+static Item       *bell = NULL;
+static Item       *sw = NULL;
 
 
 

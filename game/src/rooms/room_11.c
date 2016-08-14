@@ -1,15 +1,15 @@
 #include "../inc/include.h"
 
 
-static s16         scroll;
-static GameObject *lighting;
-static GameObject *leaf [ 6 ];
-static GameObject *crusader [ 8 ];
-static GameObject *door;
+static s16         scroll = 0;
+static GameObject *lighting = NULL;
+static GameObject *leaf [ 6 ] = { };
+static GameObject *crusader [ 8 ] = { };
+static GameObject *door = NULL;
 
-static u16         nb_crusader;
-static u16         nb_leaf;
-static u16         i;
+static u16         nb_crusader = 0;
+static u16         nb_leaf = 0;
+static u16         i = 0;
 
 
 

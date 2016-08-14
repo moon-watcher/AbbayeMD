@@ -3,10 +3,10 @@
 
 
 
-static u8 _list [ MAX_SPRITE ];
+static u8 _list [ MAX_SPRITE ] = { };
 
-static u8 _start;
-static u8 _direction;
+static u8 _start = 0;
+static u8 _direction = 0;
 
 
 

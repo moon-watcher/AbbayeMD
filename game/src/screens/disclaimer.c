@@ -62,8 +62,8 @@ static const u16 disclaimerLogoFadeColors[ DISCLAIMERLOGO_FADESTEPS ][ DISCLAIME
 		{ 0x066E, 0x044E, 0x022E, 0x000E, 0x000C, 0x000A, 0x0008, 0x06E6, 0x04E4, 0x00E0, 0x00C0, 0x00A0, 0x0080 }
 };
 
-static u8 disclaimerLogoLedIndex;
-static u8 ledUpdate;
+static u8 disclaimerLogoLedIndex = 0;
+static u8 ledUpdate = 0;
 
 static const u16 disclaimerLogoLedFadeColors[ DISCLAIMERLOGOLED_FADESTEPS ][ DISCLAIMERLOGOLED_NUMCOLORS ] =
 {

@@ -2,8 +2,8 @@
 
 
 
-static u16 saved_colors     [ 64 ];
-static u16 lighting_palette [ 64 ];
+static u16 saved_colors     [ 64 ] = {};
+static u16 lighting_palette [ 64 ] = {};
 
 
 

@@ -3,12 +3,12 @@
 
 
 
-static GameObject *philippe [ 5 ];
-static s16         _x1 [ 5 ];
-static s16         _x2 [ 5 ];
-static s16         _random [ 5 ];
-static s16         _vel_x [ 5 ];
-static s16         _count;
+static GameObject *philippe [ 5 ] = {};
+static s16         _x1 [ 5 ] = { };
+static s16         _x2 [ 5 ] = { };
+static s16         _random [ 5 ] = { };
+static s16         _vel_x [ 5 ] = { };
+static s16         _count = 0;
 
 
 

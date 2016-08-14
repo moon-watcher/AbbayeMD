@@ -2,7 +2,7 @@
 
 
 
-static u16 _vrampos[2];
+
 
 
 
@@ -17,8 +17,8 @@ void room_draw ( Room *room )
 {
 	debug_show_nb_room = true;
 
-	_vrampos [ 0 ] = drawImageXY ( room->foreground, APLAN, 0, 0 );
-	_vrampos [ 1 ] = drawImageXY ( room->background, BPLAN, 0, 0 );
+	drawImageXY ( room->foreground, APLAN, 0, 0 );
+	drawImageXY ( room->background, BPLAN, 0, 0 );
 }
 
 
@@ -49,11 +49,3 @@ void room_null ( Room * room, u8 action )
 
 }
 
-
-u16 room_get_vrampos ( u16 plan )
-{
-	if ( plan == APLAN ) return _vrampos [ 0 ];
-	if ( plan == BPLAN ) return _vrampos [ 1 ];
-
-	return 0;
-}

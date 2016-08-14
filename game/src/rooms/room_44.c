@@ -3,22 +3,22 @@
 
 
 
-static GameObject *crusader[8];
-static GameObject *door;
-static GameObject *satan;
-static GameObject *bullet[12];
-static GameObject *cross;
-static GameObject *explosion;
-static GameObject *grial;
-static GameObject *hint;
-static GameObject *rosette;
+static GameObject *crusader[8] = { };
+static GameObject *door = NULL;
+static GameObject *satan = NULL;
+static GameObject *bullet[12] = { };
+static GameObject *cross = NULL;
+static GameObject *explosion = NULL;
+static GameObject *grial = NULL;
+static GameObject *hint = NULL;
+static GameObject *rosette = NULL;
 
 
-static u16 nb_crusader;
-static u16 nb_bullet;
-static u16 i;
+static u16 nb_crusader = 0;
+static u16 nb_bullet = 0;
+static u16 i = 0;
 
-static s8 sequence;
+static s8 sequence = 0;
 
 
 

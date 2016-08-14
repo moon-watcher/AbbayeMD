@@ -8,6 +8,13 @@
 
 
 
+//
+//commnand, entity type, name,        resource,   animation, palette, vel_x, vel_y, peso, prioridad, does_flip_H, does_flip_V, sequence, timer, collision function, padding top, padding right, padding bottom, padding left
+//entity    player       "Jean stays" jean_2x3_md 0          3        0.65   1.0    1.0   0          1            0            {}        15     mcb_player          5            5              0               5
+//
+
+
+
 const Entity entity_01_md  = {  1, "Jean stays",               0, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_PLAYER,               0,           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };
 const Entity entity_02_md  = {  2, "Jean walks",               1, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_PLAYER,     FIX32(0.65),           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };
 const Entity entity_03_md  = {  3, "Jean jumps",               2, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_PLAYER,     FIX32(0.65),           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };

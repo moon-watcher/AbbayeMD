@@ -2,8 +2,8 @@
 
 
 
-static s16 anim;
-static s16 dir;
+static s16 anim = 0;
+static s16 dir = 0;
 
 const static s16 array[6] = { +1, +1, 0, -1, -1, 0 };
 

@@ -3,9 +3,10 @@
 
 
 
-void dev_init ()
+void dev_init ( u16 dev, u16 inv )
 {
-	DEV = 1;
+	DEV          = dev;
+	INVULNERABLE = inv;
 
 	devs0 = devs1 = devs2 = devs3 = devs4 = devs5 = 0;
 	devu0 = devu1 = devu2 = devu3 = devu4 = devu5 = 0;

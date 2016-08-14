@@ -1,12 +1,12 @@
 #include "../inc/include.h"
 
 
-static GameObject *leaf    [ 6 ];
+static GameObject *leaf    [ 6 ] = { };
 
-static u8          nb_leaf;
-static u8          i;
+static u8          nb_leaf = 0;
+static u8          i = 0;
 
-static s16 scroll;
+static s16 scroll = 0;
 
 
 

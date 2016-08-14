@@ -33,7 +33,7 @@ void  room_draw          ( Room *room );
 u8    room_objects_count ( Room *room );
 void  room_null          ( Room *room, u8 action );
 void  room_function      ( Room *room, u8 action );
-u16   room_get_vrampos   ( u16 plan );
+
 
 //////////////////////////////////////////////////////////////////////////
 

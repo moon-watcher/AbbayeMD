@@ -1,7 +1,7 @@
 #include "../inc/include.h"
 
 
-static GameObject *coco;
+static GameObject *coco = NULL;
 
 
 

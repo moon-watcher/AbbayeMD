@@ -8,8 +8,8 @@
 
 
 
-static listptr lObjects;
-static Sprite  lSprites [ 20 ] ;
+static listptr lObjects = { };
+static Sprite  lSprites [ 20 ] = { };
 static u16     lSpriteCounter = 0;
 
 

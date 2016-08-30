@@ -32,8 +32,8 @@ void screen_burning ( )
 
 	Screen *s = (Screen*) screen_get(10);
 
-	drawImage ( (Image*) s->foreground, APLAN );
-	drawImage ( (Image*) s->background, BPLAN );
+	drawImage ( (Image*) s->foreground, PLAN_A );
+	drawImage ( (Image*) s->background, PLAN_B );
 
 
 	lSpriteCounter = 0;
@@ -41,7 +41,7 @@ void screen_burning ( )
 	pack_vram_init ( );
 
 
-	SPR_init ( 1 ); // SPR_init ( 200 );
+	SPR_init ( 80, 500, 0 ); // SPR_init ( 1 ); // SPR_init ( 200 );
 	goManagerInit ( &lObjects );
 
 	u16 i;
@@ -61,7 +61,7 @@ void screen_burning ( )
 		pack_vram_add ( go );
 	}
 
-	show_screen ( 10 );
+	displayOn ( 10 );
 
 
 	play_music( MUSIC_GAMEOVER );
@@ -103,7 +103,7 @@ void screen_burning ( )
 			SPR_setAnim ( jean->sprite, 3 );
 		}
 
-		SPR_update ( (Sprite*) &lSprites, lSpriteCounter );
+		SPR_update ( );
 		VDP_waitVSync ( );
 	}
 

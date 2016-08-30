@@ -17,8 +17,8 @@ void room_draw ( Room *room )
 {
 	debug_show_nb_room = true;
 
-	drawImageXY ( room->foreground, APLAN, 0, 0 );
-	drawImageXY ( room->background, BPLAN, 0, 0 );
+	drawImageXY ( room->foreground, PLAN_A, 0, 0 );
+	drawImageXY ( room->background, PLAN_B, 0, 0 );
 }
 
 

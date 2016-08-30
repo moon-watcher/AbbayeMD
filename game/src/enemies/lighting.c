@@ -18,7 +18,7 @@ void enemy_lighting_init ( GameObject *lighting )
 
 		goSetX ( lighting, 70 + ( ( random ( ) % ( 200 - 70 ) ) ) );
 
-		SPR_setVisible ( lighting->sprite, true );
+		SPR_setVisibility ( lighting->sprite, VISIBLE );
 
 		VDP_getPaletteColors ( 0, saved_colors, 64 );
 		memsetU16 ( lighting_palette, VDP_getPaletteColor ( 1 ), 64 );
@@ -55,7 +55,7 @@ void enemy_lighting ( GameObject *lighting )
 			{
 				lighting->counter = 0;
 
-				SPR_setVisible ( lighting->sprite, false );
+				SPR_setVisibility ( lighting->sprite, HIDDEN );
 			}
 		}
 	}

@@ -1,44 +1,72 @@
 #include "../inc/include.h"
 
 
+void fxInit ( )
+{
+   return;
+
+
+   int i = FX_MAX;
+
+   while ( i-- )
+   {
+      Fx *fx =  (Fx*) fx_list [ game.version ] [ i ];
+
+      SND_setPCM_XGM ( fx->xgm_id, fx->sample, fx->size );
+   }
+}
+
+
 
 void fxPlay ( Fx *fx )
 {
-	return;
+   if ( SND_isPlayingPCM_XGM ( fx->channel ) )
+   {
+      SND_stopPlayPCM_XGM ( fx->channel );
+   }
 
-	// Z80_DRIVER_4PCM_ENV driver makes sprites go white. Try to avoid using it
-
-	if ( fx->driver == Z80_DRIVER_4PCM_ENV )
-	{
-		SND_startPlay_4PCM_ENV ( fx->fx, fx->size, fx->channel, fx->repeat );
-	}
+   SND_setPCM_XGM ( fx->xgm_id, fx->sample, fx->size );
+   SND_startPlayPCM_XGM ( fx->xgm_id, fx->priority, fx->channel );
 }
 
 
 
 
-//void fx_stop ( )
+//void fxInit ( )
 //{
-//	SND_stopPlay_4PCM  ( SOUND_PCM_CH3 );
+//   return;
+//
+//
+//
+//   int i;
+//
+//   for ( i = 0; i < FX_MAX; i++ )
+//   {
+//      Fx *fx =  (Fx*) fx_list [ game.version ] [ i ];
+//
+//      switch ( fx->driver )
+//      {
+//         case Z80_DRIVER_XGM :
+//            SND_setPCM_XGM ( fx->xgm_id, fx->sample, fx->size );
+//            break;
+//      }
+//   }
+//
 //}
-//
-//
-//
-//void fx_play ( u8 x )
+
+//void fxPlay ( Fx *fx )
 //{
-//	SND_startPlay_4PCM ( fxs[x].fx, fxs[x].size, fxs[x].channel, 0 );
+////   return;
+//
+//	switch ( fx->driver )
+//	{
+//      case Z80_DRIVER_XGM :
+//         SND_startPlayPCM_XGM ( fx->xgm_id, fx->priority, fx->channel );
+//         break;
+//
+//      case Z80_DRIVER_4PCM_ENV :
+//         SND_startPlay_4PCM_ENV ( fx->fx, fx->size, fx->channel, fx->repeat );
+//         break;
+//	}
 //}
-//
-//
-//FX fx_get_fx ( u8 x )
-//{
-//	return fxs [ x ] ;
-//}
-//
-//
-//u8 fx_get_nb_fxs (  )
-//{
-//	return NB_FXS;
-//}
-//
-//
+

@@ -61,6 +61,10 @@ static void _blink_option ( )
 	_lighting(5);      // dark blue
 	_lighting(6);      // balck
 
+	// avoid pixels-trash during displayOff(40)'s fade out
+	VDP_setPaletteColors ( 51, palette_black, 13 );
+
+
 	displayOff(40);
 
    waitSc(1);
@@ -108,14 +112,14 @@ static void _draw_screen ( )
 
 
 
-	play_music ( MUSIC_PROLOGUE );
+	play_music ( MUSIC_TITLE );
 
 
 	u16 size = screen_title_copyright_all.width * screen_title_copyright_all.height;
 	vrampos_copy = vram_new ( size );
 
 
-	vrampos_b = drawImage   ( (Image*) screen->background, BPLAN );
+	vrampos_b = drawImage   ( (Image*) screen->background, PLAN_B );
 	VDP_fadePalTo ( PAL0, screen->background->palette->data, speed, 0 );
 
 	if ( !DEV )
@@ -123,13 +127,13 @@ static void _draw_screen ( )
 		waitSc(1);
 	}
 
-	vrampos_a = drawImageXY ( (Image*) screen->foreground, APLAN, 13, 2 );
+	vrampos_a = drawImageXY ( (Image*) screen->foreground, PLAN_A, 13, 2 );
 	VDP_fadePalTo ( PAL1, screen->foreground->palette->data, speed, 0 );
 
 
 
 	VDP_loadTileData ( screen_title_copyright_all.tiles, vrampos_copy, size, 0 );
-	VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL(PAL2, 0, 0, 0, vrampos_copy), 5, 25, screen_title_copyright_all.width, screen_title_copyright_all.height );
+	VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL(PAL2, 0, 0, 0, vrampos_copy), 5, 25, screen_title_copyright_all.width, screen_title_copyright_all.height );
 	VDP_setPalette ( PAL2, screen_title_copyright_all.pal );
 
 
@@ -140,7 +144,7 @@ static void _draw_screen ( )
 	drawText ( "OPTIONS", 13, 20 );
 	drawText ( "INFO",    13, 22 );
 
-	drawText ( "      #AbbayeMD 1.0-BETA      ",    1, 1 );
+//	drawText ( "      #AbbayeMD 1.0-BETA      ",    1, 1 );
 }
 
 
@@ -178,12 +182,15 @@ static void _version_add ( s8 inc )
 
 
 	VDP_waitVSync();
+
+	SYS_disableInts();
+
 	VDP_setPalette ( PAL0, palette_black );
 	VDP_setPalette ( PAL1, palette_black );
 
 	VDP_waitVSync();
-	vrampos_b = drawImage   ( (Image*) screen->background, BPLAN );
-	vrampos_a = drawImageXY ( (Image*) screen->foreground, APLAN, 13, 2  );
+	vrampos_b = drawImage   ( (Image*) screen->background, PLAN_B );
+	vrampos_a = drawImageXY ( (Image*) screen->foreground, PLAN_A, 13, 2  );
 
 	VDP_waitVSync();
 	VDP_setPalette ( PAL0, screen->background->palette->data );
@@ -191,18 +198,19 @@ static void _version_add ( s8 inc )
 
 //	VDP_fadePalTo ( PAL0, screen->background->palette->data, 3, 0 );
 //	VDP_fadePalTo ( PAL1, screen->foreground->palette->data, 10, 1 );
+
+	SYS_enableInts();
 }
 
 
 
 static s8 _control ( )
 {
-	VDP_setSprite ( 0, -10, -1, 1, TILE_ATTR_FULL ( PAL3, 0, 0, 0, TILE_FONTINDEX+95 ), 0 );
+	VDP_setSpriteFull ( 0, -10, -1, 1, TILE_ATTR_FULL ( PAL3, 0, 0, 0, TILE_FONTINDEX+95 ), 0 );
 
 	while ( true )
 	{
 		JoyReader_update();
-
 
 		if ( joy1_pressed_up   ) --opcion;
 		if ( joy1_pressed_down ) ++opcion;
@@ -220,7 +228,9 @@ static s8 _control ( )
 			}
 			else
 			{
+			   musicStop();
 				_blink_option ( );
+
 				return opcion;
 			}
 		}
@@ -229,7 +239,7 @@ static s8 _control ( )
 		if ( joy1_pressed_left  ) _version_add ( -1 );
 
 
-		VDP_updateSprites();
+		VDP_updateSprites(80,1);
 		VDP_waitVSync();
 	}
 
@@ -241,7 +251,18 @@ static s8 _control ( )
 
 u16 screen_title ( )
 {
-//	if ( DEV ) return 1;
+	displayOff(0);
+
+	resetScroll ( );
+	resetScreen ( );
+	scrollSet ( 0 );
+	font_load ( 0 );
+
+
+
+	if ( DEV ) return 1;
+
+
 
 	bool repeat = true;
 
@@ -285,7 +306,7 @@ u16 screen_title ( )
 
 	displayOff(0);
 	VDP_resetSprites();
-	VDP_updateSprites();
+	VDP_updateSprites(80,1);
 
 	vram_destroy ( );
 

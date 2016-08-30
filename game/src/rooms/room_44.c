@@ -106,7 +106,7 @@ static void _remove_crosses()
 		{
 			if ( mask_get ( &currentMask, x, y ) & 128 )
 			{
-				VDP_setTileMapXY ( APLAN, 0, x, y );
+				VDP_setTileMapXY ( PLAN_A, 0, x, y );
 				currentMask.array [ (u8) y ] [ (u8) x ] = 0;
 			}
 		}
@@ -138,7 +138,7 @@ static void _show_starts ( )
 
 				*value = 128 + 1;
 
-				VDP_setTileMapXY ( APLAN, TILE_ATTR_FULL ( cross->object->entity->palette, 0, 0, 0, cross->vram ), x, y );
+				VDP_setTileMapXY ( PLAN_A, TILE_ATTR_FULL ( cross->object->entity->palette, 0, 0, 0, cross->vram ), x, y );
 
 				play_fx ( FX_DOOR );
 
@@ -162,7 +162,7 @@ static void _close_door ( )
 	if ( player.go->x == 10  &&  !door->active )
 	{
 		setActive ( door, 1 );
-		updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+		SPR_update ( );
 
 		play_fx ( FX_DOOR );
 		waitHz(getHz());
@@ -402,7 +402,7 @@ static void _room_enter ( Room *room )
 		goSetXY ( player.go, 220, 120 );
 //		goUpdate ( player.go );
 
-		updateSprites ( );
+		SPR_update ( );
 		//VDP_updateSprites ( );
 		VDP_waitVSync ( );
 	}

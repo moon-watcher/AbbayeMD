@@ -72,7 +72,7 @@ static void _room_stay ( Room *room )
 
 	if ( game.version == VERSION_MD )
 	{
-		enemy_star ( (Vect2D_u16*) exceptions, 30,  0,  0, 32, 3, BPLAN );
+		enemy_star ( (Vect2D_u16*) exceptions, 30,  0,  0, 32, 3, PLAN_B );
 	}
 }
 

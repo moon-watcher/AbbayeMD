@@ -26,15 +26,10 @@ void screen_credits ( )
 	if ( DEV ) return;
 
 	displayOff(0);
-	displayInit();
-
 	VDP_setScreenWidth320( );
-	VDP_setPlanSize(64,32);
-
+	VDP_setPlanSize ( 64, 32 );
 	vram_init ( VRAM_DEFAULT );
-
 	font_load ( 1 );
-
 	resetScroll ( );
 	resetScreen ( );
 
@@ -51,7 +46,7 @@ void screen_credits ( )
 
 	write ( "Original game by", PAL1, 1 );
 	write ( "Locomalito & Gryzor87", PAL2, 1 );
-	write ( "2010", PAL2, 3 );
+	write ( "2010", PAL2, 2 );
 
 	write ( "MSX skin", PAL1, 1 );
 	write ( "Gerardo Herce - @pipagerardo", PAL2, 2  );
@@ -63,21 +58,21 @@ void screen_credits ( )
 	write ( "Daniel Nevado - @DanySnowyman", PAL2, 2 );
 
 	write ( "Music & SFX", PAL1, 1 );
-	write ( "Paolo Arus", PAL2, 4 );
+	write ( "Paolo Arus 'DaRkHoRaCe'", PAL2, 2 );
 
-	write ( "Made with Stef's SGDK 1.12", PAL1, 0 );
+	write ( "Tester", PAL1, 1 );
+	write ( "Alfonso @_SrPresley_", PAL2, 3 );
+
+	write ( "Made with Stef's SGDK 1.21", PAL1, 0 );
 
 
-
-	show_screen ( 10 );
-
+	displayOn ( 10 );
 	waitJoySc ( 6 );
 
 
 	displayOff ( 10 );
 	VDP_setScreenWidth256 ( );
-	VDP_setPlanSize(32,64);
-
+	VDP_setPlanSize ( 32, 32 );
 	vram_destroy();
 }
 

@@ -3,6 +3,10 @@
 
 
 
+#define MAX_SPRITE 80
+
+
+
 static u8 _list [ MAX_SPRITE ] = { };
 
 static u8 _start = 0;

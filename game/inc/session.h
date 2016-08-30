@@ -17,7 +17,7 @@ session;
 
 
 void session_init            ( );
-void session_inc_alt_palette ( u8 max );
+
 
 
 #endif

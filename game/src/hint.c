@@ -2,6 +2,26 @@
 
 
 
+
+static u8 _link;
+
+static void _hide_sprites ()
+{
+	_link = vdpSpriteCache[0].link;
+	vdpSpriteCache[0].link = 0;
+
+	VDP_updateSprites ( 80, 0 );
+}
+
+static void _restore_sprites ()
+{
+	vdpSpriteCache[0].link = _link;
+
+	VDP_updateSprites ( 80, 0 );
+}
+
+
+
 static Image *_find ( bool pause )
 {
 	if ( pause )
@@ -10,9 +30,8 @@ static Image *_find ( bool pause )
 	}
 
 
-	u8 i;
-
-	Hint *hint;
+	u8    i    = 0;
+	Hint *hint = NULL;
 
 	for ( i = 0; i < HINT_MAX; i++ )
 	{
@@ -44,10 +63,7 @@ void hint_show ( bool pause )
 
 	displayOff(0);
 
-	SPR_update ( NULL, 0 );
-	VDP_waitVSync();
-
-
+	_hide_sprites();
 
 	s16 saved_a = VDP_getHorizontalScroll ( PLAN_A );
 	s16 saved_b = VDP_getHorizontalScroll ( PLAN_B );
@@ -56,26 +72,20 @@ void hint_show ( bool pause )
 
 	scrollSet ( scroll );
 
-	u16 pos = vram_new ( img->tileset->numTile );
+	u16 x    = ( VDP_getScreenWidth() / 8 - img->map->w ) / 2;
+	u16 y    = ABS ( scroll ) / 8 + 9;
+	u16 pos  = vram_new ( img->tileset->numTile );
+	u16 tile = TILE_ATTR_FULL ( PAL0, 0, 0, 0, pos );
 
-	VDP_drawImageEx ( APLAN, (Image*) img, TILE_ATTR_FULL ( PAL0, 0, 0, 0, pos ), (VDP_getScreenWidth()/8 - img->map->w) / 2, ABS ( scroll ) / 8 + 9, 0, 0 );
+	VDP_drawImageEx ( PLAN_A, (Image*) img, tile, x, y, 0, 0 );
+
 	preparePal ( PAL0, img->palette->data );
+	apply_alt_palettes ( );
 
-	show_screen ( 10 );
+	displayOn ( 10 );
 
 
-	if ( pause )
-	{
-		do
-		{
-			JoyReader_update();
-		}
-		while ( !joy1_pressed_start );
-	}
-	else
-	{
-		while ( !joy1_pressed_abc && !joy1_pressed_start ) JoyReader_update();
-	}
+	waitJoy ( );
 
 
 	displayOff(0);
@@ -87,7 +97,7 @@ void hint_show ( bool pause )
 
 	vram_delete ( pos );
 
-	updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+	_restore_sprites ();
 
 
 	if ( game.status == GAME_STATUS_ENDING )
@@ -98,6 +108,6 @@ void hint_show ( bool pause )
 	else
 	{
 		prepareColors ( saved_colors );
-		show_screen ( 10 );
+		displayOn ( 10 );
 	}
 }

@@ -23,8 +23,8 @@ static void _room_enter ( Room *room )
 		fish   [ i ]->counter = 0;
 		splash [ i ]->counter = 0;
 
-		SPR_setVisible ( fish   [ i ]->sprite, 1 );
-		SPR_setVisible ( splash [ i ]->sprite, 0 );
+      SPR_setVisibility ( fish   [ i ]->sprite, VISIBLE );
+      SPR_setVisibility ( splash [ i ]->sprite, HIDDEN );
 	}
 
 	philippe_init ( );

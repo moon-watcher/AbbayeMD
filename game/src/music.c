@@ -2,78 +2,107 @@
 
 
 
-static Music *_current = NULL;
+static Music *current = NULL;
 
 
 
 void musicInit ( )
 {
-	_current = NULL;
+	current = NULL;
 }
 
 
 
 void musicPlay ( Music *track )
 {
-	return;
-
-	if ( track == NULL )
-	{
-		musicStop ( _current );
-		_current = track;
-
-		return;
-	}
-
-	if ( track->id == _current->id )
+	if ( track->id == current->id )
 	{
 		return;
 	}
 
-	musicStop ( _current );
-	_current = track;
+	musicStop ( );
+	current = track;
 
-	if ( track->driver == Z80_DRIVER_4PCM_ENV )
+	if ( current && current->track )
 	{
-		SND_startPlay_4PCM_ENV ( track->track, track->size, track->channel, track->repeat );
+		VDP_waitVSync();
+		SND_startPlay_XGM ( current->track );
 	}
+
+
+
+//	musicStop ( );
+//	current = track;
+//
+//	VDP_waitVSync ( );
+//	SYS_disableInts();
+//	SND_startPlay_XGM ( current->track );
+//	SYS_enableInts();
+//	VDP_waitVSync ( );
 }
 
 
 
 void musicStop ( )
 {
-	if ( _current == NULL )
-	{
-		Z80_init();
-	}
+	if ( SND_isPlaying_XGM ( ) )
+    {
+		SND_stopPlay_XGM ( );
+    }
 
-	if ( _current->driver == Z80_DRIVER_4PCM_ENV )
-	{
-		SND_stopPlay_4PCM_ENV ( _current->channel );
-	}
+	current = NULL;
+
+//	VDP_waitVSync ( );
+//	SYS_disableInts();
+//	SND_stopPlay_XGM ( );
+//	SYS_enableInts();
+//	VDP_waitVSync ( );
 }
 
 
 
 
-
-//void music_override_repeat ( u8 r )
+//void musicPlay ( Music *track )
 //{
-//	_repeat = r;
+//	if ( track->id == current->id )
+//	{
+//		return;
+//	}
+//
+//	if ( track->track == NULL )
+//	{
+//		musicStop ( );
+//		return;
+//	}
+//
+//	current = track;
+//
+//	switch ( current->driver )
+//	{
+//		case Z80_DRIVER_4PCM_ENV:
+//			SND_startPlay_4PCM_ENV ( current->track, current->size, current->channel, current->repeat );
+//			break;
+//
+//		case Z80_DRIVER_XGM:
+//			SND_startPlay_XGM ( current->track );
+//			break;
+//	}
 //}
 //
-//TRACK music_get_track ( u8 track )
-//{
-//	return tracks [ track ] ;
-//}
 //
-//u8 music_get_nb_tracks (  )
-//{
-//	return NB_TRACKS;
-//}
 //
-//s8 music_get_current ( )
+//void musicStop ( )
 //{
-//	return _current;
+//   switch ( current->driver )
+//   {
+//      case Z80_DRIVER_4PCM_ENV:
+//         SND_stopPlay_4PCM_ENV ( current->channel );
+//         break;
+//
+//      case Z80_DRIVER_XGM:
+//         SND_stopPlay_XGM ( current->track );
+//         break;
+//	}
+//
+//	current = NULL;
 //}

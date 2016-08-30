@@ -37,9 +37,9 @@ static void _room_enter ( Room *room )
 	}
 
 
-	for ( i = 0; i < nb_fish;   i++ ) { fish   [ i ]->grabity = false; fish   [ i ]->counter = 0; SPR_setVisible ( fish   [ i ]->sprite, 1 );  }
-	for ( i = 0; i < nb_splash; i++ ) { splash [ i ]->grabity = false; splash [ i ]->counter = 0; SPR_setVisible ( splash [ i ]->sprite, 0 ); }
-	for ( i = 0; i < nb_drop;   i++ ) { drop   [ i ]->grabity = false; drop   [ i ]->counter = 0; SPR_setVisible ( drop   [ i ]->sprite, 1 ); }
+	for ( i = 0; i < nb_fish;   i++ ) { fish   [ i ]->grabity = false; fish   [ i ]->counter = 0; SPR_setVisibility ( fish   [ i ]->sprite, VISIBLE ); }
+	for ( i = 0; i < nb_splash; i++ ) { splash [ i ]->grabity = false; splash [ i ]->counter = 0; SPR_setVisibility ( splash [ i ]->sprite, HIDDEN  ); }
+	for ( i = 0; i < nb_drop;   i++ ) { drop   [ i ]->grabity = false; drop   [ i ]->counter = 0; SPR_setVisibility ( drop   [ i ]->sprite, VISIBLE ); }
 
 	philippe_init ( );
 	philippe_add ( 10, 40);

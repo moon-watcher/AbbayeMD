@@ -52,7 +52,7 @@ static void _room_stay ( Room *room )
 		setActive ( door, 1 ) ;
 
 		SPR_setPosition ( door->sprite, door->x, door->y );
-		updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+		SPR_update ( );
 
 		itemSetChecked ( door->item, 1 );
 
@@ -80,7 +80,7 @@ static void _room_stay ( Room *room )
 		{
 			setActive ( door, 0 ) ;
 
-			updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+			SPR_update ( );
 
 			itemSetChecked ( door->item, 0 );
 

@@ -12,89 +12,81 @@ u8 mask_get ( Mask *mask, u8 x, u8 y )
 
 void mask_draw ( Mask *mask )
 {
-   u8 y, x;
-
-   VDP_clearPlan( BPLAN, 0 );
-
-   for ( y=0; y<22; y++ )
-   {
-      for ( x=0; x<32; x++ )
-      {
-         u8 color = mask->array [ y ] [ x ];
-
-         if ( color == 0 )
-         {
-            continue;
-         }
-
-              if ( color ==  4 ) color = 3;
-         else if ( color ==  8 ) color = 4;
-         else if ( color == 16 ) color = 5;
-         else if ( color == 32 ) color = 6;
-         else if ( color == 64 ) color = 7;
-
-         drawUInt ( color, x, y, 0 );
-         VDP_setTileMapXY ( BPLAN, TILE_ATTR_FULL ( PAL0, 1, 0, 0, color ), x, y );
-      }
-   }
+	u8 y, x;
 
 	SYS_disableInts();
-   VDP_setPalette ( PAL0, palette_green );
-   SYS_enableInts();
+	VDP_clearPlan ( PLAN_B, 1 );
+	SYS_enableInts();
+
+	for ( y=0; y<22; y++ )
+	{
+		for ( x=0; x<32; x++ )
+		{
+			u8 color = mask->array [ y ] [ x ];
+
+			if ( color == 0 )
+			{
+				continue;
+			}
+
+			     if ( color ==  4 ) color = 3;
+			else if ( color ==  8 ) color = 4;
+			else if ( color == 16 ) color = 5;
+			else if ( color == 32 ) color = 6;
+			else if ( color == 64 ) color = 7;
+
+			SYS_disableInts();
+			drawUInt ( color, x, y, 0 );
+			VDP_setTileMapXY ( PLAN_B, TILE_ATTR_FULL ( PAL0, 1, 0, 0, color ), x, y );
+			SYS_enableInts();
+		}
+	}
+
+	SYS_disableInts();
+	VDP_setPalette ( PAL0, palette_green );
+	SYS_enableInts();
 }
 
 
 
 
 
-static s16 _counter;
-static s16 _dir;
-static s16 _line;
+static s16 _mask_counter;
+static s16 _mask_dir;
+static s16 _mask_line;
 
 
 void mask_ini_priorities ( )
 {
-	_counter = 0;
-	_dir     = SPR_getHFlip ( player.go->sprite ) ? -1 : +1;
-	_line    = set_value_in ( ( goGetLeft(player.go) >> 3 ) - _dir, 0, 31 );
-
-	mask_set_priorities ( &currentMask );
-	//mask_set_priorities ( &currentMask );
+	_mask_counter = 0;
+	_mask_dir     = SPR_getHFlip ( player.go->sprite ) ? -1 : +1;
+	_mask_line    = set_value_in ( ( goGetLeft(player.go) >> 3 ) - _mask_dir, 0, 31 );
 }
 
 
 void mask_set_priorities ( Mask *mask )
 {
-	if ( _counter == 32 )
+	if ( _mask_counter == 33 )
 	{
 		return;
 	}
 
-	u16 y;
+	u16 y = 22;
 
-   for ( y=0; y<22; y++ )
-   {
-		if ( currentMask.array[y][_line] & 64 )
+	while ( y-- )
+	{
+		if ( currentMask.array[y][_mask_line] & 64 )
 		{
-			VDP_setTilePriority ( APLAN, 1, _line, y );
+			VDP_setTilePriority ( PLAN_A, 1, _mask_line, y );
 		}
-   }
-
-	//drawInt(_line,0,0,5);
-	//waitMs(1000);
-
-	++_counter;
-   _line += _dir;
-
-   if ( _line == 32  &&  _dir == +1 )
-   {
-		_line = 0;
 	}
 
-   if ( _line == -1  &&  _dir == -1 )
-   {
-		_line = 31;
-	}
+   _mask_line += _mask_dir;
+
+   if ( _mask_dir > 0  &&  _mask_line == +32 ) _mask_line = 0;
+   if ( _mask_dir < 0  &&  _mask_line ==  -1 ) _mask_line = 31;
+
+	++_mask_counter;
 }
 
 
@@ -108,7 +100,7 @@ void mask_set_priorities ( Mask *mask )
 //   {
 //      for ( x=0; x<32; x++ )
 //      {
-//         VDP_setTilePriority ( APLAN, ( mask->array[y][x] & 64 ), x, y );
+//         VDP_setTilePriority ( PLAN_A, ( mask->array[y][x] & 64 ), x, y );
 //      }
 //   }
 //}

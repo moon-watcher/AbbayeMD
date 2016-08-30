@@ -47,7 +47,7 @@ static void _room_stay ( Room *room )
 			enemy_leaf ( leaf[i] );
 		}
 
-		enemy_star ( (Vect2D_u16*) exceptions, 30, 12,  0, 16, 5, BPLAN );
+		enemy_star ( (Vect2D_u16*) exceptions, 30, 12,  0, 16, 5, PLAN_B );
 
 		philippe_update ( );
 	}

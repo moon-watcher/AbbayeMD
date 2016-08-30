@@ -186,6 +186,8 @@ void _horizontal ( GameObject *go, Mcb *collisions )
 
 static void _collisions ( GameObject *go, Mcb *collisions_v, Mcb *collisions_h )
 {
+	++devu1;
+
 	u16 h = goIsMovingHorizontally(go);
 	u16 v = goIsMovingVertically(go);
 

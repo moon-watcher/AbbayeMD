@@ -7,16 +7,19 @@ typedef struct
 {
 	u8   id;
 	u8  *title;
-	u8  *fx;
+	u8  *sample;
 	u8   driver;
 	u8   channel;
 	u8   repeat;
 	u32  size;
+	u8   xgm_id;
+	u8   priority;
 }
 Fx;
 
 
 
+void fxInit ( );
 void fxPlay ( Fx *fx );
 
 

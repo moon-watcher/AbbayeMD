@@ -220,9 +220,8 @@ void goSetSprite ( GameObject *go, Sprite *sprite )
 
 	SYS_disableInts();
 
-	SPR_initSprite
+	go->sprite = SPR_addSprite
 	(
-		go->sprite,
 		go->object->entity->sd,
 		go->x,
 		go->y,
@@ -253,41 +252,27 @@ void goSetSprite ( GameObject *go, Sprite *sprite )
 
 void goSetObject ( GameObject *go, Object *object )
 {
-	if ( go->object == object )
+	if ( go->object->entity->id == object->entity->id )
 	{
 		return;
 	}
 
 	u16 vram = go->vram;
 
-
-
 	go->object = object;
 
 	SYS_disableInts();
 
-	SPR_initSprite
-	(
-		go->sprite,
-		go->object->entity->sd,
-		SPR_getXPosition ( go->sprite ),
-		SPR_getYPosition ( go->sprite ),
-		TILE_ATTR
-		(
-			go->object->entity->palette,
-			go->object->entity->priority,
-			SPR_getVFlip ( go->sprite ) ? go->object->entity->doesFlipV : 0,
-			SPR_getHFlip ( go->sprite ) ? go->object->entity->doesFlipH : 0
-		)
-	);
+	SPR_setDefinition ( go->sprite, go->object->entity->sd );
+
+	if ( !go->object->entity->doesFlipV  &&  SPR_getVFlip ( go->sprite ) ) SPR_setVFlip( go->sprite, 0 );
+	if ( !go->object->entity->doesFlipH  &&  SPR_getHFlip ( go->sprite ) ) SPR_setHFlip( go->sprite, 0 );
 
 	go->vram = vram_new ( SPR_nbTiles ( go->sprite ) );
 	SPR_setVRAMTileIndex ( go->sprite, go->vram );
 	SPR_setAnim ( go->sprite, go->object->entity->animation );
 
-
 	SYS_enableInts();
-
 
 	if ( vram )
 	{
@@ -349,7 +334,7 @@ void goUpdate ( GameObject *go )
 	if ( go->vel_x != zero )
 	{
 		//
-		// Flips
+		// Flip
 		//
 		if ( go->object->entity->doesFlipH  )
 		{
@@ -378,8 +363,6 @@ void goUpdate ( GameObject *go )
 
 
 
-
-
 	//
 	// Gravity
 	//
@@ -392,7 +375,7 @@ void goUpdate ( GameObject *go )
 	if ( go->vel_y != zero )
 	{
 		//
-		// Flips
+		// Flip
 		//
 		if ( go->object->entity->doesFlipV )
 		{

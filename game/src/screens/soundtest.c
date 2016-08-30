@@ -21,9 +21,9 @@ static void _draw_screen()
 	VDP_drawText ( "SFX",         8, positions[2] );
 	VDP_drawText ( "Exit",        8, positions[3] );
 
-	VDP_setSprite ( 0, 10, positions[1]*8, 1, TILE_ATTR_FULL ( PAL1, 0, 0, 0, TILE_FONTINDEX + 95 ), 0 );
+	VDP_setSpriteFull ( 0, 10, positions[1]*8, 1, TILE_ATTR_FULL ( PAL1, 0, 0, 0, TILE_FONTINDEX + 95 ), 0 );
 
-	show_screen ( 10 );
+	displayOn ( 10 );
 }
 
 
@@ -35,7 +35,7 @@ static void _control ( )
 	s8 track = 0;
 	s8 sfx   = 0;
 
-	while (repeat )
+	while ( repeat )
 	{
 		JoyReader_update();
 
@@ -47,6 +47,7 @@ static void _control ( )
 
 
 		VDP_setSpritePosition ( 0, 56, positions[opcion+1]*8 );
+		VDP_updateSprites(80,1);
 
 		if ( joy1_pressed_right )
 		{
@@ -73,17 +74,10 @@ static void _control ( )
 
 
 		drawText ( "              ", 14, positions[1] );
+		drawText ( music->title,     14, positions[1] );
+
 		drawText ( "              ", 14, positions[2] );
-
-//		VDP_setPalette(PAL3,font->palette->data);
-//		VDP_setTextPalette(PAL3);
-		drawText ( music->title, 14, positions[1] );
-
-//		VDP_setPalette(PAL1,palette_grey);
-//		VDP_setTextPalette(PAL1);
-		drawText ( fx->title,    14, positions[2] );
-
-
+		drawText ( fx->title,        14, positions[2] );
 
 		if ( joy1_pressed_btn | joy1_pressed_start )
 		{
@@ -92,9 +86,7 @@ static void _control ( )
 			if ( opcion == 2 ) repeat = false;
 		}
 
-		VDP_updateSprites();
 		VDP_waitVSync();
-
 	}
 }
 
@@ -106,7 +98,7 @@ void screen_soundtest ()
 	vram_init ( VRAM_DEFAULT );
 
 	VDP_resetSprites();
-	VDP_updateSprites();
+	VDP_updateSprites(80,1);
 
 	_draw_screen();
 	_control();
@@ -114,47 +106,7 @@ void screen_soundtest ()
 	displayOff(0);
 
 	VDP_resetSprites();
-	VDP_updateSprites();
+	VDP_updateSprites(80,1);
 
 	vram_destroy ( );
 }
-//
-//	return 1;
-//
-//
-//
-//	while ( 1 )
-//	{
-//		JoyReader_update();
-//
-//		if ( joy1_pressed_btn | joy1_pressed_start )
-//		{
-//			break;
-//		}
-//
-//		node = lObjects.head;
-//
-//		while ( node )
-//		{
-//			go = (GameObject *) node->pointer;
-//
-//			goUpdate ( go );
-//
-//			node = node->next;
-//		}
-//
-//
-//		SPR_update ( (Sprite*) &lSprites, lSpriteCounter );
-//		VDP_waitVSync ( );
-//	}
-//
-//	//VDP_setEnable(false);
-//
-//	displayOff(0);
-//
-//	goManagerEnd ( &lObjects );
-//	SPR_clear ( );
-//	SPR_end ( );
-//}
-//
-//

@@ -48,14 +48,14 @@ static void _room_enter ( Room *room )
 		}
 		else
 		{
-			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN,  0, 20 ), 3, 20 );
-			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN,  1, 20 ), 4, 20 );
+			VDP_setTileMapXY ( PLAN_A, VDP_getTile ( PLAN_A,  0, 20 ), 3, 20 );
+			VDP_setTileMapXY ( PLAN_A, VDP_getTile ( PLAN_A,  1, 20 ), 4, 20 );
 
-			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN, 10, 21 ), 2, 21 );
-			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN, 11, 21 ), 3, 21 );
-			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN, 12, 21 ), 4, 21 );
-			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN, 13, 21 ), 5, 21 );
-			VDP_setTileMapXY ( APLAN, VDP_getTile ( APLAN, 14, 21 ), 6, 21 );
+			VDP_setTileMapXY ( PLAN_A, VDP_getTile ( PLAN_A, 10, 21 ), 2, 21 );
+			VDP_setTileMapXY ( PLAN_A, VDP_getTile ( PLAN_A, 11, 21 ), 3, 21 );
+			VDP_setTileMapXY ( PLAN_A, VDP_getTile ( PLAN_A, 12, 21 ), 4, 21 );
+			VDP_setTileMapXY ( PLAN_A, VDP_getTile ( PLAN_A, 13, 21 ), 5, 21 );
+			VDP_setTileMapXY ( PLAN_A, VDP_getTile ( PLAN_A, 14, 21 ), 6, 21 );
 
 			s16 x, y;
 

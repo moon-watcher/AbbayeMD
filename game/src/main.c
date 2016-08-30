@@ -60,23 +60,24 @@
  * --------------------------------------------------------------------------------------------------------------------------------
  * @GODFATHER-OF-THIS-RELEASE => Leander                        | Twitter: @leanderpixel      | Mail:
  * @MSX-SKIN                  => Gerardo Herce                  | Twitter: @pipagerardo       | Mail:
- * @GB-SKIN                   => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @PCW-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @CGA-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
+ * @GB-SKIN                   => Felipe Monge CorbalÃ¡n          | Twitter: @vakapp            | Mail:
+ * @PCW-SKIN                  => Felipe Monge CorbalÃ¡n          | Twitter: @vakapp            | Mail:
+ * @CGA-SKIN                  => Felipe Monge CorbalÃ¡n          | Twitter: @vakapp            | Mail:
  * @MD-SKIN                   => Dani Nevado                    | Twitter: @DanySnowyman      | Mail:
- * @MUSIC                     => Paolo Arus                     | Twitter:                    | Mail:
- * @FX                        => Paolo Arus                     | Twitter:                    | Mail:
+ * @MUSIC                     => Paolo Arus "DaRkHoRaCe"        | Twitter: @oongamoonga       | Mail:
+ * @FX                        => Paolo Arus "DaRkHoRaCe"        | Twitter: @oongamoonga       | Mail:
  * @ILLUSTRATION              => Urza                           | Twitter: @Urza2             | Mail:
- * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @CRUSADER-MODE             => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
+ * @COVER                     => Felipe Monge CorbalÃ¡n          | Twitter: @vakapp            | Mail:
+ * @INSTRUCTION-MANUAL        => Felipe Monge CorbalÃ¡n          | Twitter: @vakapp            | Mail:
+ * @CRUSADER-MODE             => Felipe Monge CorbalÃ¡n          | Twitter: @vakapp            | Mail:
+ * @BETA-TESING               => Alfonso                        | Twitter: @_SrPresley_       | Mail:
  *
  *
  * --------------------------------------------------------------------------------------------------------------------------------
  *  HOW TO COMPILE
  * --------------------------------------------------------------------------------------------------------------------------------
  *
- * Sega Genesis/Megadrive version of l'Abbaye des morts was created using SGDK v1.11 and GenRes v1.1.
+ * Sega Genesis/Megadrive version of l'Abbaye des morts was created using SGDK v1.21 and GenRes v1.1.
  *
  *  - Go gendev.spritesmind.net/page-genres.html
  *  - Download GenRes v1.1
@@ -89,7 +90,7 @@
  * --------------------------------------------------------------------------------------------------------------------------------
  *  CHANGELOG
  * --------------------------------------------------------------------------------------------------------------------------------
- * xx-xx-2016 » First release
+ * xx-xx-2016 Â» First release
  * --------------------------------------------------------------------------------------------------------------------------------
  *
  */
@@ -101,148 +102,247 @@
 
 
 
+static bool demo = false;
 
-static void _init ( u16 hard )
+
+static void demo1()
 {
-   return;
+	if ( !demo && joy1_pressed_a )
+	{
+		demo = true;
+
+		extern const struct genresTiles demo_lightfold64;
+
+		u16 pos  = 16;
+		u16 size = demo_lightfold64.width * demo_lightfold64.height;
+		u16 j, i = 0;
+		u16 palette [ 16 ];
+
+
+		SYS_disableInts();
+		VDP_loadTileData ( demo_lightfold64.tiles, pos, size, 0 );
+		VDP_fillTileMapRectInc ( PLAN_B, TILE_ATTR_FULL(PAL0, 0, 0, 0, pos), 0, 0, demo_lightfold64.width, demo_lightfold64.height );
+		VDP_setPalette ( PAL0, palette_black );
+		SYS_enableInts();
+
+		while ( 1 )
+		{
+			for ( j=0; j<16; j++ )
+			{
+				u16 val = ( ( i % 16 ) + j ) % 16;
+
+				palette [ val ] = demo_lightfold64.pal [ j ];
+			}
+
+			SYS_disableInts();
+			VDP_setPaletteColors (  0, palette, 16 );
+			SYS_enableInts();
+			waitMs ( 40 );
+
+			JoyReader_update();
+
+			if ( joy1_pressed_btn )
+			{
+				break;
+			}
+
+			VDP_waitVSync();
+
+			++i;
+		}
+
+		VDP_fadeOutAll ( 30, 0 );
+	}
+}
+
+
+static void demo2 ( )
+{
+	if ( !demo && joy1_pressed_b )
+	{
+		demo = true;
+
+
+		extern const struct genresTiles demo_rainbars16b;
+
+		VDP_setScreenWidth256();
+		VDP_setPlanSize(32,32);
+
+		u16 pos  = 16;
+		u16 size = demo_rainbars16b.width * demo_rainbars16b.height;
+
+		SYS_disableInts();
+		VDP_loadTileData ( demo_rainbars16b.tiles, pos, size, 0 );
+		VDP_fillTileMapRectInc ( PLAN_B, TILE_ATTR_FULL(PAL0, 0, 0, 0, pos), 0, 0, demo_rainbars16b.width, demo_rainbars16b.height );
+		SYS_enableInts();
+
+		u16 palette [ 16 ];
+		u16 j, i = 0;
+
+		while ( 1 )
+		{
+			if ( i % 1 == 0 )
+			{
+				for ( j=0; j<16; j++ )
+				{
+					u16 val = ( ( i % 16 ) + j ) % 16;
+
+					palette [ val ] = demo_rainbars16b.pal [ j ];
+				}
+			}
+
+
+			SYS_disableInts();
+			VDP_setHorizontalScroll ( PLAN_B, -i );
+			VDP_setVerticalScroll ( PLAN_B, -i*8 );
+			VDP_setPaletteColors (  0, palette, 16 );
+			SYS_enableInts();
+			waitMs(30);
+
+
+			JoyReader_update();
+
+			if ( joy1_pressed_btn )
+			{
+				break;
+			}
+
+
+			VDP_waitVSync();
+
+			++i;
+		}
+
+		VDP_fadeOutAll ( 30, 0 );
+	}
+}
+
+
+static void monos()
+{
+	if ( !demo && joy1_pressed_c )
+	{
+		demo = true;
+
+		extern const Image ob_title_monos_mi;
+
+		SYS_disableInts();
+		VDP_loadTileSet ( ob_title_monos_mi.tileset, 16, 0 );
+		VDP_setPalette ( PAL1, ob_title_monos_mi.palette->data );
+		SYS_enableInts();
+
+		u16 x = 0;
+		u16 y = 0;
+
+		while ( 1 )
+		{
+			SYS_disableInts();
+			VDP_setMapEx ( PLAN_A, ob_title_monos_mi.map, TILE_ATTR_FULL(PAL1,0,0,0,16), 14, 10, x*13, y*6, 13, 6 );
+			SYS_enableInts();
+			waitMs(100);
+
+			++x;
+
+			if ( x == 10 )
+			{
+				x = 0;
+				++y;
+			}
+
+			if ( x == 6 && y == 6 )
+			{
+				x = 0;
+				y = 0;
+			}
+
+			JoyReader_update();
+
+			if ( joy1_pressed_btn )
+			{
+				break;
+			}
+
+			VDP_waitVSync();
+		}
+
+		VDP_fadeOutAll ( 30, 0 );
+	}
+}
+
+
+
+static _voidCallback *vint_callback ( )
+{
+//	SND_setManualSync_XGM ( FALSE );
+//	SND_setMusicTempo_XGM ( 60 );
+
+	if ( DEV )
+	{
+//		showMcb();
+//		showOcb();
+//		showNbObjects();
+//		showZ80Load();
+		showFps();
+	}
+
+	return 0;
+}
+
+
+
+
+
+
+static void init ( int argc, char *argv[] )
+{
 //	// 0 is soft reset
-//   if ( hard == 0 )
-//   {
-//		//displayOff(0);
-//		//VDP_drawText ( "You pressed reset", 11, 9 );
+//	if ( argc == 0 )
+//	{
+////		displayOff(0);
+////		VDP_drawText ( "You pressed reset", 11, 9 );
 //
-//      _start_entry(); // even more reset
-//      MEM_init();
-//   }
+//		_start_entry(); // even more reset
+//		MEM_init();
+//	}
 //
-//	////sd_reset();
-//	////SYS_reset();
-//   //SYS_assertReset(); // makes gensKmod crash, WTF?!
-}
+////	sd_reset();
+////	SYS_reset();
+////	SYS_assertReset(); // makes gensKmod crash, WTF?!
 
 
+	VDP_init();
 
-void demo1()
-{
-   return;
+    displayInit ( );
+    displayOff ( 0 );
+	dev_init ( 0, 0 );
+    fxInit ( );
+    session_init ( );
+    JOY_setSupport ( PORT_1, JOY_SUPPORT_6BTN );
+    JoyReader_init ( 1 );
+    SYS_setVIntCallback ( (_voidCallback*) vint_callback );
+	VDP_setScreenWidth320 ( );
+	VDP_setPlanSize ( 64, 32 );
 
-	extern const struct genresTiles demo_lightfold64;
+	game.version = VERSION_MD;
+	demo = false;
 
-	u16 pos  = 16;
-	u16 size = demo_lightfold64.width * demo_lightfold64.height;
-	u16 j, i = 0;
-	u16 palette [ 16 ];
-
-
-	VDP_loadTileData ( demo_lightfold64.tiles, pos, size, 0 );
-	VDP_fillTileMapRectInc ( BPLAN, TILE_ATTR_FULL(PAL0, 0, 0, 0, pos), 0, 0, demo_lightfold64.width, demo_lightfold64.height );
-	VDP_setPalette ( PAL0, palette_black );
-
-	while ( 1 )
-	{
-		for ( j=0; j<16; j++ )
-		{
-			u16 val = ( ( i % 16 ) + j ) % 16;
-
-			palette [ val ] = demo_lightfold64.pal [ j ];
-		}
-
-		VDP_setPaletteColors (  0, palette, 16 );
-		VDP_waitVSync();
-
-		waitMs ( 40 );
-
-		++i;
-	}
-}
-
-
-
-void demo2 ( )
-{
-   return;
-
-	extern const struct genresTiles demo_rainbars16b;
-
-	VDP_setScreenWidth256();
-	VDP_setPlanSize(32,32);
-
-	u16 pos  = 16;
-	u16 size = demo_rainbars16b.width * demo_rainbars16b.height;
-
-	VDP_loadTileData ( demo_rainbars16b.tiles, pos, size, 0 );
-	VDP_fillTileMapRectInc ( BPLAN, TILE_ATTR_FULL(PAL0, 0, 0, 0, pos), 0, 0, demo_rainbars16b.width, demo_rainbars16b.height );
-
-
-	u16 palette [ 16 ];
-	u16 j, i = 0;
-
-	while ( 1 )
-	{
-//		waitMs(30);
-
-	if ( i % 1 == 0 )
-		for ( j=0; j<16; j++ )
-		{
-			u16 val = ( ( i % 16 ) + j ) % 16;
-
-			palette [ val ] = demo_rainbars16b.pal [ j ];
-		}
-
-		VDP_waitVSync();
-		VDP_setHorizontalScroll ( PLAN_B, -i );
-		VDP_setVerticalScroll ( PLAN_B, -i*8 );
-		VDP_setPaletteColors (  0, palette, 16 );
-
-		++i;
-	}
-}
-
-
-
-
-
-
-
-int main ( int argc, char *argv[] )
-{
-   _init ( argc );
-
+	JoyReader_update();
+	monos();
 	demo1();
 	demo2();
 
-   dev_init ( 1, 1 );
+    screen_disclaimer ( );
+    screen_sega ( );
 
-
-
-	game_set_alt_palettes ( false );
-
-	displayInit();
-	displayOff(0);
-
-	game.version = VERSION_MD;
-
-	JoyReader_init ( 1 );
-	JOY_setSupport ( PORT_1, JOY_SUPPORT_6BTN );
-
-	resetScroll();
+    displayOff(0);
+    resetScroll();
 	resetScreen();
-
-	screen_disclaimer ( );
-	screen_sega ( );
-
-	displayOff(0);
-	resetScreen();
-
 	VDP_setScreenWidth256 ( );
 	VDP_setPlanSize ( 32, 64 );
 
 
-
-
-
-//					scrollSet ( SCROLL_INIT );
-//					game.version = VERSION_PC;
+//				scrollSet ( SCROLL_INIT );
+//				game.version = VERSION_PC;
 
 //				screen_credits ( );
 //				screen_title ( );
@@ -254,50 +354,37 @@ int main ( int argc, char *argv[] )
 //				screen_gameover ( );
 //				screen_soundtest();
 
+}
 
 
-	session_init ();
-
-
+void loop ( )
+{
 	while ( TRUE )
-	{
-		game_set_alt_palettes ( false );
+    {
+        screen_credits ( );
 
-		screen_credits ( );
+		if ( screen_title ( ) )
+        {
+        	VDP_setPlanSize ( 32, 64 );
 
-		displayOff(0);
+            screen_prologue ( );
+            cm_init ( );
+            checkpoint_init ( );
+            game_init ( );
+            switch_init ( );
+            musicInit ( );
+            hudInit ( );
+            scrollSet ( SCROLL_INIT );
+            itemManagerInit ( &waItems );
 
-		resetScroll ( );
-		resetScreen ( );
-		scrollSet ( 0 );
-		font_load ( 0 );
+//play_fx(FX_SWITCH);waitMs(1000);
 
-
-		u16 title = screen_title ( );
-
-		if ( title )
-		{
-			screen_prologue ( );
-			cm_init ( );
-			checkpoint_init ( );
-			game_init ( );
-			switch_init ( );
-			musicInit ( );
-			hudInit ( );
-			scrollSet ( SCROLL_INIT );
-			itemManagerInit ( &waItems );
-
-
-
-//						// desde el inicio para matar a Satán
+//						// desde el inicio para matar a SatÃ¡n
 //						game.version  = VERSION_MD;
 //						session.level = 1;
 //						game.room.x = 4;
 //						game.room.y = 4;
 //						//
-
-
-
 
 //						// activate the crusader mode
 //						game.version  = VERSION_MD;
@@ -308,8 +395,6 @@ int main ( int argc, char *argv[] )
 //						game.status = GAME_STATUS_OK;
 //						//
 
-
-
 //						game.room.x = 3;
 //						game.room.y = 2;
 //						game.version  = VERSION_GB;
@@ -317,37 +402,43 @@ int main ( int argc, char *argv[] )
 
 
 
-			playerInit ( &player );
+            playerInit ( &player );
+            invertedCross = false;
 
-			invertedCross = false;
+            game_loop ( );
 
-			game_loop ( );
+            JoyReader_init ( 1 );
 
-			JoyReader_init ( 1 );
-
-			itemManagerEnd ( &waItems );
-
-
-			if ( game.status == GAME_STATUS_ENDING )
-			{
-				screen_burning ( );
-				screen_ending ( );
-				//screen_credits ( );
-				screen_tfp ( ); // thanks for playing
-			}
-
-			if ( game.status == GAME_STATUS_GAMEOVER )
-			{
-				screen_gameover ( );
-			}
-		}
-		else
-		{
-			//screen_info ( );
-			//screen_demo ( );
-		}
-	}
+            itemManagerEnd ( &waItems );
 
 
-	return 0;
+            if ( game.status == GAME_STATUS_ENDING )
+            {
+                screen_burning ( );
+                screen_ending ( );
+                //screen_credits ( );
+                screen_tfp ( ); // thanks for playing
+            }
+
+            if ( game.status == GAME_STATUS_GAMEOVER )
+            {
+                screen_gameover ( );
+            }
+        }
+        else
+        {
+            //screen_info ( );
+            //screen_demo ( );
+        }
+    }
+}
+
+
+
+int main ( int argc, char *argv[] )
+{
+    init ( argc, argv );
+	loop ( );
+
+    return 0;
 }

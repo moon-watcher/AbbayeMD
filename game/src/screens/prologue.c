@@ -14,8 +14,13 @@ static void _add_objects (  Objects *objects )
 
 	pack_vram_init ( );
 
-	for ( i = 0; i < 4 ; i++ )
+	while ( 1 )
 	{
+		if ( !objects->array [ i ].entity->id )
+		{
+			break;
+		}
+
 		GameObject *go =  goManagerAdd ( &lObjects, (Object*) &objects->array [ i ] );
 		Sprite     *sp = &lSprites [ lSpriteCounter++ ];
 
@@ -23,6 +28,8 @@ static void _add_objects (  Objects *objects )
 		go->grabity = false;
 
 		pack_vram_add ( go );
+
+		++i;
 	}
 }
 
@@ -49,19 +56,19 @@ void screen_prologue ( )
 
 	Screen *screen = (Screen*) screen_get ( 1 );
 
-	drawImage ( (Image*) screen->foreground, APLAN );
+	drawImage ( (Image*) screen->foreground, PLAN_A );
 
 	if ( screen->background != NULL )
 	{
-		drawImage ( (Image*) screen->background, BPLAN );
+		drawImage ( (Image*) screen->background, PLAN_B );
 	}
 
 
-	SPR_init ( 1 ); // SPR_init ( 200 );
+	SPR_init ( 80, 500, 0 ); // SPR_init ( 1 ); // SPR_init ( 200 );
 	goManagerInit ( &lObjects );
 	_add_objects ( screen->objects );
 
-	show_screen ( 10 );
+	displayOn ( 10 );
 
 
 	u16 count = getHz() * 10;
@@ -83,7 +90,7 @@ void screen_prologue ( )
 			node = node->next;
 		}
 
-		SPR_update ( (Sprite*) &lSprites, lSpriteCounter );
+		SPR_update ( );
 		VDP_waitVSync ( );
 
 		if ( count == 20 )

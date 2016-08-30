@@ -1,4 +1,4 @@
 BITMAP screen_title_copyright_all  "game/data/all/screens/title/copyright.bmp"   0
 BITMAP screen_title_freeware_all   "game/data/all/screens/title/freeware.bmp"    0
 BITMAP screen_title_year_all       "game/data/all/screens/title/year.bmp"        0
-BITMAP screen_disclaimer_all	     "game/data/all/screens/disclaimer.bmp"        0
+BITMAP screen_disclaimer_all	   "game/data/all/screens/disclaimer.bmp"        0

@@ -156,7 +156,7 @@ static void _room_stay ( Room *room )
 			enemy_leaf ( leaf[i] );
 		}
 
-		enemy_star ( (Vect2D_u16*) exceptions, 15, 15, 1, 12, 4, BPLAN );
+		enemy_star ( (Vect2D_u16*) exceptions, 15, 15, 1, 12, 4, PLAN_B );
 
 
 		if ( game.crusader  &&  itemGetChecked ( door->item ) )

@@ -74,7 +74,7 @@ static void _room_stay ( Room *room )
 
 	if ( game.version == VERSION_MD )
 	{
-		enemy_star ( (Vect2D_u16*) exceptions, 30, 16,  0, 16, 3, APLAN );
+		enemy_star ( (Vect2D_u16*) exceptions, 30, 16,  0, 16, 3, PLAN_A );
 
 		philippe_update();
 	}

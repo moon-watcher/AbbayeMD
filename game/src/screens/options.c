@@ -161,7 +161,7 @@ static void _loop ( )
 				}
 		}
 
-		VDP_updateSprites();
+		VDP_updateSprites(80,1);
 		VDP_waitVSync();
 	}
 }
@@ -208,7 +208,7 @@ static void _draw_screen ( )
 	_change_music ( true );
 	_change_fx ( true );
 
-	show_screen ( 10 );
+	displayOn ( 10 );
 }
 
 
@@ -218,9 +218,9 @@ u16 screen_options ( )
 {
 	//if ( DEV )return 1;
 
-	VDP_setSprite ( 0, -10, -1, 1, TILE_ATTR_FULL ( PAL2, 0, 0, 0, TILE_FONTINDEX+95 ), 0 );
+	VDP_setSpriteFull ( 0, -10, -1, 1, TILE_ATTR_FULL ( PAL2, 0, 0, 0, TILE_FONTINDEX+95 ), 0 );
 	VDP_setSpritePosition ( 0, -20, -20 );
-	VDP_updateSprites();
+	VDP_updateSprites(80,1);
 
 	opcion = 0;
 	music = 0;
@@ -236,7 +236,7 @@ u16 screen_options ( )
 
 	displayOff(0);
 	VDP_resetSprites();
-	VDP_updateSprites();
+	VDP_updateSprites(80,1);
 
 	//vram_destroy();
 

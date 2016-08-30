@@ -4,10 +4,12 @@
 
 void debug_info ( )
 {
-	if ( !DEV )
-	{
-		return;
-	}
+	if ( !DEV ) return;
+
+
+	debug_fps       = getFPS();
+	debug_z80load   = SND_getCPULoad_XGM();
+	debug_nbObjects = goManagerCount ( &waObjects );
 
 
 //	// which cross
@@ -43,6 +45,10 @@ void debug_info ( )
 //	}
 
 
+
+
+
+
 	// current room
 	if ( debug_show_nb_room )
 	{
@@ -51,11 +57,6 @@ void debug_info ( )
 		drawUInt ( game.room.y, 28, 25, 1 );
 		debug_show_nb_room = false;
 	}
-
-
-//	//frames per second
-//	showFps ( );
-
 
 
 	// invulnerability
@@ -75,7 +76,7 @@ void debug_info ( )
 		else
 		{
 			SYS_disableInts();
-			VDP_clearPlan ( BPLAN, 0 );
+			VDP_clearPlan ( PLAN_B, 1 );
 			SYS_enableInts();
 
 			room_draw ( currentRoom );
@@ -105,5 +106,42 @@ void debug_info ( )
 
 void showFps ( )
 {
-	drawUInt ( getFPS(), 30, 25, 2 );
+	char str[40] = {};
+
+	uintToStr ( debug_fps, str, 2 );
+	VDP_drawText ( str, 30, 25 );
+}
+
+
+void showZ80Load ( )
+{
+	char str[40] = {};
+
+	uintToStr ( debug_z80load, str, 3);
+	VDP_drawText ( str, 22, 25 );
+}
+
+
+void showNbObjects ()
+{
+	char str[40] = {};
+
+	uintToStr ( debug_nbObjects, str, 2 );
+	VDP_drawText ( str, 19, 25 );
+}
+
+void showOcb()
+{
+	char str[40] = {};
+
+	uintToStr ( devu2, str, 2 );
+	VDP_drawText ( str, 16, 25 );
+}
+
+void showMcb()
+{
+	char str[40] = {};
+
+	uintToStr ( devu1, str, 2 );
+	VDP_drawText ( str, 13, 25 );
 }

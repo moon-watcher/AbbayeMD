@@ -24,11 +24,11 @@ void enemy_fish ( GameObject *goFish[], GameObject *goSplash[], u16 pos )
 
 		if ( frame == 3 )
 		{
-			SPR_setVisible ( splash->sprite, 0 );
+			SPR_setVisibility ( splash->sprite, HIDDEN );
 		}
 		else
 		{
-			SPR_setAll ( splash->sprite, -1, frame, 6 );
+			SPR_setValues ( splash->sprite, -1, frame, 6 );
 		}
 	}
 
@@ -55,13 +55,13 @@ void enemy_fish ( GameObject *goFish[], GameObject *goSplash[], u16 pos )
 			SPR_setHFlip ( fish->sprite, 0 );
 			SPR_setVFlip ( fish->sprite, 0 );
 
-			SPR_setAll ( splash->sprite, 1, 0, 6 );
+			SPR_setValues ( splash->sprite, 1, 0, 6 );
 		}
 	}
 
 	else if (  fish->y > 168 - scrollVertical )
 	{
-		SPR_setAll ( splash->sprite, 1, 0, 6 );
+		SPR_setValues ( splash->sprite, 1, 0, 6 );
 
 		setActive ( fish, 0 );
 

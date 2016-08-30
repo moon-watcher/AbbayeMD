@@ -17,7 +17,6 @@ static void _add_objects()
 		u16         itemtype =  goIsItem ( go );
 
 		goSetSprite ( go, sprite );
-
 		pack_vram_add ( go );
 
 		if ( itemtype )
@@ -127,20 +126,12 @@ static void _go_next_room ()
 
 void game_init ()
 {
-	//game.version = ;
+//	game.version      = VERSION_MD;
 	game.status       = GAME_STATUS_OK;
 	game.room.x       = checkpoint_get()->room_x;
 	game.room.y       = checkpoint_get()->room_y;
 	game.rnd          = random();
-	game.alt_palettes = true;
 	game.crusader     = false;
-}
-
-
-
-void game_set_alt_palettes ( bool value )
-{
-	game.alt_palettes = value;
 }
 
 
@@ -168,10 +159,7 @@ void game_loop ( )
 	while ( game.status == GAME_STATUS_OK )
 	{
 		displayOff(0);
-		//show_screen ( 0 ); //displayOn();
 
-
-		devu1 = 0;
 		devu5 = 0;
 		wvSpriteCounter = 0;
 
@@ -180,11 +168,10 @@ void game_loop ( )
 		currentRoom = room_get ( );
 		memcpy ( &currentMask, currentRoom->mask, sizeof(Mask) );
 
-		VDP_clearPlan ( APLAN, 0 );
-		VDP_clearPlan ( BPLAN, 0 );
+		resetScreen();
+		resetScroll();
 
-		VDP_setHorizontalScroll ( PLAN_B, 0 );
-		VDP_setHorizontalScroll ( PLAN_A, 0 );
+		scrollSet ( SCROLL_INIT );
 
 		room_draw ( currentRoom );
 
@@ -196,33 +183,29 @@ void game_loop ( )
 		hudIncCrosses ( 0 );
 		enemy_reset ( );
 
-		//vc_init ( );
-		SPR_init ( 1 ); // SPR_init ( 200 );
+		SPR_init ( 0, 0, 0 );
 		goManagerInit ( &waObjects );
 
 		playerAdd ( &player, &waObjects, &waSprites [ wvSpriteCounter++ ] );
 		_add_objects ( );
 
 		mask_ini_priorities ( );
-
 		room_function ( currentRoom, ROOM_ACTION_ENTER );
+		apply_alt_palettes ( );
 
+		SPR_update ( );
+		displayOn ( 0 );
 		musicPlay ( currentRoom->track );
-
-
-		listptrNode *node = NULL;
-		GameObject  *go   = NULL;
-
-
-		bool first_time = true;
-
 
 
 		while ( game.status == GAME_STATUS_OK )
 		{
+			devu1 = 0;
+
 			JoyReader_update ( );
 
-			update_palette_pressed ( );
+			debug_info ();
+			apply_alt_palettes_joy ( );
 
 			if ( joy1_pressed_start )
 			{
@@ -230,7 +213,6 @@ void game_loop ( )
 				continue;
 			}
 
-			debug_info ();
 
 			mask_set_priorities ( &currentMask );
 
@@ -257,11 +239,13 @@ void game_loop ( )
 
 
 			devu2 = 0;
-			node = waObjects.head;
+			listptrNode *node = waObjects.head;
 
 			while ( node )
 			{
-				go   = (GameObject *) node->pointer;
+				GameObject *go = (GameObject *) node->pointer;
+
+
 				node = node->next;
 
 				if ( !go->active )
@@ -276,29 +260,33 @@ void game_loop ( )
 			}
 
 
-			updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
-
-
-			if ( first_time )
-			{
-				show_screen ( 0 );
-				first_time = false;
-			}
-
+			SPR_update ( );
 			VDP_waitVSync ( );
 		}
 
+
+
+		VDP_waitVSync ( );
+
+		SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 );
+		SND_stopPlayPCM_XGM ( SOUND_PCM_CH2 );
+		SND_stopPlayPCM_XGM ( SOUND_PCM_CH3 );
+		SND_stopPlayPCM_XGM ( SOUND_PCM_CH4 );
+
 		displayOff(0);
+
+
+//play_fx(FX_HIT);
+
+
 
 		room_function ( currentRoom, ROOM_ACTION_LEAVE );
 
 		goManagerEnd ( &waObjects );
-		SPR_clear ( );
+
 		SPR_end ( );
 
 		vram_destroy();
-
-
 
 
 

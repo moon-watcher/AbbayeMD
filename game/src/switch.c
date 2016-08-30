@@ -71,7 +71,7 @@ void switch_touched ( GameObject *go )
 			play_fx ( FX_SWITCH );
 
 			// update the sprite before waitHz()
-			updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+			SPR_update ( );
 			VDP_waitVSync ( );
 
 			waitHz ( getHz() );
@@ -127,7 +127,7 @@ bool switch_ring_bell ( GameObject *go, Switch *sw )
 			SPR_nextFrame ( go->sprite );
 		}
 
-		updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+		SPR_update ( );
 		VDP_waitVSync();
 	}
 

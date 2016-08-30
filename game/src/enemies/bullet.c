@@ -50,7 +50,8 @@ void enemy_bullet ( GameObject *bullet )
 		if ( bullet->counter == 0 )
 		{
 			bullet->sprite->timer      = 2;
-			bullet->sprite->fixedIndex = vram_bullet;
+			//bullet->sprite->fixedIndex = vram_bullet;
+			bullet->sprite->index = vram_bullet;
 			bullet->vram               = vram_bullet;
 			bullet->counter            = 0;
 
@@ -84,7 +85,8 @@ void enemy_bullet_deactivate ( GameObject *bullet )
 		if ( in_array ( bullet->object->entity->id, (u16[]) { 52, 58, 34, 0 } ) )
 		{
 			bullet->sprite->timer      = 100;
-			bullet->sprite->fixedIndex = vram_explosion;
+			//bullet->sprite->fixedIndex = vram_explosion;
+			bullet->sprite->index = vram_explosion;
 			bullet->vram               = vram_explosion;
 			bullet->counter            = 3;
 		}

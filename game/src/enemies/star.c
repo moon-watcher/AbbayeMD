@@ -26,7 +26,7 @@ void enemy_star_init (  )
 }
 
 
-void enemy_star ( Vect2D_u16 exception[], u8 stars, u8 x, u8 y, u8 width, u8 height, u16 plan )
+void enemy_star ( Vect2D_u16 exception[], u8 stars, u8 x, u8 y, u8 width, u8 height, VDPPlan plan )
 {
 	u8 i = 0;
 

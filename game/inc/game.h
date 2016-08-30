@@ -50,7 +50,7 @@ struct
 	GameStatus status;
 
 	u16 rnd;
-	bool alt_palettes;
+	//bool alt_palettes;
 	bool crusader;
 }
 game;
@@ -58,7 +58,6 @@ game;
 
 
 void game_init             ( );
-void game_set_alt_palettes ( bool value );
 u8   game_room_x           ( s8 inc );
 u8   game_room_y           ( s8 inc );
 void game_loop_room        ( );

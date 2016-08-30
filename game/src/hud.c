@@ -44,12 +44,12 @@ void hudDrawText ( )
 
 	VDP_loadTileData ( HUD_OBJECTS_TILES(3), pos, 1, 0 );
 
-	VDP_fillTileMapRect ( APLAN, TILE_ATTR_FULL ( PAL0, 1, 0, 0, pos ), 0, VDP_getPlanHeight()-2, 32, 2 );
-	VDP_fillTileMapRect ( APLAN, TILE_ATTR_FULL ( PAL0, 1, 0, 0, pos ), 0, MASK_MAX_HEIGHT,       32, 4 );
+	VDP_fillTileMapRect ( PLAN_A, TILE_ATTR_FULL ( PAL0, 1, 0, 0, pos ), 0, VDP_getPlanHeight()-2, 32, 2 );
+	VDP_fillTileMapRect ( PLAN_A, TILE_ATTR_FULL ( PAL0, 1, 0, 0, pos ), 0, MASK_MAX_HEIGHT,       32, 4 );
 
 	pos = vram_new ( currentRoom->text->tileset->numTile );
 
-	VDP_drawImageEx ( APLAN, (Image*) currentRoom->text, TILE_ATTR_FULL(PAL0, 1, 0, 0, pos), 14, MASK_MAX_HEIGHT, 0, 0 );
+	VDP_drawImageEx ( PLAN_A, (Image*) currentRoom->text, TILE_ATTR_FULL(PAL0, 1, 0, 0, pos), 14, MASK_MAX_HEIGHT, 0, 0 );
 
 	SYS_enableInts();
 }
@@ -69,7 +69,7 @@ void hudIncCrosses ( s8 inc )
 		u16 pos = vram_new ( HUD_OBJECTS_TOTAL(1) );
 
 		VDP_loadTileData ( HUD_OBJECTS_TILES(1), pos, HUD_OBJECTS_TOTAL(1), 0 );
-		VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL(PAL3, 1, 0, 0, pos), 4, MASK_MAX_HEIGHT, 2, 2 );
+		VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL(PAL3, 1, 0, 0, pos), 4, MASK_MAX_HEIGHT, 2, 2 );
 	}
 
 
@@ -80,7 +80,7 @@ void hudIncCrosses ( s8 inc )
 		VDP_loadTileData ( HUD_OBJECTS_TILES(2) + 8 * (  0 + _num_crosses ), _vram_crosses + 0, 1, 0 );
 		VDP_loadTileData ( HUD_OBJECTS_TILES(2) + 8 * ( 10 + _num_crosses ), _vram_crosses + 1, 1, 0 );
 
-		VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_crosses  ), 6, MASK_MAX_HEIGHT, 1, 2 );
+		VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_crosses  ), 6, MASK_MAX_HEIGHT, 1, 2 );
 	}
 	else
 	{
@@ -90,8 +90,8 @@ void hudIncCrosses ( s8 inc )
 		VDP_loadTileData ( HUD_OBJECTS_TILES(2) + 8 * (  0 + _num_crosses % 10 ), _vram_crosses + 2, 1, 0 );
 		VDP_loadTileData ( HUD_OBJECTS_TILES(2) + 8 * ( 10 + _num_crosses % 10 ), _vram_crosses + 3, 1, 0 );
 
-		VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_crosses + 0 ), 6, MASK_MAX_HEIGHT, 1, 2 );
-		VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_crosses + 2 ), 7, MASK_MAX_HEIGHT, 1, 2 );
+		VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_crosses + 0 ), 6, MASK_MAX_HEIGHT, 1, 2 );
+		VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_crosses + 2 ), 7, MASK_MAX_HEIGHT, 1, 2 );
 	}
 
 	SYS_enableInts();
@@ -112,7 +112,7 @@ void hudIncHearts ( s8 inc )
 		u16 pos = vram_new ( HUD_OBJECTS_TOTAL(0) );
 
 		VDP_loadTileData ( HUD_OBJECTS_TILES(0), pos, HUD_OBJECTS_TOTAL(0), 0 );
-		VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL(PAL3, 1, 0, 0, pos), 0, MASK_MAX_HEIGHT, 2, 2 );
+		VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL(PAL3, 1, 0, 0, pos), 0, MASK_MAX_HEIGHT, 2, 2 );
 	}
 
 
@@ -125,8 +125,8 @@ void hudIncHearts ( s8 inc )
 			VDP_loadTileData ( HUD_OBJECTS_TILES(2) + 8 * (  0 + _num_hearts ), _vram_hearts + 0, 1, 0 );
 			VDP_loadTileData ( HUD_OBJECTS_TILES(2) + 8 * ( 10 + _num_hearts ), _vram_hearts + 1, 1, 0 );
 
-			VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_hearts + 0 ), 2, MASK_MAX_HEIGHT, 1, 2 );
-			//VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL ( PAL0, 1, 0, 0,                0 ), 3, MASK_MAX_HEIGHT, 1, 2 );
+			VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_hearts + 0 ), 2, MASK_MAX_HEIGHT, 1, 2 );
+			//VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL ( PAL0, 1, 0, 0,                0 ), 3, MASK_MAX_HEIGHT, 1, 2 );
 		}
 		else
 		{
@@ -136,8 +136,8 @@ void hudIncHearts ( s8 inc )
 			VDP_loadTileData ( HUD_OBJECTS_TILES(2) + 8 * (  0 + _num_hearts % 10 ), _vram_hearts + 2, 1, 0 );
 			VDP_loadTileData ( HUD_OBJECTS_TILES(2) + 8 * ( 10 + _num_hearts % 10 ), _vram_hearts + 3, 1, 0 );
 
-			VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_hearts + 0 ), 2, MASK_MAX_HEIGHT, 1, 2 );
-			VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_hearts + 2 ), 3, MASK_MAX_HEIGHT, 1, 2 );
+			VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_hearts + 0 ), 2, MASK_MAX_HEIGHT, 1, 2 );
+			VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL ( PAL0, 1, 0, 0, _vram_hearts + 2 ), 3, MASK_MAX_HEIGHT, 1, 2 );
 		}
 	}
 	else

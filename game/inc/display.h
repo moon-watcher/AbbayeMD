@@ -7,7 +7,7 @@ void  preparePal    ( u16 pal, u16 *colors );
 void  prepareColors ( u16 *colors );
 void  prepareColor  ( u16 index, u16 color );
 void  displayOff    ( u16 frames );
-void  displayOn     ( );
+void  displayOn     ( u16 frames );
 u16  *getColors     ( );
 
 

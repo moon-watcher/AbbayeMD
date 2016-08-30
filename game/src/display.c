@@ -1,24 +1,19 @@
-#include "../inc/include.h"
+#include <genesis.h>
 
 
 
-static u16 _cache [ 64 ] = {};
+static u16 _cache [ 64 ] = { };
 
 
 
 void displayInit ( )
 {
-	memcpyU16 ( _cache, palette_black, 64);
+	memcpyU16 ( _cache, palette_black, 64 );
 }
 
 
 void preparePal ( u16 pal, u16 *colors )
 {
-//	if ( DEV )
-//	{
-//		VDP_setPalette ( pal, colors );
-//	}
-
 	memcpyU16 ( _cache + pal * 16, colors, 16 );
 }
 
@@ -43,16 +38,27 @@ void displayOff ( u16 frames )
 	}
 
 	VDP_waitVSync ( );
+
+	SYS_disableInts();
 	VDP_setPaletteColors ( 0, (u16*) palette_black, 64 );
+	SYS_enableInts();
 }
 
 
-void displayOn ()
+void displayOn ( u16 frames )
 {
+	if ( frames )
+	{
+      VDP_fadeAllTo ( (u16*) _cache, frames, 0 );
+	}
+
 	waitMs(5);
 
 	VDP_waitVSync ( );
+
+	SYS_disableInts();
 	VDP_setPaletteColors ( 0, (u16*) _cache, 64 );
+	SYS_enableInts();
 }
 
 

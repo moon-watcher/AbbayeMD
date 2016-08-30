@@ -1,5 +1,5 @@
-#ifndef _VRAM_H_
-#define _VRAM_H_
+#ifndef _LIBS_VRAM_H_
+#define _LIBS_VRAM_H_
 
 
 #define VRAM_DEFAULT  16
@@ -15,4 +15,4 @@ void vram_sample  ( );
 void vram_info    ( );
 
 
-#endif
+#endif // _LIBS_VRAM_H_

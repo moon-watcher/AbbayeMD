@@ -61,7 +61,7 @@ static void _room_enter ( Room *room )
 	}
 	else
 	{
-		VDP_setTileMapXY ( APLAN, 0, 26, 20 );              // remove that tile
+		VDP_setTileMapXY ( PLAN_A, 0, 26, 20 );              // remove that tile
 		_set ( true );                                      // make it solid
 	}
 

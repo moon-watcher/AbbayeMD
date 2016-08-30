@@ -33,7 +33,7 @@ void checkpoint_save ( GameObject *check )
 	play_fx ( FX_SWITCH );
 
 	_set_object ( check );
-	updateSprites ( ); // SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+	SPR_update ( );
 
 	goUpdate ( player.go );
 	PlayerAction action = playerGetAction ( &player );

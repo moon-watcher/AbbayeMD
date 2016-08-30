@@ -124,34 +124,9 @@ u16 vram_count ( )
 
 
 
-/*
-void vram_sample ( void )
-{
-	vram_init(0);
-	vram_new(7);
-	u16 x = vram_new(13);
-	vram_new(927);
-	vram_delete ( x );
-	vram_new(2);
-	u16 y = vram_new(5);
-	vram_new(1);
-	vram_new(8);
-	vram_delete ( y );
-	vram_new(3);
-	vram_new(2);
-	vram_new(1);
-	vram_new(3);
-
-
-	vram_info();
-}
-
-
-
 void vram_info ()
 {
 	struct vram *aux = _list;
-
 
 	u8 i = 3;
 	u8 str[10];
@@ -174,4 +149,26 @@ void vram_info ()
 		i++;
 	}
 }
-*/
+
+
+
+//void vram_sample ( void )
+//{
+//	vram_init(0);
+//	vram_new(7);
+//	u16 x = vram_new(13);
+//	vram_new(927);
+//	vram_delete ( x );
+//	vram_new(2);
+//	u16 y = vram_new(5);
+//	vram_new(1);
+//	vram_new(8);
+//	vram_delete ( y );
+//	vram_new(3);
+//	vram_new(2);
+//	vram_new(1);
+//	vram_new(3);
+//
+//
+//	vram_info();
+//}

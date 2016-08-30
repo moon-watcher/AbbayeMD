@@ -44,9 +44,13 @@ void enemy_reset ( )
 
 
 
+/**
+ *
+ * Enemies doesn't kill you if...
+ *
+ */
 bool enemy_exceptions ( GameObject *go )
 {
-	// enemies doesn't kill you if...
 	return
 	(
 		// Toxic drop

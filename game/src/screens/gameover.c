@@ -17,15 +17,15 @@ void screen_gameover ( )
 
 	Screen *screen = (Screen*) screen_get ( 0 );
 
-	drawImage ( (Image*) screen->foreground, APLAN );
+	drawImage ( (Image*) screen->foreground, PLAN_A );
 
 	if ( screen->background != NULL )
 	{
-		drawImage ( (Image*) screen->background, BPLAN );
+		drawImage ( (Image*) screen->background, PLAN_B );
 	}
 
 
-	show_screen ( 0 );
+	displayOn ( 0 );
 
 	waitSc ( 6 );
 	waitJoySc ( 7 );

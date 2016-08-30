@@ -54,8 +54,8 @@ GameObject;
 #define goSetY(go,value)                ({ (go)->y = (value);  (go)->fix32y = intToFix32 ( (go)->y );  (go)->y; })
 #define goSetXY(go,vx,vy)               ({ (go)->x = (vx);     (go)->fix32x = intToFix32 ( (go)->x );  (go)->y = (vy);     (go)->fix32y = intToFix32 ( (go)->y ); })
 
-#define goIncX(go,value)		          ({ (go)->x += (value);  (go)->fix32x = intToFix32 ( (go)->x );  (go)->x; })
-#define goIncY(go,value)		          ({ (go)->y += (value);  (go)->fix32y = intToFix32 ( (go)->y );  (go)->y; })
+#define goIncX(go,value)		        ({ (go)->x += (value);  (go)->fix32x = intToFix32 ( (go)->x );  (go)->x; })
+#define goIncY(go,value)		        ({ (go)->y += (value);  (go)->fix32y = intToFix32 ( (go)->y );  (go)->y; })
 
 #define goIncFix32x(go,value)           ({ (go)->fix32x = fix32Add ( (go)->fix32x, (value) );  (go)->x = fix32ToInt ( (go)->fix32x );  (go)->x; })
 #define goIncFix32y(go,value)           ({ (go)->fix32y = fix32Add ( (go)->fix32y, (value) );  (go)->y = fix32ToInt ( (go)->fix32y );  (go)->y; })

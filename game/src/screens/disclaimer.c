@@ -219,20 +219,20 @@ static void drawDisclaimerGraphics( void )
 
 
 		tileIndex = TILE_USERINDEX;
-		VDP_drawImageEx( BPLAN, &screen_disclaimerBGImage_all, IMG_ATTRIBUTES( PAL0 ), 0, 0, 0, FALSE );
+		VDP_drawImageEx( PLAN_B, &screen_disclaimerBGImage_all, IMG_ATTRIBUTES( PAL0 ), 0, 0, 0, FALSE );
 
 		tileIndex += screen_disclaimerBGImage_all.tileset->numTile;
-		VDP_drawImageEx( APLAN, &screen_disclaimerLogoImage_all, IMG_ATTRIBUTES( PAL1 ), 9, 9, 0, FALSE );
+		VDP_drawImageEx( PLAN_A, &screen_disclaimerLogoImage_all, IMG_ATTRIBUTES( PAL1 ), 9, 9, 0, FALSE );
 
 		tileIndex += screen_disclaimerLogoImage_all.tileset->numTile;
-		VDP_drawImageEx( BPLAN, &screen_disclaimerLogoLedImage_all, IMG_ATTRIBUTES( PAL2 ), 26, 9, 0, FALSE );
+		VDP_drawImageEx( PLAN_B, &screen_disclaimerLogoLedImage_all, IMG_ATTRIBUTES( PAL2 ), 26, 9, 0, FALSE );
 
 	preparePal(PAL0, screen_disclaimerBGImage_all.palette->data);
 	preparePal(PAL1, screen_disclaimerLogoImage_all.palette->data);
 	preparePal(PAL2, screen_disclaimerLogoLedImage_all.palette->data);
 
 	//VDP_setEnable ( TRUE );
-	//show_screen ( 0 ); //displayOn();
+	//displayOn ( 0 ); //displayOn();
 }
 
 
@@ -280,25 +280,24 @@ extern const struct genresTiles screen_disclaimer_all;
 static void _disclaimer_simple ( )
 {
 	displayOff ( 0 );
-
 	resetScroll();
 	resetScreen();
 
 	u16 size = screen_disclaimer_all.width * screen_disclaimer_all.height;
 	u16 pos = vram_new ( size );
 	VDP_loadTileData ( screen_disclaimer_all.tiles, pos, size, 0 );
-	VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL(PAL1, 0, 0, 0, pos), 0, 0, screen_disclaimer_all.width, screen_disclaimer_all.height );
+	VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL(PAL1, 0, 0, 0, pos), 0, 0, screen_disclaimer_all.width, screen_disclaimer_all.height );
 
 	preparePal( PAL1, screen_disclaimer_all.pal);
 
-	show_screen ( 10 );
+	displayOn ( 10 );
 
 	waitJoySc ( 3 );
 
 	displayOff ( 10 );
 
 	VDP_resetSprites();
-	VDP_updateSprites();
+	VDP_updateSprites(80,1);
 }
 
 

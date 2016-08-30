@@ -16,7 +16,7 @@ void palette_init ( )
 	prepareColor (  0, palette_list [ game.version ] [ 0 ]->data [  0 ] );
 	prepareColor (  1, palette_list [ game.version ] [ 0 ]->data [  1 ] );
 
-	// shadow of text
+	// text's shadow
 	if ( game.version == VERSION_MD )
 	{
 		prepareColor (  2, palette_list [ game.version ] [ 0 ]->data [  2 ] );

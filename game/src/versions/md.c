@@ -28,7 +28,7 @@ const Entity entity_10_md  = { 10, "Yellow hint",             12, (SpriteDefinit
 const Entity entity_11_md  = { 11, "Heart",                   11, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_HEART,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
 const Entity entity_12_md  = { 12, "Cross",                    0, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_CROSS,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
 const Entity entity_13_md  = { 13, "Inverted cross",           1, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_INV_CROSS,            0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
-const Entity entity_14_md  = { 14, "Cursader",                 0, (SpriteDefinition*) &crusaders_2x3_md, PAL2, ENTITY_ENEMY,      FIX32(0.60),           0, FIX32(0.20), 0, 1, 0, NULL, mcb_crusader,    0, {  7,  5,  0,  5 } };
+const Entity entity_14_md  = { 14, "Crusader",                 0, (SpriteDefinition*) &crusaders_2x3_md, PAL2, ENTITY_ENEMY,      FIX32(0.60),           0, FIX32(0.20), 0, 1, 0, NULL, mcb_crusader,    0, {  7,  5,  0,  5 } };
 const Entity entity_15_md  = { 15, "Water",                    6, (SpriteDefinition*) &enemies_2x1_md,   PAL2, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
 const Entity entity_16_md  = { 16, "Fire",                    11, (SpriteDefinition*) &enemies_2x2_md,   PAL2, ENTITY_NULL,              zero,        zero,        zero, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
 const Entity entity_17_md  = { 17, "Rat",                      0, (SpriteDefinition*) &rat_2x2_md,       PAL2, ENTITY_ENEMY,      FIX32(0.60),        zero,        zero, 0, 1, 0, NULL, mcb_udlr,        0, {  7,  0,  0,  0 } };
@@ -134,7 +134,7 @@ const Objects objects_20_md = // Tower of the Bell // OK // MD: Hacer que la cam
             { (Entity*) &entity_17_md, 216, 144, -1,  0 }, // Rat
             { (Entity*) &entity_11_md,  96,  56,  0,  0 }, // Heart
 
-            { (Entity*) &entity_md_97, 30, 48,  0,  0 }, // Philippe
+            { (Entity*) &entity_md_97, 30, 48,  0,  0 }, // Philippe like crusaders
 	}
 };
 
@@ -191,7 +191,7 @@ const Objects objects_01_md = // Escape !!! // OK
             { (Entity*) &entity_14_md,  -90, 136, +1,  0 }, // Crusader
             { (Entity*) &entity_14_md, -110, 136, +1,  0 }, // Crusader
             { (Entity*) &entity_14_md, -130, 136, +1,  0 }, // Crusader
-            { (Entity*) &entity_14_md, -150, 136, +1,  0 }, // Crusader
+//            { (Entity*) &entity_14_md, -150, 136, +1,  0 }, // Crusader
 	}
 };
 
@@ -212,7 +212,7 @@ const Objects objects_11_md = // Death is close !!! // OK
             { (Entity*) &entity_14_md,  -90, 136, +1,  0 }, // Crusader
             { (Entity*) &entity_14_md, -110, 136, +1,  0 }, // Crusader
             { (Entity*) &entity_14_md, -130, 136, +1,  0 }, // Crusader
-            { (Entity*) &entity_14_md, -150, 136, +1,  0 }, // Crusader
+//            { (Entity*) &entity_14_md, -150, 136, +1,  0 }, // Crusader
       }
 };
 
@@ -260,7 +260,7 @@ const Objects objects_41_md = // Hangman Tree // OK
             { (Entity*) &entity_md_89, -10, 136,  0,  0 }, // Leaf
             { (Entity*) &entity_md_89, -20, 136,  0,  0 }, // Leaf
             { (Entity*) &entity_md_89, -30, 136,  0,  0 }, // Leaf
-            { (Entity*) &entity_md_89, -30, 136,  0,  0 }, // Leaf
+//            { (Entity*) &entity_md_89, -30, 136,  0,  0 }, // Leaf
 
             { (Entity*) &entity_37_md, 152, 104,  0, +1 }, // Hangman
             { (Entity*) &entity_38_md, 152,  88,  0,  0 }, // Rope
@@ -639,13 +639,13 @@ const Objects objects_34_md = // Ashes to ashes // OK
             { (Entity*) &entity_23_md, 160,   8, -1,  0, FIX32(0.75),  0, 0, 1 }, // Swordsman's skeleton
 
 
-            { (Entity*) &entity_md_97, 230, 136,  0,  0 }, // Philippe
-            { (Entity*) &entity_md_97, 203, 136,  0,  0 }, // Philippe
-            { (Entity*) &entity_md_97, 217, 128,  0,  0 }, // Philippe
+            { (Entity*) &entity_md_97, 230, 136,  0,  0 }, // Philippe like crusaders
+            { (Entity*) &entity_md_97, 203, 136,  0,  0 }, // Philippe like crusaders
+            { (Entity*) &entity_md_97, 217, 128,  0,  0 }, // Philippe like crusaders
 
-            { (Entity*) &entity_md_97, 140, 136,  0,  0 }, // Philippe
+            { (Entity*) &entity_md_97, 140, 136,  0,  0 }, // Philippe like crusaders
 
-            { (Entity*) &entity_md_97,  94,  56,  0,  0 }, // Philippe
+            { (Entity*) &entity_md_97,  94,  56,  0,  0 }, // Philippe like crusaders
 
             { (Entity*) &entity_08_md, 136, 136,  0,  0 }, // Checkpoint
 	}
@@ -663,7 +663,7 @@ const Objects objects_44_md = // Satan!!! // TODO
             { (Entity*) &entity_14_md,  -90, 136, +1,  0 }, // Crusader
             { (Entity*) &entity_14_md, -110, 136, +1,  0 }, // Crusader
             { (Entity*) &entity_14_md, -130, 136, +1,  0 }, // Crusader
-            { (Entity*) &entity_14_md, -150, 136, +1,  0 }, // Crusader
+//            { (Entity*) &entity_14_md, -150, 136, +1,  0 }, // Crusader
 
             { (Entity*) &entity_59_md, 120,  16,  0,  0 }, // Grial
             { (Entity*) &entity_60_md, 222, 111,  0,  0 }, // Red hint
@@ -709,6 +709,8 @@ const Objects objects_prologue_md =
             { (Entity*) &entity_14_md,  -70, 116, +1,  0, FIX32(0.50) }, // Crusader
             { (Entity*) &entity_14_md,  -95, 116, +1,  0, FIX32(0.50) }, // Crusader
             { (Entity*) &entity_14_md, -120, 116, +1,  0, FIX32(0.50) }, // Crusader
+            { (Entity*) &entity_14_md, -145, 116, +1,  0, FIX32(0.50) }, // Crusader
+            { (Entity*) &entity_14_md, -170, 116, +1,  0, FIX32(0.50) }, // Crusader
       }
 };
 
@@ -788,11 +790,11 @@ const Mask mask_41_md =
    {
       {  1,  1,  1, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,  0,  0,  1,  1 },
       {  1,  1,  1, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,  0,  0,  0,  1,  1 },
-      {  1,  1,  1,  0, 64, 64, 64, 64, 64, 64, 64,  0,  2,  0, 64, 64, 64, 64, 64, 64,  0, 64, 64, 64,  0,  0,  0,  0,  0,  2,  1,  1 },
+      {  1,  1,  1,  0, 64, 64, 64, 64, 64, 64, 64,  0,  2,  0, 64, 64, 64, 64, 64, 64,  0, 64, 64, 64,  0,  0,  0,  0,  0,  1,  1,  1 },
       {  1,  1,  1,  0,  0,  0, 64,  0, 64, 64,  0,  0,  0,  0,  0, 64, 64,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1 },
       {  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1 },
       {  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1 },
-      {  1,  1,  1,  0,  0,  0,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0,  0, 16,  0,  0,  0,  0,  0,  0, 16,  0,  0,  0,  0,  2,  1,  1 },
+      {  1,  1,  1,  0,  0,  0,  2,  2,  2,  2,  2,  2,  2,  2,  0,  0,  0, 16,  0,  0,  0,  0,  0,  0, 16,  0,  0,  0,  2,  0,  1,  1 },
       {  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  2,  2,  2,  2,  2,  2,  0,  0,  0,  0,  0,  0,  1,  1 },
       {  1,  1,  1,  0,  0,  0,  0, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1 },
       {  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 16,  0,  0,  2,  0,  0,  0,  1,  1 },

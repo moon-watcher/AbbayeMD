@@ -65,14 +65,14 @@ Vect2D_f32;
 
 
 void  my_SPR_setFrame            ( Sprite *sprite, s16 frame );
-void  SPR_setVFlip               ( Sprite *sprite, u8 VFlip );
-void  SPR_setHFlip               ( Sprite *sprite, u8 HFlip );
+//void  SPR_setVFlip               ( Sprite *sprite, u8 VFlip );
+//void  SPR_setHFlip               ( Sprite *sprite, u8 HFlip );
+//void  SPR_setVisible             ( Sprite *sprite, u16 visible );
 u16   SPR_nbTiles                ( Sprite *sprite );
 s16   SPR_getXPosition           ( Sprite *sprite );
 s16   SPR_getYPosition           ( Sprite *sprite );
 void  SPR_setTimer               ( Sprite *sprite, u16 timer );
-void  SPR_setVisible             ( Sprite *sprite, u16 visible );
-void  SPR_setAll                 ( Sprite *sprite, s16 visible, s16 frame, s16 timer );
+void  SPR_setValues              ( Sprite *sprite, s16 visible, s16 frame, s16 timer );
 u16   SPR_getNextFrame           ( Sprite *sprite );
 
 
@@ -88,9 +88,9 @@ u16   my_strcmp                  ( u8 *str1, u8 *str2 );
 void  drawText                   ( const char *str, u16 x, u16 y );
 void  drawInt                    ( u32 number, u8 x, u8 y, u8 leading_zeros );
 void  drawUInt                   ( u32 number, u8 x, u8 y, u8 leading_zeros );
-void  drawUIntBG                 ( u32 number, u8 x, u8 y, u8 leading_zeros, u16 plan, u16 flags );
-u16   drawImage                  ( Image *image, u16 plan );
-u16   drawImageXY                ( Image *image, u16 plan, u16 x, u16 y );
+void  drawUIntBG                 ( u32 number, u8 x, u8 y, u8 leading_zeros, VDPPlan plan, u16 flags );
+u16   drawImage                  ( Image *image, VDPPlan plan );
+u16   drawImageXY                ( Image *image, VDPPlan plan, u16 x, u16 y );
 void  drawMem                    ( u8 x, u8 y );
 u32   ntsc2pal                   ( u32 value );
 u8    getHz                      ( );
@@ -106,12 +106,12 @@ void  resetSprites               ( );
 void  resetScreen                ( );
 void  fadeIn                     ( u16 pal0[16], u16 pal1[16], u16 pal2[16], u16 pal3[16], u16 numframe, u8 async );
 
-void  VDP_setSpriteAttributes    ( u16 index, u16 tile_attr );
+void  VDP_setSpriteAttributes    ( u16 index, u16 attribut );
 void  VDP_setSpriteVRAM          ( u16 index, u16 pos );
 void  VDP_setSpritePiority       ( u16 index, u16 high );
-u16   VDP_getTile                ( u16 plan, u16 x, u16 y );
-void  VDP_setTilePriority        ( u16 plan, u16 value, u16 x, u16 y );
-void  VDP_setTileVRAM            ( u16 plan, u16 index, u16 x, u16 y );
+u16   VDP_getTile                ( VDPPlan plan, u16 x, u16 y );
+void  VDP_setTilePriority        ( VDPPlan plan, u16 value, u16 x, u16 y );
+void  VDP_setTileVRAM            ( VDPPlan plan, u16 index, u16 x, u16 y );
 s16   VDP_getHorizontalScroll    ( VDPPlan plan );
 s16   VDP_getVerticalScroll      ( VDPPlan plan );
 
@@ -130,9 +130,10 @@ void  setDoor                    ( GameObject *door, bool value );
 
 void  invert_cross               ( GameObject *cross );
 void  setActive                  ( GameObject *go, u8 active );
-void  update_palette_pressed     ( );
-void  update_palette             ( );
-void  show_screen                ( u16 wait );
+u16   apply_alt_palettes        ( );
+void  apply_alt_palettes_joy    ( );
+//void  apply_alt_palettes_pressed     ( );
+//void  displayOn                ( u16 wait );
 //u16   find_values                ( u16 needle, u16 value, ... );
 
 void  pack_vram_init             ( );
@@ -141,6 +142,6 @@ void  pack_vram_add              ( GameObject *go );
 void swap_tiles                  ( Vect2D_u16 exception[], u8 count, u16 x1, u16 y1, u16 x2, u16 y2 );
 
 void alternate_color_in_cm       ( );
-void updateSprites               ( );
+
 
 #endif

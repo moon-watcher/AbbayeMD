@@ -75,15 +75,15 @@ static void _draw_screen()
 
 	Screen *screen = (Screen*) screen_get ( 12 );
 
-	SPR_init ( 1 ); // SPR_init ( 200 );
+	SPR_init ( 80, 500, 0 ); // SPR_init ( 1 ); // SPR_init ( 200 );
 	goManagerInit ( &lObjects );
 	_add_objects ( screen->objects );
 
 
-	SPR_update ( (Sprite*) &lSprites, lSpriteCounter );
+	SPR_update ( );
 
 
-	show_screen ( 10 );
+	displayOn ( 10 );
 }
 
 
@@ -120,7 +120,7 @@ void screen_info ()
 		}
 
 
-		SPR_update ( (Sprite*) &lSprites, lSpriteCounter );
+		SPR_update ( );
 		VDP_waitVSync ( );
 	}
 

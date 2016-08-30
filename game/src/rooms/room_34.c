@@ -66,7 +66,7 @@ static void _room_stay ( Room *room )
 			//waitHz(getHz());
 			setActive ( door, 0 );
 			play_fx ( FX_DOOR );
-			SPR_update ( (Sprite*) &waSprites, wvSpriteCounter );
+			SPR_update ( );
 
 			waitSc(1);
 			displayOff ( getHz()*2 );

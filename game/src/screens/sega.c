@@ -64,15 +64,16 @@ void screen_sega ( )
 
 	displayOff(0);
 	resetScreen();
+	resetScroll();
+
 	waitSc(1);
 
-	//VDP_setEnable ( FALSE );
 
-	//VDP_setPalette ( PAL1, palette_black );
+	SYS_disableInts();
 	VDP_loadTileData ( logo_sega.tiles, 16, logo_sega.width * logo_sega.height, 1 );
-	VDP_fillTileMapRectInc ( APLAN, TILE_ATTR_FULL(PAL1, 0, 0, 0, 16), 14, 12, logo_sega.width, logo_sega.height );
+	VDP_fillTileMapRectInc ( PLAN_A, TILE_ATTR_FULL(PAL1, 0, 0, 0, 16), 14, 12, logo_sega.width, logo_sega.height );
+	SYS_enableInts();
 
-	//VDP_setEnable ( TRUE );
 
 	const u16 hz = getHz();
 

@@ -2,7 +2,8 @@
 
 
 
-#define HZ_TO_REACTIVATE  getHz ( ) * 2
+//#define HZ_TO_REACTIVATE  getHz ( ) * 3
+#define HZ_TO_REACTIVATE  150
 
 
 
@@ -68,13 +69,18 @@ void switch_touched ( GameObject *go )
 		{
 			goSetObject ( go, checked ? &s->on : &s->off );
 
-			play_fx ( FX_SWITCH );
+			//play_fx ( FX_SWITCH );
+			play_fx ( FX_CHECKPOINT );
 
 			// update the sprite before waitHz()
 			SPR_update ( );
 			VDP_waitVSync ( );
 
-			waitHz ( getHz() );
+			SND_pausePlay_XGM();
+
+			waitHz ( 80 );
+
+			SND_resumePlay_XGM();
 		}
 
 		if ( game.room.x == 2  &&  game.room.y == 3 )
@@ -110,11 +116,13 @@ bool switch_ring_bell ( GameObject *go, Switch *sw )
 {
 	s16 timeout = getHz()*2;
 
-	play_fx ( FX_SWITCH );
+	play_fx ( FX_CHAIN );
 
 	goSetObject ( go, &sw->transaction );
 	goIncX ( go, -8 );
 	SPR_setPosition ( go->sprite, go->x, go->y );
+
+	SND_pausePlay_XGM();
 
 	while ( timeout-- )
 	{
@@ -134,6 +142,8 @@ bool switch_ring_bell ( GameObject *go, Switch *sw )
 	goSetObject ( go, &sw->on );
 	goIncX ( go, +8 );
 	SPR_setPosition ( go->sprite, go->x, go->y );
+
+	SND_resumePlay_XGM();
 
 	return false;
 }

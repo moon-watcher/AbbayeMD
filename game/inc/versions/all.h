@@ -49,18 +49,8 @@ const Music music_07_all;
 const Music music_08_all;
 const Music music_09_all;
 const Music music_10_all;
+const Music music_11_all;
 
-
-
-
-const Fx fx_01_all;
-const Fx fx_02_all;
-const Fx fx_03_all;
-const Fx fx_04_all;
-const Fx fx_05_all;
-const Fx fx_06_all;
-const Fx fx_07_all;
-const Fx fx_08_all;
 
 
 

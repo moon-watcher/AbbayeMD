@@ -68,13 +68,13 @@ void screen_prologue ( )
 	goManagerInit ( &lObjects );
 	_add_objects ( screen->objects );
 
-	displayOn ( 10 );
-
 
 	u16 count = getHz() * 10;
 
 	listptrNode *node;
 	GameObject  *go;
+
+	bool shown = false;
 
 	while ( count-- )
 	{
@@ -92,6 +92,13 @@ void screen_prologue ( )
 
 		SPR_update ( );
 		VDP_waitVSync ( );
+
+		if ( !shown )
+		{
+			displayOn ( 10 );
+			shown = true;
+		}
+
 
 		if ( count == 20 )
 		{

@@ -12,7 +12,6 @@ typedef struct
 	u8   channel;
 	u8   repeat;
 	u32  size;
-	u8   xgm_id;
 	u8   priority;
 }
 Fx;

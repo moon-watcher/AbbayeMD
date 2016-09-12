@@ -1,10 +1,14 @@
-WAV fx_door_all   "../../data/all/fx/door.wav"   XMG
-WAV fx_hit_all    "../../data/all/fx/hit.wav"    XMG
-WAV fx_item_all   "../../data/all/fx/item.wav"   XMG
-WAV fx_jump_all   "../../data/all/fx/jump.wav"   XMG
-WAV fx_shoot_all  "../../data/all/fx/shoot.wav"  XMG
-WAV fx_slash_all  "../../data/all/fx/slash.wav"  XMG
-WAV fx_switch_all "../../data/all/fx/switch.wav" XMG
-WAV fx_tree_all   "../../data/all/fx/tree.wav"   XMG
-
-
+WAV fx_door_all       "../../data/all/fx/door.wav"           XMG
+WAV fx_hit_all        "../../data/all/fx/hit.wav"            XMG
+WAV fx_item_all       "../../data/all/fx/item.wav"           XMG
+WAV fx_jump_all       "../../data/all/fx/jeanjump.wav"       XMG
+WAV fx_shoot_all      "../../data/all/fx/shoot.wav"          XMG
+WAV fx_slash_all      "../../data/all/fx/slash.wav"          XMG
+WAV fx_switch_all     "../../data/all/fx/switch.wav"         XMG
+WAV fx_tree_all       "../../data/all/fx/tree.wav"           XMG
+WAV fx_lighting_all   "../../data/all/fx/titlelightning.wav" XMG
+WAV fx_spit_all       "../../data/all/fx/spit.wav"           XMG
+WAV fx_lavaball_all   "../../data/all/fx/lavaballs.wav"      XMG
+WAV fx_chain_all      "../../data/all/fx/chain.wav"          XMG
+WAV fx_close_door_all "../../data/all/fx/doorbump.wav"       XMG
+WAV fx_checkpoint_all "../../data/all/fx/stonecross.wav"     XMG

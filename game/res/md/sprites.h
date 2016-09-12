@@ -41,5 +41,6 @@ extern const SpriteDefinition passage1_2x3_md;
 extern const SpriteDefinition passage2_2x3_md;
 extern const SpriteDefinition leaf6_1x1_md;
 extern const SpriteDefinition leaf7_1x1_md;
+extern const SpriteDefinition evil_jean_2x3_md;
 
 #endif // _GAME_RES_MD_SPRITES_H_

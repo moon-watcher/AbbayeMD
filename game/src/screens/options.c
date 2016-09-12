@@ -75,7 +75,7 @@ void _change_difficult ( bool update )
 
 
 
-static void _change_music(bool init )
+static void _change_music ( bool init )
 {
 	if ( right ) music++;
 	if ( left  ) music--;
@@ -97,7 +97,7 @@ static void _change_music(bool init )
 
 
 
-static void _change_fx(bool init )
+static void _change_fx ( bool init )
 {
 	if ( right ) fx++;
 	if ( left  ) fx--;

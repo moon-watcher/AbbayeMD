@@ -17,13 +17,13 @@ static u16 vrampos_copy = 0;
 
 static void _lighting ( int nb )
 {
-   u16 j, wait = 8;
+	u16 j, wait = 8;
 	u16 pal [ 16 ] = { VDP_getPaletteColor(0) };
 
-   for ( j = 1; j < 16; j++ )
-   {
-      pal [ j ] = palette_lighting_all.data [ (nb) ];
-   }
+	for ( j = 1; j < 16; j++ )
+	{
+		pal [ j ] = palette_lighting_all.data [ (nb) ];
+	}
 
 	VDP_setPalette ( PAL0, pal );
 	VDP_setPalette ( PAL1, pal );
@@ -40,12 +40,14 @@ static void _blink_option ( )
 	}
 
 
-   u16 j;
+	u16 j;
 	u16 saved_a [ 16 ];
 	u16 saved_b [ 16 ];
 
 	VDP_getPaletteColors (  0, saved_b, 16 );
 	VDP_getPaletteColors ( 16, saved_a, 16 );
+
+	play_fx ( FX_LIGHTING );
 
 	_lighting(1);      // white
 
@@ -53,7 +55,7 @@ static void _blink_option ( )
 	VDP_setPalette ( PAL0, saved_b );
 	VDP_setPalette ( PAL1, saved_a );
 
-   for ( j=0; j<10; j++ ) VDP_waitVSync();
+	for ( j=0; j<10; j++ ) VDP_waitVSync();
 
 	_lighting(2);      // yellow
 	_lighting(3);      // dark yellow
@@ -67,7 +69,7 @@ static void _blink_option ( )
 
 	displayOff(40);
 
-   waitSc(1);
+	waitSc(1);
 }
 
 
@@ -228,7 +230,7 @@ static s8 _control ( )
 			}
 			else
 			{
-			   musicStop();
+				musicStop();
 				_blink_option ( );
 
 				return opcion;
@@ -260,7 +262,7 @@ u16 screen_title ( )
 
 
 
-	if ( DEV ) return 1;
+//	if ( DEV ) return 1;
 
 
 

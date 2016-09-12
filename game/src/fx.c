@@ -3,8 +3,7 @@
 
 void fxInit ( )
 {
-   return;
-
+   //return;
 
    int i = FX_MAX;
 
@@ -12,7 +11,7 @@ void fxInit ( )
    {
       Fx *fx =  (Fx*) fx_list [ game.version ] [ i ];
 
-      SND_setPCM_XGM ( fx->xgm_id, fx->sample, fx->size );
+      SND_setPCM_XGM ( 64 + fx->id, fx->sample, fx->size );
    }
 }
 
@@ -25,8 +24,8 @@ void fxPlay ( Fx *fx )
       SND_stopPlayPCM_XGM ( fx->channel );
    }
 
-   SND_setPCM_XGM ( fx->xgm_id, fx->sample, fx->size );
-   SND_startPlayPCM_XGM ( fx->xgm_id, fx->priority, fx->channel );
+   //SND_setPCM_XGM ( 64 + fx->id, fx->sample, fx->size );
+   SND_startPlayPCM_XGM ( 64 + fx->id, fx->priority, fx->channel );
 }
 
 

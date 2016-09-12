@@ -25,20 +25,9 @@ void musicPlay ( Music *track )
 
 	if ( current && current->track )
 	{
-		VDP_waitVSync();
+		//VDP_waitVSync();
 		SND_startPlay_XGM ( current->track );
 	}
-
-
-
-//	musicStop ( );
-//	current = track;
-//
-//	VDP_waitVSync ( );
-//	SYS_disableInts();
-//	SND_startPlay_XGM ( current->track );
-//	SYS_enableInts();
-//	VDP_waitVSync ( );
 }
 
 
@@ -51,14 +40,27 @@ void musicStop ( )
     }
 
 	current = NULL;
+}
+
+
+
+
+//	musicStop ( );
+//	current = track;
+//
+//	VDP_waitVSync ( );
+//	SYS_disableInts();
+//	SND_startPlay_XGM ( current->track );
+//	SYS_enableInts();
+//	VDP_waitVSync ( );
+
+
 
 //	VDP_waitVSync ( );
 //	SYS_disableInts();
 //	SND_stopPlay_XGM ( );
 //	SYS_enableInts();
 //	VDP_waitVSync ( );
-}
-
 
 
 

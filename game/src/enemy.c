@@ -56,6 +56,9 @@ bool enemy_exceptions ( GameObject *go )
 		// Toxic drop
 		( go->object->entity->id == 54  &&  go->sprite->frameInd != 2 )
 
+		// in_crusader mode and is crusader
+		|| ( game.crusader  &&  go->object->entity->id == 14 )
+
 //		|| ( tal ) // exception 1
 //		|| ( tal ) // exception 2
 //		|| ( tal ) // exception 3

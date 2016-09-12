@@ -21,5 +21,6 @@ extern const SpriteDefinition objects_4x2_pc;
 extern const SpriteDefinition satan_4x6_pc;
 extern const SpriteDefinition hatch_2x2_pc;
 extern const SpriteDefinition bonfire_6x8_pc;
+extern const SpriteDefinition evil_jean_2x3_pc;
 
 #endif // _GAME_RES_PC_SPRITES_H_

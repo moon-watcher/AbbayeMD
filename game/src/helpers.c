@@ -84,6 +84,25 @@
 
 
 
+void SPR_setVRAMDirect ( Sprite *sprite, u16 vrampos )
+{
+	sprite->attribut = ( sprite->attribut & TILE_ATTR_MASK ) | vrampos;
+	sprite->status |= 0x0001; // NEED_ST_ATTR_UPDATE;
+	sprite->timer = 0;
+}
+
+bool SPR_isLastFrame ( Sprite *sprite )
+{
+    return ( sprite->frameInd == sprite->animation->numFrame - 1 ) ? true : false;
+}
+
+
+u16 SPR_countFrames ( Sprite *sprite )
+{
+    return sprite->animation->numFrame;
+}
+
+
 u16 SPR_nbTiles ( Sprite *sprite )
 {
     // see SPRITE_SIZE macro
@@ -314,6 +333,57 @@ s16 VDP_getVerticalScroll ( VDPPlan plan )
     *pl = GFX_READ_VSRAM_ADDR(addr);
 
     return (s16) *pw;
+}
+
+
+void VDP_fillGenresSpriteAsImage ( VDPPlan plan, u16 basetile, u16 x, u16 y, u16 w, u16 h )
+{
+   u32 addr;
+   u32 width;
+   u16 i, j;
+
+   switch(plan.plan)
+   {
+      case CONST_PLAN_A:
+         addr = aplan_adr + ((x + (y << planWidthSft)) * 2);
+         width = planWidth;
+         break;
+
+      case CONST_PLAN_B:
+         addr = bplan_adr + ((x + (y << planWidthSft)) * 2);
+         width = planWidth;
+         break;
+
+      case CONST_PLAN_WINDOW:
+         addr = window_adr + ((x + (y << windowWidthSft)) * 2);
+         width = windowWidth;
+         break;
+
+      default:
+         return;
+   }
+
+   VDP_setAutoInc(2);
+
+   /* point to vdp port */
+   vu32 *plctrl = (u32 *) GFX_CTRL_PORT;
+   vu16 *pwdata = (u16 *) GFX_DATA_PORT;
+
+   for ( i = 0; i < w; i++ )
+   {
+      u16 tile = basetile + ( h - 1 ) * i;
+
+      *plctrl = GFX_WRITE_VRAM_ADDR ( addr );
+
+      j = w;
+      while ( j-- )
+      {
+         *pwdata = tile;
+         tile += w;
+      }
+
+      addr += width * 2;
+   }
 }
 
 
@@ -817,8 +887,12 @@ void hide_door ( GameObject *door )
 
     SPR_update ( );
 
-    play_fx ( FX_DOOR );
-    waitHz ( getHz() );
+    SND_pausePlay_XGM();
+
+    play_fx ( FX_CHECKPOINT );
+    waitHz ( 80 );
+
+    SND_resumePlay_XGM();
 }
 
 
@@ -930,14 +1004,16 @@ void pack_vram_init ( )
 
 void pack_vram_add ( GameObject *go )
 {
+    // 34, 58 removed
+
     #define PACKED_OBJECTS   11, 12, 13, 14, 15, 16, 17, 18, 19, \
 	                         21, 23, 24, 25, 28, 29, \
-	                         30, 32, 33, 34, 37, 38, \
+	                         30, 32, 33, 37, 38, \
 	                         41, \
-	                         50, 53, 55, 58, \
+	                         50, 53, 55, \
 	                         61, \
 	                         81, 82, 86, 87, 88, 89, \
-	                         90, 96, 97
+	                         90, 94, 96, 97
 
 
     if ( in_array ( go->object->entity->id, (u16[]) { PACKED_OBJECTS, 0 } ) )
@@ -1017,4 +1093,24 @@ void alternate_color_in_cm ( )
     prepareColor ( variations[i].pos2, variations[i].color2 );
 }
 
+
+// http://totaki.com/poesiabinaria/2010/12/separar-palabras-de-una-cadena-de-caracteres-en-un-array-c/
+//u16 explode ( u8 *delim, u8 *orig, u8 *args[] )
+//{
+//   u8 *tmp;
+//   u16 num = 0;
+//
+//   u8 *str = MEM_alloc ( strlen(orig)+1 );
+//   strcpy ( str, orig );
+//
+//   tmp = (u8*) strtok ( str, delim );
+//   do
+//   {
+//      args [ num++ ] = tmp;
+//      tmp = (u8*) strtok ( NULL, delim );
+//   }
+//   while ( tmp );
+//
+//   return num;
+//}
 

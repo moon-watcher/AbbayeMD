@@ -56,8 +56,12 @@ static void _room_stay ( Room *room )
 
 		itemSetChecked ( door->item, 1 );
 
-		play_fx ( FX_DOOR );
-		waitHz ( getHz() );
+		SND_pausePlay_XGM();
+		play_fx ( FX_CLOSE_DOOR );
+
+		waitHz ( 80 );
+
+		SND_resumePlay_XGM();
 
 		nb_leaf = 0;
 	}
@@ -69,7 +73,8 @@ static void _room_stay ( Room *room )
 
 	else if ( itemGetChecked ( door->item )  &&  door->x == 0  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
 	{
-		play_fx ( FX_JUMP );
+		//play_fx ( FX_JUMP );
+		play_fx ( FX_CLOSE_DOOR );
 		goIncX ( door, 2 );
 	}
 
@@ -84,7 +89,8 @@ static void _room_stay ( Room *room )
 
 			itemSetChecked ( door->item, 0 );
 
-			play_fx ( FX_DOOR );
+			//play_fx ( FX_DOOR );
+			play_fx ( FX_CLOSE_DOOR );
 			waitHz ( getHz() );
 
 

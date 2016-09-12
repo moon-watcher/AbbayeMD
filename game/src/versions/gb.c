@@ -1104,34 +1104,32 @@ const Mask mask_44_gb =
    }
 };
 
-const Room room_00_gb = { (Image*) &room_00_f_gb, NULL, (Objects*) &objects_null,  (Mask*) &mask_00_all, (Image*) &text_00_gb, (Music*) &music_00_all,         room_null };
-const Room room_01_gb = { (Image*) &room_01_f_gb, NULL, (Objects*) &objects_01_gb, (Mask*) &mask_01_all, (Image*) &text_01_gb, (Music*) &music_08_all,         room_null };
-const Room room_02_gb = { (Image*) &room_02_f_gb, NULL, (Objects*) &objects_02_gb, (Mask*) &mask_02_gb,  (Image*) &text_02_gb, (Music*) &music_02_all, room_funct_02_all };
-const Room room_03_gb = { (Image*) &room_03_f_gb, NULL, (Objects*) &objects_03_gb, (Mask*) &mask_03_gb,  (Image*) &text_03_gb, (Music*) &music_02_all, room_funct_03_all };
-const Room room_04_gb = { (Image*) &room_04_f_gb, NULL, (Objects*) &objects_04_gb, (Mask*) &mask_04_gb,  (Image*) &text_04_gb, (Music*) &music_02_all, room_funct_04_all };
+const Room room_00_gb = { (Image*) &room_00_f_gb, NULL,                   (Objects*) &objects_null,  (Mask*) &mask_00_all, (Image*) &text_00_gb, (Music*) &music_00_all,         room_null };
+const Room room_01_gb = { (Image*) &room_01_f_gb, NULL,                   (Objects*) &objects_01_gb, (Mask*) &mask_01_all, (Image*) &text_01_gb, (Music*) &music_08_all,         room_null };
+const Room room_02_gb = { (Image*) &room_02_f_gb, NULL,                   (Objects*) &objects_02_gb, (Mask*) &mask_02_gb,  (Image*) &text_02_gb, (Music*) &music_02_all, room_funct_02_all };
+const Room room_03_gb = { (Image*) &room_03_f_gb, NULL,                   (Objects*) &objects_03_gb, (Mask*) &mask_03_gb,  (Image*) &text_03_gb, (Music*) &music_02_all, room_funct_03_all };
+const Room room_04_gb = { (Image*) &room_04_f_gb, NULL,                   (Objects*) &objects_04_gb, (Mask*) &mask_04_gb,  (Image*) &text_04_gb, (Music*) &music_02_all, room_funct_04_all };
 
 const Room room_10_gb = { (Image*) &room_10_f_gb, (Image*) &room_10_b_gb, (Objects*) &objects_null,  (Mask*) &mask_10_all, (Image*) &text_10_gb, (Music*) &music_10_all, room_funct_10_all };
 const Room room_11_gb = { (Image*) &room_11_f_gb, (Image*) &room_11_b_gb, (Objects*) &objects_11_gb, (Mask*) &mask_11_all, (Image*) &text_11_gb, (Music*) &music_08_all, room_funct_11_all };
-const Room room_12_gb = { (Image*) &room_12_f_gb, NULL, (Objects*) &objects_12_gb, (Mask*) &mask_12_all, (Image*) &text_12_gb, (Music*) &music_02_all, room_funct_12_all };
-const Room room_13_gb = { (Image*) &room_13_f_gb, NULL, (Objects*) &objects_13_gb, (Mask*) &mask_13_gb,  (Image*) &text_13_gb, (Music*) &music_02_all, room_funct_13_all };
-const Room room_14_gb = { (Image*) &room_14_f_gb, NULL, (Objects*) &objects_14_gb, (Mask*) &mask_14_all, (Image*) &text_14_gb, (Music*) &music_03_all, room_funct_14_all };
+const Room room_12_gb = { (Image*) &room_12_f_gb, NULL,                   (Objects*) &objects_12_gb, (Mask*) &mask_12_all, (Image*) &text_12_gb, (Music*) &music_02_all, room_funct_12_all };
+const Room room_13_gb = { (Image*) &room_13_f_gb, NULL,                   (Objects*) &objects_13_gb, (Mask*) &mask_13_gb,  (Image*) &text_13_gb, (Music*) &music_02_all, room_funct_13_all };
+const Room room_14_gb = { (Image*) &room_14_f_gb, NULL,                   (Objects*) &objects_14_gb, (Mask*) &mask_14_all, (Image*) &text_14_gb, (Music*) &music_03_all, room_funct_14_all };
 
 const Room room_20_gb = { (Image*) &room_20_f_gb, (Image*) &room_20_b_gb, (Objects*) &objects_20_gb, (Mask*) &mask_20_gb,  (Image*) &text_20_gb, (Music*) &music_01_all, room_funct_20_all };
-const Room room_21_gb = { (Image*) &room_21_f_gb, NULL, (Objects*) &objects_21_gb, (Mask*) &mask_21_gb,  (Image*) &text_21_gb, (Music*) &music_01_all, room_funct_21_all };
-const Room room_22_gb = { (Image*) &room_22_f_gb, NULL, (Objects*) &objects_22_gb, (Mask*) &mask_22_gb,  (Image*) &text_22_gb, (Music*) &music_01_all,         room_null };
-const Room room_23_gb = { (Image*) &room_23_f_gb, NULL, (Objects*) &objects_23_gb, (Mask*) &mask_23_gb,  (Image*) &text_23_gb, (Music*) &music_01_all, room_funct_23_all };
-const Room room_24_gb = { (Image*) &room_24_f_gb, NULL, (Objects*) &objects_24_gb, (Mask*) &mask_24_gb,  (Image*) &text_24_gb, (Music*) &music_03_all, room_funct_24_all };
+const Room room_21_gb = { (Image*) &room_21_f_gb, NULL,                   (Objects*) &objects_21_gb, (Mask*) &mask_21_gb,  (Image*) &text_21_gb, (Music*) &music_01_all, room_funct_21_all };
+const Room room_22_gb = { (Image*) &room_22_f_gb, NULL,                   (Objects*) &objects_22_gb, (Mask*) &mask_22_gb,  (Image*) &text_22_gb, (Music*) &music_01_all,         room_null };
+const Room room_23_gb = { (Image*) &room_23_f_gb, NULL,                   (Objects*) &objects_23_gb, (Mask*) &mask_23_gb,  (Image*) &text_23_gb, (Music*) &music_01_all, room_funct_23_all };
+const Room room_24_gb = { (Image*) &room_24_f_gb, NULL,                   (Objects*) &objects_24_gb, (Mask*) &mask_24_gb,  (Image*) &text_24_gb, (Music*) &music_03_all, room_funct_24_all };
 
 const Room room_30_gb = { (Image*) &room_30_f_gb, (Image*) &room_30_b_gb, (Objects*) &objects_30_gb, (Mask*) &mask_30_gb,  (Image*) &text_30_gb, (Music*) &music_01_all, room_funct_30_all };
-const Room room_31_gb = { (Image*) &room_31_f_gb, NULL, (Objects*) &objects_31_gb, (Mask*) &mask_31_gb,  (Image*) &text_31_gb, (Music*) &music_01_all, room_funct_31_all };
-const Room room_32_gb = { (Image*) &room_32_f_gb, NULL, (Objects*) &objects_32_gb, (Mask*) &mask_32_all, (Image*) &text_32_gb, (Music*) &music_01_all,         room_null };
-const Room room_33_gb = { (Image*) &room_33_f_gb, NULL, (Objects*) &objects_33_gb, (Mask*) &mask_33_gb,  (Image*) &text_33_gb, (Music*) &music_04_all, room_funct_33_all };
-const Room room_34_gb = { (Image*) &room_34_f_gb, NULL, (Objects*) &objects_34_gb, (Mask*) &mask_34_gb,  (Image*) &text_34_gb, (Music*) &music_03_all, room_funct_34_all };
+const Room room_31_gb = { (Image*) &room_31_f_gb, NULL,                   (Objects*) &objects_31_gb, (Mask*) &mask_31_gb,  (Image*) &text_31_gb, (Music*) &music_01_all, room_funct_31_all };
+const Room room_32_gb = { (Image*) &room_32_f_gb, NULL,                   (Objects*) &objects_32_gb, (Mask*) &mask_32_all, (Image*) &text_32_gb, (Music*) &music_01_all,         room_null };
+const Room room_33_gb = { (Image*) &room_33_f_gb, NULL,                   (Objects*) &objects_33_gb, (Mask*) &mask_33_gb,  (Image*) &text_33_gb, (Music*) &music_04_all, room_funct_33_all };
+const Room room_34_gb = { (Image*) &room_34_f_gb, NULL,                   (Objects*) &objects_34_gb, (Mask*) &mask_34_gb,  (Image*) &text_34_gb, (Music*) &music_03_all, room_funct_34_all };
 
-const Room room_40_gb = { (Image*) &room_40_f_gb, NULL, (Objects*) &objects_null,  (Mask*) &mask_40_all, (Image*) &text_40_gb, (Music*) &music_00_all,         room_null };
-const Room room_41_gb = { (Image*) &room_41_f_gb, NULL, (Objects*) &objects_41_gb, (Mask*) &mask_41_gb,  (Image*) &text_41_gb, (Music*) &music_00_all, room_funct_41_all };
-const Room room_42_gb = { (Image*) &room_42_f_gb, NULL, (Objects*) &objects_42_gb, (Mask*) &mask_42_all, (Image*) &text_42_gb, (Music*) &music_02_all, room_funct_42_all };
-const Room room_43_gb = { (Image*) &room_43_f_gb, NULL, (Objects*) &objects_43_gb, (Mask*) &mask_43_gb,  (Image*) &text_43_gb, (Music*) &music_02_all, room_funct_43_all };
-const Room room_44_gb = { (Image*) &room_44_f_gb, NULL, (Objects*) &objects_44_gb, (Mask*) &mask_44_gb,  (Image*) &text_44_gb, (Music*) &music_04_all, room_funct_44_all };
-
-
+const Room room_40_gb = { (Image*) &room_40_f_gb, NULL,                   (Objects*) &objects_null,  (Mask*) &mask_40_all, (Image*) &text_40_gb, (Music*) &music_00_all,         room_null };
+const Room room_41_gb = { (Image*) &room_41_f_gb, NULL,                   (Objects*) &objects_41_gb, (Mask*) &mask_41_gb,  (Image*) &text_41_gb, (Music*) &music_11_all, room_funct_41_all };
+const Room room_42_gb = { (Image*) &room_42_f_gb, NULL,                   (Objects*) &objects_42_gb, (Mask*) &mask_42_all, (Image*) &text_42_gb, (Music*) &music_02_all, room_funct_42_all };
+const Room room_43_gb = { (Image*) &room_43_f_gb, NULL,                   (Objects*) &objects_43_gb, (Mask*) &mask_43_gb,  (Image*) &text_43_gb, (Music*) &music_02_all, room_funct_43_all };
+const Room room_44_gb = { (Image*) &room_44_f_gb, NULL,                   (Objects*) &objects_44_gb, (Mask*) &mask_44_gb,  (Image*) &text_44_gb, (Music*) &music_04_all, room_funct_44_all };

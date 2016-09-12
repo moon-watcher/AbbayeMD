@@ -284,7 +284,9 @@ void game_loop ( )
 
 		goManagerEnd ( &waObjects );
 
-		SPR_end ( );
+		SPR_reset();
+		SPR_end();
+
 
 		vram_destroy();
 

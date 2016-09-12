@@ -9,15 +9,15 @@
 
 typedef struct Switch
 {
-      u8      room_x;
-      u8      room_y;
+	u8      room_x;
+	u8      room_y;
 
-		Object  off;
-		Object  transaction;
-		Object  on;
+	Object  off;
+	Object  transaction;
+	Object  on;
 
-      bool    reactivable;
-		bool    (*function) ( GameObject*, struct Switch* ) ;
+	bool    reactivable;
+	bool    (*function) ( GameObject*, struct Switch* ) ;
 }
 Switch;
 

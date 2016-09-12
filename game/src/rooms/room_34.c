@@ -41,7 +41,7 @@ static void _room_enter ( Room *room )
 		{
 			goEnding = 1;
 
-			philippe[1]->vel_x = philippe[1]->object->entity->vel_x;
+			//philippe[1]->vel_x = philippe[1]->object->entity->vel_x;
 			philippe[0]->vel_x = philippe[0]->object->entity->vel_x;
 
 			// reparte a los cruzados por esta habitación
@@ -81,7 +81,7 @@ static void _room_stay ( Room *room )
 		if ( door->x > 248 )
 		{
 			goIncX ( door, -1 );
-			goIncX ( philippe[4], -1 );
+			goIncX ( philippe[3], -1 );
 		}
 
 		else if ( door->x == 248  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
@@ -89,23 +89,23 @@ static void _room_stay ( Room *room )
 			play_fx ( FX_JUMP );
 			goIncX ( door, 2 );
 
-			goIncX ( philippe[4], 3 );
+			goIncX ( philippe[3], 3 );
 		}
 		else
 		{
-			goSetX ( philippe[4], 233 );
+			goSetX ( philippe[3], 233 );
 		}
 
-		if ( vtimer % ( ( random() % 70 ) + 23 ) == 0 ) SPR_setHFlip ( philippe[3]->sprite, SPR_getHFlip ( philippe[3]->sprite ) ? 0 : 1  );
-		if ( vtimer % ( ( random() % 80 ) + 37 ) == 0 ) SPR_setHFlip ( philippe[2]->sprite, SPR_getHFlip ( philippe[2]->sprite ) ? 0 : 1  );
+		if ( vtimer % ( ( random() % 70 ) + 23 ) == 0 ) SPR_setHFlip ( philippe[2]->sprite, SPR_getHFlip ( philippe[2]->sprite ) ? 0 : 1  );
+		if ( vtimer % ( ( random() % 80 ) + 37 ) == 0 ) SPR_setHFlip ( philippe[1]->sprite, SPR_getHFlip ( philippe[1]->sprite ) ? 0 : 1  );
 //		if ( vtimer % ( ( random() % 90 ) + 11 ) == 0 ) SPR_setHFlip ( philippe[2]->sprite, SPR_getHFlip ( philippe[2]->sprite ) ? 0 : 1  );
 
 
-		s16 x1 = goGetCenterX ( philippe[1] );
-		s16 x2 = goGetCenterX ( philippe[0] );
+		s16 x1 = goGetCenterX ( philippe[0] );
+//		s16 x2 = goGetCenterX ( philippe[0] );
 
-		if ( x1 == 154 || x1 == 120 ) philippe[1]->vel_x = -philippe[1]->vel_x;
-		if ( x2 ==  98 || x2 ==  90 ) philippe[0]->vel_x = -philippe[0]->vel_x;
+		if ( x1 == 154 || x1 == 120 ) philippe[0]->vel_x = -philippe[0]->vel_x;
+//		if ( x2 ==  98 || x2 ==  90 ) philippe[0]->vel_x = -philippe[0]->vel_x;
 	}
 
 }

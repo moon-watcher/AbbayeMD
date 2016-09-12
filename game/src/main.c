@@ -60,17 +60,24 @@
  * --------------------------------------------------------------------------------------------------------------------------------
  * @GODFATHER-OF-THIS-RELEASE => Leander                        | Twitter: @leanderpixel      | Mail:
  * @MSX-SKIN                  => Gerardo Herce                  | Twitter: @pipagerardo       | Mail:
+ * @NES-SD-SKIN               => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @GB-SKIN                   => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @PCW-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @CGA-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @MD-SKIN                   => Dani Nevado                    | Twitter: @DanySnowyman      | Mail:
+ * @C64-SKIN                  => Igor Errazkin                  | Twitter: @Errazking         | Mail:
  * @MUSIC                     => Paolo Arus "DaRkHoRaCe"        | Twitter: @oongamoonga       | Mail:
  * @FX                        => Paolo Arus "DaRkHoRaCe"        | Twitter: @oongamoonga       | Mail:
+ * @C64-MUSIC                 => Manuel Gomez "Baron Ashler"    | Twitter: @kbfactory         | Mail:
+ * @C64-FX                    => Manuel Gomez "Baron Ashler"    | Twitter: @kbfactory         | Mail:
  * @ILLUSTRATION              => Urza                           | Twitter: @Urza2             | Mail:
  * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @CRUSADER-MODE             => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @BETA-TESING               => Alfonso                        | Twitter: @_SrPresley_       | Mail:
+ * @BETA-TESING               => Ruben Vaquer                   | Twitter: @TitoAdol3         | Mail:
+ * @SPECIAL-THANKS-TO         => Stephane Dallongeville         | Twitter: @MegadriveDev      | Mail:
+ * @SPECIAL-THANKS-TO         => José Zanni                     | Twitter: @josepzin          | Mail:
  *
  *
  * --------------------------------------------------------------------------------------------------------------------------------
@@ -271,10 +278,48 @@ static void monos()
 
 
 
+void psg_test ()
+{
+	#include "../res/all/psg.h"
+	#include "../../libs/psg.h"
+
+	const u16 back_size=175;
+
+	const u8 back_data[175]={
+		0x00,0x01,0x00,0x04,0x03,0x00,0x0b,0x00,0x4f,0x00,0x93,0x00,0xc0,0xd5,0x80,0xe3,
+		0x80,0xd5,0x01,0x80,0xe3,0x80,0xd5,0x80,0xc7,0x80,0xd5,0x80,0xe3,0x80,0xd5,0x80,
+		0xc7,0x80,0xd5,0x80,0xe3,0x80,0xd5,0x80,0xc7,0xc4,0xd5,0x80,0xe3,0x80,0xd5,0x43,
+		0x80,0xe3,0x80,0xd5,0xfc,0x00,0x80,0x0e,0x80,0x00,0x83,0xf2,0x80,0x00,0x80,0x0e,
+		0x80,0x00,0x83,0xf2,0x80,0x00,0x80,0x0e,0x80,0x00,0x83,0xf2,0x80,0x00,0x00,0x01,
+		0xc0,0xd5,0x80,0xe3,0x80,0xd5,0x01,0x80,0xe3,0x80,0xd5,0x80,0xc7,0x80,0xd5,0x80,
+		0xe3,0x80,0xd5,0x80,0xc7,0x80,0xd5,0x80,0xe3,0x80,0xd5,0x80,0xc7,0xc4,0xd5,0x80,
+		0xe3,0x80,0xd5,0x43,0x80,0xe3,0x80,0xd5,0xfc,0x00,0x80,0x0e,0x80,0x00,0x83,0xf2,
+		0x80,0x00,0x80,0x0e,0x80,0x00,0x83,0xf2,0x80,0x00,0x80,0x0e,0x80,0x00,0x83,0xf2,
+		0x80,0x00,0x00,0x02,0xfc,0x00,0x80,0x0e,0x80,0x00,0x83,0xf2,0x80,0x00,0x80,0x0e,
+		0x80,0x00,0x83,0xf2,0x80,0x00,0x80,0x0e,0x80,0x00,0x83,0xf2,0x80,0x00,0x00
+	};
+
+
+	while ( 1 )
+	{
+		psg_play ( psg_item,     0 ); waitSc ( 2 );
+		psg_play ( psg_onedeath, 0 ); waitSc ( 2 );
+		psg_play ( psg_door,     0 ); waitSc ( 2 );
+		psg_play ( back_data,    0 ); waitSc ( 2 );
+	}
+}
+
+
+
 static _voidCallback *vint_callback ( )
 {
-//	SND_setManualSync_XGM ( FALSE );
-//	SND_setMusicTempo_XGM ( 60 );
+	psg_callback();
+
+	//SND_setManualSync_XGM ( FALSE );
+	SND_setMusicTempo_XGM ( 60 );
+
+	// ¿es posible que esto genere problems de sprites no cargados?
+	//SND_setForceDelayDMA_XGM ( TRUE );
 
 	if ( DEV )
 	{
@@ -314,7 +359,7 @@ static void init ( int argc, char *argv[] )
 
     displayInit ( );
     displayOff ( 0 );
-	dev_init ( 0, 0 );
+	dev_init ( 1, 1 );
     fxInit ( );
     session_init ( );
     JOY_setSupport ( PORT_1, JOY_SUPPORT_6BTN );
@@ -322,6 +367,9 @@ static void init ( int argc, char *argv[] )
     SYS_setVIntCallback ( (_voidCallback*) vint_callback );
 	VDP_setScreenWidth320 ( );
 	VDP_setPlanSize ( 64, 32 );
+
+	SND_setForceDelayDMA_XGM(TRUE);
+	//psg_test ();
 
 	game.version = VERSION_MD;
 	demo = false;
@@ -353,7 +401,6 @@ static void init ( int argc, char *argv[] )
 //				screen_prologue ( );
 //				screen_gameover ( );
 //				screen_soundtest();
-
 }
 
 
@@ -382,8 +429,8 @@ void loop ( )
 //						// desde el inicio para matar a Satán
 //						game.version  = VERSION_MD;
 //						session.level = 1;
-//						game.room.x = 4;
-//						game.room.y = 4;
+//						game.room.x = 0;
+//						game.room.y = 3;
 //						//
 
 //						// activate the crusader mode

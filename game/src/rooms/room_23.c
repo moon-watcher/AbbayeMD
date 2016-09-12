@@ -3,7 +3,7 @@
 
 static GameObject *archer [ 3 ] = { };
 static GameObject *arrow [ 3 ] = { };
-static GameObject *explosion = NULL;
+//static GameObject *explosion = NULL;
 
 static u8          nb_archer = 0;
 static u16         i = 0;
@@ -16,9 +16,10 @@ static void _room_enter ( Room *room )
 	nb_archer = goManagerFindAllByEntityId ( &waObjects, archer, 33 ); // Archer skeleton
 	goManagerFindAllByEntityId ( &waObjects, arrow, 34 ); // Arrow
 
-	explosion = goManagerFindByEntityId ( &waObjects, 65, 0 ); // Arrow explosion
+	//explosion = goManagerFindByEntityId ( &waObjects, 65, 0 ); // Arrow explosion
 
-	enemy_bullet_init ( arrow[0], explosion );
+	//enemy_bullet_init ( arrow[0], explosion );
+	enemy_bullet_init ( arrow[0] );
 
 	alternate_color_in_cm ( );
 

@@ -8,7 +8,7 @@ static GameObject *door = NULL;
 static GameObject *satan = NULL;
 static GameObject *bullet[12] = { };
 static GameObject *cross = NULL;
-static GameObject *explosion = NULL;
+//static GameObject *explosion = NULL;
 static GameObject *grial = NULL;
 static GameObject *hint = NULL;
 static GameObject *rosette = NULL;
@@ -119,7 +119,7 @@ static void _show_starts ( )
 {
 	s8 y, x, crosses = hudGetCrosses() ;
 
-	setActive( cross, 1 );
+	setActive ( cross, 1 );
 
 	for ( y = MASK_MAX_HEIGHT-1; y >= 0; y-- )
 	{
@@ -164,8 +164,12 @@ static void _close_door ( )
 		setActive ( door, 1 );
 		SPR_update ( );
 
-		play_fx ( FX_DOOR );
-		waitHz(getHz());
+		SND_pausePlay_XGM();
+
+		play_fx ( FX_CLOSE_DOOR );
+		waitHz(80);
+
+		SND_resumePlay_XGM();
 
 		_inc_secuence ( true );
 		setDoor(door,1);
@@ -359,20 +363,21 @@ static void _room_enter ( Room *room )
 	cross     = goManagerFindByEntityId ( &waObjects,  61, 0 ); // Catched cross
 	grial     = goManagerFindByEntityId ( &waObjects,  59, 0 ); // Grial
 	hint      = goManagerFindByEntityId ( &waObjects,  60, 0 ); // Red hint
-	explosion = goManagerFindByEntityId ( &waObjects,  64, 0 ); // Satan bullets explosion // MD
+	//explosion = goManagerFindByEntityId ( &waObjects,  64, 0 ); // Satan bullets explosion // MD
 	rosette   = goManagerFindByEntityId ( &waObjects, 103, 0 ); // Evil rossete // PCW
 
 	nb_bullet   = goManagerFindAllByEntityId ( &waObjects, bullet,   58 ); // Satan bullets
 	nb_crusader = goManagerFindAllByEntityId ( &waObjects, crusader, 14 ); // Crusader
 
-	enemy_bullet_init ( bullet[0], explosion );
+	//enemy_bullet_init ( bullet[0], explosion );
+	enemy_bullet_init ( bullet[0] );
 
 	setActive ( door,      0 );
 	setActive ( satan,     0 );
 	setActive ( cross,     0 );
 	setActive ( grial,     0 );
 	setActive ( hint,      0 );
-	setActive ( explosion, 0 );
+	//setActive ( explosion, 0 );
 	setActive ( rosette,   0 );
 
 	for ( i=0; i<nb_crusader; i++ ) setActive ( crusader[i], 0 );

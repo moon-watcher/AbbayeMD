@@ -5,7 +5,7 @@ static GameObject *gargoyle [ 2 ] = { };
 static GameObject *spit [ 2 ] = { };
 static GameObject *door = NULL;
 static GameObject *sw = NULL;
-static GameObject *explosion = NULL;
+//static GameObject *explosion = NULL;
 
 static u8          nb_gargoyle = 0;
 static u16         i = 0;
@@ -20,9 +20,10 @@ static void _room_enter ( Room *room )
 
 	door      = goManagerFindByEntityId ( &waObjects, 35, 0 ); // Door
 	sw        = goManagerFindByEntityId ( &waObjects, 22, 0 ); // Switch
-	explosion = goManagerFindByEntityId ( &waObjects, 66, 0 ); // Gargoyle spit explosion
+	//explosion = goManagerFindByEntityId ( &waObjects, 66, 0 ); // Gargoyle spit explosion
 
-	enemy_bullet_init ( spit[0], explosion );
+	//enemy_bullet_init ( spit[0], explosion );
+	enemy_bullet_init ( spit[0] );
 
 	philippe_init ( );
 	philippe_add ( 198, 212 );

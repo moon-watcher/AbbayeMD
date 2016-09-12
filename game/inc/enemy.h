@@ -46,7 +46,8 @@ void enemy_satan             ( GameObject *satan,       GameObject *bullet[] );
 void enemy_coco              ( GameObject *coco );
 void enemy_crusaders         ( );
 
-void enemy_bullet_init       ( GameObject *bullet, GameObject *explosion );
+//void enemy_bullet_init       ( GameObject *bullet, GameObject *explosion );
+void enemy_bullet_init       ( GameObject *bullet );
 void enemy_bullet_delete     ( );
 void enemy_bullet            ( GameObject *bullet );
 void enemy_bullet_deactivate ( GameObject *bullet );

@@ -541,6 +541,11 @@ void mcb_fireball ( void *data )
 	{
 		_relocate_y ( go );
 		go->vel_y = -go->vel_y;
+
+		if ( go->vel_y < 0  )
+		{
+			play_fx(FX_LAVABALL);
+		}
 	}
 }
 

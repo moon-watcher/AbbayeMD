@@ -72,13 +72,13 @@ const Entity entity_54_md  = { 54, "Toxic drop",               3, (SpriteDefinit
 const Entity entity_55_md  = { 55, "Fish",                     9, (SpriteDefinition*) &enemies_2x2_md,   PAL2, ENTITY_ENEMY,                0,           0, FIX32(0.10), 0, 0, 1, NULL, mcb_null,        0, {  0,  1,  0,  1 } };
 const Entity entity_56_md  = { 56, "Splash",                   7, (SpriteDefinition*) &enemies_2x1_md,   PAL2, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  } };
 const Entity entity_57_md  = { 57, "Satan",                    0, (SpriteDefinition*) &satan_4x6_md,     PAL2, ENTITY_ENEMY,                0, FIX32(0.75),           0, 0, 0, 0, NULL, mcb_udlr,        0, {  } };
-const Entity entity_58_md  = { 58, "Satan bullet",             1, (SpriteDefinition*) &satan_1x1_md,     PAL2, ENTITY_ENEMY,      FIX32(1.00),           0,           0, 0, 0, 0, NULL, mcb_bullet,      0, {  1,  1,  1,  1 } };
+const Entity entity_58_md  = { 58, "Satan bullet",             0, (SpriteDefinition*) &satan_1x1_md,     PAL2, ENTITY_ENEMY,      FIX32(1.00),           0,           0, 0, 0, 0, NULL, mcb_bullet,      0, {  1,  1,  1,  1 } };
 const Entity entity_59_md  = { 59, "Grial",                    4, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_GRIAL,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  } };
 const Entity entity_60_md  = { 60, "Red hint",                13, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_HINT,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  3,  3,  0,  3 } };
 const Entity entity_61_md  = { 61, "Catched cross",            0, (SpriteDefinition*) &objects_1x1_md,   PAL3, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  } };
 const Entity entity_62_md  = { 62, "Bonfire",                  0, (SpriteDefinition*) &bonfire_6x8_md,   PAL3, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  } };
 const Entity entity_63_md  = { 63, "Bell ringing",             0, (SpriteDefinition*) &objects_4x2_md,   PAL3, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  } };
-const Entity entity_64_md  = { 64, "Satan bullet explosion",   0, (SpriteDefinition*) &satan_1x1_md,     PAL2, ENTITY_NULL,                 0,           0,           0, 0, 1, 0, NULL, mcb_null,        0, {  } };
+const Entity entity_64_md  = { 64, "Satan bullet explosion",   1, (SpriteDefinition*) &satan_1x1_md,     PAL2, ENTITY_NULL,                 0,           0,           0, 0, 1, 0, NULL, mcb_null,        0, {  } };
 const Entity entity_65_md  = { 65, "Arrow explosion",         11, (SpriteDefinition*) &enemies_2x1_md,   PAL2, ENTITY_NULL,                 0,           0,           0, 0, 1, 0, NULL, mcb_null,        0, {  } };
 const Entity entity_66_md  = { 66, "Gargoyle spit explosion", 10, (SpriteDefinition*) &enemies_2x1_md,   PAL2, ENTITY_NULL,                 0,           0,           0, 0, 1, 0, NULL, mcb_null,        0, {  } };
 
@@ -102,6 +102,8 @@ const Entity entity_md_95  = { 95, "Philippe jumps",           2, (SpriteDefinit
 
 const Entity entity_md_96  = { 96, "Leaf (2,1)",               0, (SpriteDefinition*) &leaf7_1x1_md,     PAL1, ENTITY_NULL,                 0,           0,            0, 0, 0, 0, NULL, mcb_null,        0, {  } };
 const Entity entity_md_97  = { 97, "Philippe like crusaders",  1, (SpriteDefinition*) &philippe_2x3_md,  PAL3, ENTITY_NULL,       FIX32(0.60),           0,            0, 0, 1, 0, NULL, mcb_null,        0, {  5,  5,  0,  5 } };
+
+const Entity entity_md_98  = { 98, "Evil Jean",                0, (SpriteDefinition*) &evil_jean_2x3_md, PAL3, ENTITY_NULL,                 0,           0,            0, 0, 1, 0, NULL, mcb_null,        0, {  } };
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,7 +234,7 @@ const Objects objects_21_md = // Abandone church // OK
             { (Entity*) &entity_14_md,  -70, 120, +1,  0 }, // Crusader
             { (Entity*) &entity_14_md,  -90, 120, +1,  0 }, // Crusader
             { (Entity*) &entity_14_md, -110, 120, +1,  0 }, // Crusader
-            { (Entity*) &entity_14_md, -130, 120, +1,  0 }, // Crusader
+            //{ (Entity*) &entity_14_md, -130, 120, +1,  0 }, // Crusader
             // and me
       }
 };
@@ -468,7 +470,7 @@ const Objects objects_23_md = // The wheel of Faith // OK
             { (Entity*) &entity_12_md, 216, 144,  0,  0 }, // Cross
             { (Entity*) &entity_11_md, 168,  80,  0,  0 }, // Heart
 
-            { (Entity*) &entity_65_md, -80, -80,  0,  0 }, // Arrow explosion
+            //{ (Entity*) &entity_65_md, -80, -80,  0,  0 }, // Arrow explosion
 
             { (Entity*) &entity_md_97,  175,  120,  0,  0 }, // Philippe like crusaders
       }
@@ -547,7 +549,7 @@ const Objects objects_04_md = // Unexpected gate // OK
       {
             { (Entity*) &entity_51_md, 216,  24,  0,  0,  0,  0, -1 }, // Gargoyle
             { (Entity*) &entity_52_md, -40, -40,  0,  0             }, // Gargoyle spit
-            { (Entity*) &entity_66_md, -40, -40,  0,  0             }, // Gargoyle spit explosion
+            //{ (Entity*) &entity_66_md, -40, -40,  0,  0             }, // Gargoyle spit explosion
 
             { (Entity*) &entity_30_md,  36,  88, +1,  0, FIX32(0.60) }, // Evil bird
 
@@ -577,7 +579,7 @@ const Objects objects_14_md = // Evil church // OK
 
             { (Entity*) &entity_08_md, 152,  40,  0,  0 }, // Checkpoint
 
-            { (Entity*) &entity_65_md, -80, -80,  0,  0 }, // Arrow explosion
+            //{ (Entity*) &entity_65_md, -80, -80,  0,  0 }, // Arrow explosion
 
             { (Entity*) &entity_md_97, 220,  88,  0,  0, 0, 0, -1 }, // Philippe like crusaders
 	}
@@ -589,7 +591,7 @@ const Objects objects_24_md = // Tortured souls // OK
       {
             { (Entity*) &entity_51_md, 224, 104,  0,  0,  0,  0, -1 }, // Gargoyle
             { (Entity*) &entity_52_md, -40, -40,  0,  0             }, // Gargoyle spit
-            { (Entity*) &entity_66_md, -40, -40,  0,  0             }, // Gargoyle spit explosion
+            //{ (Entity*) &entity_66_md, -40, -40,  0,  0             }, // Gargoyle spit explosion
 
             { (Entity*) &entity_13_md, 220, 142,  0,  0 }, // Inverted cross
 
@@ -641,11 +643,9 @@ const Objects objects_34_md = // Ashes to ashes // OK
 
             { (Entity*) &entity_md_97, 230, 136,  0,  0 }, // Philippe like crusaders
             { (Entity*) &entity_md_97, 203, 136,  0,  0 }, // Philippe like crusaders
-            { (Entity*) &entity_md_97, 217, 128,  0,  0 }, // Philippe like crusaders
-
+            { (Entity*) &entity_md_97, 216, 128,  0,  0 }, // Philippe like crusaders
             { (Entity*) &entity_md_97, 140, 136,  0,  0 }, // Philippe like crusaders
-
-            { (Entity*) &entity_md_97,  94,  56,  0,  0 }, // Philippe like crusaders
+            //{ (Entity*) &entity_md_97,  94,  56,  0,  0 }, // Philippe like crusaders
 
             { (Entity*) &entity_08_md, 136, 136,  0,  0 }, // Checkpoint
 	}
@@ -683,7 +683,7 @@ const Objects objects_44_md = // Satan!!! // TODO
             { (Entity*) &entity_57_md, 196,  80,  0, +1 }, // Satan
 
             { (Entity*) &entity_61_md, 128, 190,  0,  0 }, // Catched cross // puts out of the screen
-            { (Entity*) &entity_64_md, 128, 190,  0,  0 }, // Satan bullet explosion // Used to be saved in VRAM
+            //{ (Entity*) &entity_64_md, 128, 190,  0,  0 }, // Satan bullet explosion // Used to be saved in VRAM
       }
 };
 
@@ -954,7 +954,7 @@ const Room room_33_md = { (Image*) &room_33_f_md, (Image*) &room_33_b_md, (Objec
 const Room room_34_md = { (Image*) &room_34_f_md, (Image*) &room_34_b_md, (Objects*) &objects_34_md, (Mask*) &mask_34_all, (Image*) &text_34_md, (Music*) &music_03_all, room_funct_34_all };
 
 const Room room_40_md = { (Image*) &room_40_f_md, (Image*) &room_40_b_md, (Objects*) &objects_40_md, (Mask*) &mask_40_all, (Image*) &text_40_md, (Music*) &music_00_all, room_funct_40_all };
-const Room room_41_md = { (Image*) &room_41_f_md, (Image*) &room_41_b_md, (Objects*) &objects_41_md, (Mask*) &mask_41_md,  (Image*) &text_41_md, (Music*) &music_00_all, room_funct_41_all };
+const Room room_41_md = { (Image*) &room_41_f_md, (Image*) &room_41_b_md, (Objects*) &objects_41_md, (Mask*) &mask_41_md,  (Image*) &text_41_md, (Music*) &music_11_all, room_funct_41_all };
 const Room room_42_md = { (Image*) &room_42_f_md, (Image*) &room_42_b_md, (Objects*) &objects_42_md, (Mask*) &mask_42_md,  (Image*) &text_42_md, (Music*) &music_02_all, room_funct_42_all };
 const Room room_43_md = { (Image*) &room_43_f_md, (Image*) &room_43_b_md, (Objects*) &objects_43_md, (Mask*) &mask_43_all, (Image*) &text_43_md, (Music*) &music_02_all, room_funct_43_all };
 const Room room_44_md = { (Image*) &room_44_f_md, NULL,                   (Objects*) &objects_44_md, (Mask*) &mask_44_md,  (Image*) &text_44_md, (Music*) &music_04_all, room_funct_44_all };

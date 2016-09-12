@@ -42,7 +42,7 @@ void enemy_archer ( GameObject *goArcher[], GameObject *goArrow[], u16 pos )
 			arrow->vel_x = +arrow->object->entity->vel_x;
 		}
 
-		play_fx ( FX_SHOT );
+		play_fx ( FX_SPIT );
 	}
 
 	if ( archer->counter == 30 )

@@ -58,3 +58,4 @@ SPRITE leaf6_1x1_md         "../../data/md/sprites/grupo19/leaf6_1x1.bmp"       
 
 SPRITE leaf7_1x1_md         "../../data/md/sprites/grupo20/leaf7_1x1.bmp"         1 1 0   6
 
+SPRITE evil_jean_2x3_md     "../../data/md/sprites/grupo21/Evil_Jean_2x3.bmp"     2 3 0   4

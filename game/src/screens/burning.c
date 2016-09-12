@@ -61,7 +61,7 @@ void screen_burning ( )
 		pack_vram_add ( go );
 	}
 
-	displayOn ( 10 );
+
 
 
 	play_music( MUSIC_GAMEOVER );
@@ -75,6 +75,8 @@ void screen_burning ( )
 	const u16 hzd2 = getHz ( ) / 2;
 	const u16 hzm4 = getHz ( ) * 4;
 
+
+	bool shown = false;
 
 	while ( count-- )
 	{
@@ -105,10 +107,16 @@ void screen_burning ( )
 
 		SPR_update ( );
 		VDP_waitVSync ( );
+
+		if ( !shown )
+		{
+			displayOn ( 10 );
+			shown = true;
+		}
 	}
 
 
-	displayOff(0);
+	displayOff ( 0 );
 
 	vram_destroy();
 

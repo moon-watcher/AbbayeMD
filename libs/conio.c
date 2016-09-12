@@ -8,17 +8,30 @@
 
 
 
-static struct text_info _ti;
+static struct text_info _ti = { };
 
 
 
 static void _update_textinfo ( )
 {
-	_ti.plan    = VDP_getTextPlan().v ? APLAN : BPLAN;
+//	_ti.plan    = VDP_getTextPlan().v ? PLAN_A : PLAN_B;
+	_ti.plan    = VDP_getTextPlan().plan;
 	_ti.palette = VDP_getTextPalette();
 }
 
 
+static VDPPlan _get_plan()
+{
+	VDPPlan p = PLAN_B;
+
+	if ( _ti.plan == PLAN_A.plan )
+	{
+		p = PLAN_A;
+	}
+
+
+	return p;
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -80,14 +93,18 @@ void clrscr ( void )
 	gotoxy ( 0, 0 );
 
 	_update_textinfo ( );
-	VDP_fillTileMapRect ( _ti.plan, 0, ABSOLUTEX, ABSOLUTEY, _ti.window.width, _ti.window.height );
+
+	//VDP_fillTileMapRect ( _ti.plan, 0, ABSOLUTEX, ABSOLUTEY, _ti.window.width, _ti.window.height );
+	VDP_fillTileMapRect ( _get_plan(), 0, ABSOLUTEX, ABSOLUTEY, _ti.window.width, _ti.window.height );
 }
 
 
 void clreol ( void )
 {
 	_update_textinfo ( );
-	VDP_fillTileMapRect ( _ti.plan, 0, ABSOLUTEX, ABSOLUTEY, _ti.window.width - _ti.curx, 1 );
+	//VDP_fillTileMapRect ( _ti.plan, 0, ABSOLUTEX, ABSOLUTEY, _ti.window.width - _ti.curx, 1 );
+	VDP_fillTileMapRect ( _get_plan(), 0, ABSOLUTEX, ABSOLUTEY, _ti.window.width - _ti.curx, 1 );
+
 }
 
 

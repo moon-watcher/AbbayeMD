@@ -1075,34 +1075,32 @@ const Mask mask_44_cga =
    }
 };
 
-const Room room_00_cga = { (Image*) &room_00_f_cga, NULL, (Objects*) &objects_null,   (Mask*) &mask_00_all, (Image*) &text_00_cga, (Music*) &music_00_all,         room_null };
-const Room room_01_cga = { (Image*) &room_01_f_cga, NULL, (Objects*) &objects_01_cga, (Mask*) &mask_01_all, (Image*) &text_01_cga, (Music*) &music_08_all,         room_null };
-const Room room_02_cga = { (Image*) &room_02_f_cga, NULL, (Objects*) &objects_02_cga, (Mask*) &mask_02_cga, (Image*) &text_02_cga, (Music*) &music_02_all, room_funct_02_all };
-const Room room_03_cga = { (Image*) &room_03_f_cga, NULL, (Objects*) &objects_03_cga, (Mask*) &mask_03_cga, (Image*) &text_03_cga, (Music*) &music_02_all, room_funct_03_all };
-const Room room_04_cga = { (Image*) &room_04_f_cga, NULL, (Objects*) &objects_04_cga, (Mask*) &mask_04_cga, (Image*) &text_04_cga, (Music*) &music_02_all, room_funct_04_all };
+const Room room_00_cga = { (Image*) &room_00_f_cga, NULL,                    (Objects*) &objects_null,   (Mask*) &mask_00_all, (Image*) &text_00_cga, (Music*) &music_00_all,         room_null };
+const Room room_01_cga = { (Image*) &room_01_f_cga, NULL,                    (Objects*) &objects_01_cga, (Mask*) &mask_01_all, (Image*) &text_01_cga, (Music*) &music_08_all,         room_null };
+const Room room_02_cga = { (Image*) &room_02_f_cga, NULL,                    (Objects*) &objects_02_cga, (Mask*) &mask_02_cga, (Image*) &text_02_cga, (Music*) &music_02_all, room_funct_02_all };
+const Room room_03_cga = { (Image*) &room_03_f_cga, NULL,                    (Objects*) &objects_03_cga, (Mask*) &mask_03_cga, (Image*) &text_03_cga, (Music*) &music_02_all, room_funct_03_all };
+const Room room_04_cga = { (Image*) &room_04_f_cga, NULL,                    (Objects*) &objects_04_cga, (Mask*) &mask_04_cga, (Image*) &text_04_cga, (Music*) &music_02_all, room_funct_04_all };
 
 const Room room_10_cga = { (Image*) &room_10_f_cga, (Image*) &room_10_b_cga, (Objects*) &objects_null,   (Mask*) &mask_10_all, (Image*) &text_10_cga, (Music*) &music_10_all, room_funct_10_all };
 const Room room_11_cga = { (Image*) &room_11_f_cga, (Image*) &room_11_b_cga, (Objects*) &objects_11_cga, (Mask*) &mask_11_all, (Image*) &text_11_cga, (Music*) &music_08_all, room_funct_11_all };
-const Room room_12_cga = { (Image*) &room_12_f_cga, NULL, (Objects*) &objects_12_cga, (Mask*) &mask_12_all, (Image*) &text_12_cga, (Music*) &music_02_all, room_funct_12_all };
-const Room room_13_cga = { (Image*) &room_13_f_cga, NULL, (Objects*) &objects_13_cga, (Mask*) &mask_13_cga, (Image*) &text_13_cga, (Music*) &music_02_all, room_funct_13_all };
-const Room room_14_cga = { (Image*) &room_14_f_cga, NULL, (Objects*) &objects_14_cga, (Mask*) &mask_14_all, (Image*) &text_14_cga, (Music*) &music_03_all, room_funct_14_all };
+const Room room_12_cga = { (Image*) &room_12_f_cga, NULL,                    (Objects*) &objects_12_cga, (Mask*) &mask_12_all, (Image*) &text_12_cga, (Music*) &music_02_all, room_funct_12_all };
+const Room room_13_cga = { (Image*) &room_13_f_cga, NULL,                    (Objects*) &objects_13_cga, (Mask*) &mask_13_cga, (Image*) &text_13_cga, (Music*) &music_02_all, room_funct_13_all };
+const Room room_14_cga = { (Image*) &room_14_f_cga, NULL,                    (Objects*) &objects_14_cga, (Mask*) &mask_14_all, (Image*) &text_14_cga, (Music*) &music_03_all, room_funct_14_all };
 
 const Room room_20_cga = { (Image*) &room_20_f_cga, (Image*) &room_20_b_cga, (Objects*) &objects_20_cga, (Mask*) &mask_20_cga, (Image*) &text_20_cga, (Music*) &music_01_all, room_funct_20_all };
-const Room room_21_cga = { (Image*) &room_21_f_cga, NULL, (Objects*) &objects_21_cga, (Mask*) &mask_21_cga, (Image*) &text_21_cga, (Music*) &music_01_all, room_funct_21_all };
-const Room room_22_cga = { (Image*) &room_22_f_cga, NULL, (Objects*) &objects_22_cga, (Mask*) &mask_22_cga, (Image*) &text_22_cga, (Music*) &music_01_all,         room_null };
-const Room room_23_cga = { (Image*) &room_23_f_cga, NULL, (Objects*) &objects_23_cga, (Mask*) &mask_23_cga, (Image*) &text_23_cga, (Music*) &music_01_all, room_funct_23_all };
-const Room room_24_cga = { (Image*) &room_24_f_cga, NULL, (Objects*) &objects_24_cga, (Mask*) &mask_24_cga, (Image*) &text_24_cga, (Music*) &music_03_all, room_funct_24_all };
+const Room room_21_cga = { (Image*) &room_21_f_cga, NULL,                    (Objects*) &objects_21_cga, (Mask*) &mask_21_cga, (Image*) &text_21_cga, (Music*) &music_01_all, room_funct_21_all };
+const Room room_22_cga = { (Image*) &room_22_f_cga, NULL,                    (Objects*) &objects_22_cga, (Mask*) &mask_22_cga, (Image*) &text_22_cga, (Music*) &music_01_all,         room_null };
+const Room room_23_cga = { (Image*) &room_23_f_cga, NULL,                    (Objects*) &objects_23_cga, (Mask*) &mask_23_cga, (Image*) &text_23_cga, (Music*) &music_01_all, room_funct_23_all };
+const Room room_24_cga = { (Image*) &room_24_f_cga, NULL,                    (Objects*) &objects_24_cga, (Mask*) &mask_24_cga, (Image*) &text_24_cga, (Music*) &music_03_all, room_funct_24_all };
 
 const Room room_30_cga = { (Image*) &room_30_f_cga, (Image*) &room_30_b_cga, (Objects*) &objects_30_cga, (Mask*) &mask_30_all, (Image*) &text_30_cga, (Music*) &music_01_all, room_funct_30_all };
-const Room room_31_cga = { (Image*) &room_31_f_cga, NULL, (Objects*) &objects_31_cga, (Mask*) &mask_31_cga, (Image*) &text_31_cga, (Music*) &music_01_all, room_funct_31_all };
-const Room room_32_cga = { (Image*) &room_32_f_cga, NULL, (Objects*) &objects_32_cga, (Mask*) &mask_32_all, (Image*) &text_32_cga, (Music*) &music_01_all,         room_null };
-const Room room_33_cga = { (Image*) &room_33_f_cga, NULL, (Objects*) &objects_33_cga, (Mask*) &mask_33_cga, (Image*) &text_33_cga, (Music*) &music_04_all, room_funct_33_all };
-const Room room_34_cga = { (Image*) &room_34_f_cga, NULL, (Objects*) &objects_34_cga, (Mask*) &mask_34_cga, (Image*) &text_34_cga, (Music*) &music_03_all, room_funct_34_all };
+const Room room_31_cga = { (Image*) &room_31_f_cga, NULL,                    (Objects*) &objects_31_cga, (Mask*) &mask_31_cga, (Image*) &text_31_cga, (Music*) &music_01_all, room_funct_31_all };
+const Room room_32_cga = { (Image*) &room_32_f_cga, NULL,                    (Objects*) &objects_32_cga, (Mask*) &mask_32_all, (Image*) &text_32_cga, (Music*) &music_01_all,         room_null };
+const Room room_33_cga = { (Image*) &room_33_f_cga, NULL,                    (Objects*) &objects_33_cga, (Mask*) &mask_33_cga, (Image*) &text_33_cga, (Music*) &music_04_all, room_funct_33_all };
+const Room room_34_cga = { (Image*) &room_34_f_cga, NULL,                    (Objects*) &objects_34_cga, (Mask*) &mask_34_cga, (Image*) &text_34_cga, (Music*) &music_03_all, room_funct_34_all };
 
-const Room room_40_cga = { (Image*) &room_40_f_cga, NULL, (Objects*) &objects_null,   (Mask*) &mask_40_all, (Image*) &text_40_cga, (Music*) &music_00_all,         room_null };
-const Room room_41_cga = { (Image*) &room_41_f_cga, NULL, (Objects*) &objects_41_cga, (Mask*) &mask_41_cga, (Image*) &text_41_cga, (Music*) &music_00_all, room_funct_41_all };
-const Room room_42_cga = { (Image*) &room_42_f_cga, NULL, (Objects*) &objects_42_cga, (Mask*) &mask_42_all, (Image*) &text_42_cga, (Music*) &music_02_all, room_funct_42_all };
-const Room room_43_cga = { (Image*) &room_43_f_cga, NULL, (Objects*) &objects_43_cga, (Mask*) &mask_43_cga, (Image*) &text_43_cga, (Music*) &music_02_all, room_funct_43_all };
-const Room room_44_cga = { (Image*) &room_44_f_cga, NULL, (Objects*) &objects_44_cga, (Mask*) &mask_44_cga, (Image*) &text_44_cga, (Music*) &music_04_all, room_funct_44_all };
-
-
+const Room room_40_cga = { (Image*) &room_40_f_cga, NULL,                    (Objects*) &objects_null,   (Mask*) &mask_40_all, (Image*) &text_40_cga, (Music*) &music_00_all,         room_null };
+const Room room_41_cga = { (Image*) &room_41_f_cga, NULL,                    (Objects*) &objects_41_cga, (Mask*) &mask_41_cga, (Image*) &text_41_cga, (Music*) &music_11_all, room_funct_41_all };
+const Room room_42_cga = { (Image*) &room_42_f_cga, NULL,                    (Objects*) &objects_42_cga, (Mask*) &mask_42_all, (Image*) &text_42_cga, (Music*) &music_02_all, room_funct_42_all };
+const Room room_43_cga = { (Image*) &room_43_f_cga, NULL,                    (Objects*) &objects_43_cga, (Mask*) &mask_43_cga, (Image*) &text_43_cga, (Music*) &music_02_all, room_funct_43_all };
+const Room room_44_cga = { (Image*) &room_44_f_cga, NULL,                    (Objects*) &objects_44_cga, (Mask*) &mask_44_cga, (Image*) &text_44_cga, (Music*) &music_04_all, room_funct_44_all };

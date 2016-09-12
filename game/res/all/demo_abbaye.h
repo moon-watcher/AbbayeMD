@@ -1,0 +1,3 @@
+#ifndef _GAME_RES_ALL_DEMO_ABBAYE_H_
+#define _GAME_RES_ALL_DEMO_ABBAYE_H_
+

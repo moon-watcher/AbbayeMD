@@ -59,9 +59,16 @@ void ocb_collisions ( GameObject *go, Player *player )
 
 		case ENTITY_CHECKPOINT:
 
-			play_fx ( FX_DOOR );
 			//itemSetChecked ( go->item, 1 );
 			checkpoint_save ( go );
+
+			SND_pausePlay_XGM();
+
+			play_fx ( FX_CHECKPOINT );
+			VDP_waitVSync ( );
+
+			waitHz ( 80 );
+			SND_resumePlay_XGM ( );
 
 			break;
 

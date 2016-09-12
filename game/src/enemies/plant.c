@@ -38,10 +38,12 @@ void enemy_plant ( GameObject *goPlant[], GameObject *goSpit[], u16 pos )
 		spit2->vel_x = +spit2->object->entity->vel_x;
 		spit2->vel_y = -spit2->object->entity->vel_y;
 
-		play_fx ( FX_SHOT );
+		//play_fx ( FX_SHOT );
+		play_fx ( FX_SPIT );
 	}
 
 	delay += 30;
+
 	if  ( ( plant->counter == delay )  ||  ( plant->counter > delay  &&  ( plant->counter - delay ) % timer == 0 ) )
 	{
 		SPR_setFrame ( plant->sprite, 0 );

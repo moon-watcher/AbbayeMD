@@ -1,1 +1,2 @@
-BITMAP logo_sega "game/data/all/logo_sega.bmp" 0
+BITMAP logo_sega   "game/data/all/logo_sega.bmp"   0
+BITMAP abbaye_logo "game/data/all/abbaye_logo.bmp" 0

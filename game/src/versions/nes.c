@@ -672,9 +672,7 @@
 //const Room room_34_nes = { (Image*) &room_34_f_nes, NULL, (Objects*) &objects_34_nes, (Mask*) &mask_34_all, (Image*) &text_34_all, (Music*) &music_03_all, room_funct_34_all };
 //
 //const Room room_40_nes = { (Image*) &room_40_f_nes, NULL, (Objects*) &objects_null,   (Mask*) &mask_40_all, (Image*) &text_40_all, (Music*) &music_00_all,         room_null };
-//const Room room_41_nes = { (Image*) &room_41_f_nes, NULL, (Objects*) &objects_41_nes, (Mask*) &mask_41_all, (Image*) &text_41_all, (Music*) &music_00_all, room_funct_41_all };
+//const Room room_41_nes = { (Image*) &room_41_f_nes, NULL, (Objects*) &objects_41_nes, (Mask*) &mask_41_all, (Image*) &text_41_all, (Music*) &music_11_all, room_funct_41_all };
 //const Room room_42_nes = { (Image*) &room_42_f_nes, NULL, (Objects*) &objects_42_nes, (Mask*) &mask_42_nes, (Image*) &text_42_all, (Music*) &music_02_all, room_funct_42_all };
 //const Room room_43_nes = { (Image*) &room_43_f_nes, NULL, (Objects*) &objects_43_nes, (Mask*) &mask_43_all, (Image*) &text_43_all, (Music*) &music_02_all, room_funct_43_all };
 //const Room room_44_nes = { (Image*) &room_44_f_nes, NULL, (Objects*) &objects_44_nes, (Mask*) &mask_44_all, (Image*) &text_44_all, (Music*) &music_04_all, room_funct_44_all };
-//
-//

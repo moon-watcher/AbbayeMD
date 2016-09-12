@@ -75,8 +75,7 @@ const Entity entity_64_pc  = { 64, "Satan bullet explosion",   9, (SpriteDefinit
 const Entity entity_65_pc  = { 65, "Arrow explosion",         11, (SpriteDefinition*) &enemies_2x1_pc,   PAL2, ENTITY_NULL,                 0,           0,           0, 0, 1, 0, NULL, mcb_null,        0, {  } };
 const Entity entity_66_pc  = { 66, "Gargoyle spit explosion", 10, (SpriteDefinition*) &enemies_2x1_pc,   PAL2, ENTITY_NULL,                 0,           0,           0, 0, 1, 0, NULL, mcb_null,        0, {  } };
 
-
-
+const Entity entity_81_pc  = { 81, "Evil Jean",                0, (SpriteDefinition*) &evil_jean_2x3_pc, PAL3, ENTITY_NULL,                 0,           0,           0, 0, 1, 0, NULL, mcb_null,        0, {  } };
 
 
 
@@ -384,7 +383,7 @@ const Objects objects_23_pc = // The wheel of Faith // OK
             { (Entity*) &entity_12_pc, 216, 144,  0,  0 }, // Cross
             { (Entity*) &entity_11_pc, 168,  80,  0,  0 }, // Heart
 
-            { (Entity*) &entity_65_pc, -80, -80,  0,  0 }, // Arrow explosion
+            //{ (Entity*) &entity_65_pc, -80, -80,  0,  0 }, // Arrow explosion
       }
 };
 
@@ -455,7 +454,7 @@ const Objects objects_04_pc = // Unexpected gate // OK
       {
             { (Entity*) &entity_51_pc, 216,  24,  0,  0,  0,  0, -1 }, // Gargoyle
             { (Entity*) &entity_52_pc, -40, -40,  0,  0             }, // Gargoyle spit
-            { (Entity*) &entity_66_pc, -40, -40,  0,  0             }, // Gargoyle spit explosion
+            //{ (Entity*) &entity_66_pc, -40, -40,  0,  0             }, // Gargoyle spit explosion
 
             { (Entity*) &entity_30_pc,  16,  80, +1,  0, FIX32(0.65) }, // Evil bird
             { (Entity*) &entity_30_pc, 209, 104, -1,  0, FIX32(0.65) }, // Evil bird
@@ -483,7 +482,7 @@ const Objects objects_14_pc = // Evil church // OK
 
             { (Entity*) &entity_08_pc, 152,  40,  0,  0 }, // Checkpoint
 
-            { (Entity*) &entity_65_pc, -80, -80,  0,  0 }, // Arrow explosion
+            //{ (Entity*) &entity_65_pc, -80, -80,  0,  0 }, // Arrow explosion
 	}
 };
 
@@ -493,7 +492,7 @@ const Objects objects_24_pc = // Tortured souls // OK
       {
             { (Entity*) &entity_51_pc, 224, 104,  0,  0,  0,  0, -1 }, // Gargoyle
             { (Entity*) &entity_52_pc, -40, -40,  0,  0             }, // Gargoyle spit
-            { (Entity*) &entity_66_pc, -40, -40,  0,  0             }, // Gargoyle spit explosion
+            //{ (Entity*) &entity_66_pc, -40, -40,  0,  0             }, // Gargoyle spit explosion
 
             { (Entity*) &entity_13_pc, 220, 142,  0,  0 }, // Inverted cross
 
@@ -575,7 +574,7 @@ const Objects objects_44_pc = // Satan!!! // TODO
             { (Entity*) &entity_57_pc, 196,  80,  0, +1 }, // Satan
 
             { (Entity*) &entity_61_pc, 128, 190,  0,  0 }, // Catched cross // puts out of the screen
-            { (Entity*) &entity_64_pc, 128, 190,  0,  0 }, // Satan bullet explosion // Used to be saved in VRAM
+            //{ (Entity*) &entity_64_pc, 128, 190,  0,  0 }, // Satan bullet explosion // Used to be saved in VRAM
 	}
 };
 
@@ -1100,9 +1099,7 @@ const Room room_33_pc = { (Image*) &room_33_f_pc, NULL, (Objects*) &objects_33_p
 const Room room_34_pc = { (Image*) &room_34_f_pc, NULL, (Objects*) &objects_34_pc, (Mask*) &mask_34_pc,  (Image*) &text_34_all, (Music*) &music_03_all, room_funct_34_all };
 
 const Room room_40_pc = { (Image*) &room_40_f_pc, NULL, (Objects*) &objects_null,  (Mask*) &mask_40_all, (Image*) &text_40_all, (Music*) &music_00_all,         room_null };
-const Room room_41_pc = { (Image*) &room_41_f_pc, NULL, (Objects*) &objects_41_pc, (Mask*) &mask_41_pc,  (Image*) &text_41_all, (Music*) &music_00_all, room_funct_41_all };
+const Room room_41_pc = { (Image*) &room_41_f_pc, NULL, (Objects*) &objects_41_pc, (Mask*) &mask_41_pc,  (Image*) &text_41_all, (Music*) &music_11_all, room_funct_41_all };
 const Room room_42_pc = { (Image*) &room_42_f_pc, NULL, (Objects*) &objects_42_pc, (Mask*) &mask_42_all, (Image*) &text_42_all, (Music*) &music_02_all, room_funct_42_all };
 const Room room_43_pc = { (Image*) &room_43_f_pc, NULL, (Objects*) &objects_43_pc, (Mask*) &mask_43_pc,  (Image*) &text_43_all, (Music*) &music_02_all, room_funct_43_all };
 const Room room_44_pc = { (Image*) &room_44_f_pc, NULL, (Objects*) &objects_44_pc, (Mask*) &mask_44_pc,  (Image*) &text_44_all, (Music*) &music_04_all, room_funct_44_all };
-
-

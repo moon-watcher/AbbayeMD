@@ -38,6 +38,6 @@ const struct
     0x00200000,
     0x002001FF,
     "            ",
-    "PC, MD, MSX, PCW, GB, NES, CGA          ",
+    "PC, MD, MSX, PCW, GB, NES, CGA, C64     ",
     "JUE             "
 };

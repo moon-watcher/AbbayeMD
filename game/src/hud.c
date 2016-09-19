@@ -102,6 +102,11 @@ void hudIncCrosses ( s8 inc )
 
 void hudIncHearts ( s8 inc )
 {
+	if ( DEV )
+	{
+		return;
+	}
+
 	SYS_disableInts();
 
 	if ( !_vram_hearts )

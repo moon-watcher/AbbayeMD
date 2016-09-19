@@ -596,8 +596,6 @@ void mcb_scythe ( void *data )
 		go->vel_y = +go->object->entity->vel_y;
 		go->vel_x = 0;
 	}
-
-
 }
 
 
@@ -618,8 +616,9 @@ void mcb_drop ( void *data )
 	{
 		_relocate_y(go);
 
-		go->vel_y = zero;
+		go->vel_y   = zero;
 		go->grabity = false;
+		SPR_nextFrame(go->sprite);
+		//go->data    = (Data)
 	}
-
 }

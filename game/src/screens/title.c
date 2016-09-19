@@ -262,7 +262,7 @@ u16 screen_title ( )
 
 
 
-//	if ( DEV ) return 1;
+	if ( DEV ) return 1;
 
 
 

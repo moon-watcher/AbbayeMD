@@ -38,6 +38,7 @@ GameObject *goManagerAdd ( listptr *list, Object *object ) //GameObject *GoManag
 	go->grabity = true;
 
 	go->counter = 0;
+	go->data    = NULL;
 
 
 	if ( go->object->dir_x )

@@ -192,6 +192,7 @@ const Room room_01_md;
 const Room room_02_md;
 const Room room_03_md;
 const Room room_04_md;
+const Room room_05_md;
 
 const Room room_10_md;
 const Room room_11_md;

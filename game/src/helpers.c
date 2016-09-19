@@ -1114,3 +1114,15 @@ void alternate_color_in_cm ( )
 //   return num;
 //}
 
+
+void prepare_doors ()
+{
+    // open church's door
+    if ( !game.crusader  &&  game.room.x == 0  &&  game.room.y == 1 )
+    {
+        Item *item = (Item*) itemManagerFind ( &waItems, 0, 2, 1 );
+        itemSetChecked ( item, false );
+    }
+}
+
+

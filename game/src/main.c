@@ -357,6 +357,9 @@ static void init ( int argc, char *argv[] )
 
 	VDP_init();
 
+	Z80_loadDriver ( Z80_DRIVER_XGM, true );
+	SND_setForceDelayDMA_XGM ( true );
+
     displayInit ( );
     displayOff ( 0 );
 	dev_init ( 1, 1 );

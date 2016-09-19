@@ -3,6 +3,7 @@ IMAGE room_01_b_md "../../data/md/background/01.bmp"  0
 IMAGE room_02_b_md "../../data/md/background/02.bmp"  0
 IMAGE room_03_b_md "../../data/md/background/03.bmp"  0
 IMAGE room_04_b_md "../../data/md/background/04.bmp"  0
+IMAGE room_05_b_md "../../data/md/background/05.bmp"  0
 
 IMAGE room_10_b_md "../../data/md/background/10.bmp"  0
 IMAGE room_11_b_md "../../data/md/background/11.bmp"  0

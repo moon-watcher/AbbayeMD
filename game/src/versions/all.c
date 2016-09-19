@@ -1238,6 +1238,7 @@ const Room *room_list [ VERSION_MAX ] [ ROOMS_MAX_HEIGHT ] [ ROOMS_MAX_WIDTH ] =
         { &room_02_md, &room_12_md, &room_22_md, &room_32_md, &room_42_md },
         { &room_03_md, &room_13_md, &room_23_md, &room_33_md, &room_43_md },
         { &room_04_md, &room_14_md, &room_24_md, &room_34_md, &room_44_md },
+        //{ &room_05_md, &room_14_md, &room_24_md, &room_34_md, &room_44_md },
     },
 
     // VERSION_MSX

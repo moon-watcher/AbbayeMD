@@ -6,15 +6,15 @@ static u8 _started = 0;
 
 
 
-void cm_init  ( )
+void cm_init ( )
 {
-	_started       = 0;
+	_started      = 0;
 	game.crusader = false;
 }
 
 
 
-void cm_activate  ( )
+void cm_activate ( )
 {
 	if ( !cm_can_be_activated() )
 	{

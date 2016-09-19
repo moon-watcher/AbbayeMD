@@ -6,6 +6,7 @@ extern const Image room_01_f_md;
 extern const Image room_02_f_md;
 extern const Image room_03_f_md;
 extern const Image room_04_f_md;
+extern const Image room_05_f_md;
 extern const Image room_10_f_md;
 extern const Image room_11_f_md;
 extern const Image room_12_f_md;

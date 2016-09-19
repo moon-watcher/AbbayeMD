@@ -26,6 +26,7 @@ typedef struct
 
 	// for other stuff
 	s32          counter;
+	void        *data;
 }
 GameObject;
 

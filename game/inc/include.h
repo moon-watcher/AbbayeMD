@@ -90,6 +90,7 @@ bool;
 #include "../inc/debug.h"
 #include "../inc/font.h"
 #include "../inc/display.h"
+#include "../inc/door.h"
 
 
 

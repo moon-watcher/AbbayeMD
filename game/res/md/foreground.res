@@ -3,6 +3,7 @@ IMAGE room_01_f_md "../../data/md/foreground/01.bmp"  0
 IMAGE room_02_f_md "../../data/md/foreground/02.bmp"  0
 IMAGE room_03_f_md "../../data/md/foreground/03.bmp"  0
 IMAGE room_04_f_md "../../data/md/foreground/04.bmp"  0
+IMAGE room_05_f_md "../../data/md/foreground/05.bmp"  0
 
 IMAGE room_10_f_md "../../data/md/foreground/10.bmp"  0
 IMAGE room_11_f_md "../../data/md/foreground/11.bmp"  0

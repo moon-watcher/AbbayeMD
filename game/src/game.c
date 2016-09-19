@@ -320,6 +320,8 @@ void game_loop ( )
 				game.room.x = checkpoint_get()->room_x;
 				game.room.y = checkpoint_get()->room_y;
 
+				prepare_doors ( );
+
 				playerInit (&player);
 			}
 		}

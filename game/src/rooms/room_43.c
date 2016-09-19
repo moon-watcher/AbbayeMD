@@ -28,7 +28,7 @@ static void _room_enter ( Room *room )
 
 
 	// the switch at 4,1 opens the door
-	item = (Item*) itemManagerFind ( &waItems, 22, 4, 1 );
+	item = (Item*) itemManagerFind ( &waItems, 21, 4, 1 );
 
 	if ( itemGetChecked ( item )  &&  itemGetVisible ( door->item ) )
 	{

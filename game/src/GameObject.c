@@ -422,6 +422,11 @@ void goDelete ( GameObject *go )
 		vram_delete ( go->vram );
 	}
 
+	if ( go->data )
+	{
+		MEM_free ( go->data );
+	}
+
 	go->active = 0;
 	go->node   = NULL;
 

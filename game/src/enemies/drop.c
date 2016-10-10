@@ -61,13 +61,13 @@ void enemy_drop ( GameObject *goDrop[], u16 pos )
 	if ( drop->sprite->frameInd == 3  &&  drop->sprite->timer == 1 )
 	{
 		SPR_setFrame ( drop->sprite, 4 );
-		SPR_setTimer ( drop->sprite, 1000 );
+		SPR_setTimer ( drop->sprite, 5 );
 	}
 
 	if ( drop->counter - delay > data->timer[2]  &&  drop->vel_y == zero  &&  drop->grabity )
 	{
 		SPR_setFrame ( drop->sprite, 3 );
-		SPR_setTimer ( drop->sprite, 1000 );
+		SPR_setTimer ( drop->sprite, 5 );
 	}
 
 

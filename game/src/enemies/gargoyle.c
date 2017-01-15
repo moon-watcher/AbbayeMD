@@ -38,5 +38,12 @@ void enemy_gargoyle ( GameObject *goGargoyle[], GameObject *goSpit[], u16 pos )
 
 	SPR_setTimer ( gargoyle->sprite, 1000 );
 
+
+	if ( !spit->vel_x && SPR_countFrames(spit->sprite) == 1 )
+	{
+		goSetY(spit, -20);
+	}
+
+
 	++gargoyle->counter;
 }

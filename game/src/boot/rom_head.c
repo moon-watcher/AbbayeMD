@@ -23,7 +23,7 @@ const struct
     char region[16];                /* Country Support (16) */
 } rom_header = {
     "SEGA MEGA DRIVE ",
-    "(C)LGM 2010-2016",
+    "(C)LGM 2010-2017",
     "L'Abbaye des morts for Sega Genesis/Megadrive   ",
     "L'Abbaye des morts for Sega Genesis/Megadrive   ",
     "LGM-01-0 v1.00",
@@ -38,6 +38,6 @@ const struct
     0x00200000,
     0x002001FF,
     "            ",
-    "PC, MD, MSX, PCW, GB, NES, CGA, C64     ",
+    "PC, MD, MSX, PCW, GB, CGA, C64          ",
     "JUE             "
 };

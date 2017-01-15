@@ -79,7 +79,7 @@ static void _control ( )
 		drawText ( "              ", 14, positions[2] );
 		drawText ( fx->title,        14, positions[2] );
 
-		if ( joy1_pressed_btn | joy1_pressed_start )
+		if ( joy1_pressed_abc | joy1_pressed_start )
 		{
 			if ( opcion == 0 ) play_music ( track );
 			if ( opcion == 1 ) play_fx    ( sfx   );

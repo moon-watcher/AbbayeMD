@@ -11,6 +11,8 @@ void enemy_lighting_init ( GameObject *lighting )
 {
 	if ( game.version == VERSION_PCW )
 	{
+		play_fx ( FX_LIGHTING );
+
 		lighting->counter = 1;
 
 		SPR_setFrame ( lighting->sprite, 0 );
@@ -22,12 +24,6 @@ void enemy_lighting_init ( GameObject *lighting )
 
 		VDP_getPaletteColors ( 0, saved_colors, 64 );
 		memsetU16 ( lighting_palette, VDP_getPaletteColor ( 1 ), 64 );
-
-//		VDP_waitVSync();
-//
-//
-//		VDP_waitVSync();
-//		VDP_setPaletteColors( 0, saved_colors, 64 );
 	}
 }
 

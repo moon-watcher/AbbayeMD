@@ -75,6 +75,11 @@ static void _room_enter ( Room *room )
 	_scroll_init ();
 
 
+	if ( game.version == VERSION_C64 )
+	{
+		enemy_star_init (  );
+	}
+
 	if ( game.version == VERSION_PCW )
 	{
 		lighting = (GameObject *) goManagerFindByEntityId ( &waObjects, 102, 0 ); // Lighting
@@ -149,6 +154,11 @@ static void _room_stay ( Room *room )
 		}
 	}
 
+	if ( game.version == VERSION_C64 )
+	{
+		enemy_star ( (Vect2D_u16*) exceptions, 15, 10, 1, 19, 13, PLAN_B );
+	}
+
 	if ( game.version == VERSION_MD )
 	{
 		for ( i=0; i<nb_leaf; i++ )
@@ -169,7 +179,7 @@ static void _room_stay ( Room *room )
 
 			else if ( door->x == 248  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
 			{
-				play_fx ( FX_JUMP );
+				play_fx ( FX_CLOSED_DOOR );
 				goIncX ( door, 2 );
 
 				goIncX ( crusader[0], 3 );

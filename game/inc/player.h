@@ -29,7 +29,6 @@ typedef enum
 	PLAYER_PLUNGE,
 	PLAYER_MAX_ACTIONS,
 
-
 	PLAYER_JUMP_PRESSED = 100,
 }
 PlayerAction;

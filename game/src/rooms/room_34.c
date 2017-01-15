@@ -86,7 +86,7 @@ static void _room_stay ( Room *room )
 
 		else if ( door->x == 248  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
 		{
-			play_fx ( FX_JUMP );
+			play_fx ( FX_CLOSED_DOOR );
 			goIncX ( door, 2 );
 
 			goIncX ( philippe[3], 3 );

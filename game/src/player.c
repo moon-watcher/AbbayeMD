@@ -42,7 +42,7 @@ static s16 _can_change_action ( Player *player, PlayerAction nueva  )
 {
 	if ( playerIsLieDown ( player )  &&  _blocks_over_jean ( player )  )
 	{
-			  if ( nueva == PLAYER_STAY        ) nueva = PLAYER_LIEDOWN;
+		     if ( nueva == PLAYER_STAY        ) nueva = PLAYER_LIEDOWN;
 		else if ( nueva == PLAYER_WALKS_LEFT  ) nueva = PLAYER_SNEAKS_LEFT;
 		else if ( nueva == PLAYER_WALKS_RIGHT ) nueva = PLAYER_SNEAKS_RIGHT;
 	}
@@ -55,7 +55,7 @@ static s16 _can_change_action ( Player *player, PlayerAction nueva  )
 static void _relocate_player ( Player *player, PlayerAction action )
 {
 	//
-	// very bad code aproaching :/
+	// very bad code :/
 	//
 
 	if ( player->action == action  ||
@@ -92,11 +92,11 @@ static void _relocate_player ( Player *player, PlayerAction action )
 
 	if ( action == PLAYER_SNEAKS_LEFT  &&  player->action == PLAYER_LIEDOWN  &&  SPR_getHFlip ( go->sprite ) == 0 )
 	{
-		w1 = objectGetPaddingLeft ( obj ) + 1;
+		w1 = objectGetPaddingLeft ( obj )+1;
 	}
 	else if ( action == PLAYER_SNEAKS_RIGHT  &&  player->action == PLAYER_LIEDOWN  &&  SPR_getHFlip ( go->sprite ) == 1  )
 	{
-		w1 = objectGetWidth ( obj ) - objectGetPaddingLeft ( obj ) - 1;
+		w1 = objectGetWidth ( obj ) - objectGetPaddingLeft ( obj );
 		w2 = objectGetWidth ( obj ) - w2;
 	}
 	else if ( action == PLAYER_SNEAKS_LEFT  &&  SPR_getHFlip ( go->sprite ) == 0 )
@@ -131,7 +131,7 @@ static void _process_burning ( Player *player )
 	{
 		if ( player->plunge == 0 )
 		{
-			musicStop ( NULL );
+			musicStop ( );
 			play_fx ( FX_HIT );
 		}
 
@@ -164,7 +164,7 @@ static void _process_plunge ( Player *player )
 	{
 		if ( player->burning == 0 )
 		{
-			musicStop ( NULL );
+			musicStop ();
 			play_fx ( FX_HIT );
 		}
 
@@ -390,6 +390,7 @@ void playerUpdate ( Player *player, PlayerAction action )
 
 
 	_relocate_player ( player, action );
+
 	goSetObject ( go, (Object*) &player_actions [ game.version ] [ action ] [ game.crusader ] );
 
 	fix32 vx = player_actions [ game.version ] [ action ] [ game.crusader ].entity->vel_x;

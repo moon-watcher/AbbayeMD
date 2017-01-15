@@ -24,17 +24,18 @@ Screen *screen_get ( u8 id );
 
 
 
-void screen_disclaimer ( );
-void screen_sega       ( );
-u16  screen_title      ( );
-u16  screen_options    ( );
-void screen_info       ( );
-void screen_prologue   ( );
-void screen_burning    ( );
-void screen_ending     ( );
-void screen_gameover   ( );
-void screen_credits    ( );
-void screen_tfp        ( );
+void screen_disclaimer  ( bool force );
+void screen_sega        ( );
+u16  screen_title       ( );
+void screen_options     ( );
+void screen_info        ( );
+void screen_prologue    ( );
+void screen_burning     ( );
+void screen_ending      ( );
+void screen_gameover    ( );
+void screen_credits     ( );
+void screen_tfp         ( );
+void screen_playonretro ( );
 
 
 

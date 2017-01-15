@@ -113,6 +113,10 @@ static void _change_fx ( bool init )
 
 	if ( click && !init )
 	{
+		mute ( true, false );
+
+		VDP_waitVSync();
+
 		fxPlay(m);
 	}
 }
@@ -121,8 +125,6 @@ static void _change_fx ( bool init )
 
 static void _loop ( )
 {
-	//JoyReader_reset();
-
 	while ( true )
 	{
 		JoyReader_update();
@@ -178,12 +180,8 @@ static void _draw_screen ( )
 	resetScroll();
 	resetScreen();
 
-
-
-	const u16 blacks[64] = { [0 ... 63] = 0x0000 };
-
-	preparePal ( PAL0, (u16*) blacks );
-	preparePal ( PAL1, (u16*) blacks );
+	preparePal ( PAL0, (u16*) palette_black );
+	preparePal ( PAL1, (u16*) palette_black );
 	preparePal ( PAL2, (u16*) palette_get(6)->data );
 	preparePal ( PAL3, (u16*) palette_red );
 
@@ -214,7 +212,7 @@ static void _draw_screen ( )
 
 
 
-u16 screen_options ( )
+void screen_options ( )
 {
 	//if ( DEV )return 1;
 
@@ -226,19 +224,13 @@ u16 screen_options ( )
 	music = 0;
 	fx = 0;
 
-	//vram_init ( VRAM_DEFAULT );
-
-
 	_draw_screen();
 
 	_loop();
 
+	mute ( true, true );
+	displayOff(10);
 
-	displayOff(0);
 	VDP_resetSprites();
 	VDP_updateSprites(80,1);
-
-	//vram_destroy();
-
-	return 1;
 }

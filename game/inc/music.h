@@ -19,7 +19,7 @@ Music;
 
 void musicInit ( );
 void musicPlay ( Music *track );
-void musicStop ( );
+bool musicStop ( );
 
 
 

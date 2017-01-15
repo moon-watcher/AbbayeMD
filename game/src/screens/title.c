@@ -7,6 +7,8 @@ extern const struct genresTiles screen_title_year_all;
 
 
 #include "../../res/all/palettes.h"
+#include "../../res/gb/palettes.h"
+#include "../../res/pcw/palettes.h"
 
 
 static s8  opcion = 0;
@@ -20,9 +22,14 @@ static void _lighting ( int nb )
 	u16 j, wait = 8;
 	u16 pal [ 16 ] = { VDP_getPaletteColor(0) };
 
+	Palette *p = (Palette*) &palette_lighting_all;
+
+	if ( game.version == VERSION_GB  ) p = (Palette*) &palette_lighting_gb;
+	if ( game.version == VERSION_PCW ) p = (Palette*) &palette_lighting_pcw;
+
 	for ( j = 1; j < 16; j++ )
 	{
-		pal [ j ] = palette_lighting_all.data [ (nb) ];
+		pal [ j ] = p->data [ (nb) ];
 	}
 
 	VDP_setPalette ( PAL0, pal );
@@ -40,7 +47,7 @@ static void _blink_option ( )
 	}
 
 
-	u16 j;
+//	u16 j;
 	u16 saved_a [ 16 ];
 	u16 saved_b [ 16 ];
 
@@ -55,7 +62,7 @@ static void _blink_option ( )
 	VDP_setPalette ( PAL0, saved_b );
 	VDP_setPalette ( PAL1, saved_a );
 
-	for ( j=0; j<10; j++ ) VDP_waitVSync();
+	waitHz(10);
 
 	_lighting(2);      // yellow
 	_lighting(3);      // dark yellow
@@ -84,7 +91,6 @@ static void _show_version ( )
 static void _draw_screen ( )
 {
 	u16 speed = DEV ? 1 : getHz() * 2;
-
 
 	vram_delete ( vrampos_a );
 	vram_delete ( vrampos_b );
@@ -123,6 +129,7 @@ static void _draw_screen ( )
 
 	vrampos_b = drawImage   ( (Image*) screen->background, PLAN_B );
 	VDP_fadePalTo ( PAL0, screen->background->palette->data, speed, 0 );
+
 
 	if ( !DEV )
 	{
@@ -183,24 +190,19 @@ static void _version_add ( s8 inc )
 	_show_version();
 
 
-	VDP_waitVSync();
-
 	SYS_disableInts();
-
 	VDP_setPalette ( PAL0, palette_black );
 	VDP_setPalette ( PAL1, palette_black );
+	SYS_enableInts();
 
-	VDP_waitVSync();
 	vrampos_b = drawImage   ( (Image*) screen->background, PLAN_B );
 	vrampos_a = drawImageXY ( (Image*) screen->foreground, PLAN_A, 13, 2  );
 
 	VDP_waitVSync();
+
+	SYS_disableInts();
 	VDP_setPalette ( PAL0, screen->background->palette->data );
 	VDP_setPalette ( PAL1, screen->foreground->palette->data );
-
-//	VDP_fadePalTo ( PAL0, screen->background->palette->data, 3, 0 );
-//	VDP_fadePalTo ( PAL1, screen->foreground->palette->data, 10, 1 );
-
 	SYS_enableInts();
 }
 
@@ -255,6 +257,10 @@ u16 screen_title ( )
 {
 	displayOff(0);
 
+	VDP_setScreenWidth256 ( );
+	VDP_setPlanSize ( 32, 32 );
+
+
 	resetScroll ( );
 	resetScreen ( );
 	scrollSet ( 0 );
@@ -262,7 +268,7 @@ u16 screen_title ( )
 
 
 
-	if ( DEV ) return 1;
+//	if ( DEV ) return 1;
 
 
 
@@ -277,6 +283,7 @@ u16 screen_title ( )
 	{
 		opcion = 0;
 
+		VDP_waitVSync();
 		_draw_screen ( );
 
 		switch ( _control() )

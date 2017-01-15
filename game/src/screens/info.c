@@ -47,10 +47,16 @@ static void _draw_screen()
 	preparePal ( pal, palette_get(6)->data );
 	VDP_setTextPalette ( pal );
 
-	if ( game.version == VERSION_PCW || game.version == VERSION_GB )
+	if ( game.version == VERSION_PCW )
 	{
 		prepareColor ( pal * 16 + 1, palette_get(0)->data[1] );
 		prepareColor ( pal * 16 + 2, palette_get(0)->data[0] );
+	}
+
+	if ( game.version == VERSION_GB )
+	{
+		prepareColor ( pal * 16 + 1, palette_get(0)->data[4] );
+		prepareColor ( pal * 16 + 2, palette_get(0)->data[2] );
 	}
 
 	VDP_drawText ( "Extra life",          6, 10 );
@@ -103,7 +109,7 @@ void screen_info ()
 	{
 		JoyReader_update();
 
-		if ( joy1_pressed_btn | joy1_pressed_start )
+		if ( joy1_pressed_abc | joy1_pressed_start )
 		{
 			break;
 		}
@@ -124,7 +130,7 @@ void screen_info ()
 		VDP_waitVSync ( );
 	}
 
-	displayOff(0);
+	displayOff(10);
 
 	//vram_destroy();
 

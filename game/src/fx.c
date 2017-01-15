@@ -3,8 +3,6 @@
 
 void fxInit ( )
 {
-   //return;
-
    int i = FX_MAX;
 
    while ( i-- )
@@ -24,11 +22,14 @@ void fxPlay ( Fx *fx )
       SND_stopPlayPCM_XGM ( fx->channel );
    }
 
-   //SND_setPCM_XGM ( 64 + fx->id, fx->sample, fx->size );
    SND_startPlayPCM_XGM ( 64 + fx->id, fx->priority, fx->channel );
 }
 
 
+void fxStop ( u16 channel )
+{
+   SND_stopPlayPCM_XGM ( channel );
+}
 
 
 //void fxInit ( )

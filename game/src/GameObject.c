@@ -219,8 +219,8 @@ void goSetSprite ( GameObject *go, Sprite *sprite )
 	if ( go->object->flipH ) flipH = flipH ? 0 : 1;
 	if ( go->object->flipV ) flipV = flipV ? 0 : 1;
 
-	SYS_disableInts();
 
+	SYS_disableInts();
 	go->sprite = SPR_addSprite
 	(
 		go->object->entity->sd,
@@ -234,15 +234,19 @@ void goSetSprite ( GameObject *go, Sprite *sprite )
 			flipH
 		)
 	);
-
-	go->vram = vram_new ( SPR_nbTiles ( go->sprite ) );
-	SPR_setVRAMTileIndex ( go->sprite, go->vram );
-	SPR_setVisibility ( go->sprite, VISIBLE ); // force load to VRAM even if is not visible
-	SPR_setAnim ( go->sprite, go->object->entity->animation );
-	preparePal ( go->object->entity->palette, go->object->entity->sd->palette->data );
-
 	SYS_enableInts();
 
+	go->vram = vram_new ( SPR_nbTiles ( go->sprite ) );
+
+	SYS_disableInts();
+	SPR_setVRAMTileIndex ( go->sprite, go->vram );
+	SYS_enableInts();
+
+	SPR_setVisibility ( go->sprite, VISIBLE ); // force load to VRAM even if is not visible
+	SPR_setAnim ( go->sprite, go->object->entity->animation );
+
+
+	preparePal ( go->object->entity->palette, go->object->entity->sd->palette->data );
 
 	if ( vram )
 	{
@@ -264,8 +268,8 @@ void goSetObject ( GameObject *go, Object *object )
 	go->object = object;
 
 	SYS_disableInts();
-
 	SPR_setDefinition ( go->sprite, go->object->entity->sd );
+	SYS_enableInts();
 
 	if ( !go->object->entity->doesFlipV  &&  SPR_getVFlip ( go->sprite ) ) SPR_setVFlip( go->sprite, 0 );
 	if ( !go->object->entity->doesFlipH  &&  SPR_getHFlip ( go->sprite ) ) SPR_setHFlip( go->sprite, 0 );
@@ -280,8 +284,8 @@ void goSetObject ( GameObject *go, Object *object )
 //	go->sprite->status |= 0x0001; // NEED_ST_ATTR_UPDATE;
 //	go->sprite->timer = 0;
 
+	SYS_disableInts();
 	SPR_setVRAMDirect ( go->sprite, go->vram );
-
 	SYS_enableInts();
 
 	if ( vram )

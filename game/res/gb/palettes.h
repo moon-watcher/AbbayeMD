@@ -14,5 +14,6 @@ extern const Palette palette_gb_06;
 extern const Palette palette_gb_07;
 extern const Palette palette_gb_08;
 extern const Palette palette_gb_09;
+extern const Palette palette_lighting_gb;
 
 #endif // _GAME_RES_GB_PALETTES_H_

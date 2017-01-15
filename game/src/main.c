@@ -50,7 +50,7 @@
  * @CODE:                     =>  Mun                           | Twitter: @MoonWatcherMD
  * @PROJECT:                  =>  #AbbayeMD
  * @START-DATE:               =>  xx-xx-2011
- * @LAST-UPDATE:              =>  xx-xx-2016
+ * @LAST-UPDATE:              =>  xx-xx-2017
  * @LIB:                      =>  SGDK (v1.11) by Stephane Dallongeville
  *
  *
@@ -74,17 +74,18 @@
  * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
  * @CRUSADER-MODE             => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @BETA-TESING               => Alfonso                        | Twitter: @_SrPresley_       | Mail:
+ * @BETA-TESING               => Alfonso Martínez               | Twitter: @_SrPresley_       | Mail:
  * @BETA-TESING               => Ruben Vaquer                   | Twitter: @TitoAdol3         | Mail:
  * @SPECIAL-THANKS-TO         => Stephane Dallongeville         | Twitter: @MegadriveDev      | Mail:
  * @SPECIAL-THANKS-TO         => José Zanni                     | Twitter: @josepzin          | Mail:
+ * @SPECIAL-THANKS-TO         => David Lara                     | Twitter: @@nevat            | Mail:
  *
  *
  * --------------------------------------------------------------------------------------------------------------------------------
  *  HOW TO COMPILE
  * --------------------------------------------------------------------------------------------------------------------------------
  *
- * Sega Genesis/Megadrive version of l'Abbaye des morts was created using SGDK v1.21 and GenRes v1.1.
+ * Sega Genesis/Megadrive version of l'Abbaye des morts was created using SGDK v1.22a and GenRes v1.1.
  *
  *  - Go gendev.spritesmind.net/page-genres.html
  *  - Download GenRes v1.1
@@ -97,7 +98,7 @@
  * --------------------------------------------------------------------------------------------------------------------------------
  *  CHANGELOG
  * --------------------------------------------------------------------------------------------------------------------------------
- * xx-xx-2016 » First release
+ * xx-xx-2017 » First release
  * --------------------------------------------------------------------------------------------------------------------------------
  *
  */
@@ -108,16 +109,10 @@
 
 
 
-
-static bool demo = false;
-
-
-static void demo1()
+static u16 demo1()
 {
-	if ( !demo && joy1_pressed_a )
+	if ( joy1_pressed_a )
 	{
-		demo = true;
-
 		extern const struct genresTiles demo_lightfold64;
 
 		u16 pos  = 16;
@@ -144,11 +139,12 @@ static void demo1()
 			SYS_disableInts();
 			VDP_setPaletteColors (  0, palette, 16 );
 			SYS_enableInts();
+
 			waitMs ( 40 );
 
 			JoyReader_update();
 
-			if ( joy1_pressed_btn )
+			if ( joy1_pressed_abc )
 			{
 				break;
 			}
@@ -159,17 +155,18 @@ static void demo1()
 		}
 
 		VDP_fadeOutAll ( 30, 0 );
+
+		return 1;
 	}
+
+	return 0;
 }
 
 
-static void demo2 ( )
+static u16 demo2 ( )
 {
-	if ( !demo && joy1_pressed_b )
+	if ( joy1_pressed_b )
 	{
-		demo = true;
-
-
 		extern const struct genresTiles demo_rainbars16b;
 
 		VDP_setScreenWidth256();
@@ -204,12 +201,13 @@ static void demo2 ( )
 			VDP_setVerticalScroll ( PLAN_B, -i*8 );
 			VDP_setPaletteColors (  0, palette, 16 );
 			SYS_enableInts();
+
 			waitMs(30);
 
 
 			JoyReader_update();
 
-			if ( joy1_pressed_btn )
+			if ( joy1_pressed_abc )
 			{
 				break;
 			}
@@ -221,16 +219,18 @@ static void demo2 ( )
 		}
 
 		VDP_fadeOutAll ( 30, 0 );
+
+		return 1;
 	}
+
+	return 0;
 }
 
 
-static void monos()
+static u16 monos()
 {
-	if ( !demo && joy1_pressed_c )
+	if ( joy1_pressed_c )
 	{
-		demo = true;
-
 		extern const Image ob_title_monos_mi;
 
 		SYS_disableInts();
@@ -246,6 +246,7 @@ static void monos()
 			SYS_disableInts();
 			VDP_setMapEx ( PLAN_A, ob_title_monos_mi.map, TILE_ATTR_FULL(PAL1,0,0,0,16), 14, 10, x*13, y*6, 13, 6 );
 			SYS_enableInts();
+
 			waitMs(100);
 
 			++x;
@@ -264,7 +265,7 @@ static void monos()
 
 			JoyReader_update();
 
-			if ( joy1_pressed_btn )
+			if ( joy1_pressed_abc )
 			{
 				break;
 			}
@@ -273,7 +274,18 @@ static void monos()
 		}
 
 		VDP_fadeOutAll ( 30, 0 );
+
+		return 1;
 	}
+
+	return 0;
+}
+
+
+
+static bool force_jack ( )
+{
+	return ( bool ) ( joy1_pressed_start );
 }
 
 
@@ -283,9 +295,10 @@ void psg_test ()
 	#include "../res/all/psg.h"
 	#include "../../libs/psg.h"
 
-	const u16 back_size=175;
+	//const u16 back_size=175;
 
-	const u8 back_data[175]={
+	const u8 back_data[175]=
+	{
 		0x00,0x01,0x00,0x04,0x03,0x00,0x0b,0x00,0x4f,0x00,0x93,0x00,0xc0,0xd5,0x80,0xe3,
 		0x80,0xd5,0x01,0x80,0xe3,0x80,0xd5,0x80,0xc7,0x80,0xd5,0x80,0xe3,0x80,0xd5,0x80,
 		0xc7,0x80,0xd5,0x80,0xe3,0x80,0xd5,0x80,0xc7,0xc4,0xd5,0x80,0xe3,0x80,0xd5,0x43,
@@ -302,24 +315,21 @@ void psg_test ()
 
 	while ( 1 )
 	{
-		psg_play ( psg_item,     0 ); waitSc ( 2 );
-		psg_play ( psg_onedeath, 0 ); waitSc ( 2 );
-		psg_play ( psg_door,     0 ); waitSc ( 2 );
-		psg_play ( back_data,    0 ); waitSc ( 2 );
+		psg_play ( (u8*)psg_item,     0 ); waitSc ( 2 );
+		psg_play ( (u8*)psg_onedeath, 0 ); waitSc ( 2 );
+		psg_play ( (u8*)psg_door,     0 ); waitSc ( 2 );
+		psg_play ( (u8*)back_data,    0 ); waitSc ( 2 );
 	}
 }
 
 
 
+
 static _voidCallback *vint_callback ( )
 {
-	psg_callback();
+	//psg_callback();
 
-	//SND_setManualSync_XGM ( FALSE );
 	SND_setMusicTempo_XGM ( 60 );
-
-	// ¿es posible que esto genere problems de sprites no cargados?
-	//SND_setForceDelayDMA_XGM ( TRUE );
 
 	if ( DEV )
 	{
@@ -338,11 +348,21 @@ static _voidCallback *vint_callback ( )
 
 
 
-static void init ( int argc, char *argv[] )
+
+
+
+
+
+
+int main ( int argc, char *argv[] )
 {
 //	// 0 is soft reset
 //	if ( argc == 0 )
 //	{
+//		const u16 palette_black_64[64] = { [0 ... 63] = 0x0000 };
+//
+//		VDP_setPaletteColors ( 0, (u16*) palette_black_64, 64 );
+//
 ////		displayOff(0);
 ////		VDP_drawText ( "You pressed reset", 11, 9 );
 //
@@ -355,34 +375,42 @@ static void init ( int argc, char *argv[] )
 ////	SYS_assertReset(); // makes gensKmod crash, WTF?!
 
 
-	VDP_init();
+	//VDP_init();
 
 	Z80_loadDriver ( Z80_DRIVER_XGM, true );
-	SND_setForceDelayDMA_XGM ( true );
+	SND_setForceDelayDMA_XGM (true);
 
     displayInit ( );
     displayOff ( 0 );
-	dev_init ( 1, 1 );
+	dev_init ( 0, 0 );
     fxInit ( );
-    session_init ( );
     JOY_setSupport ( PORT_1, JOY_SUPPORT_6BTN );
     JoyReader_init ( 1 );
     SYS_setVIntCallback ( (_voidCallback*) vint_callback );
 	VDP_setScreenWidth320 ( );
 	VDP_setPlanSize ( 64, 32 );
 
-	SND_setForceDelayDMA_XGM(TRUE);
 	//psg_test ();
 
 	game.version = VERSION_MD;
-	demo = false;
+
+
+
+//						dev_init ( 1, 1 );
+//						game.version = VERSION_C64;
+////						//game.version = VERSION_PC;
+
+
+
+
 
 	JoyReader_update();
-	monos();
-	demo1();
-	demo2();
 
-    screen_disclaimer ( );
+	bool force = false;
+
+	if ( monos() || demo1() || demo2() || (force = force_jack()) ) ;
+
+    screen_disclaimer ( force );
     screen_sega ( );
 
     displayOff(0);
@@ -404,13 +432,25 @@ static void init ( int argc, char *argv[] )
 //				screen_prologue ( );
 //				screen_gameover ( );
 //				screen_soundtest();
-}
 
 
-void loop ( )
-{
+
+
+	setRandomSeed ( vtimer );
+    session_init ( );
+
 	while ( TRUE )
     {
+    	displayOff(0);
+
+    	preparePal ( PAL0, (u16*) palette_black );
+    	preparePal ( PAL1, (u16*) palette_black );
+    	preparePal ( PAL2, (u16*) palette_black );
+    	preparePal ( PAL3, (u16*) palette_black );
+
+		musicInit ( );
+
+    	screen_playonretro ( );
         screen_credits ( );
 
 		if ( screen_title ( ) )
@@ -422,7 +462,6 @@ void loop ( )
             checkpoint_init ( );
             game_init ( );
             switch_init ( );
-            musicInit ( );
             hudInit ( );
             scrollSet ( SCROLL_INIT );
             itemManagerInit ( &waItems );
@@ -461,6 +500,7 @@ void loop ( )
 
             itemManagerEnd ( &waItems );
 
+			mute ( true, true );
 
             if ( game.status == GAME_STATUS_ENDING )
             {
@@ -474,6 +514,8 @@ void loop ( )
             {
                 screen_gameover ( );
             }
+
+            mute ( true, true );
         }
         else
         {
@@ -481,14 +523,7 @@ void loop ( )
             //screen_demo ( );
         }
     }
-}
 
-
-
-int main ( int argc, char *argv[] )
-{
-    init ( argc, argv );
-	loop ( );
 
     return 0;
 }

@@ -217,15 +217,18 @@ static void drawDisclaimerGraphics( void )
 	//VDP_waitVSync( );
 	//VDP_setEnable( FALSE );
 
+	SYS_disableInts();
 
-		tileIndex = TILE_USERINDEX;
-		VDP_drawImageEx( PLAN_B, &screen_disclaimerBGImage_all, IMG_ATTRIBUTES( PAL0 ), 0, 0, 0, FALSE );
+	tileIndex = TILE_USERINDEX;
+	VDP_drawImageEx( PLAN_B, &screen_disclaimerBGImage_all, IMG_ATTRIBUTES( PAL0 ), 0, 0, 0, FALSE );
 
-		tileIndex += screen_disclaimerBGImage_all.tileset->numTile;
-		VDP_drawImageEx( PLAN_A, &screen_disclaimerLogoImage_all, IMG_ATTRIBUTES( PAL1 ), 9, 9, 0, FALSE );
+	tileIndex += screen_disclaimerBGImage_all.tileset->numTile;
+	VDP_drawImageEx( PLAN_A, &screen_disclaimerLogoImage_all, IMG_ATTRIBUTES( PAL1 ), 9, 9, 0, FALSE );
 
-		tileIndex += screen_disclaimerLogoImage_all.tileset->numTile;
-		VDP_drawImageEx( PLAN_B, &screen_disclaimerLogoLedImage_all, IMG_ATTRIBUTES( PAL2 ), 26, 9, 0, FALSE );
+	tileIndex += screen_disclaimerLogoImage_all.tileset->numTile;
+	VDP_drawImageEx( PLAN_B, &screen_disclaimerLogoLedImage_all, IMG_ATTRIBUTES( PAL2 ), 26, 9, 0, FALSE );
+
+	SYS_enableInts();
 
 	preparePal(PAL0, screen_disclaimerBGImage_all.palette->data);
 	preparePal(PAL1, screen_disclaimerLogoImage_all.palette->data);
@@ -302,7 +305,7 @@ static void _disclaimer_simple ( )
 
 
 
-void screen_disclaimer ( )
+void screen_disclaimer ( bool force )
 {
 	if ( DEV ) return;
 
@@ -311,7 +314,7 @@ void screen_disclaimer ( )
 
 	bool nolddor_released_ZoS = false;
 
-	if ( nolddor_released_ZoS )
+	if ( nolddor_released_ZoS || force )
 	{
 		_disclaimer_cool ();
 	}

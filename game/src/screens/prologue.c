@@ -38,7 +38,7 @@ static void _add_objects (  Objects *objects )
 
 void screen_prologue ( )
 {
-	if ( DEV ) return;
+	//if ( DEV ) return;
 
 	displayOff(0);
 
@@ -87,6 +87,12 @@ void screen_prologue ( )
 			goUpdate ( go );
 			SPR_setPosition ( go->sprite, go->x, go->y );
 
+
+			if ( go->x > 256 )
+			{
+				goSetY ( go, -60 );
+			}
+
 			node = node->next;
 		}
 
@@ -102,9 +108,7 @@ void screen_prologue ( )
 
 		if ( count == 20 )
 		{
-			SYS_disableInts();
-			VDP_fadeOutAll ( 20, 0 );
-			SYS_enableInts();
+			displayOff(10);
 		}
 
 		JoyReader_update();
@@ -116,6 +120,7 @@ void screen_prologue ( )
 	}
 
 	displayOff(10);
+	waitHz(getHz()/2);
 
 	vram_destroy();
 

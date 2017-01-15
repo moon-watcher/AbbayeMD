@@ -49,11 +49,12 @@
 #include "../../res/cga/font.h"
 #include "../../res/cga/hint.h"
 
-//#include "../../inc/versions/c64.h"
-//#include "../../res/c64/palettes.h"
-//#include "../../res/c64/screens.h"
-//#include "../../res/c64/font.h"
-//#include "../../res/c64/hint.h"
+#include "../../inc/versions/c64.h"
+#include "../../res/c64/music.h"
+#include "../../res/c64/palettes.h"
+#include "../../res/c64/screens.h"
+#include "../../res/c64/font.h"
+#include "../../res/c64/hint.h"
 
 
 
@@ -67,7 +68,7 @@ const u8 versions_list [ VERSION_MAX ] [ 15 ] =
     "Game Boy",
     //"NES",
     "CGA",
-    //"C64",
+    "C64",
 };
 
 
@@ -80,7 +81,7 @@ const u8 versions_upper_list [ VERSION_MAX ] [ 15 ] =
     "GAME BOY  ",
     //"NES       ",
     "CGA       ",
-    //"C64",
+    "C64       ",
 };
 
 
@@ -97,7 +98,7 @@ const PlayerData player_data [ VERSION_MAX ] =
     // VERSION_MD
     {
         -FIX32(2.8),
-        9
+        5
     },
 
     // VERSION_MSX
@@ -130,11 +131,11 @@ const PlayerData player_data [ VERSION_MAX ] =
         9
     },
 
-//	// VERSION_C64
-//	{
-//            -FIX32(2.8),
-//            9
-//      },
+	// VERSION_C64
+	{
+            -FIX32(2.8),
+            9
+      },
 
 };
 
@@ -143,11 +144,11 @@ const PlayerData player_data [ VERSION_MAX ] =
 
 const Music music_00_all = { MUSIC_NULL,     "Silence",        (u8*) NULL,               Z80_DRIVER_XGM };
 const Music music_01_all = { MUSIC_CHURCH,   "Area I Church",  (u8*) music_church_all,   Z80_DRIVER_XGM };
-const Music music_02_all = { MUSIC_CAVES,    "Area II Caves",  (u8*) NULL,               Z80_DRIVER_XGM }; // (u8*) music_caves_all,    Z80_DRIVER_XGM };
-const Music music_03_all = { MUSIC_HELL,     "Area III Hell",  (u8*) NULL,               Z80_DRIVER_XGM }; // (u8*) music_hell_all,     Z80_DRIVER_XGM };
-const Music music_04_all = { MUSIC_SATAN,    "Evil Fight",     (u8*) NULL,               Z80_DRIVER_XGM }; // (u8*) music_satan_all,    Z80_DRIVER_XGM };
-const Music music_05_all = { MUSIC_GAMEOVER, "Game Over",      (u8*) NULL,               Z80_DRIVER_XGM }; // (u8*) music_gameover_all, Z80_DRIVER_XGM };
-const Music music_06_all = { MUSIC_START,    "Game Start",     (u8*) NULL,               Z80_DRIVER_XGM }; // (u8*) music_start_all,    Z80_DRIVER_XGM };
+const Music music_02_all = { MUSIC_CAVES,    "Area II Caves",  (u8*) music_caves_all,    Z80_DRIVER_XGM };
+const Music music_03_all = { MUSIC_HELL,     "Area III Hell",  (u8*) music_hell_all,     Z80_DRIVER_XGM };
+const Music music_04_all = { MUSIC_SATAN,    "Evil Fight",     (u8*) music_satan_all,    Z80_DRIVER_XGM };
+const Music music_05_all = { MUSIC_GAMEOVER, "Game Over",      (u8*) music_hangman_all,  Z80_DRIVER_XGM }; // music_gameover_all
+//const Music music_06_all = { MUSIC_START,    "Game Start",     (u8*) music_start_all,    Z80_DRIVER_XGM };
 const Music music_07_all = { MUSIC_TITLE,    "Main Title",     (u8*) music_title_all,    Z80_DRIVER_XGM };
 const Music music_08_all = { MUSIC_WOODS,    "Manhunt wood",   (u8*) music_woods_all,    Z80_DRIVER_XGM };
 const Music music_09_all = { MUSIC_PROLOGUE, "Manhunt",        (u8*) music_manhunt_all,  Z80_DRIVER_XGM };
@@ -156,20 +157,20 @@ const Music music_11_all = { MUSIC_HANGMAN,  "Hangman tree",   (u8*) music_hangm
 
 
 
-const Fx fx_01_all = { FX_DOOR,       "Door",       (u8*) fx_door_all,       Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_door_all),       14 };
-const Fx fx_02_all = { FX_HIT,        "Hit",        (u8*) fx_hit_all,        Z80_DRIVER_XGM, SOUND_PCM_CH1, 0, sizeof(fx_hit_all),        15 };
-const Fx fx_03_all = { FX_ITEM,       "Item",       (u8*) fx_item_all,       Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_item_all),       15 };
-const Fx fx_04_all = { FX_JUMP,       "Jump",       (u8*) fx_jump_all,       Z80_DRIVER_XGM, SOUND_PCM_CH1, 0, sizeof(fx_jump_all),       14 };
-const Fx fx_05_all = { FX_SHOT,       "Shot",       (u8*) fx_shoot_all,      Z80_DRIVER_XGM, SOUND_PCM_CH4, 0, sizeof(fx_shoot_all),      14 };
-const Fx fx_06_all = { FX_SLASH,      "Slash",      (u8*) fx_slash_all,      Z80_DRIVER_XGM, SOUND_PCM_CH3, 0, sizeof(fx_slash_all),      14 };
-const Fx fx_07_all = { FX_SWITCH,     "Switch",     (u8*) fx_switch_all,     Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_switch_all),     13 };
-const Fx fx_08_all = { FX_TREE,       "Tree",       (u8*) fx_tree_all,       Z80_DRIVER_XGM, SOUND_PCM_CH4, 0, sizeof(fx_tree_all),       12 };
-const Fx fx_09_all = { FX_LIGHTING,   "Lighting",   (u8*) fx_lighting_all,   Z80_DRIVER_XGM, SOUND_PCM_CH1, 0, sizeof(fx_lighting_all),   12 };
-const Fx fx_10_all = { FX_SPIT,       "Spit",       (u8*) fx_spit_all,       Z80_DRIVER_XGM, SOUND_PCM_CH4, 0, sizeof(fx_spit_all),       14 };
-const Fx fx_11_all = { FX_LAVABALL,   "Lava ball",  (u8*) fx_lavaball_all,   Z80_DRIVER_XGM, SOUND_PCM_CH3, 0, sizeof(fx_lavaball_all),   13 };
-const Fx fx_12_all = { FX_CHAIN,      "Bell",       (u8*) fx_chain_all,      Z80_DRIVER_XGM, SOUND_PCM_CH1, 0, sizeof(fx_chain_all),      11 };
-const Fx fx_13_all = { FX_CLOSE_DOOR, "Close door", (u8*) fx_close_door_all, Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_close_door_all), 13 };
-const Fx fx_14_all = { FX_CHECKPOINT, "Checkpoint", (u8*) fx_checkpoint_all, Z80_DRIVER_XGM, SOUND_PCM_CH1, 0, sizeof(fx_checkpoint_all), 10 };
+const Fx fx_01_all = { FX_DOOR,        "Door",        (u8*) fx_door_all,       Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_door_all),       14 };
+const Fx fx_02_all = { FX_HIT,         "Hit",         (u8*) fx_hit_all,        Z80_DRIVER_XGM, SOUND_PCM_CH1, 0, sizeof(fx_hit_all),        15 };
+const Fx fx_03_all = { FX_ITEM,        "Item",        (u8*) fx_item_all,       Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_item_all),       15 };
+const Fx fx_04_all = { FX_JUMP,        "Jump",        (u8*) fx_jump_all,       Z80_DRIVER_XGM, SOUND_PCM_CH1, 0, sizeof(fx_jump_all),       14 };
+const Fx fx_05_all = { FX_SHOT,        "Shot",        (u8*) fx_shoot_all,      Z80_DRIVER_XGM, SOUND_PCM_CH4, 0, sizeof(fx_shoot_all),      14 };
+const Fx fx_06_all = { FX_SLASH,       "Slash",       (u8*) fx_slash_all,      Z80_DRIVER_XGM, SOUND_PCM_CH3, 0, sizeof(fx_slash_all),      14 };
+const Fx fx_07_all = { FX_SWITCH,      "Switch",      (u8*) fx_switch_all,     Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_switch_all),     13 };
+const Fx fx_08_all = { FX_TREE,        "Tree",        (u8*) fx_tree_all,       Z80_DRIVER_XGM, SOUND_PCM_CH4, 0, sizeof(fx_tree_all),       12 };
+const Fx fx_09_all = { FX_LIGHTING,    "Lighting",    (u8*) fx_lighting_all,   Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_lighting_all),   12 };
+const Fx fx_10_all = { FX_SPIT,        "Spit",        (u8*) fx_spit_all,       Z80_DRIVER_XGM, SOUND_PCM_CH4, 0, sizeof(fx_spit_all),       14 };
+const Fx fx_11_all = { FX_LAVABALL,    "Lava ball",   (u8*) fx_lavaball_all,   Z80_DRIVER_XGM, SOUND_PCM_CH3, 0, sizeof(fx_lavaball_all),   13 };
+const Fx fx_12_all = { FX_CHAIN,       "Bell",        (u8*) fx_chain_all,      Z80_DRIVER_XGM, SOUND_PCM_CH1, 0, sizeof(fx_chain_all),      11 };
+const Fx fx_13_all = { FX_CLOSED_DOOR, "Closed door", (u8*) fx_close_door_all, Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_close_door_all), 13 };
+const Fx fx_14_all = { FX_CHECKPOINT,  "Checkpoint",  (u8*) fx_checkpoint_all, Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_checkpoint_all), 10 };
 
 
 
@@ -303,7 +304,7 @@ const Mask mask_40_all =
         { 64, 64, 64,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
         { 64, 64, 64,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
         { 64, 64, 64,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },
-        { 64, 64,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1 },
+        { 64, 64,  0, 16,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 16,  1,  1 },
         { 64,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1 },
         {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1 },
         {  1,  1,  1,  1,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1 },
@@ -316,7 +317,7 @@ const Mask mask_40_all =
         {  1,  1,  1,  0,  0,  0,  0,  0, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,  0,  0,  0,  0,  0,  0,  0,  1,  1 },
         {  1,  1,  1,  0,  0,  0, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,  0,  0,  0,  0,  0,  1,  1 },
         {  1,  1,  1,  0, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,  0,  0,  0,  0,  1,  1 },
-        {  1,  1,  1,64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,  0,  0,  0,  1,  1 },
+        {  1,  1,  1, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,  0,  0,  0,  1,  1 },
         {  1,  1,  1, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,  0,  2,  1,  1 }
     }
 };
@@ -944,7 +945,7 @@ const Music *music_list [ VERSION_MAX ] [ MUSIC_MAX ] =
         (Music*) &music_03_all,
         (Music*) &music_04_all,
         (Music*) &music_05_all,
-        (Music*) &music_06_all,
+//        (Music*) &music_06_all,
         (Music*) &music_07_all,
         (Music*) &music_08_all,
         (Music*) &music_09_all,
@@ -960,7 +961,7 @@ const Music *music_list [ VERSION_MAX ] [ MUSIC_MAX ] =
         (Music*) &music_03_all,
         (Music*) &music_04_all,
         (Music*) &music_05_all,
-        (Music*) &music_06_all,
+//        (Music*) &music_06_all,
         (Music*) &music_07_all,
         (Music*) &music_08_all,
         (Music*) &music_09_all,
@@ -976,7 +977,7 @@ const Music *music_list [ VERSION_MAX ] [ MUSIC_MAX ] =
         (Music*) &music_03_all,
         (Music*) &music_04_all,
         (Music*) &music_05_all,
-        (Music*) &music_06_all,
+//        (Music*) &music_06_all,
         (Music*) &music_07_all,
         (Music*) &music_08_all,
         (Music*) &music_09_all,
@@ -992,7 +993,7 @@ const Music *music_list [ VERSION_MAX ] [ MUSIC_MAX ] =
         (Music*) &music_03_all,
         (Music*) &music_04_all,
         (Music*) &music_05_all,
-        (Music*) &music_06_all,
+//        (Music*) &music_06_all,
         (Music*) &music_07_all,
         (Music*) &music_08_all,
         (Music*) &music_09_all,
@@ -1008,7 +1009,7 @@ const Music *music_list [ VERSION_MAX ] [ MUSIC_MAX ] =
         (Music*) &music_03_all,
         (Music*) &music_04_all,
         (Music*) &music_05_all,
-        (Music*) &music_06_all,
+//        (Music*) &music_06_all,
         (Music*) &music_07_all,
         (Music*) &music_08_all,
         (Music*) &music_09_all,
@@ -1024,7 +1025,7 @@ const Music *music_list [ VERSION_MAX ] [ MUSIC_MAX ] =
 //            (Music*) &music_03_all,
 //            (Music*) &music_04_all,
 //            (Music*) &music_05_all,
-//            (Music*) &music_06_all,
+////            (Music*) &music_06_all,
 //            (Music*) &music_07_all,
 //            (Music*) &music_08_all,
 //            (Music*) &music_09_all,
@@ -1040,7 +1041,7 @@ const Music *music_list [ VERSION_MAX ] [ MUSIC_MAX ] =
         (Music*) &music_03_all,
         (Music*) &music_04_all,
         (Music*) &music_05_all,
-        (Music*) &music_06_all,
+//        (Music*) &music_06_all,
         (Music*) &music_07_all,
         (Music*) &music_08_all,
         (Music*) &music_09_all,
@@ -1048,21 +1049,21 @@ const Music *music_list [ VERSION_MAX ] [ MUSIC_MAX ] =
         (Music*) &music_11_all,
     },
 
-//	// VERSION_C64
-//	{
-//            (Music*) &music_00_all,
-//            (Music*) &music_01_all,
-//            (Music*) &music_02_all,
-//            (Music*) &music_03_all,
-//            (Music*) &music_04_all,
-//            (Music*) &music_05_all,
-//            (Music*) &music_06_all,
-//            (Music*) &music_07_all,
-//            (Music*) &music_08_all,
-//            (Music*) &music_09_all,
-//            (Music*) &music_10_all,
-//            (Music*) &music_11_all,
-//      },
+	// VERSION_C64
+	{
+            (Music*) &music_00_c64,
+            (Music*) &music_01_c64,
+            (Music*) &music_02_c64,
+            (Music*) &music_03_c64,
+            (Music*) &music_04_c64,
+            (Music*) &music_05_c64,
+//            (Music*) &music_06_c64,
+            (Music*) &music_07_c64,
+            (Music*) &music_08_c64,
+            (Music*) &music_09_c64,
+            (Music*) &music_10_c64,
+            (Music*) &music_11_c64,
+        },
 };
 
 
@@ -1196,23 +1197,23 @@ const Fx *fx_list [ VERSION_MAX ] [ FX_MAX ] =
         (Fx*) &fx_14_all, // checkpoint
     },
 
-//	// VERSION_C64
-//	{
-//            (Fx*) &fx_01_all,
-//            (Fx*) &fx_02_all,
-//            (Fx*) &fx_03_all,
-//            (Fx*) &fx_04_all,
-//            (Fx*) &fx_05_all,
-//            (Fx*) &fx_06_all,
-//            (Fx*) &fx_07_all,
-//            (Fx*) &fx_08_all,
-//            (Fx*) &fx_09_all, // lighting
-//            (Fx*) &fx_10_all, // spit
-//            (Fx*) &fx_11_all, // lava ball
-//            (Fx*) &fx_12_all, // chain // switch // bell
-//            (Fx*) &fx_13_all, // close door
-//            (Fx*) &fx_14_all, // checkpoint
-//      },
+        // VERSION_C64
+        {
+            (Fx*) &fx_01_all,
+            (Fx*) &fx_02_all,
+            (Fx*) &fx_03_all,
+            (Fx*) &fx_04_all,
+            (Fx*) &fx_05_all,
+            (Fx*) &fx_06_all,
+            (Fx*) &fx_07_all,
+            (Fx*) &fx_08_all,
+            (Fx*) &fx_09_all, // lighting
+            (Fx*) &fx_10_all, // spit
+            (Fx*) &fx_11_all, // lava ball
+            (Fx*) &fx_12_all, // chain // switch // bell
+            (Fx*) &fx_13_all, // close door
+            (Fx*) &fx_14_all, // checkpoint
+        },
 
 };
 
@@ -1286,14 +1287,14 @@ const Room *room_list [ VERSION_MAX ] [ ROOMS_MAX_HEIGHT ] [ ROOMS_MAX_WIDTH ] =
         { &room_04_cga, &room_14_cga, &room_24_cga, &room_34_cga, &room_44_cga },
     },
 
-//      // VERSION_C64
-//      {
-//            { &room_00_c64, &room_10_c64, &room_20_c64, &room_30_c64, &room_40_c64 },
-//            { &room_01_c64, &room_11_c64, &room_21_c64, &room_31_c64, &room_41_c64 },
-//            { &room_02_c64, &room_12_c64, &room_22_c64, &room_32_c64, &room_42_c64 },
-//            { &room_03_c64, &room_13_c64, &room_23_c64, &room_33_c64, &room_43_c64 },
-//            { &room_04_c64, &room_14_c64, &room_24_c64, &room_34_c64, &room_44_c64 },
-//      },
+      // VERSION_C64
+      {
+            { &room_00_c64, &room_10_c64, &room_20_c64, &room_30_c64, &room_40_c64 },
+            { &room_01_c64, &room_11_c64, &room_21_c64, &room_31_c64, &room_41_c64 },
+            { &room_02_c64, &room_12_c64, &room_22_c64, &room_32_c64, &room_42_c64 },
+            { &room_03_c64, &room_13_c64, &room_23_c64, &room_33_c64, &room_43_c64 },
+            { &room_04_c64, &room_14_c64, &room_24_c64, &room_34_c64, &room_44_c64 },
+      },
 };
 
 
@@ -1350,11 +1351,11 @@ const Object *checkpoint_list [ VERSION_MAX ] [ 2 ] =
         (Object*) &entity_09_cga
     },
 
-//      // VERSION_C64
-//      {
-//            (Object*) &entity_08_c64,
-//            (Object*) &entity_09_c64
-//      },
+      // VERSION_C64
+      {
+            (Object*) &entity_08_c64,
+            (Object*) &entity_09_c64
+      },
 
 };
 
@@ -1457,18 +1458,18 @@ const Hint hint_list [ VERSION_MAX ] [ HINT_MAX ] =
         { (Image*) &hint_09_cga,  99, 99 }
     },
 
-//      // VERSION_C64
-//      {
-//            { (Image*) &hint_01_c64,  3,  0 },
-//            { (Image*) &hint_02_c64,  3,  1 },
-//            { (Image*) &hint_03_c64,  2,  2 },
-//            { (Image*) &hint_04_c64,  4,  2 },
-//            { (Image*) &hint_05_c64,  1,  3 },
-//            { (Image*) &hint_06_c64,  1,  4 },
-//            { (Image*) &hint_07_c64,  4,  4 },
-//            { (Image*) &hint_08_c64, 99, 99 },
-//            { (Image*) &hint_09_c64, 99, 99 }
-//      },
+      // VERSION_C64
+      {
+            { (Image*) &hint_01_c64,  3,  0 },
+            { (Image*) &hint_02_c64,  3,  1 },
+            { (Image*) &hint_03_c64,  2,  2 },
+            { (Image*) &hint_04_c64,  4,  2 },
+            { (Image*) &hint_05_c64,  1,  3 },
+            { (Image*) &hint_06_c64,  1,  4 },
+            { (Image*) &hint_07_c64,  4,  4 },
+            { (Image*) &hint_08_c64, 99, 99 },
+            { (Image*) &hint_09_c64, 99, 99 }
+      },
 };
 
 
@@ -1590,21 +1591,21 @@ const Object player_actions [ VERSION_MAX ] [ PLAYER_MAX_ACTIONS ] [ 2 ] =
         { { (Entity*) &entity_56_cga }, { } }  // 11: plunge:jumps
     },
 
-//	// VERSION_C64
-//	{
-//            { { (Entity*) &entity_01_c64 }, { } }, //  0: stay
-//            { { (Entity*) &entity_02_c64 }, { } }, //  1: walks right
-//            { { (Entity*) &entity_02_c64 }, { } }, //  2: walks left
-//            { { (Entity*) &entity_03_c64 }, { } }, //  3: jumps
-//            { { (Entity*) &entity_03_c64 }, { } }, //  4: jumps right
-//            { { (Entity*) &entity_03_c64 }, { } }, //  5: jumps left
-//            { { (Entity*) &entity_04_c64 }, { } }, //  6: burns
-//            { { (Entity*) &entity_05_c64 }, { } }, //  7: lie down
-//            { { (Entity*) &entity_06_c64 }, { } }, //  8: sneaks right
-//            { { (Entity*) &entity_06_c64 }, { } }, //  9: sneaks left
-//            { { (Entity*) &entity_01_c64 }, { } }, // 10: stay:captured
-//            { { (Entity*) &entity_56_c64 }, { } }  // 11: plunge:jumps
-//      },
+	// VERSION_C64
+	{
+            { { (Entity*) &entity_01_c64 }, { } }, //  0: stay
+            { { (Entity*) &entity_02_c64 }, { } }, //  1: walks right
+            { { (Entity*) &entity_02_c64 }, { } }, //  2: walks left
+            { { (Entity*) &entity_03_c64 }, { } }, //  3: jumps
+            { { (Entity*) &entity_03_c64 }, { } }, //  4: jumps right
+            { { (Entity*) &entity_03_c64 }, { } }, //  5: jumps left
+            { { (Entity*) &entity_04_c64 }, { } }, //  6: burns
+            { { (Entity*) &entity_05_c64 }, { } }, //  7: lie down
+            { { (Entity*) &entity_06_c64 }, { } }, //  8: sneaks right
+            { { (Entity*) &entity_06_c64 }, { } }, //  9: sneaks left
+            { { (Entity*) &entity_01_c64 }, { } }, // 10: stay:captured
+            { { (Entity*) &entity_56_c64 }, { } }  // 11: plunge:jumps
+      },
 };
 
 
@@ -1651,10 +1652,10 @@ extern const struct genresTiles hud_cross_cga;
 extern const struct genresTiles hud_numbers_cga;
 extern const struct genresTiles hud_blackbar_cga;
 
-//extern const struct genresTiles hud_heart_c64;
-//extern const struct genresTiles hud_cross_c64;
-//extern const struct genresTiles hud_numbers_c64;
-//extern const struct genresTiles hud_blackbar_c64;
+extern const struct genresTiles hud_heart_c64;
+extern const struct genresTiles hud_cross_c64;
+extern const struct genresTiles hud_numbers_c64;
+extern const struct genresTiles hud_blackbar_c64;
 
 
 const struct genresTiles *hud_objects [ VERSION_MAX ] [ 4 ] =
@@ -1715,13 +1716,13 @@ const struct genresTiles *hud_objects [ VERSION_MAX ] [ 4 ] =
         &hud_blackbar_cga
     },
 
-//	// VERSION_C64
-//	{
-//            &hud_heart_c64,
-//            &hud_cross_c64,
-//            &hud_numbers_c64,
-//            &hud_blackbar_c64
-//      },
+	// VERSION_C64
+	{
+            &hud_heart_c64,
+            &hud_cross_c64,
+            &hud_numbers_c64,
+            &hud_blackbar_c64
+      },
 
 };
 
@@ -1808,16 +1809,16 @@ const Palette *palette_list [ VERSION_MAX ] [ PALETTE_MAX ] =
         (Palette*) &palette_font_all
     },
 
-//	// VERSION_C64
-//	{
-//            (Palette*) &palette_0_c64,
-//            (Palette*) &palette_0_c64,
-//            (Palette*) &palette_0_c64,
-//            (Palette*) &palette_0_c64,
-//            (Palette*) &palette_font_c64,
-//            (Palette*) &palette_font_sel_c64,
-//            (Palette*) &palette_font_all
-//      },
+	// VERSION_C64
+	{
+            (Palette*) &palette_0_c64,
+            (Palette*) &palette_0_c64,
+            (Palette*) &palette_0_c64,
+            (Palette*) &palette_0_c64,
+            (Palette*) &palette_font_c64,
+            (Palette*) &palette_font_sel_c64,
+            (Palette*) &palette_font_all
+      },
 
 };
 
@@ -1966,25 +1967,25 @@ const Screen screen_list [ VERSION_MAX ] [ 20 ] =
         {                          NULL,                      NULL,     (Objects*) &objects_info_cga }, // 12
     },
 
-//	// VERSION_C64
-//	{
-//            { (Image*) &screen_gameover_all,                      NULL,                             NULL },
-//            { (Image*) &screen_prologue_all,                      NULL, (Objects*) &objects_prologue_c64 },
-//            { NULL,                                               NULL,                             NULL },
-//
-//            { (Image*) &screen_ending_1_all,                      NULL,                             NULL }, // 3
-//            { (Image*) &screen_ending_2_all,                      NULL,                             NULL },
-//            { (Image*) &screen_ending_3_all,                      NULL,                             NULL },
-//            { (Image*) &screen_ending_4_all,                      NULL,                             NULL },
-//            { (Image*) &screen_ending_5_all,                      NULL,                             NULL },
-//            { (Image*) &screen_ending_6_all,                      NULL,                             NULL },
-//            { (Image*) &screen_ending_7_all,                      NULL,                             NULL },
-//
-//            { (Image*) &screen_burnhim_c64,                       NULL,  (Objects*) &objects_burnhim_c64 }, // 10
-//            { (Image*) &screen_title_c64,   (Image*) &screen_abbey_c64,                             NULL },
-//
-//            {                         NULL,                       NULL,     (Objects*) &objects_info_c64 }, // 12
-//      },
+	// VERSION_C64
+	{
+            { (Image*) &screen_gameover_all,                      NULL,                             NULL },
+            { (Image*) &screen_prologue_all,                      NULL, (Objects*) &objects_prologue_c64 },
+            { NULL,                                               NULL,                             NULL },
+
+            { (Image*) &screen_ending_1_all,                      NULL,                             NULL }, // 3
+            { (Image*) &screen_ending_2_all,                      NULL,                             NULL },
+            { (Image*) &screen_ending_3_all,                      NULL,                             NULL },
+            { (Image*) &screen_ending_4_all,                      NULL,                             NULL },
+            { (Image*) &screen_ending_5_all,                      NULL,                             NULL },
+            { (Image*) &screen_ending_6_all,                      NULL,                             NULL },
+            { (Image*) &screen_ending_7_all,                      NULL,                             NULL },
+
+            { (Image*) &screen_burnhim_c64,                       NULL,  (Objects*) &objects_burnhim_c64 }, // 10
+            { (Image*) &screen_title_c64,   (Image*) &screen_abbey_c64,                             NULL },
+
+            {                         NULL,                       NULL,     (Objects*) &objects_info_c64 }, // 12
+      },
 };
 
 
@@ -2055,14 +2056,14 @@ const Switch switch_list [ VERSION_MAX ] [ SWITCH_MAX ] =
         { 2, 3, (Object) { (Entity*) &entity_42_cga }, (Object) {                          }, (Object) { (Entity*) &entity_43_cga }, true,    switch_crosses }  // Wheel of faith
     },
 
-//	// VERSION_C64
-//	{
-//            { 2, 0, (Object) { (Entity*) &entity_20_c64 }, (Object) { (Entity*) &entity_63_c64 }, (Object) { (Entity*) &entity_44_c64 }, false, switch_ring_bell }, // opens hatch at 3, 1
-//            { 4, 1, (Object) { (Entity*) &entity_22_c64 }, (Object) {                          }, (Object) { (Entity*) &entity_45_c64 }, false,             NULL }, // opens door  at 4, 3
-//            { 0, 2, (Object) { (Entity*) &entity_22_c64 }, (Object) {                          }, (Object) { (Entity*) &entity_45_c64 }, false,             NULL }, // opens door  at 3, 1
-//            { 0, 4, (Object) { (Entity*) &entity_22_c64 }, (Object) {                          }, (Object) { (Entity*) &entity_45_c64 }, false,             NULL }, // opens door  at 0, 4
-//            { 2, 3, (Object) { (Entity*) &entity_42_c64 }, (Object) {                          }, (Object) { (Entity*) &entity_43_c64 }, true,    switch_crosses }  // Wheel of faith
-//      },
+	// VERSION_C64
+	{
+            { 2, 0, (Object) { (Entity*) &entity_20_c64 }, (Object) { (Entity*) &entity_63_c64 }, (Object) { (Entity*) &entity_44_c64 }, false, switch_ring_bell }, // opens hatch at 3, 1
+            { 4, 1, (Object) { (Entity*) &entity_22_c64 }, (Object) {                          }, (Object) { (Entity*) &entity_45_c64 }, false,             NULL }, // opens door  at 4, 3
+            { 0, 2, (Object) { (Entity*) &entity_22_c64 }, (Object) {                          }, (Object) { (Entity*) &entity_45_c64 }, false,             NULL }, // opens door  at 3, 1
+            { 0, 4, (Object) { (Entity*) &entity_22_c64 }, (Object) {                          }, (Object) { (Entity*) &entity_45_c64 }, false,             NULL }, // opens door  at 0, 4
+            { 2, 3, (Object) { (Entity*) &entity_42_c64 }, (Object) {                          }, (Object) { (Entity*) &entity_43_c64 }, true,    switch_crosses }  // Wheel of faith
+      },
 };
 
 
@@ -2112,11 +2113,11 @@ const Passage passage_list [ VERSION_MAX ] [ PASSAGE_MAX ] =
         { (Entity*) &entity_46_cga, { 4, 3 }, { 0, 2 } }
     },
 
-//	// VERSION_C64
-//	{
-//            { (Entity*) &entity_46_c64, { 0, 2 }, { 4, 3 } },
-//            { (Entity*) &entity_46_c64, { 4, 3 }, { 0, 2 } }
-//      },
+	// VERSION_C64
+	{
+            { (Entity*) &entity_46_c64, { 0, 2 }, { 4, 3 } },
+            { (Entity*) &entity_46_c64, { 4, 3 }, { 0, 2 } }
+      },
 };
 
 
@@ -2165,11 +2166,11 @@ const Object crosses_list [ VERSION_MAX ] [ 2 ] =
         { (Entity*) &entity_13_cga }  // Inverted cross
     },
 
-//	// VERSION_C64
-//	{
-//            { (Entity*) &entity_12_c64 }, // Cross
-//            { (Entity*) &entity_13_c64 }  // Inverted cross
-//      },
+	// VERSION_C64
+	{
+            { (Entity*) &entity_12_c64 }, // Cross
+            { (Entity*) &entity_13_c64 }  // Inverted cross
+      },
 
 };
 
@@ -2488,49 +2489,49 @@ const EnemyData enemy_data [ VERSION_MAX ] [ 30 ] =
         { (Entity*) &entity_57_cga, 4, 4,   0, { 70 } }, // 23
     },
 
-//	// VERSION_C64
-//	{
-//            // Toxic drop
-//            { (Entity*) &entity_54_c64, 0, 3, 100, {   0,  10, 60 } }, // 0
-//            { (Entity*) &entity_54_c64, 0, 3,  80, {   0,  10, 60 } },
-//            { (Entity*) &entity_54_c64, 0, 3,  90, {   0,  10, 60 } },
-//            { (Entity*) &entity_54_c64, 0, 3, 120, {   0,  10, 60 } },
-//            { (Entity*) &entity_54_c64, 0, 3, 150, {   0,  10, 60 } },
-//            { (Entity*) &entity_54_c64, 4, 3, 120, {   0,  10, 60 } },
-//            { (Entity*) &entity_54_c64, 4, 3,  90, {   0,  10, 60 } },
-//
-//            // Fish
-//            { (Entity*) &entity_55_c64, 1, 3, 120, {  60 } }, //  7
-//            { (Entity*) &entity_55_c64, 1, 3, 150, {  60 } },
-//            { (Entity*) &entity_55_c64, 1, 3,  90, {  60 } },
-//            { (Entity*) &entity_55_c64, 4, 3,  90, {  60 } },
-//            { (Entity*) &entity_55_c64, 4, 3, 120, {  60 } },
-//            { (Entity*) &entity_55_c64, 4, 3, 160, {  60 } },
-//
-//            // Archer
-//            { (Entity*) &entity_33_c64, 1, 4,   0, { 120 } }, // 13
-//            { (Entity*) &entity_33_c64, 2, 3,   0, { 120 } },
-//            { (Entity*) &entity_33_c64, 2, 3,   0, { 120 } },
-//            { (Entity*) &entity_33_c64, 2, 3,   0, { 120 } },
-//
-//            // Death
-//            { (Entity*) &entity_39_c64, 3, 3,   0, {  75 } }, // 17
-//
-//            // Spitting plant
-//            { (Entity*) &entity_27_c64, 4, 2, 120, { 180 } }, // 18
-//            { (Entity*) &entity_27_c64, 4, 2, 150, { 180 } },
-//            { (Entity*) &entity_27_c64, 4, 2, 180, { 180 } },
-//
-//            // Gargoyle
-//            { (Entity*) &entity_51_c64, 2, 4,   0, { 100 } }, // 21
-//            { (Entity*) &entity_51_c64, 0, 4,   0, { 120 } },
-//
-//            // Dragon head
-//            { (Entity*) &entity_47_c64, 0, 2,   0, { 50, 90, 150, 160 } }, // 22
-//
-//            // Satan
-//            { (Entity*) &entity_57_c64, 4, 4,   0, { 70 } }, // 23
-//      },
+	// VERSION_C64
+	{
+            // Toxic drop
+            { (Entity*) &entity_54_c64, 0, 3, 100, {   0,  10, 60 } }, // 0
+            { (Entity*) &entity_54_c64, 0, 3,  80, {   0,  10, 60 } },
+            { (Entity*) &entity_54_c64, 0, 3,  90, {   0,  10, 60 } },
+            { (Entity*) &entity_54_c64, 0, 3, 120, {   0,  10, 60 } },
+            { (Entity*) &entity_54_c64, 0, 3, 150, {   0,  10, 60 } },
+            { (Entity*) &entity_54_c64, 4, 3, 120, {   0,  10, 60 } },
+            { (Entity*) &entity_54_c64, 4, 3,  90, {   0,  10, 60 } },
+
+            // Fish
+            { (Entity*) &entity_55_c64, 1, 3, 120, {  60 } }, //  7
+            { (Entity*) &entity_55_c64, 1, 3, 150, {  60 } },
+            { (Entity*) &entity_55_c64, 1, 3,  90, {  60 } },
+            { (Entity*) &entity_55_c64, 4, 3,  90, {  60 } },
+            { (Entity*) &entity_55_c64, 4, 3, 120, {  60 } },
+            { (Entity*) &entity_55_c64, 4, 3, 160, {  60 } },
+
+            // Archer
+            { (Entity*) &entity_33_c64, 1, 4,   0, { 120 } }, // 13
+            { (Entity*) &entity_33_c64, 2, 3,   0, { 120 } },
+            { (Entity*) &entity_33_c64, 2, 3,   0, { 120 } },
+            { (Entity*) &entity_33_c64, 2, 3,   0, { 120 } },
+
+            // Death
+            { (Entity*) &entity_39_c64, 3, 3,   0, {  75 } }, // 17
+
+            // Spitting plant
+            { (Entity*) &entity_27_c64, 4, 2, 120, { 180 } }, // 18
+            { (Entity*) &entity_27_c64, 4, 2, 150, { 180 } },
+            { (Entity*) &entity_27_c64, 4, 2, 180, { 180 } },
+
+            // Gargoyle
+            { (Entity*) &entity_51_c64, 2, 4,   0, { 100 } }, // 21
+            { (Entity*) &entity_51_c64, 0, 4,   0, { 120 } },
+
+            // Dragon head
+            { (Entity*) &entity_47_c64, 0, 2,   0, { 50, 90, 150, 160 } }, // 22
+
+            // Satan
+            { (Entity*) &entity_57_c64, 4, 4,   0, { 70 } }, // 23
+      },
 };
 
 
@@ -2604,8 +2605,8 @@ const Palette *palette_alt_list [ VERSION_MAX ] [ PALETTE_ALT_MAX ] =
         (Palette*) &palette_cga_05,
     },
 
-//    // VERSION_C64
-//    {
-//    },
+    // VERSION_C64
+    {
+    },
 };
 

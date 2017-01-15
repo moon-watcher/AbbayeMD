@@ -19,8 +19,8 @@ const Entity entity_01_md  = {  1, "Jean stays",               0, (SpriteDefinit
 const Entity entity_02_md  = {  2, "Jean walks",               1, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_PLAYER,     FIX32(0.65),           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };
 const Entity entity_03_md  = {  3, "Jean jumps",               2, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_PLAYER,     FIX32(0.65),           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };
 const Entity entity_04_md  = {  4, "Jean burns",               3, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_NULL,                 0,           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  1,  5 } };
-const Entity entity_05_md  = {  5, "Jean lie down",            0, (SpriteDefinition*) &jean_3x2_md,      PAL3, ENTITY_PLAYER,               0,           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  8,  6,  0, 10 } };
-const Entity entity_06_md  = {  6, "Jean sneaks",              1, (SpriteDefinition*) &jean_3x2_md,      PAL3, ENTITY_PLAYER,      FIX32(0.2),           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  8,  6,  0, 10 } };
+const Entity entity_05_md  = {  5, "Jean lie down",            0, (SpriteDefinition*) &jean_3x2_md,      PAL3, ENTITY_PLAYER,               0,           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  8,  9,  0,  9 } }; // {  8,  6,  0, 10 } };
+const Entity entity_06_md  = {  6, "Jean sneaks",              1, (SpriteDefinition*) &jean_3x2_md,      PAL3, ENTITY_PLAYER,      FIX32(0.2),           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  8,  9,  0,  9 } }; // {  8,  6,  0, 10 } };
 const Entity entity_07_md  = {  7, "Flying skull",             0, (SpriteDefinition*) &flying_skull_2x2_md, PAL2, ENTITY_ENEMY,    FIX32(0.8),           0,           0, 0, 0, 0, NULL, mcb_udlr,        0, {  4,  5,  3,  4 } };
 const Entity entity_08_md  = {  8, "Checkpoint",               4, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_CHECKPOINT,           0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  3,  3,  0,  3 } };
 const Entity entity_09_md  = {  9, "Checkpoint active",        5, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  } };
@@ -28,7 +28,7 @@ const Entity entity_10_md  = { 10, "Yellow hint",             12, (SpriteDefinit
 const Entity entity_11_md  = { 11, "Heart",                   11, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_HEART,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
 const Entity entity_12_md  = { 12, "Cross",                    0, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_CROSS,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
 const Entity entity_13_md  = { 13, "Inverted cross",           1, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_INV_CROSS,            0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
-const Entity entity_14_md  = { 14, "Crusader",                 0, (SpriteDefinition*) &crusaders_2x3_md, PAL2, ENTITY_ENEMY,      FIX32(0.60),           0, FIX32(0.20), 0, 1, 0, NULL, mcb_crusader,    0, {  7,  5,  0,  5 } };
+const Entity entity_14_md  = { 14, "Crusader",                 0, (SpriteDefinition*) &crusaders_2x3_md, PAL2, ENTITY_ENEMY,      FIX32(0.60),           0, FIX32(0.20), 0, 1, 0, NULL, mcb_crusader,    0, {  7,  5,  0,-25 } }; // {  7,  5,  0,  5 } };
 const Entity entity_15_md  = { 15, "Water",                    6, (SpriteDefinition*) &enemies_2x1_md,   PAL2, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
 const Entity entity_16_md  = { 16, "Fire",                    11, (SpriteDefinition*) &enemies_2x2_md,   PAL2, ENTITY_NULL,              zero,        zero,        zero, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
 const Entity entity_17_md  = { 17, "Rat",                      0, (SpriteDefinition*) &rat_2x2_md,       PAL2, ENTITY_ENEMY,      FIX32(0.60),        zero,        zero, 0, 1, 0, NULL, mcb_udlr,        0, {  7,  0,  0,  0 } };
@@ -53,9 +53,9 @@ const Entity entity_35_md  = { 35, "Door",                     0, (SpriteDefinit
 const Entity entity_36_md  = { 36, "Stone hatch",              0, (SpriteDefinition*) &hatch_2x2_md,     PAL1, ENTITY_HATCH,                0,           0,           0, 0, 1, 0, NULL, mcb_null,        0, {  } };
 const Entity entity_37_md  = { 37, "Hangman",                  7, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_ENEMY,                0, FIX32(0.60),           0, 0, 1, 0, NULL, mcb_ud_flipH,    0, {  1,  2,  0,  2 } };
 const Entity entity_38_md  = { 38, "Rope",                     6, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  } };
-const Entity entity_39_md  = { 39, "Death",                    0, (SpriteDefinition*) &death_4x4_md,     PAL2, ENTITY_ENEMY,      FIX32(0.65),           0,           0, 0, 1, 0, NULL, mcb_udlr,        0, {  0,  0,  2,  0 } };
-const Entity entity_40_md  = { 40, "Death throw",              1, (SpriteDefinition*) &death_4x4_md,     PAL2, ENTITY_ENEMY,      FIX32(0.65),           0,           0, 0, 1, 0, NULL, mcb_udlr,        0, {  0,  0,  4,  0 } };
-const Entity entity_41_md  = { 41, "Scythe",                   0, (SpriteDefinition*) &death_2x2_md,     PAL2, ENTITY_ENEMY,      FIX32(1.00), FIX32(1.00),           0, 0, 0, 0, NULL, mcb_scythe,      0, {  1,  1,  1,  1 } };
+const Entity entity_39_md  = { 39, "Death",                    0, (SpriteDefinition*) &death_4x4_md,     PAL2, ENTITY_ENEMY,      FIX32(0.65),           0,           0, 0, 1, 0, NULL, mcb_udlr,        0, {  0,  8,  5,  4 } };//{  0,  0,  2,  0 } };
+const Entity entity_40_md  = { 40, "Death throw",              1, (SpriteDefinition*) &death_4x4_md,     PAL2, ENTITY_ENEMY,      FIX32(0.65),           0,           0, 0, 1, 0, NULL, mcb_udlr,        0, {  0,  8,  5,  4 } };//{  0,  0,  4,  0 } };
+const Entity entity_41_md  = { 41, "Scythe",                   0, (SpriteDefinition*) &death_2x2_md,     PAL2, ENTITY_ENEMY,      FIX32(1.00), FIX32(1.00),           0, 0, 0, 0, NULL, mcb_scythe,      0, {  2,  2,  2,  2 } };//{  1,  1,  1,  1 } };
 const Entity entity_42_md  = { 42, "Wheel of faith",           5, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_SWITCH,               0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  1,  1,  1,  1 } };
 const Entity entity_43_md  = { 43, "Wheel of faith",           6, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_SWITCH,               0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  1,  1,  1,  1 } };
 const Entity entity_44_md  = { 44, "Bell (on)",               15, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
@@ -285,7 +285,7 @@ const Objects objects_41_md = // Hangman Tree // OK
 
             { (Entity*) &entity_21_md, 152,  48, -1,  0 }, // Snail
             { (Entity*) &entity_21_md, 136, 152, -1,  0 }, // Snail
-            { (Entity*) &entity_22_md, 216, 144,  0,  0 }, // Switch  // 22
+            { (Entity*) &entity_22_md, 216, 144,  0,  0 }, // Switch  // 21
             { (Entity*) &entity_13_md,  48,  32,  0,  0 }, // Inverted cross
 
             { (Entity*) &entity_md_97,  79,  24,  0,  0 }, // Philippe like crusaders
@@ -718,17 +718,17 @@ const Objects objects_burnhim_md =
 {
       {
 //            { (Entity*) &entity_14_md,   36, 136 }, // Crusader
-            { (Entity*) &entity_14_md,   48, 136 }, // Crusader
-            { (Entity*) &entity_14_md,   72, 136 }, // Crusader
-            { (Entity*) &entity_14_md,  152, 136 }, // Crusader
-            { (Entity*) &entity_14_md,  176, 136 }, // Crusader
+            { (Entity*) &entity_14_md,   56, 136 }, // Crusader
+            { (Entity*) &entity_14_md,   80, 136 }, // Crusader
+            { (Entity*) &entity_14_md,  160, 136 }, // Crusader
+            { (Entity*) &entity_14_md,  184, 136 }, // Crusader
 
-            { (Entity*) &entity_md_90,   96, 128 }, // Fire (ending)
-            { (Entity*) &entity_md_90,  112, 128 }, // Fire (ending)
-            { (Entity*) &entity_md_90,  128, 128 }, // Fire (ending)
+            { (Entity*) &entity_md_90,  104, 128 }, // Fire (ending)
+            { (Entity*) &entity_md_90,  120, 128 }, // Fire (ending)
+            { (Entity*) &entity_md_90,  136, 128 }, // Fire (ending)
 
-            { (Entity*) &entity_03_md,  112, 118 }, // Jean stays
-            { (Entity*) &entity_62_md,   96,  96 }, // Bonfire
+            { (Entity*) &entity_03_md,  120, 118 }, // Jean stays
+            { (Entity*) &entity_62_md,  104,  96 }, // Bonfire
 	}
 };
 

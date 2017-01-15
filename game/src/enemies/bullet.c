@@ -130,6 +130,19 @@ void enemy_bullet_deactivate ( GameObject *bullet )
 				break;
 		}
 	}
+	else
+	{
+		bool active = false;
+
+		// do not desactivate bullets
+		if ( game.room.x == 4 && game.room.y == 2 )
+		{
+			// spitting plants room
+			active = true;
+		}
+
+		setActive ( bullet, active );
+	}
 }
 
 

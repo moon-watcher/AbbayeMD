@@ -56,6 +56,11 @@ static void _room_enter ( Room *room )
 	_scroll_init();
 
 
+	if ( game.version == VERSION_C64 )
+	{
+		enemy_star_init (  );
+	}
+
 	if ( game.version == VERSION_MD )
 	{
 		enemy_star_init (  );
@@ -72,9 +77,14 @@ static void _room_stay ( Room *room )
 	_scroll_update ( );
 
 
+	if ( game.version == VERSION_C64 )
+	{
+		enemy_star ( (Vect2D_u16*) exceptions, 15, 16,  0, 16, 3, PLAN_B );
+	}
+
 	if ( game.version == VERSION_MD )
 	{
-		enemy_star ( (Vect2D_u16*) exceptions, 30, 16,  0, 16, 3, PLAN_A );
+		enemy_star ( (Vect2D_u16*) exceptions, 15, 16,  0, 16, 3, PLAN_A );
 
 		philippe_update();
 	}

@@ -67,6 +67,11 @@ static void _room_enter ( Room *room )
 	_scroll_init ( );
 
 
+	if ( game.version == VERSION_C64 )
+	{
+		enemy_star_init (  );
+	}
+
 	if ( game.version == VERSION_MD )
 	{
 		nb_leaf = goManagerFindAllByEntityId ( &waObjects, leaf, 87 );   // Leaf (1,0)
@@ -87,6 +92,11 @@ static void _room_stay ( Room *room )
 {
 	_scroll_update ( );
 
+
+	if ( game.version == VERSION_C64 )
+	{
+		enemy_star ( (Vect2D_u16*) exceptions, 30, 0, 0, 29, 13, PLAN_B );
+	}
 
 	if ( game.version == VERSION_MD )
 	{

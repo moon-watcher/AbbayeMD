@@ -61,10 +61,21 @@ void screen_burning ( )
 		pack_vram_add ( go );
 	}
 
+	if ( cm_is_activated() )
+	{
+		GameObject *go = goManagerAdd ( &lObjects, (Object*)&s->objects->array [ 0 ] );
+		Sprite     *sp = &lSprites [ lSpriteCounter++];
+
+		goSetXY ( go, 32, 152 );
+		goSetSprite ( go, sp );
+		go->grabity = false;
+
+		pack_vram_add ( go );
+	}
 
 
 
-	play_music( MUSIC_GAMEOVER );
+	//play_music( MUSIC_GAMEOVER );
 
 
 	listptrNode *node;
@@ -77,6 +88,14 @@ void screen_burning ( )
 
 
 	bool shown = false;
+
+
+	i=32;
+	while ( game.version == VERSION_MD  &&  i-- )
+	{
+		VDP_setTilePriority(PLAN_A, 1, i, 21 );
+	}
+
 
 	while ( count-- )
 	{

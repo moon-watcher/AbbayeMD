@@ -1,10 +1,27 @@
 #include "../inc/include.h"
 
 
-
-
-static u8  set = 0;
+static u8  set  = 0;
 static u16 time = 0;
+
+
+#define NB_BULLETS  4
+
+static const struct
+{
+	s8    pos_x;
+	fix32 vel_y;
+}
+data [ NB_BULLETS ] =
+{
+	{ -8, -FIX32(0.3) },
+	{ -9,  zero       },
+	{ -8, +FIX32(0.3) },
+	{ -5, +FIX32(0.6) }
+};
+
+
+
 
 
 static void _setFrame ( Sprite *sp, u8 frame )
@@ -22,6 +39,12 @@ void enemy_satan ( GameObject *satan, GameObject *bullet[] )
 
 		set  = 0;
 		time = enemy_find ( 57, 0 )->timer[0];
+
+		// easier if difficult is NORMAL and not VERSION_PC
+		if ( session.level == 0  &&  game.version != VERSION_PC )
+		{
+			time += 10;
+		}
 	}
 
 	if ( satan->counter == time )
@@ -30,34 +53,24 @@ void enemy_satan ( GameObject *satan, GameObject *bullet[] )
 
 		_setFrame ( satan->sprite, 1 );
 
-		++set; set %= 3;
+		++set;
+		set %= 3;
 
-		GameObject *bullet1 = (GameObject*) bullet [ set * 4 + 0 ];
-		GameObject *bullet2 = (GameObject*) bullet [ set * 4 + 1 ];
-		GameObject *bullet3 = (GameObject*) bullet [ set * 4 + 2 ];
-		GameObject *bullet4 = (GameObject*) bullet [ set * 4 + 3 ];
 
-		setActive ( bullet1, 1 );
-		setActive ( bullet2, 1 );
-		setActive ( bullet3, 1 );
-		setActive ( bullet4, 1 );
+		u16 i = NB_BULLETS;
 
-		goSetXY ( bullet1, satan->x-8, satan->y + 16 );
-		goSetXY ( bullet2, satan->x-9, satan->y + 16 );
-		goSetXY ( bullet3, satan->x-8, satan->y + 16 );
-		goSetXY ( bullet4, satan->x-5, satan->y + 16 );
+		while ( i-- )
+		{
+			GameObject *o = (GameObject*) bullet [ set * 4 + i ];
 
-		bullet1->vel_x = -bullet1->object->entity->vel_x;
-		bullet1->vel_y = -FIX32(0.3);
+			setActive ( o, 1 );
+			goSetXY ( o, satan->x + data[i].pos_x, satan->y + 16 );
 
-		bullet2->vel_x = -bullet2->object->entity->vel_x;
-		bullet2->vel_y = zero;
+			_setFrame ( o->sprite, 0 );
 
-		bullet3->vel_x = -bullet3->object->entity->vel_x;
-		bullet3->vel_y = +FIX32(0.3);
-
-		bullet4->vel_x = -bullet4->object->entity->vel_x;
-		bullet4->vel_y = +FIX32(0.6);
+			o->vel_x = -o->object->entity->vel_x;
+			o->vel_y = data[i].vel_y;
+		}
 
 		play_fx ( FX_SHOT );
 	}

@@ -20,7 +20,7 @@ void enemy_leaf_init ( s16 posy1, s16 posy2 )
 
 void enemy_leaf_reset ( GameObject *leaf, bool first )
 {
-	s16 x = first ? random() % VDP_getScreenWidth  ( ) : -8;
+	s16 x = first ? random() % screenWidth : -8;
 	s16 y = y1 + ( random() % y2 );
 
 	leaf->vel_x   = + vels_x [ random() % 5 ];
@@ -35,7 +35,7 @@ void enemy_leaf ( GameObject *leaf )
 {
 	leaf->vel_y = fix32Sub ( leaf->vel_y, (fix32) leaf->counter );
 
-	if ( goGetLeft(leaf) > VDP_getScreenWidth() || goGetBottom(leaf) < 0 )
+	if ( goGetLeft(leaf) > screenWidth || goGetBottom(leaf) < 0 )
 	{
 		enemy_leaf_reset ( leaf, false );
 	}

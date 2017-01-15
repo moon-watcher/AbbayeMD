@@ -38,19 +38,19 @@ void hudResetVram ( )
 
 void hudDrawText ( )
 {
-	SYS_disableInts();
-
 	u16 pos = vram_new ( 1 );
 
+	SYS_disableInts();
 	VDP_loadTileData ( HUD_OBJECTS_TILES(3), pos, 1, 0 );
 
 	VDP_fillTileMapRect ( PLAN_A, TILE_ATTR_FULL ( PAL0, 1, 0, 0, pos ), 0, VDP_getPlanHeight()-2, 32, 2 );
 	VDP_fillTileMapRect ( PLAN_A, TILE_ATTR_FULL ( PAL0, 1, 0, 0, pos ), 0, MASK_MAX_HEIGHT,       32, 4 );
+	SYS_enableInts();
 
 	pos = vram_new ( currentRoom->text->tileset->numTile );
 
+	SYS_disableInts();
 	VDP_drawImageEx ( PLAN_A, (Image*) currentRoom->text, TILE_ATTR_FULL(PAL0, 1, 0, 0, pos), 14, MASK_MAX_HEIGHT, 0, 0 );
-
 	SYS_enableInts();
 }
 

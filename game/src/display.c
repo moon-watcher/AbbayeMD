@@ -2,13 +2,28 @@
 
 
 
-static u16 _cache [ 64 ] = { };
+
+static u16 _cache [ 64 ] = { [0 ... 63] = 0x0000 };
+
+
+
+static void _set_colors ( u16 *colors )
+{
+	VDP_waitVSync ( );
+
+	SYS_disableInts();
+	VDP_setPaletteColors ( 0, (u16*) colors, 64 );
+	SYS_enableInts();
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 void displayInit ( )
 {
-	memcpyU16 ( _cache, palette_black, 64 );
+	memsetU16 ( _cache, 0, 64 );
 }
 
 
@@ -37,11 +52,8 @@ void displayOff ( u16 frames )
 		VDP_fadeOutAll ( frames, 0 );
 	}
 
-	VDP_waitVSync ( );
-
-	SYS_disableInts();
-	VDP_setPaletteColors ( 0, (u16*) palette_black, 64 );
-	SYS_enableInts();
+	u16 blacks [ 64 ] = { [0 ... 63] = 0x0000 };
+	_set_colors ( blacks );
 }
 
 
@@ -49,16 +61,11 @@ void displayOn ( u16 frames )
 {
 	if ( frames )
 	{
-      VDP_fadeAllTo ( (u16*) _cache, frames, 0 );
+		VDP_fadeAllTo ( (u16*) _cache, frames, 0 );
 	}
 
 	waitMs(5);
-
-	VDP_waitVSync ( );
-
-	SYS_disableInts();
-	VDP_setPaletteColors ( 0, (u16*) _cache, 64 );
-	SYS_enableInts();
+	_set_colors ( _cache );
 }
 
 

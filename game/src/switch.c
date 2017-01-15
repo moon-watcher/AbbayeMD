@@ -68,19 +68,9 @@ void switch_touched ( GameObject *go )
 		if ( ok )
 		{
 			goSetObject ( go, checked ? &s->on : &s->off );
-
-			//play_fx ( FX_SWITCH );
-			play_fx ( FX_CHECKPOINT );
-
-			// update the sprite before waitHz()
 			SPR_update ( );
-			VDP_waitVSync ( );
 
-			SND_pausePlay_XGM();
-
-			waitHz ( 80 );
-
-			SND_resumePlay_XGM();
+			play_fx_pause ( FX_CHECKPOINT, getHz() );
 		}
 
 		if ( game.room.x == 2  &&  game.room.y == 3 )

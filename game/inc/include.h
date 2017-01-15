@@ -55,6 +55,7 @@ bool;
 #include "../../libs/dev.h"
 #include "../../libs/list.h"
 #include "../../libs/listptr.h"
+#include "../../libs/psg.h"
 
 #include "../libs/vram.h"
 #include "../libs/spritedispacher.h"
@@ -136,7 +137,7 @@ enum
 	FX_SPIT,
 	FX_LAVABALL,
 	FX_CHAIN,
-	FX_CLOSE_DOOR,
+	FX_CLOSED_DOOR,
 	FX_CHECKPOINT,
 
 	FX_MAX
@@ -150,7 +151,7 @@ enum
 	MUSIC_HELL,
 	MUSIC_SATAN,
 	MUSIC_GAMEOVER,
-	MUSIC_START,
+	//MUSIC_START,
 	MUSIC_TITLE,
 	MUSIC_WOODS,
 	MUSIC_PROLOGUE,

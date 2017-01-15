@@ -62,13 +62,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 			//itemSetChecked ( go->item, 1 );
 			checkpoint_save ( go );
 
-			SND_pausePlay_XGM();
-
-			play_fx ( FX_CHECKPOINT );
-			VDP_waitVSync ( );
-
-			waitHz ( 80 );
-			SND_resumePlay_XGM ( );
+			play_fx_pause ( FX_CHECKPOINT, getHz() );
 
 			break;
 
@@ -110,7 +104,12 @@ void ocb_collisions ( GameObject *go, Player *player )
 
 			goRestoreX ( player->go );
 			player->go->vel_x = zero;
-			goIncX ( player->go, SPR_getHFlip ( player->go->sprite ) ? +1 : -1 );
+
+			s16 x1 = goGetCenterX ( player->go );
+			s16 x2 = goGetCenterX ( go );
+
+			     if ( x1 > x2 ) goIncX ( player->go, +1 );
+			else if ( x1 < x2 ) goIncX ( player->go, -1 );
 
 			break;
 

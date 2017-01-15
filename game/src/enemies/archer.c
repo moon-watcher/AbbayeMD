@@ -53,6 +53,13 @@ void enemy_archer ( GameObject *goArcher[], GameObject *goArrow[], u16 pos )
 	SPR_setTimer ( archer->sprite, 1000 ) ;
 
 
+
+	if ( !arrow->vel_x && SPR_countFrames(arrow->sprite) == 1 )
+	{
+		goSetY(arrow, -20);
+	}
+
+
 	++archer->counter;
 
 	SPR_setHFlip ( archer->sprite, dir );

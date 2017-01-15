@@ -140,6 +140,7 @@ static void _show_starts ( )
 
 				VDP_setTileMapXY ( PLAN_A, TILE_ATTR_FULL ( cross->object->entity->palette, 0, 0, 0, cross->vram ), x, y );
 
+
 				play_fx ( FX_DOOR );
 
 				if ( !DEV )
@@ -164,15 +165,15 @@ static void _close_door ( )
 		setActive ( door, 1 );
 		SPR_update ( );
 
-		SND_pausePlay_XGM();
-
-		play_fx ( FX_CLOSE_DOOR );
-		waitHz(80);
-
-		SND_resumePlay_XGM();
+		play_fx_pause ( FX_DOOR, getHz() );
 
 		_inc_secuence ( true );
 		setDoor(door,1);
+
+		currentMask.array [ 19 ] [ 0 ] =
+		currentMask.array [ 18 ] [ 0 ] =
+		currentMask.array [ 17 ] [ 0 ] =
+		currentMask.array [ 16 ] [ 0 ] = 1;
 	}
 }
 
@@ -187,7 +188,7 @@ static void _update_door ( )
 
 	else if ( door->x == 0  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
 	{
-		play_fx ( FX_JUMP );
+		play_fx ( FX_CLOSED_DOOR );
 		goIncX ( door, 2 );
 	}
 }
@@ -288,7 +289,7 @@ static void _wait_for_crusaders ( )
 			VDP_fadeOutAll ( getHz() * 2, 1 );
 		}
 
-		else if ( i == getHz() * 10  ||  DEV )
+		else if ( i == getHz() * 10 || DEV )
 		{
 			cm_activate ( );
 			_inc_secuence ( true );
@@ -374,7 +375,7 @@ static void _room_enter ( Room *room )
 
 	setActive ( door,      0 );
 	setActive ( satan,     0 );
-	setActive ( cross,     0 );
+	setActive ( cross,     1 );
 	setActive ( grial,     0 );
 	setActive ( hint,      0 );
 	//setActive ( explosion, 0 );

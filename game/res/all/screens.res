@@ -4,6 +4,8 @@ IMAGE screen_disclaimerLogoLedImage_all "../../data/all/screens/disclaimer/discl
 
 IMAGE screen_prologue_all               "../../data/all/screens/prologue.bmp"                      0
 IMAGE screen_gameover_all               "../../data/all/screens/gameover.bmp"                      0
+IMAGE screen_goto80_all                 "../../data/all/screens/goto80.bmp"                        0
+IMAGE screen_playonretro_all            "../../data/all/screens/playonretro.bmp"                   0
 
 IMAGE screen_ending_1_all               "../../data/all/screens/ending/1.bmp"                      0
 IMAGE screen_ending_2_all               "../../data/all/screens/ending/2.bmp"                      0

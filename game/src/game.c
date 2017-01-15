@@ -8,7 +8,6 @@ static void _add_objects()
 
 	pack_vram_init ( );
 
-
 	for ( i = 0; i < objs; i++ )
 	{
 		GameObject *go       =  goManagerAdd ( &waObjects, &currentRoom->objects->array [ i ] );
@@ -82,7 +81,7 @@ static void _go_next_room ()
 	//if ( go->vel_x > zero  &&  goGetRight(go) - width_div_2 >= GAME_AREA_WIDTH )
 	if ( SPR_getHFlip(go->sprite) == 0  &&  goGetRight(go) - width_div_2 >= GAME_AREA_WIDTH )
 	{
-		goSetX ( go, 0 - go->object->entity->padding.left - width_div_2  + 1 );
+		goSetX ( go, 0 - go->object->entity->padding.left - width_div_2  + 2 );
 		goSetY ( go, goGetTop(go) - go->object->entity->padding.top ) ;
 		game_room_x ( +1 );
 
@@ -92,7 +91,7 @@ static void _go_next_room ()
 	//else if ( go->vel_x < zero  &&  goGetLeft(go) + width_div_2 <= 0 )
 	else if ( SPR_getHFlip(go->sprite) == 1  &&  goGetLeft(go) + width_div_2 <= 0 )
 	{
-		goSetX ( go, GAME_AREA_WIDTH + (scrollHorizontal>>1) - go->object->entity->padding.right - width_div_2  - 1 );
+		goSetX ( go, GAME_AREA_WIDTH + (scrollHorizontal>>1) - go->object->entity->padding.right - width_div_2  - 2 );
 		goSetY ( go, goGetTop(go) - go->object->entity->padding.top );
 		game_room_x ( -1 );
 
@@ -194,7 +193,9 @@ void game_loop ( )
 		apply_alt_palettes ( );
 
 		SPR_update ( );
+
 		displayOn ( 0 );
+
 		musicPlay ( currentRoom->track );
 
 
@@ -264,19 +265,12 @@ void game_loop ( )
 			VDP_waitVSync ( );
 		}
 
-
-
-		VDP_waitVSync ( );
-
-		SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 );
-		SND_stopPlayPCM_XGM ( SOUND_PCM_CH2 );
-		SND_stopPlayPCM_XGM ( SOUND_PCM_CH3 );
-		SND_stopPlayPCM_XGM ( SOUND_PCM_CH4 );
+		mute ( true, false );
 
 		displayOff(0);
 
 
-//play_fx(FX_HIT);
+
 
 
 

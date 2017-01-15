@@ -84,7 +84,7 @@ void enemy_dragon ( GameObject *head, GameObject *body, GameObject *fire, GameOb
 	{
 		go = (GameObject*) goRunningFire [ i ];
 
-		if ( go->x == VDP_getScreenWidth()  ||  go->x == 48  )
+		if ( go->x == screenWidth  ||  go->x == 48  )
 		{
 			go->vel_x = zero;
 			setActive ( go, 0 );

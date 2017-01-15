@@ -12,9 +12,6 @@ void screen_gameover ( )
 	resetScreen();
 	resetScroll();
 
-	play_music ( MUSIC_GAMEOVER );
-
-
 	Screen *screen = (Screen*) screen_get ( 0 );
 
 	drawImage ( (Image*) screen->foreground, PLAN_A );
@@ -25,10 +22,15 @@ void screen_gameover ( )
 	}
 
 
-	displayOn ( 0 );
+	displayOn ( 30 );
+	play_music ( MUSIC_GAMEOVER );
 
 	waitSc ( 6 );
 	waitJoySc ( 7 );
+
+	displayOff ( 10 );
+
+	musicStop();
 
 	vram_destroy();
 }

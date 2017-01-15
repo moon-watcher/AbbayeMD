@@ -10,13 +10,19 @@ static u16         nb_crusader = 0;
 static u16         nb_leaf = 0;
 static u16         i = 0;
 static u16         _wait_cm = 0;
+static bool        _deactivate_leafs;
 
+
+
+#define DOOR_IS_CLOSED  itemGetChecked ( door->item )
+#define DOOR_IS_OPENED  !DOOR_IS_CLOSED
 
 
 static void _room_enter ( Room *room )
 {
 	_wait_cm = 0;
 	nb_leaf = 0;
+	_deactivate_leafs = false;
 
 	door = (GameObject*) goManagerFindByEntityId ( &waObjects, 35, 0 ); // Door
 
@@ -28,9 +34,9 @@ static void _room_enter ( Room *room )
 	}
 
 
-	setActive ( door, itemGetChecked ( door->item ) );
+	setActive ( door, DOOR_IS_CLOSED );
 
-	if ( !itemGetChecked ( door->item ) ) //  &&  game.version == VERSION_MD
+	if ( DOOR_IS_OPENED  &&  game.version == VERSION_MD )
 	{
 		nb_leaf = goManagerFindAllByEntityId ( &waObjects, leaf, 96 );   // Leaf (2,1)
 
@@ -47,7 +53,7 @@ static void _room_enter ( Room *room )
 
 static void _room_stay ( Room *room )
 {
-	if ( player.go->x == 7  &&  !itemGetChecked ( door->item )  &&  !game.crusader )
+	if ( player.go->x == 7  &&  DOOR_IS_OPENED  &&  !game.crusader )
 	{
 		setActive ( door, 1 ) ;
 
@@ -56,32 +62,26 @@ static void _room_stay ( Room *room )
 
 		itemSetChecked ( door->item, 1 );
 
-		SND_pausePlay_XGM();
-		play_fx ( FX_CLOSE_DOOR );
+		play_fx_pause ( FX_DOOR, getHz() );
 
-		waitHz ( 80 );
-
-		SND_resumePlay_XGM();
-
-		nb_leaf = 0;
+		_deactivate_leafs = true;
 	}
 
-	else if ( itemGetChecked ( door->item )  &&  door->x > 0 )
+	else if ( DOOR_IS_CLOSED  &&  door->x > 0 )
 	{
 		goIncX ( door, -1 );
 	}
 
-	else if ( itemGetChecked ( door->item )  &&  door->x == 0  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
+	else if ( DOOR_IS_CLOSED  &&  door->x == 0  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
 	{
-		//play_fx ( FX_JUMP );
-		play_fx ( FX_CLOSE_DOOR );
+		play_fx ( FX_CLOSED_DOOR );
 		goIncX ( door, 2 );
 	}
 
 
 	if ( game.crusader )
 	{
-		if ( player.go->x == 7  &&  itemGetChecked ( door->item ) )
+		if ( player.go->x == 7  &&  DOOR_IS_CLOSED )
 		{
 			setActive ( door, 0 ) ;
 
@@ -89,8 +89,7 @@ static void _room_stay ( Room *room )
 
 			itemSetChecked ( door->item, 0 );
 
-			//play_fx ( FX_DOOR );
-			play_fx ( FX_CLOSE_DOOR );
+			play_fx ( FX_DOOR );
 			waitHz ( getHz() );
 
 
@@ -133,12 +132,28 @@ static void _room_stay ( Room *room )
 		}
 	}
 
-	//if ( !itemGetChecked ( door->item ) ) //  &&  game.version == VERSION_MD
+	if ( DOOR_IS_OPENED  &&  game.version == VERSION_MD )
 	{
 		for ( i=0; i<nb_leaf; i++ )
 		{
 			enemy_leaf ( leaf[i] );
 		}
+	}
+
+
+	if ( _deactivate_leafs )
+	{
+		i = nb_leaf;
+
+		while ( i-- )
+		{
+			if ( goGetTop ( leaf[i] ) < 0  ||  goGetLeft ( leaf[i] ) > screenWidth )
+			{
+				setActive(leaf[i], 0 );
+			}
+		}
+
+
 	}
 }
 

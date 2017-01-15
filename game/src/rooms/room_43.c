@@ -28,7 +28,7 @@ static void _room_enter ( Room *room )
 
 
 	// the switch at 4,1 opens the door
-	item = (Item*) itemManagerFind ( &waItems, 21, 4, 1 );
+	item = (Item*) itemManagerFind ( &waItems, ( game.version == VERSION_MD ? 21 : 17 ), 4, 1 );
 
 	if ( itemGetChecked ( item )  &&  itemGetVisible ( door->item ) )
 	{
@@ -50,6 +50,8 @@ static void _room_enter ( Room *room )
 
 static void _room_stay ( Room *room )
 {
+//	VDP_setTextPalette(PAL3);
+//itemManagerShow (  &waItems );
 	if ( itemGetValue ( door->item ) > 0 )
 	{
 		itemIncValue ( door->item, -1 );

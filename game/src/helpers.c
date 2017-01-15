@@ -86,10 +86,15 @@
 
 void SPR_setVRAMDirect ( Sprite *sprite, u16 vrampos )
 {
+    SYS_disableInts();
+
 	sprite->attribut = ( sprite->attribut & TILE_ATTR_MASK ) | vrampos;
 	sprite->status |= 0x0001; // NEED_ST_ATTR_UPDATE;
 	sprite->timer = 0;
+
+	SYS_enableInts();
 }
+
 
 bool SPR_isLastFrame ( Sprite *sprite )
 {
@@ -251,7 +256,7 @@ u16 VDP_getTile ( VDPPlan plan, u16 x, u16 y )
         plan_dir = VDP_PLAN_B;
     }
 
-    const u32 addr = plan_dir + ((x + (VDP_getPlanWidth() * y)) * 2);
+    u16 addr = plan_dir + ((x + (planWidth * y)) * 2);
 
     /* point to vdp port */
     plctrl = (u32 *) GFX_CTRL_PORT;
@@ -266,8 +271,6 @@ u16 VDP_getTile ( VDPPlan plan, u16 x, u16 y )
 
 void VDP_setTilePriority ( VDPPlan plan, u16 value, u16 x, u16 y )
 {
-    SYS_disableInts();
-
     u16 tile = VDP_getTile ( plan, x, y );
 
     if ( value )
@@ -280,19 +283,13 @@ void VDP_setTilePriority ( VDPPlan plan, u16 value, u16 x, u16 y )
     }
 
     VDP_setTileMapXY ( plan, tile, x, y );
-
-    SYS_enableInts();
 }
 
 
 
-void  VDP_setTileVRAM ( VDPPlan plan, u16 index, u16 x, u16 y )
+void VDP_setTileVRAM ( VDPPlan plan, u16 index, u16 x, u16 y )
 {
-    SYS_disableInts();
-
     VDP_setTileMapXY ( plan, ( ( VDP_getTile ( plan, x, y ) >> 11 ) << 11 ) + index, x, y );
-
-    SYS_enableInts();
 }
 
 
@@ -355,7 +352,7 @@ void VDP_fillGenresSpriteAsImage ( VDPPlan plan, u16 basetile, u16 x, u16 y, u16
          break;
 
       case CONST_PLAN_WINDOW:
-         addr = window_adr + ((x + (y << windowWidthSft)) * 2);
+         addr = bplan_adr + ((x + (y << windowWidthSft)) * 2);
          width = windowWidth;
          break;
 
@@ -385,8 +382,6 @@ void VDP_fillGenresSpriteAsImage ( VDPPlan plan, u16 basetile, u16 x, u16 y, u16
       addr += width * 2;
    }
 }
-
-
 
 
 
@@ -562,8 +557,8 @@ u16 drawImage ( Image *image, VDPPlan plan )
         return 0;
     }
 
-    s16 x = VDP_getScreenWidth  ( ) / 8 / 2 - image->map->w / 2;
-    s16 y = VDP_getScreenHeight ( ) / 8 / 2 - image->map->h / 2;
+    s16 x = ( screenWidth  >> 4 ) - ( image->map->w >> 1 );
+    s16 y = ( screenHeight >> 4 ) - ( image->map->h >> 1 );
 
     return drawImageXY ( image, plan, x, y );
 }
@@ -579,13 +574,8 @@ u16 drawImageXY ( Image *image, VDPPlan plan, u16 x, u16 y )
     u16 pos = vram_new ( image->tileset->numTile );
     u16 pal = ( plan.plan == PLAN_A.plan ) ? PAL1 : PAL0;
 
-    //VDP_waitVSync();
-
     SYS_disableInts();
-
-    //VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 1 ); VDP_waitDMACompletion();
     VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 0 );
-
     SYS_enableInts();
 
     preparePal ( pal, image->palette->data );
@@ -661,15 +651,8 @@ void waitJoySc ( u16 sc )
 
     sc *= getHz();
 
-    while ( 1 )
+    while ( sc-- )
     {
-        --sc;
-
-        if ( !sc )
-        {
-            return;
-        }
-
         VDP_waitVSync();
 
         JoyReader_update();
@@ -691,12 +674,13 @@ u16 between ( s32 min, s32 nb, s32 max )
 
 
 
+
 void resetPalettes ( )
 {
+    u16 blacks [ 64 ] = { [0 ... 63] = 0x0000 };
+
     SYS_disableInts();
-
-    VDP_setPaletteColors ( 0, (u16*) palette_black, 64 );
-
+    VDP_setPaletteColors ( 0, (u16*) blacks, 64 );
     SYS_enableInts();
 }
 
@@ -732,9 +716,9 @@ void resetScroll ( )
 
 void resetSprites ( )
 {
-    u8 i;
+    u8 i = MAX_SPRITE;
 
-    for ( i=0; i<MAX_SPRITE; i++ )
+    while ( i-- )
     {
         vdpSpriteCache [ i ] = (VDPSprite) { };
     }
@@ -770,30 +754,26 @@ u16 in_array ( u16 needle, u16 array[] )
 
 
 
+void play_fx_pause ( u8 fx, u16 hz )
+{
+    SND_pausePlay_XGM();
+
+    play_fx ( fx );
+    waitHz ( hz );
+
+	SND_resumePlay_XGM();
+}
+
+
 void play_fx ( u8 fx )
 {
     fxPlay ( (Fx*) fx_list [ game.version ] [ fx ] );
 }
 
 
-
 void play_music ( u8 track )
 {
     musicPlay ( (Music*) music_list [ game.version ] [ track ] );
-}
-
-
-
-u16 goIsItem ( GameObject *go )
-{
-    return in_array ( go->object->entity->type, (u16[]) { ITEM_LIST, 0 } );
-}
-
-
-
-u16 goGetEntityType ( GameObject *go )
-{
-    return go->object->entity->type;
 }
 
 
@@ -885,14 +865,12 @@ void hide_door ( GameObject *door )
     setDoor ( door, 0 );
     setActive ( door, 0 );
 
+    SND_pausePlay_XGM();
+    waitHz(20);
+
     SPR_update ( );
 
-    SND_pausePlay_XGM();
-
-    play_fx ( FX_CHECKPOINT );
-    waitHz ( 80 );
-
-    SND_resumePlay_XGM();
+    play_fx_pause( FX_DOOR, 35 );
 }
 
 
@@ -1004,8 +982,6 @@ void pack_vram_init ( )
 
 void pack_vram_add ( GameObject *go )
 {
-    // 34, 58 removed
-
     #define PACKED_OBJECTS   11, 12, 13, 14, 15, 16, 17, 18, 19, \
 	                         21, 23, 24, 25, 28, 29, \
 	                         30, 32, 33, 37, 38, \
@@ -1126,3 +1102,19 @@ void prepare_doors ()
 }
 
 
+
+void mute ( bool sfx, bool music )
+{
+    if ( sfx )
+    {
+        fxStop ( SOUND_PCM_CH1 );
+        fxStop ( SOUND_PCM_CH2 );
+        fxStop ( SOUND_PCM_CH3 );
+        fxStop ( SOUND_PCM_CH4 );
+    }
+
+    if ( music )
+    {
+        musicStop();
+    }
+}

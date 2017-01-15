@@ -20,6 +20,7 @@ Fx;
 
 void fxInit ( );
 void fxPlay ( Fx *fx );
+void fxStop ( u16 channel );
 
 
 

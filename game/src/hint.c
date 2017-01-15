@@ -72,12 +72,14 @@ void hint_show ( bool pause )
 
 	scrollSet ( scroll );
 
-	u16 x    = ( VDP_getScreenWidth() / 8 - img->map->w ) / 2;
+	u16 x    = ( ( screenWidth >> 3 ) - img->map->w ) >> 1;
 	u16 y    = ABS ( scroll ) / 8 + 9;
 	u16 pos  = vram_new ( img->tileset->numTile );
 	u16 tile = TILE_ATTR_FULL ( PAL0, 0, 0, 0, pos );
 
+	SYS_disableInts();
 	VDP_drawImageEx ( PLAN_A, (Image*) img, tile, x, y, 0, 0 );
+	SYS_enableInts();
 
 	preparePal ( PAL0, img->palette->data );
 	apply_alt_palettes ( );

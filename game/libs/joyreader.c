@@ -32,9 +32,9 @@ void JoyReader_update ( void )
         return;
     }
 
-    u16 i;
+    u16 i = _joys;
 
-    for ( i = JOY_1; i < _joys; i++ )
+    while ( i-- )
     {
         u16 active  = JOY_readJoypad ( i );
         u16 changed = active ^ joysticks [ i ].active;

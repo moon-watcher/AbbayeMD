@@ -14,9 +14,7 @@ void mask_draw ( Mask *mask )
 {
 	u8 y, x;
 
-	SYS_disableInts();
 	VDP_clearPlan ( PLAN_B, 1 );
-	SYS_enableInts();
 
 	for ( y=0; y<22; y++ )
 	{
@@ -35,8 +33,9 @@ void mask_draw ( Mask *mask )
 			else if ( color == 32 ) color = 6;
 			else if ( color == 64 ) color = 7;
 
-			SYS_disableInts();
 			drawUInt ( color, x, y, 0 );
+
+			SYS_disableInts();
 			VDP_setTileMapXY ( PLAN_B, TILE_ATTR_FULL ( PAL0, 1, 0, 0, color ), x, y );
 			SYS_enableInts();
 		}
@@ -73,13 +72,19 @@ void mask_set_priorities ( Mask *mask )
 
 	u16 y = 22;
 
+
+
 	while ( y-- )
 	{
 		if ( currentMask.array[y][_mask_line] & 64 )
 		{
+			SYS_disableInts();
 			VDP_setTilePriority ( PLAN_A, 1, _mask_line, y );
+			SYS_enableInts();
 		}
 	}
+
+
 
    _mask_line += _mask_dir;
 

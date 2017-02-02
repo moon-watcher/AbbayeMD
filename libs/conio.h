@@ -16,7 +16,7 @@ struct text_info
 	}
 	window;
 
-	unsigned int plan;
+	VDPPlan plan;
 	unsigned int palette;
 };
 
@@ -39,6 +39,6 @@ unsigned int wherey ( void );
 void delay ( unsigned int ms );
 unsigned int kbhit ( );
 void window ( unsigned char x, unsigned char y, unsigned char width, unsigned char height );
-
+void update_textinfo ( );
 
 #endif // _CONIO_H_

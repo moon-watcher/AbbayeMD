@@ -61,7 +61,13 @@ void hint_show ( bool pause )
 	u16 saved_colors [ 64 ];
 	VDP_getPaletteColors ( 0, saved_colors, 64 );
 
+
+	musicPause();
+
+
 	displayOff(0);
+
+	player_freeze_at_44();
 
 	_hide_sprites();
 
@@ -112,4 +118,8 @@ void hint_show ( bool pause )
 		prepareColors ( saved_colors );
 		displayOn ( 10 );
 	}
+
+
+
+	musicResume();
 }

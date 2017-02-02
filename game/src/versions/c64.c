@@ -8,6 +8,8 @@
 #include "../../res/c64/background.h"
 #include "../../inc/versions/all.h"
 
+#include "../../res/all/sfx.h"
+
 
 const Entity entity_01_c64 = {  1, "Jean stays",            0, (SpriteDefinition*) &jean_2x3_c64,     PAL3, ENTITY_PLAYER,               0,           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };
 const Entity entity_02_c64 = {  2, "Jean walks",            1, (SpriteDefinition*) &jean_2x3_c64,     PAL3, ENTITY_PLAYER,     FIX32(0.65),           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };
@@ -22,7 +24,7 @@ const Entity entity_10_c64 = { 10, "Yellow hint",          12, (SpriteDefinition
 const Entity entity_11_c64 = { 11, "Heart",                11, (SpriteDefinition*) &objects_2x2_c64,  PAL3, ENTITY_HEART,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
 const Entity entity_12_c64 = { 12, "Cross",                 0, (SpriteDefinition*) &objects_2x2_c64,  PAL3, ENTITY_CROSS,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
 const Entity entity_13_c64 = { 13, "Inverted cross",        1, (SpriteDefinition*) &objects_2x2_c64,  PAL3, ENTITY_INV_CROSS,            0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
-const Entity entity_14_c64 = { 14, "Crusader",              1, (SpriteDefinition*) &enemies_2x3_c64,  PAL2, ENTITY_ENEMY,      FIX32(0.60),           0, FIX32(0.20), 0, 1, 0, NULL, mcb_crusader,    0, {  7,  5,  0,-25 } }; // {  7,  5,  0,  5 } };
+const Entity entity_14_c64 = { 14, "Crusader",              1, (SpriteDefinition*) &enemies_2x3_c64,  PAL2, ENTITY_ENEMY,      FIX32(0.60),           0, FIX32(0.20), 0, 1, 0, NULL, mcb_crusader,    0, { -8,  5,  0, -7 } }; // {  7,  5,  0,  5 } };
 const Entity entity_15_c64 = { 15, "Water",                 6, (SpriteDefinition*) &enemies_2x1_c64,  PAL2, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
 const Entity entity_16_c64 = { 16, "Fire",                 11, (SpriteDefinition*) &enemies_2x2_c64,  PAL2, ENTITY_NULL,              zero,        zero,        zero, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
 const Entity entity_17_c64 = { 17, "Rat",                   1, (SpriteDefinition*) &enemies_2x2_c64,  PAL2, ENTITY_ENEMY,      FIX32(0.60),        zero,        zero, 0, 1, 0, NULL, mcb_udlr,        0, {  7,  0,  0,  0 } };
@@ -744,18 +746,36 @@ const Mask mask_42_c64 =
 
 
 
-const Music music_00_c64 = { MUSIC_NULL,     "Silence (C64)",        (u8*) NULL,               Z80_DRIVER_XGM };
-const Music music_01_c64 = { MUSIC_CHURCH,   "Area I Church (C64)",  (u8*) music_church_c64,   Z80_DRIVER_XGM };
-const Music music_02_c64 = { MUSIC_CAVES,    "Area II Caves (C64)",  (u8*) NULL,               Z80_DRIVER_XGM }; // (u8*) music_caves_all,    Z80_DRIVER_XGM };
-const Music music_03_c64 = { MUSIC_HELL,     "Area III Hell (C64)",  (u8*) NULL,               Z80_DRIVER_XGM }; // (u8*) music_hell_all,     Z80_DRIVER_XGM };
-const Music music_04_c64 = { MUSIC_SATAN,    "Evil Fight (C64)",     (u8*) NULL,               Z80_DRIVER_XGM }; // (u8*) music_satan_all,    Z80_DRIVER_XGM };
-const Music music_05_c64 = { MUSIC_GAMEOVER, "Game Over (C64)",      (u8*) NULL,               Z80_DRIVER_XGM }; // (u8*) music_gameover_all, Z80_DRIVER_XGM };
-//const Music music_06_c64 = { MUSIC_START,    "Game Start (C64)",     (u8*) NULL,               Z80_DRIVER_XGM }; // (u8*) music_start_all,    Z80_DRIVER_XGM };
-const Music music_07_c64 = { MUSIC_TITLE,    "Main Title (C64)",     (u8*) music_title_c64,    Z80_DRIVER_XGM };
-const Music music_08_c64 = { MUSIC_WOODS,    "Manhunt wood (C64)",   (u8*) music_woods_c64,    Z80_DRIVER_XGM };
-const Music music_09_c64 = { MUSIC_PROLOGUE, "Manhunt (C64)",        (u8*) music_manhunt_c64,  Z80_DRIVER_XGM };
-const Music music_10_c64 = { MUSIC_HOPE,     "Prayer of Hope (C64)", (u8*) music_hope_c64,     Z80_DRIVER_XGM };
-const Music music_11_c64 = { MUSIC_HANGMAN,  "Hangman tree (C64)",   (u8*) music_hangman_c64,  Z80_DRIVER_XGM };
+
+const Music music_00_c64 = { MUSIC_NULL,     "Silence",        (u8*) NULL,              Z80_DRIVER_XGM,  0 };
+const Music music_01_c64 = { MUSIC_CHURCH,   "Area I Church",  (u8*) music_church_c64,  Z80_DRIVER_XGM, -1 };
+const Music music_02_c64 = { MUSIC_CAVES,    "Area II Caves",  (u8*) music_caves_c64,   Z80_DRIVER_XGM, -1 };
+const Music music_03_c64 = { MUSIC_HELL,     "Area III Hell",  (u8*) NULL,              Z80_DRIVER_XGM, -1 }; // music_hell_all
+const Music music_04_c64 = { MUSIC_SATAN,    "Evil Fight",     (u8*) NULL,              Z80_DRIVER_XGM, -1 }; // music_satan_all
+const Music music_05_c64 = { MUSIC_GAMEOVER, "Game Over",      (u8*) NULL,              Z80_DRIVER_XGM, -1 }; // music_gameover_all
+//const Music music_06_c64 = { MUSIC_START,    "Game Start",     (u8*) NULL,              Z80_DRIVER_XGM,  0 };
+const Music music_07_c64 = { MUSIC_TITLE,    "Main Title",     (u8*) music_title_c64,   Z80_DRIVER_XGM,  0 };
+const Music music_08_c64 = { MUSIC_WOODS,    "Manhunt wood",   (u8*) music_woods_c64,   Z80_DRIVER_XGM, -1 };
+const Music music_09_c64 = { MUSIC_PROLOGUE, "Manhunt",        (u8*) music_manhunt_c64, Z80_DRIVER_XGM,  0 };
+const Music music_10_c64 = { MUSIC_HOPE,     "Prayer of Hope", (u8*) music_hope_c64,    Z80_DRIVER_XGM,  0 };
+const Music music_11_c64 = { MUSIC_HANGMAN,  "Hangman tree",   (u8*) music_hangman_c64, Z80_DRIVER_XGM,  0 };
+
+
+const Sfx sfx_01_c64 = { SFX_DOOR,        "Door",        (u8*) sfx_door_all,       SOUND_PCM_CH2, sizeof(sfx_door_all),       14, Z80_DRIVER_XGM  };
+const Sfx sfx_02_c64 = { SFX_HIT,         "Hit",         (u8*) sfx_hit_all,        SOUND_PCM_CH2, sizeof(sfx_hit_all),        15, Z80_DRIVER_XGM  };
+const Sfx sfx_03_c64 = { SFX_ITEM,        "Item",        (u8*) sfx_item_all,       SOUND_PCM_CH4, sizeof(sfx_item_all),       20, Z80_DRIVER_XGM  };
+const Sfx sfx_04_c64 = { SFX_JUMP,        "Jump",        (u8*) sfx_jump_all,       SOUND_PCM_CH2, sizeof(sfx_jump_all),       10, Z80_DRIVER_XGM  };
+const Sfx sfx_05_c64 = { SFX_SHOT,        "Shot",        (u8*) sfx_shoot_all,      SOUND_PCM_CH4, sizeof(sfx_shoot_all),      14, Z80_DRIVER_XGM  };
+const Sfx sfx_06_c64 = { SFX_SLASH,       "Slash",       (u8*) sfx_slash_all,      SOUND_PCM_CH3, sizeof(sfx_slash_all),      14, Z80_DRIVER_XGM  };
+const Sfx sfx_07_c64 = { SFX_SWITCH,      "Switch",      (u8*) sfx_switch_all,     SOUND_PCM_CH3, sizeof(sfx_switch_all),     13, Z80_DRIVER_XGM  };
+const Sfx sfx_08_c64 = { SFX_TREE,        "Tree",        (u8*) sfx_tree_all,       SOUND_PCM_CH4, sizeof(sfx_tree_all),       12, Z80_DRIVER_XGM  };
+const Sfx sfx_09_c64 = { SFX_LIGHTING,    "Lighting",    (u8*) sfx_lighting_all,   SOUND_PCM_CH2, sizeof(sfx_lighting_all),   12, Z80_DRIVER_XGM  };
+const Sfx sfx_10_c64 = { SFX_SPIT,        "Spit",        (u8*) sfx_spit_all,       SOUND_PCM_CH4, sizeof(sfx_spit_all),       14, Z80_DRIVER_XGM  };
+const Sfx sfx_11_c64 = { SFX_LAVABALL,    "Lava ball",   (u8*) sfx_lavaball_all,   SOUND_PCM_CH3, sizeof(sfx_lavaball_all),   13, Z80_DRIVER_XGM  };
+const Sfx sfx_12_c64 = { SFX_CHAIN,       "Bell",        (u8*) sfx_chain_all,      SOUND_PCM_CH3, sizeof(sfx_chain_all),      20, Z80_DRIVER_XGM  };
+const Sfx sfx_13_c64 = { SFX_CLOSED_DOOR, "Closed door", (u8*) sfx_close_door_all, SOUND_PCM_CH2, sizeof(sfx_close_door_all), 13, Z80_DRIVER_XGM  };
+const Sfx sfx_14_c64 = { SFX_CHECKPOINT,  "Checkpoint",  (u8*) sfx_checkpoint_all, SOUND_PCM_CH2, sizeof(sfx_checkpoint_all), 11, Z80_DRIVER_XGM  };
+
 
 
 

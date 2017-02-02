@@ -24,7 +24,7 @@ static u16          _count = 0;
 void vram_init ( u16 base )
 {
 	_list  = NULL;
-	_base  = base;
+	_base  = base ? base : VRAM_DEFAULT;
 	_count = 0;
 }
 

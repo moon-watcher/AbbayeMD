@@ -2,77 +2,56 @@
 #include "conio.h"
 
 
-#define ABSOLUTEX  _ti.window.x + _ti.curx
-#define ABSOLUTEY  _ti.window.y + _ti.cury
+#define ABSOLUTEX  ti.window.x + ti.curx
+#define ABSOLUTEY  ti.window.y + ti.cury
 
 
 
 
-static struct text_info _ti = { };
+static struct text_info ti = { };
 
-
-
-static void _update_textinfo ( )
-{
-//	_ti.plan    = VDP_getTextPlan().v ? PLAN_A : PLAN_B;
-	_ti.plan    = VDP_getTextPlan().plan;
-	_ti.palette = VDP_getTextPalette();
-}
-
-
-static VDPPlan _get_plan()
-{
-	VDPPlan p = PLAN_B;
-
-	if ( _ti.plan == PLAN_A.plan )
-	{
-		p = PLAN_A;
-	}
-
-
-	return p;
-}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
+
 void gettextinfo ( struct text_info * info )
 {
-	*info = _ti;
+	*info = ti;
 }
 
 
 void inittextinfo ( void )
 {
-	_ti.curx          = 0;
-	_ti.cury          = 0;
+	ti.curx          = 0;
+	ti.cury          = 0;
 
-	_ti.window.x      = 0;
-	_ti.window.y      = 0;
-	_ti.window.width  = VDP_getPlanWidth();
-	_ti.window.height = VDP_getPlanHeight();
+	ti.window.x      = 0;
+	ti.window.y      = 0;
+	ti.window.width  = VDP_getPlanWidth();
+	ti.window.height = VDP_getPlanHeight();
 
-	_update_textinfo ( );
+	update_textinfo ( );
 }
 
 
 void gotoxy ( unsigned char x, unsigned char y )
 {
-	_ti.curx = x;
-	_ti.cury = y;
+	ti.curx = x;
+	ti.cury = y;
 }
 
 
 unsigned int wherex ( void )
 {
-	return _ti.curx;
+	return ti.curx;
 }
 
 
 unsigned int wherey ( void )
 {
-	return _ti.cury;
+	return ti.cury;
 }
 
 
@@ -92,19 +71,17 @@ void clrscr ( void )
 {
 	gotoxy ( 0, 0 );
 
-	_update_textinfo ( );
+	update_textinfo ( );
 
-	//VDP_fillTileMapRect ( _ti.plan, 0, ABSOLUTEX, ABSOLUTEY, _ti.window.width, _ti.window.height );
-	VDP_fillTileMapRect ( _get_plan(), 0, ABSOLUTEX, ABSOLUTEY, _ti.window.width, _ti.window.height );
+	VDP_fillTileMapRect ( ti.plan, 0, ABSOLUTEX, ABSOLUTEY, ti.window.width, ti.window.height );
 }
 
 
 void clreol ( void )
 {
-	_update_textinfo ( );
-	//VDP_fillTileMapRect ( _ti.plan, 0, ABSOLUTEX, ABSOLUTEY, _ti.window.width - _ti.curx, 1 );
-	VDP_fillTileMapRect ( _get_plan(), 0, ABSOLUTEX, ABSOLUTEY, _ti.window.width - _ti.curx, 1 );
+	update_textinfo ( );
 
+	VDP_fillTileMapRect ( ti.plan, 0, ABSOLUTEX, ABSOLUTEY, ti.window.width - ti.curx, 1 );
 }
 
 
@@ -136,19 +113,19 @@ void putch ( char ch )
 
 	VDP_drawText ( string, ABSOLUTEX, ABSOLUTEY );
 
-	_ti.curx += 1;
+	ti.curx += 1;
 
-	if ( _ti.curx >= _ti.window.width )
+	if ( ti.curx >= ti.window.width )
 	{
-		_ti.curx = 0;
-		_ti.cury += 1;
+		ti.curx = 0;
+		ti.cury += 1;
 
-		if ( _ti.cury >= _ti.window.height )
+		if ( ti.cury >= ti.window.height )
 		{
 			// Quizá en lugar de volver arriba debería subir el contenido
 			// de windows una fila, borrar la última e insertar a ésta.
 
-			_ti.cury = 0;
+			ti.cury = 0;
 		}
 	}
 }
@@ -184,9 +161,9 @@ void putchxy ( unsigned char x, unsigned char y, char ch )
 
 void textcolor ( unsigned int nb, unsigned int color )
 {
-	_update_textinfo ( );
+	update_textinfo ( );
 
-	VDP_setPaletteColor ( _ti.palette + nb, color );
+	VDP_setPaletteColor ( ti.palette + nb, color );
 }
 
 
@@ -206,10 +183,17 @@ void textcolors ( int *colors )
 
 void window ( unsigned char x, unsigned char y, unsigned char width, unsigned char height )
 {
-	_ti.window.x      = x;
-	_ti.window.y      = y;
-	_ti.window.width  = width;
-	_ti.window.height = height;
+	ti.window.x      = x;
+	ti.window.y      = y;
+	ti.window.width  = width;
+	ti.window.height = height;
 
 	gotoxy ( 0, 0 );
+}
+
+
+void update_textinfo ( )
+{
+	ti.plan    = VDP_getTextPlan();
+	ti.palette = VDP_getTextPalette();
 }

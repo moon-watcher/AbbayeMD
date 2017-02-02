@@ -49,7 +49,7 @@ void enemy_dragon ( GameObject *head, GameObject *body, GameObject *fire, GameOb
 
 		goIncY ( head, +6 );
 
-		play_fx(FX_SHOT);
+		play_fx(SFX_SHOT);
 	}
 
 	else if ( head->counter == data->timer[2] ) // rest

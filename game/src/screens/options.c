@@ -106,18 +106,18 @@ static void _change_fx ( bool init )
 	if ( fx == FX_MAX ) fx = 0;
 
 
-	Fx *m =(Fx*) fx_list [ game.version ] [ (u8) fx ];
+	Sfx *m =(Sfx*) fx_list [ game.version ] [ (u8) fx ];
 
 	drawText ( "                       ", 16, 17 );
 	drawText ( m->title, 16, 17 );
 
 	if ( click && !init )
 	{
-		mute ( true, false );
+		sfxStop(0);
 
 		VDP_waitVSync();
 
-		fxPlay(m);
+		sfxPlay(m);
 	}
 }
 
@@ -175,6 +175,7 @@ static void _draw_screen ( )
 {
 	displayOff(0);
 
+	play_fx(SFX_ITEM);
 	palette_init();
 
 	resetScroll();
@@ -195,7 +196,7 @@ static void _draw_screen ( )
 	drawText ( "Level",          7, 11 );
 	drawText ( "Version",        7, 13 );
 	drawText ( "Music",          7, 15 );
-	drawText ( "Fx",             7, 17 );
+	drawText ( "Sfx",             7, 17 );
 	drawText ( "Exit",           7, 19 );
 
 
@@ -216,6 +217,8 @@ void screen_options ( )
 {
 	//if ( DEV )return 1;
 
+	inSoundTest = true;
+
 	VDP_setSpriteFull ( 0, -10, -1, 1, TILE_ATTR_FULL ( PAL2, 0, 0, 0, TILE_FONTINDEX+95 ), 0 );
 	VDP_setSpritePosition ( 0, -20, -20 );
 	VDP_updateSprites(80,1);
@@ -228,9 +231,11 @@ void screen_options ( )
 
 	_loop();
 
-	mute ( true, true );
+	mute ( );
 	displayOff(10);
 
 	VDP_resetSprites();
 	VDP_updateSprites(80,1);
+
+	inSoundTest = false;
 }

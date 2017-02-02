@@ -4,6 +4,8 @@
 
 
 
+const bool high_priority_policy [ VERSION_MAX ];
+
 
 const Mask mask_00_all;
 const Mask mask_10_all;

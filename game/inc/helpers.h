@@ -162,6 +162,9 @@ u16  explode                      ( u8 *delim, u8 *orig, u8 *args[] );
 
 void prepare_doors                ( );
 
-void mute                         ( bool sfx, bool music );
+void mute                         ( );
+
+void player_freeze_at_44          ( );
+
 
 #endif

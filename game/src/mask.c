@@ -1,4 +1,5 @@
 #include "../inc/include.h"
+#include "../inc/versions/all.h"
 
 
 
@@ -57,6 +58,11 @@ static s16 _mask_line;
 
 void mask_ini_priorities ( )
 {
+	if ( ! high_priority_policy [ game.version ] )
+	{
+		return;
+	}
+
 	_mask_counter = 0;
 	_mask_dir     = SPR_getHFlip ( player.go->sprite ) ? -1 : +1;
 	_mask_line    = set_value_in ( ( goGetLeft(player.go) >> 3 ) - _mask_dir, 0, 31 );
@@ -65,6 +71,11 @@ void mask_ini_priorities ( )
 
 void mask_set_priorities ( Mask *mask )
 {
+	if ( ! high_priority_policy [ game.version ] )
+	{
+		return;
+	}
+
 	if ( _mask_counter == 33 )
 	{
 		return;

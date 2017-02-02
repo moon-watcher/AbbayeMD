@@ -307,12 +307,12 @@ void mcb_player ( void *data )
 		}
 	}
 
-	// makes Jean to fall down on narrow blocks
+	// makes Jean to fall down on narrow blocks. Eg: platforms at 3,1
 	else
 	{
 		if ( go->vel_y == go->object->entity->weight )
 		{
-			goIncY ( go, 1 );
+			goIncY ( go, 3 );
 		}
 	}
 
@@ -412,13 +412,13 @@ void mcb_crusader ( void *data )
 
 	if ( game.room.x == 1 && ( x == 78 || x == 126 || x == 158 ) )
 	{
-		go->vel_y = -FIX32 ( 2.9 );
+		go->vel_y = -FIX32 ( 3.3 );
 		return;
 	}
 
 	if ( game.room.x == 0 && ( x == 206 ) )
 	{
-		go->vel_y = -FIX32 ( 2.1 );
+		go->vel_y = -FIX32 ( 2.5 );
 		return;
 	}
 
@@ -544,7 +544,7 @@ void mcb_fireball ( void *data )
 
 		if ( go->vel_y < 0  )
 		{
-			play_fx(FX_LAVABALL);
+			play_fx(SFX_LAVABALL);
 		}
 	}
 }

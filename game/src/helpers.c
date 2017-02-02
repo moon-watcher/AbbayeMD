@@ -1,6 +1,30 @@
 #include "../inc/include.h"
 
 
+#ifdef SGDKv122a
+
+    #define APLAN_ADDR   aplan_addr
+    #define BPLAN_ADDR   bplan_addr
+
+    #define PLAN_VALUE   plan.value
+    #define PLAN_A_VALUE PLAN_A.value
+    #define PLAN_B_VALUE PLAN_B.value
+
+#endif // SGDKv122a
+
+
+
+#ifdef SGDKv121
+
+    #define APLAN_ADDR   aplan_adr
+    #define BPLAN_ADDR   bplan_adr
+
+    #define PLAN_VALUE   plan.plan
+    #define PLAN_A_VALUE PLAN_A.plan
+    #define PLAN_B_VALUE PLAN_B.plan
+
+#endif // SGDKv121
+
 
 
 //void my_SPR_setFrame ( GameObject go, s16 frame)
@@ -86,13 +110,9 @@
 
 void SPR_setVRAMDirect ( Sprite *sprite, u16 vrampos )
 {
-    SYS_disableInts();
-
 	sprite->attribut = ( sprite->attribut & TILE_ATTR_MASK ) | vrampos;
 	sprite->status |= 0x0001; // NEED_ST_ATTR_UPDATE;
 	sprite->timer = 0;
-
-	SYS_enableInts();
 }
 
 
@@ -251,7 +271,7 @@ u16 VDP_getTile ( VDPPlan plan, u16 x, u16 y )
 
     u16 plan_dir = VDP_PLAN_A;
 
-    if ( plan.plan == PLAN_B.plan )
+    if ( PLAN_VALUE == PLAN_B_VALUE )
     {
         plan_dir = VDP_PLAN_B;
     }
@@ -305,7 +325,7 @@ s16 VDP_getHorizontalScroll ( VDPPlan plan )
     pl = (u32 *) GFX_CTRL_PORT;
 
     addr = VDP_HSCROLL_TABLE;
-    if ( plan.plan == PLAN_B.plan ) addr += 2;
+    if ( PLAN_VALUE == PLAN_B_VALUE ) addr += 2;
 
     *pl = GFX_READ_VRAM_ADDR(addr);
 
@@ -325,7 +345,7 @@ s16 VDP_getVerticalScroll ( VDPPlan plan )
     pl = (u32 *) GFX_CTRL_PORT;
 
     addr = 0;
-    if (plan.plan == PLAN_B.plan) addr += 2;
+    if ( PLAN_VALUE == PLAN_B_VALUE ) addr += 2;
 
     *pl = GFX_READ_VSRAM_ADDR(addr);
 
@@ -339,20 +359,20 @@ void VDP_fillGenresSpriteAsImage ( VDPPlan plan, u16 basetile, u16 x, u16 y, u16
    u32 width;
    u16 i, j;
 
-   switch(plan.plan)
+   switch ( PLAN_VALUE )
    {
       case CONST_PLAN_A:
-         addr = aplan_adr + ((x + (y << planWidthSft)) * 2);
+         addr = APLAN_ADDR + ((x + (y << planWidthSft)) * 2);
          width = planWidth;
          break;
 
       case CONST_PLAN_B:
-         addr = bplan_adr + ((x + (y << planWidthSft)) * 2);
+         addr = BPLAN_ADDR + ((x + (y << planWidthSft)) * 2);
          width = planWidth;
          break;
 
       case CONST_PLAN_WINDOW:
-         addr = bplan_adr + ((x + (y << windowWidthSft)) * 2);
+         addr = BPLAN_ADDR + ((x + (y << windowWidthSft)) * 2);
          width = windowWidth;
          break;
 
@@ -572,7 +592,7 @@ u16 drawImageXY ( Image *image, VDPPlan plan, u16 x, u16 y )
     }
 
     u16 pos = vram_new ( image->tileset->numTile );
-    u16 pal = ( plan.plan == PLAN_A.plan ) ? PAL1 : PAL0;
+    u16 pal = ( PLAN_VALUE == PLAN_A_VALUE ) ? PAL1 : PAL0;
 
     SYS_disableInts();
     VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 0 );
@@ -754,20 +774,20 @@ u16 in_array ( u16 needle, u16 array[] )
 
 
 
+void play_fx ( u8 fx )
+{
+    sfxPlay ( (Sfx*) fx_list [ game.version ] [ fx ] );
+}
+
+
 void play_fx_pause ( u8 fx, u16 hz )
 {
-    SND_pausePlay_XGM();
+    musicPause();
 
     play_fx ( fx );
     waitHz ( hz );
 
-	SND_resumePlay_XGM();
-}
-
-
-void play_fx ( u8 fx )
-{
-    fxPlay ( (Fx*) fx_list [ game.version ] [ fx ] );
+	musicResume();
 }
 
 
@@ -865,12 +885,12 @@ void hide_door ( GameObject *door )
     setDoor ( door, 0 );
     setActive ( door, 0 );
 
-    SND_pausePlay_XGM();
+    musicPause();
     waitHz(20);
 
     SPR_update ( );
 
-    play_fx_pause( FX_DOOR, 35 );
+    play_fx_pause( SFX_DOOR, 35 );
 }
 
 
@@ -1102,19 +1122,34 @@ void prepare_doors ()
 }
 
 
-
-void mute ( bool sfx, bool music )
+void mute ( )
 {
-    if ( sfx )
-    {
-        fxStop ( SOUND_PCM_CH1 );
-        fxStop ( SOUND_PCM_CH2 );
-        fxStop ( SOUND_PCM_CH3 );
-        fxStop ( SOUND_PCM_CH4 );
-    }
+    // for XGM driver
 
-    if ( music )
-    {
-        musicStop();
-    }
+    sfxStop ( SOUND_PCM_CH1 );
+    sfxStop ( SOUND_PCM_CH2 );
+    sfxStop ( SOUND_PCM_CH3 );
+    sfxStop ( SOUND_PCM_CH4 );
+
+
+    // hay que parar también los sfx
+
+    musicStop();
+}
+
+
+
+
+void player_freeze_at_44 ( )
+{
+	if ( game.room.x == 4  && game.room.y == 4 )
+	{
+		SPR_setPosition ( player.go->sprite, player.go->sprite->x, 128 );
+
+		player.go->vel_x = 0;
+		player.go->vel_y = 0;
+
+		goSetY(player.go,120);
+		SPR_update();
+	}
 }

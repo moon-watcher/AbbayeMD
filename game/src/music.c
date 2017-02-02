@@ -5,8 +5,11 @@ static Music *current = NULL;
 
 
 
+
+
 void musicInit ( )
 {
+	current->track = NULL;
 	current = NULL;
 }
 
@@ -17,44 +20,135 @@ void musicPlay ( Music *track )
 	{
 		musicStop();
 	}
-	else if ( track->id != current->id )
+	else if ( track->id != current->id || inSoundTest )
 	{
-		if ( musicStop() )
+		u8 playing = SND_isPlaying_XGM();
+
+		musicStop();
+
+		if ( playing )
 		{
 			VDP_waitVSync();
+
+			#ifdef SGDKv122a
 			VDP_waitVSync();
+			VDP_waitVSync();
+			#endif // SGDKv122a
 		}
 
-		SND_startPlay_XGM ( (u8*) track->track );
+		SND_startPlay_XGM ( track->track );
+		SND_setForceDelayDMA_XGM ( true );
+
+		#ifdef SGDKv122a
+		XGM_setLoopNumber ( track->loop );
+		#endif // SGDKv122a
 
 		current = track;
 	}
 }
 
 
-bool musicStop ( )
+void musicStop ( )
 {
-	current = NULL;
+	musicInit ( );
 
 	if ( SND_isPlaying_XGM() )
 	{
 		SND_stopPlay_XGM();
 
-		return true;
+		SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 ); // prevents long samples
+		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH2 );
+		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH3 );
+		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH4 );
 	}
-
-	return false;
 }
 
 
-//		VDP_setTextPalette(PAL2);
-//		drawText(current->title,0,0);
-//		VDP_waitVSync();
-//		if ( XGM_isPlaying() )
+void musicPause ( )
+{
+	if ( SND_isPlaying_XGM() )
+	{
+		SND_pausePlay_XGM();
+
+		SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 );  // prevents long samples
+		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH2 );
+		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH3 );
+		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH4 );
+	}
+}
+
+
+void musicResume ( )
+{
+	if ( !SND_isPlaying_XGM() )
+	{
+		SND_resumePlay_XGM();
+	}
+}
+
+
+
+//void musicPlay ( Music *track )
+//{
+//	u8 playing = SND_isPlaying_XGM();
+//
+//	if ( track == NULL || track->track == NULL )
+//	{
+//		musicStop();
+//	}
+//	else if ( track->id != current->id || !playing )
+//	{
+//		musicStop();
+//
+//		if ( playing )
 //		{
-//			drawText("playing", 0,1);
+//			VDP_waitVSync();
+//			VDP_waitVSync();
 //		}
-//		else
-//		{
-//			drawText("NOT playing", 0,1);
-//		}
+//
+//		SND_startPlay_XGM ( track->track );
+//		XGM_setLoopNumber ( track->loop  );
+//		SND_setForceDelayDMA_XGM ( true );
+//
+//		current = track;
+//
+//
+////		VDP_waitVSync();
+////
+////		if ( !SND_isPlaying_XGM() )
+////		{
+////			VDP_waitVSync();
+////			SND_stopPlay_XGM();
+////			SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 );
+////			VDP_waitVSync();
+////			VDP_waitVSync();
+////			SND_startPlay_XGM ( (u8*) track->track );
+////			XGM_setLoopNumber ( track->loop  );
+////		}
+//
+//
+//
+////		u16 i = 10;
+////		while ( i-- )
+////		{
+////			VDP_waitVSync();
+////
+////			if ( SND_isPlaying_XGM() )
+////			{
+////				return;
+////			}
+////
+////			SND_stopPlay_XGM();
+////
+////			VDP_waitVSync();11
+////			VDP_waitVSync();
+////
+////			SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 );
+////			SND_stopPlayPCM_XGM ( SOUND_PCM_CH2 );
+////			SND_stopPlayPCM_XGM ( SOUND_PCM_CH3 );
+////			SND_stopPlayPCM_XGM ( SOUND_PCM_CH4 );
+////
+////			SND_startPlay_XGM ( (u8*) track->track );
+////		}
+//	}
+//}

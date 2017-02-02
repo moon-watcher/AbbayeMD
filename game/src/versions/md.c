@@ -8,12 +8,6 @@
 
 
 
-//
-//commnand, entity type, name,        resource,   animation, palette, vel_x, vel_y, peso, prioridad, does_flip_H, does_flip_V, sequence, timer, collision function, padding top, padding right, padding bottom, padding left
-//entity    player       "Jean stays" jean_2x3_md 0          3        0.65   1.0    1.0   0          1            0            {}        15     mcb_player          5            5              0               5
-//
-
-
 
 const Entity entity_01_md  = {  1, "Jean stays",               0, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_PLAYER,               0,           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };
 const Entity entity_02_md  = {  2, "Jean walks",               1, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_PLAYER,     FIX32(0.65),           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };
@@ -28,7 +22,7 @@ const Entity entity_10_md  = { 10, "Yellow hint",             12, (SpriteDefinit
 const Entity entity_11_md  = { 11, "Heart",                   11, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_HEART,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
 const Entity entity_12_md  = { 12, "Cross",                    0, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_CROSS,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
 const Entity entity_13_md  = { 13, "Inverted cross",           1, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_INV_CROSS,            0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
-const Entity entity_14_md  = { 14, "Crusader",                 0, (SpriteDefinition*) &crusaders_2x3_md, PAL2, ENTITY_ENEMY,      FIX32(0.60),           0, FIX32(0.20), 0, 1, 0, NULL, mcb_crusader,    0, {  7,  5,  0,-25 } }; // {  7,  5,  0,  5 } };
+const Entity entity_14_md  = { 14, "Crusader",                 0, (SpriteDefinition*) &crusaders_2x3_md, PAL2, ENTITY_ENEMY,      FIX32(0.60),           0, FIX32(0.20), 0, 1, 0, NULL, mcb_crusader,    0, { -8,  5,  0, -7 } }; // {  7,  5,  0,  5 } };
 const Entity entity_15_md  = { 15, "Water",                    6, (SpriteDefinition*) &enemies_2x1_md,   PAL2, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
 const Entity entity_16_md  = { 16, "Fire",                    11, (SpriteDefinition*) &enemies_2x2_md,   PAL2, ENTITY_NULL,              zero,        zero,        zero, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
 const Entity entity_17_md  = { 17, "Rat",                      0, (SpriteDefinition*) &rat_2x2_md,       PAL2, ENTITY_ENEMY,      FIX32(0.60),        zero,        zero, 0, 1, 0, NULL, mcb_udlr,        0, {  7,  0,  0,  0 } };

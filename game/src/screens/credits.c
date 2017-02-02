@@ -66,33 +66,7 @@ void screen_credits ( )
 	y = 1;
 
 
-//	write ( "MSX skin", PAL1, 1 );
-//	write ( "Gerardo Herce @pipagerardo", PAL2, 2  );
-//
-//	write ( "GB, CGA & PCW skin", PAL1, 1 );
-//	write ( "Felipe Monge @vakapp", PAL2, 2 );
-//
-//	write ( "Megadrive skin", PAL1, 1 );
-//	write ( "Daniel Nevado @DanySnowyman", PAL2, 2 );
-//
-//	write ( "C64 skin", PAL1, 1 );
-//	write ( "Igor Errazkin @Errazking", PAL2, 2 );
-//
-//	write ( "Music & SFX", PAL1, 1 );
-//	write ( "Paolo Arus 'DaRkHoRaCe'", PAL2, 2 );
-//
-//	write ( "Music & SFX (C64)", PAL1, 1 );
-//	write ( "Manuel Gomez 'Baron Ashler'", PAL2, 2 );
-//
-//	write ( "Testers", PAL1, 1 );
-//	write ( "Alfonso Martínez @_SrPresley_", PAL2, 1 );
-//	write ( "Ruben Vaquer @TitoAdol3", PAL2, 2 );
-//
-//	write ( "Special thanks to", PAL1, 1 );
-//	write ( "Leander @leanderpixel", PAL2, 1 );
-//	write ( "Urza", PAL2, 1 );
-//	write ( "Stef @MegadriveDev", PAL2, 1 );
-//	write ( "Jose Zanni @josepzin", PAL2, 3 );
+
 
 
 	write ( "MSX skin", PAL1, 1 );
@@ -125,18 +99,7 @@ void screen_credits ( )
 	displayOn ( 10 );
 	waitJoySc ( 10 );
 
-//	y = 6;
-//
-//	write ( "L'Abbaye des morts for", PAL1, 1 );
-//	write ( "Sega Genesis/Megadrive", PAL1, 2 );
-//	write ( "by", PAL1, 2 );
-//	write ( "Mun - @MoonWatcherMD", PAL2, 1  );
-//	write ( "2011-2017", PAL2, 5  );
-//
-//	write ( "Original game", PAL1, 2 );
-//	write ( "by", PAL1, 2 );
-//	write ( "Locomalito & Gryzor87", PAL2, 1 );
-//	write ( "2010", PAL2, 2 );
+
 
 
 

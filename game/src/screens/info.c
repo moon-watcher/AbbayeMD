@@ -38,6 +38,8 @@ static void _draw_screen()
 
 	displayOff(0);
 
+
+	play_fx(SFX_ITEM);
 	palette_init();
 
 	resetScroll ( );
@@ -99,6 +101,8 @@ static void _draw_screen()
 void screen_info ()
 {
 	//vram_init ( VRAM_DEFAULT );
+
+	waitHz(5);
 
 	_draw_screen();
 

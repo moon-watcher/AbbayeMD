@@ -63,7 +63,7 @@ bool;
 
 
 #include "../inc/scroll.h"
-#include "../inc/fx.h"
+#include "../inc/sfx.h"
 #include "../inc/music.h"
 #include "../inc/session.h"
 #include "../inc/game.h"
@@ -118,6 +118,7 @@ bool     invertedCross;
 
 TileSet *font;
 
+bool     inSoundTest;
 
 
 
@@ -125,20 +126,20 @@ TileSet *font;
 
 enum
 {
-	FX_DOOR,
-	FX_HIT,
-	FX_ITEM,
-	FX_JUMP,
-	FX_SHOT,
-	FX_SLASH,
-	FX_SWITCH,
-	FX_TREE,
-	FX_LIGHTING,
-	FX_SPIT,
-	FX_LAVABALL,
-	FX_CHAIN,
-	FX_CLOSED_DOOR,
-	FX_CHECKPOINT,
+	SFX_DOOR,
+	SFX_HIT,
+	SFX_ITEM,
+	SFX_JUMP,
+	SFX_SHOT,
+	SFX_SLASH,
+	SFX_SWITCH,
+	SFX_TREE,
+	SFX_LIGHTING,
+	SFX_SPIT,
+	SFX_LAVABALL,
+	SFX_CHAIN,
+	SFX_CLOSED_DOOR,
+	SFX_CHECKPOINT,
 
 	FX_MAX
 };
@@ -163,7 +164,7 @@ enum
 
 
 
-const Fx      *fx_list          [ VERSION_MAX ] [ FX_MAX          ];
+const Sfx      *fx_list          [ VERSION_MAX ] [ FX_MAX          ];
 const Music   *music_list       [ VERSION_MAX ] [ MUSIC_MAX       ];
 const Hint     hint_list        [ VERSION_MAX ] [ HINT_MAX        ];
 const Switch   switch_list      [ VERSION_MAX ] [ SWITCH_MAX      ];

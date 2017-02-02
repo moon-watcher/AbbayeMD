@@ -5,21 +5,22 @@
 
 typedef struct
 {
-	u8   id;
-	u8  *title;
-	u8  *track;
-	u8   driver;
-	u8   channel;
-	u8   repeat;
-	u32  size;
+	u8  id;
+	u8 *title;
+	u8 *track;
+	u8  driver;
+	s8  loop;
 }
 Music;
 
 
 
-void musicInit ( );
-void musicPlay ( Music *track );
-bool musicStop ( );
+void musicInit   ( );
+void musicPlay   ( Music *track );
+void musicStop   ( );
+void musicPause  ( );
+void musicResume ( );
+
 
 
 

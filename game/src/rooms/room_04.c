@@ -56,7 +56,7 @@ static void _room_stay ( Room *room )
 
 			SPR_update ( );
 
-			play_fx ( FX_DOOR );
+			play_fx ( SFX_DOOR );
 			waitHz ( getHz ( ) );
 		}
 

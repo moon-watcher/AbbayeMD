@@ -51,7 +51,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 				break;
 			}
 
-			play_fx ( FX_HIT );
+			play_fx ( SFX_HIT );
 			playerSetAction ( player, PLAYER_BURNS );
 
 			break;
@@ -62,15 +62,18 @@ void ocb_collisions ( GameObject *go, Player *player )
 			//itemSetChecked ( go->item, 1 );
 			checkpoint_save ( go );
 
-			play_fx_pause ( FX_CHECKPOINT, getHz() );
+			play_fx_pause ( SFX_CHECKPOINT, getHz() );
 
 			break;
 
 
 		case ENTITY_HINT:
 
-			play_fx ( FX_ITEM );
-			//hint_show ( go );
+			play_fx ( SFX_ITEM );
+
+			SPR_setPosition ( go->sprite, -20, -20 ); // update sprite
+			SPR_update ( );
+
 			hint_show ( false );
 			itemSetVisible ( go->item, false );
 			setActive ( go, 0 );
@@ -82,7 +85,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 
 		case ENTITY_CROSS:
 
-			play_fx ( FX_ITEM );
+			play_fx ( SFX_ITEM );
 			hudIncCrosses ( +1 );
 			itemSetVisible ( go->item, false );
 			setActive ( go, 0 );
@@ -92,7 +95,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 
 		case ENTITY_HEART:
 
-			play_fx ( FX_ITEM );
+			play_fx ( SFX_ITEM );
 			hudIncHearts ( +1 );
 			itemSetVisible ( go->item, false );
 			setActive ( go, 0 );
@@ -134,7 +137,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 			setActive ( go, 0 );
 
 			musicStop();
-			play_fx ( FX_SWITCH );
+			play_fx ( SFX_SWITCH );
 			waitHz ( getHz ( ) );
 
 			player->grial = true;
@@ -195,7 +198,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 //
 //					if ( OBJECTIS(ENTITY_ENEMY) )
 //					{
-//						play_fx ( FX_HIT );
+//						play_fx ( SFX_HIT );
 //
 //						playerSetAction ( player, PLAYER_BURNS );
 //						hudIncHearts ( -1 );
@@ -203,7 +206,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 //
 //					else if ( OBJECTIS(ENTITY_CHECKPOINT) )
 //					{
-//						play_fx ( FX_DOOR );
+//						play_fx ( SFX_DOOR );
 //
 //						x = GOGET(ENTITY_CHECKPOINT);
 //
@@ -213,7 +216,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 //
 //					else if ( OBJECTIS(ENTITY_HINT) )
 //					{
-//						play_fx ( FX_ITEM );
+//						play_fx ( SFX_ITEM );
 //
 //						x = GOGET(ENTITY_HINT);
 //						hide = 1;
@@ -223,7 +226,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 //
 //					else if ( OBJECTIS(ENTITY_CROSS) )
 //					{
-//						play_fx ( FX_ITEM );
+//						play_fx ( SFX_ITEM );
 //
 //						x = GOGET(ENTITY_CROSS);
 //						hide = 1;
@@ -233,7 +236,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 //
 //					else if ( OBJECTIS(ENTITY_HEART) )
 //					{
-//						play_fx ( FX_ITEM );
+//						play_fx ( SFX_ITEM );
 //
 //						x = GOGET(ENTITY_HEART);
 //						hide = 1;

@@ -8,6 +8,7 @@
 //#include "../../inc/versions/all.h"
 //
 //
+//
 //const Entity entity_01_nes = {  1, "Jean stays",            0, (SpriteDefinition*) &jean_2x3_nes,     PAL3, ENTITY_PLAYER,               0,           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };
 //const Entity entity_02_nes = {  2, "Jean walks",            1, (SpriteDefinition*) &jean_2x3_nes,     PAL3, ENTITY_PLAYER,     FIX32(0.65),           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };
 //const Entity entity_03_nes = {  3, "Jean jumps",            2, (SpriteDefinition*) &jean_2x3_nes,     PAL3, ENTITY_PLAYER,     FIX32(0.65),           0,  FIX32(0.1), 0, 1, 0, NULL, mcb_player,      0, {  5,  5,  0,  5 } };
@@ -21,7 +22,7 @@
 //const Entity entity_11_nes = { 11, "Heart",                11, (SpriteDefinition*) &objects_2x2_nes,  PAL3, ENTITY_HEART,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
 //const Entity entity_12_nes = { 12, "Cross",                 0, (SpriteDefinition*) &objects_2x2_nes,  PAL3, ENTITY_CROSS,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
 //const Entity entity_13_nes = { 13, "Inverted cross",        1, (SpriteDefinition*) &objects_2x2_nes,  PAL3, ENTITY_INV_CROSS,            0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  4,  4,  4,  4 } };
-//const Entity entity_14_nes = { 14, "Crusader",              1, (SpriteDefinition*) &enemies_2x3_nes,  PAL2, ENTITY_ENEMY,      FIX32(0.60),           0, FIX32(0.20), 0, 1, 0, NULL, mcb_crusader,    0, {  7,  5,  0,-25 } }; // {  7,  5,  0,  5 } };
+//const Entity entity_14_nes = { 14, "Crusader",              1, (SpriteDefinition*) &enemies_2x3_nes,  PAL2, ENTITY_ENEMY,      FIX32(0.60),           0, FIX32(0.20), 0, 1, 0, NULL, mcb_crusader,    0, { -8,  5,  0, -7 } }; // {  7,  5,  0,  5 } };
 //const Entity entity_15_nes = { 15, "Water",                 6, (SpriteDefinition*) &enemies_2x1_nes,  PAL2, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
 //const Entity entity_16_nes = { 16, "Fire",                 11, (SpriteDefinition*) &enemies_2x2_nes,  PAL2, ENTITY_NULL,              zero,        zero,        zero, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
 //const Entity entity_17_nes = { 17, "Rat",                   1, (SpriteDefinition*) &enemies_2x2_nes,  PAL2, ENTITY_ENEMY,      FIX32(0.60),        zero,        zero, 0, 1, 0, NULL, mcb_udlr,        0, {  7,  0,  0,  0 } };

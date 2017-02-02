@@ -54,7 +54,7 @@ static void _blink_option ( )
 	VDP_getPaletteColors (  0, saved_b, 16 );
 	VDP_getPaletteColors ( 16, saved_a, 16 );
 
-	play_fx ( FX_LIGHTING );
+	play_fx ( SFX_LIGHTING );
 
 	_lighting(1);      // white
 
@@ -153,7 +153,12 @@ static void _draw_screen ( )
 	drawText ( "OPTIONS", 13, 20 );
 	drawText ( "INFO",    13, 22 );
 
-//	drawText ( "      #AbbayeMD 1.0-BETA      ",    1, 1 );
+	if ( DEV )
+	{
+		drawText ( SGDK_VERSION, 0,0 );
+	}
+
+	//drawText ( "      #AbbayeMD 1.0-BETA      ",    1, 1 );
 }
 
 

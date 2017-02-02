@@ -1,9 +1,12 @@
 #include "../../inc/include.h"
 
 
+//#include "../data/all/sfx/jeanjump.h"
+
+
 #include "../../inc/versions/all.h"
 #include "../../res/all/music.h"
-#include "../../res/all/fx.h"
+#include "../../res/all/sfx.h"
 #include "../../res/all/screens.h"
 #include "../../res/all/palettes.h"
 
@@ -56,6 +59,19 @@
 #include "../../res/c64/font.h"
 #include "../../res/c64/hint.h"
 
+
+
+const bool high_priority_policy [ VERSION_MAX ] =
+{
+        false, // original
+        true,  // MD
+        false, // MSX
+        false, // PCW
+        false, // GB
+        //false, // NES
+        false, // CGA
+        true   // C64
+};
 
 
 
@@ -142,35 +158,51 @@ const PlayerData player_data [ VERSION_MAX ] =
 
 
 
-const Music music_00_all = { MUSIC_NULL,     "Silence",        (u8*) NULL,               Z80_DRIVER_XGM };
-const Music music_01_all = { MUSIC_CHURCH,   "Area I Church",  (u8*) music_church_all,   Z80_DRIVER_XGM };
-const Music music_02_all = { MUSIC_CAVES,    "Area II Caves",  (u8*) music_caves_all,    Z80_DRIVER_XGM };
-const Music music_03_all = { MUSIC_HELL,     "Area III Hell",  (u8*) music_hell_all,     Z80_DRIVER_XGM };
-const Music music_04_all = { MUSIC_SATAN,    "Evil Fight",     (u8*) music_satan_all,    Z80_DRIVER_XGM };
-const Music music_05_all = { MUSIC_GAMEOVER, "Game Over",      (u8*) music_hangman_all,  Z80_DRIVER_XGM }; // music_gameover_all
-//const Music music_06_all = { MUSIC_START,    "Game Start",     (u8*) music_start_all,    Z80_DRIVER_XGM };
-const Music music_07_all = { MUSIC_TITLE,    "Main Title",     (u8*) music_title_all,    Z80_DRIVER_XGM };
-const Music music_08_all = { MUSIC_WOODS,    "Manhunt wood",   (u8*) music_woods_all,    Z80_DRIVER_XGM };
-const Music music_09_all = { MUSIC_PROLOGUE, "Manhunt",        (u8*) music_manhunt_all,  Z80_DRIVER_XGM };
-const Music music_10_all = { MUSIC_HOPE,     "Prayer of Hope", (u8*) music_hope_all,     Z80_DRIVER_XGM };
-const Music music_11_all = { MUSIC_HANGMAN,  "Hangman tree",   (u8*) music_hangman_all,  Z80_DRIVER_XGM };
+const Music music_00_all = { MUSIC_NULL,     "Silence",        (u8*) NULL,              Z80_DRIVER_XGM,  0 };
+const Music music_01_all = { MUSIC_CHURCH,   "Area I Church",  (u8*) music_church_all,  Z80_DRIVER_XGM, -1 };
+const Music music_02_all = { MUSIC_CAVES,    "Area II Caves",  (u8*) music_caves_all,   Z80_DRIVER_XGM, -1 };
+const Music music_03_all = { MUSIC_HELL,     "Area III Hell",  (u8*) music_hell_all,    Z80_DRIVER_XGM, -1 };
+const Music music_04_all = { MUSIC_SATAN,    "Evil Fight",     (u8*) music_satan_all,   Z80_DRIVER_XGM, -1 };
+const Music music_05_all = { MUSIC_GAMEOVER, "Game Over",      (u8*) music_hangman_all, Z80_DRIVER_XGM,  0 };
+//const Music music_06_all = { MUSIC_START,    "Game Start",     (u8*) music_start_all,   Z80_DRIVER_XGM,  0 };
+const Music music_07_all = { MUSIC_TITLE,    "Main Title",     (u8*) music_title_all,   Z80_DRIVER_XGM,  0 };
+const Music music_08_all = { MUSIC_WOODS,    "Manhunt wood",   (u8*) music_woods_all,   Z80_DRIVER_XGM, -1 };
+const Music music_09_all = { MUSIC_PROLOGUE, "Manhunt",        (u8*) music_manhunt_all, Z80_DRIVER_XGM,  0 };
+const Music music_10_all = { MUSIC_HOPE,     "Prayer of Hope", (u8*) music_hope_all,    Z80_DRIVER_XGM,  0 };
+const Music music_11_all = { MUSIC_HANGMAN,  "Hangman tree",   (u8*) music_hangman_all, Z80_DRIVER_XGM,  0 };
 
 
 
-const Fx fx_01_all = { FX_DOOR,        "Door",        (u8*) fx_door_all,       Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_door_all),       14 };
-const Fx fx_02_all = { FX_HIT,         "Hit",         (u8*) fx_hit_all,        Z80_DRIVER_XGM, SOUND_PCM_CH1, 0, sizeof(fx_hit_all),        15 };
-const Fx fx_03_all = { FX_ITEM,        "Item",        (u8*) fx_item_all,       Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_item_all),       15 };
-const Fx fx_04_all = { FX_JUMP,        "Jump",        (u8*) fx_jump_all,       Z80_DRIVER_XGM, SOUND_PCM_CH1, 0, sizeof(fx_jump_all),       14 };
-const Fx fx_05_all = { FX_SHOT,        "Shot",        (u8*) fx_shoot_all,      Z80_DRIVER_XGM, SOUND_PCM_CH4, 0, sizeof(fx_shoot_all),      14 };
-const Fx fx_06_all = { FX_SLASH,       "Slash",       (u8*) fx_slash_all,      Z80_DRIVER_XGM, SOUND_PCM_CH3, 0, sizeof(fx_slash_all),      14 };
-const Fx fx_07_all = { FX_SWITCH,      "Switch",      (u8*) fx_switch_all,     Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_switch_all),     13 };
-const Fx fx_08_all = { FX_TREE,        "Tree",        (u8*) fx_tree_all,       Z80_DRIVER_XGM, SOUND_PCM_CH4, 0, sizeof(fx_tree_all),       12 };
-const Fx fx_09_all = { FX_LIGHTING,    "Lighting",    (u8*) fx_lighting_all,   Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_lighting_all),   12 };
-const Fx fx_10_all = { FX_SPIT,        "Spit",        (u8*) fx_spit_all,       Z80_DRIVER_XGM, SOUND_PCM_CH4, 0, sizeof(fx_spit_all),       14 };
-const Fx fx_11_all = { FX_LAVABALL,    "Lava ball",   (u8*) fx_lavaball_all,   Z80_DRIVER_XGM, SOUND_PCM_CH3, 0, sizeof(fx_lavaball_all),   13 };
-const Fx fx_12_all = { FX_CHAIN,       "Bell",        (u8*) fx_chain_all,      Z80_DRIVER_XGM, SOUND_PCM_CH1, 0, sizeof(fx_chain_all),      11 };
-const Fx fx_13_all = { FX_CLOSED_DOOR, "Closed door", (u8*) fx_close_door_all, Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_close_door_all), 13 };
-const Fx fx_14_all = { FX_CHECKPOINT,  "Checkpoint",  (u8*) fx_checkpoint_all, Z80_DRIVER_XGM, SOUND_PCM_CH2, 0, sizeof(fx_checkpoint_all), 10 };
+const Sfx sfx_01_all = { SFX_DOOR,        "Door",        (u8*) sfx_door_all,       SOUND_PCM_CH2, sizeof(sfx_door_all),       14, Z80_DRIVER_XGM };
+const Sfx sfx_02_all = { SFX_HIT,         "Hit",         (u8*) sfx_hit_all,        SOUND_PCM_CH1, sizeof(sfx_hit_all),        15, Z80_DRIVER_XGM };
+const Sfx sfx_03_all = { SFX_ITEM,        "Item",        (u8*) sfx_item_all,       SOUND_PCM_CH2, sizeof(sfx_item_all),       15, Z80_DRIVER_XGM };
+const Sfx sfx_04_all = { SFX_JUMP,        "Jump",        (u8*) sfx_jump_all,       SOUND_PCM_CH1, sizeof(sfx_jump_all),       14, Z80_DRIVER_XGM };
+const Sfx sfx_05_all = { SFX_SHOT,        "Shot",        (u8*) sfx_shoot_all,      SOUND_PCM_CH4, sizeof(sfx_shoot_all),      14, Z80_DRIVER_XGM };
+const Sfx sfx_06_all = { SFX_SLASH,       "Slash",       (u8*) sfx_slash_all,      SOUND_PCM_CH3, sizeof(sfx_slash_all),      14, Z80_DRIVER_XGM };
+const Sfx sfx_07_all = { SFX_SWITCH,      "Switch",      (u8*) sfx_switch_all,     SOUND_PCM_CH2, sizeof(sfx_switch_all),     13, Z80_DRIVER_XGM };
+const Sfx sfx_08_all = { SFX_TREE,        "Tree",        (u8*) sfx_tree_all,       SOUND_PCM_CH4, sizeof(sfx_tree_all),       12, Z80_DRIVER_XGM };
+const Sfx sfx_09_all = { SFX_LIGHTING,    "Lighting",    (u8*) sfx_lighting_all,   SOUND_PCM_CH2, sizeof(sfx_lighting_all),   12, Z80_DRIVER_XGM };
+const Sfx sfx_10_all = { SFX_SPIT,        "Spit",        (u8*) sfx_spit_all,       SOUND_PCM_CH4, sizeof(sfx_spit_all),       14, Z80_DRIVER_XGM };
+const Sfx sfx_11_all = { SFX_LAVABALL,    "Lava ball",   (u8*) sfx_lavaball_all,   SOUND_PCM_CH3, sizeof(sfx_lavaball_all),   13, Z80_DRIVER_XGM };
+const Sfx sfx_12_all = { SFX_CHAIN,       "Bell",        (u8*) sfx_chain_all,      SOUND_PCM_CH2, sizeof(sfx_chain_all),      11, Z80_DRIVER_XGM };
+const Sfx sfx_13_all = { SFX_CLOSED_DOOR, "Closed door", (u8*) sfx_close_door_all, SOUND_PCM_CH2, sizeof(sfx_close_door_all), 13, Z80_DRIVER_XGM };
+const Sfx sfx_14_all = { SFX_CHECKPOINT,  "Checkpoint",  (u8*) sfx_checkpoint_all, SOUND_PCM_CH2, sizeof(sfx_checkpoint_all), 11, Z80_DRIVER_XGM };
+
+//const Sfx sfx_01_all = { SFX_DOOR,        "Door",        (u8*) fx_door_all,       SOUND_PCM_CH2, sizeof(fx_door_all),       14 };
+//const Sfx sfx_02_all = { SFX_HIT,         "Hit",         (u8*) fx_hit_all,        SOUND_PCM_CH2, sizeof(fx_hit_all),        15 };
+//const Sfx sfx_03_all = { SFX_ITEM,        "Item",        (u8*) psg_item_all,                  0, sizeof(psg_item_all),       0, 1, 0 };
+//const Sfx sfx_04_all = { SFX_JUMP,        "Jump",        (u8*) fx_jump_all,       SOUND_PCM_CH2, sizeof(fx_jump_all),       10 };
+//const Sfx sfx_05_all = { SFX_SHOT,        "Shot",        (u8*) fx_shoot_all,      SOUND_PCM_CH4, sizeof(fx_shoot_all),      14 };
+//const Sfx sfx_06_all = { SFX_SLASH,       "Slash",       (u8*) fx_slash_all,      SOUND_PCM_CH3, sizeof(fx_slash_all),      14 };
+//const Sfx sfx_07_all = { SFX_SWITCH,      "Switch",      (u8*) fx_switch_all,     SOUND_PCM_CH3, sizeof(fx_switch_all),     13 };
+//const Sfx sfx_08_all = { SFX_TREE,        "Tree",        (u8*) fx_tree_all,       SOUND_PCM_CH4, sizeof(fx_tree_all),       12 };
+//const Sfx sfx_09_all = { SFX_LIGHTING,    "Lighting",    (u8*) fx_lighting_all,   SOUND_PCM_CH2, sizeof(fx_lighting_all),   12 };
+//const Sfx sfx_10_all = { SFX_SPIT,        "Spit",        (u8*) fx_spit_all,       SOUND_PCM_CH4, sizeof(fx_spit_all),       14 };
+//const Sfx sfx_11_all = { SFX_LAVABALL,    "Lava ball",   (u8*) fx_lavaball_all,   SOUND_PCM_CH3, sizeof(fx_lavaball_all),   13 };
+//const Sfx sfx_12_all = { SFX_CHAIN,       "Bell",        (u8*) psg_chain_all,                 0, sizeof(psg_chain_all),      0, 1, 0 };
+//const Sfx sfx_13_all = { SFX_CLOSED_DOOR, "Closed door", (u8*) fx_close_door_all, SOUND_PCM_CH2, sizeof(fx_close_door_all), 13 };
+//const Sfx sfx_14_all = { SFX_CHECKPOINT,  "Checkpoint",  (u8*) fx_checkpoint_all, SOUND_PCM_CH2, sizeof(fx_checkpoint_all), 11 };
+
 
 
 
@@ -1069,150 +1101,150 @@ const Music *music_list [ VERSION_MAX ] [ MUSIC_MAX ] =
 
 
 
-const Fx *fx_list [ VERSION_MAX ] [ FX_MAX ] =
+const Sfx *fx_list [ VERSION_MAX ] [ FX_MAX ] =
 {
     // VERSION_PC
     {
-        (Fx*) &fx_01_all,
-        (Fx*) &fx_02_all,
-        (Fx*) &fx_03_all,
-        (Fx*) &fx_04_all,
-        (Fx*) &fx_05_all,
-        (Fx*) &fx_06_all,
-        (Fx*) &fx_07_all,
-        (Fx*) &fx_08_all,
-        (Fx*) &fx_09_all, // lighting
-        (Fx*) &fx_10_all, // spit
-        (Fx*) &fx_11_all, // lava ball
-        (Fx*) &fx_12_all, // chain // switch // bell
-        (Fx*) &fx_13_all, // close door
-        (Fx*) &fx_14_all, // checkpoint
+        (Sfx*) &sfx_01_all,
+        (Sfx*) &sfx_02_all,
+        (Sfx*) &sfx_03_all,
+        (Sfx*) &sfx_04_all,
+        (Sfx*) &sfx_05_all,
+        (Sfx*) &sfx_06_all,
+        (Sfx*) &sfx_07_all,
+        (Sfx*) &sfx_08_all,
+        (Sfx*) &sfx_09_all, // lighting
+        (Sfx*) &sfx_10_all, // spit
+        (Sfx*) &sfx_11_all, // lava ball
+        (Sfx*) &sfx_12_all, // chain // switch // bell
+        (Sfx*) &sfx_13_all, // close door
+        (Sfx*) &sfx_14_all, // checkpoint
     },
 
     // VERSION_MD
     {
-        (Fx*) &fx_01_all,
-        (Fx*) &fx_02_all,
-        (Fx*) &fx_03_all,
-        (Fx*) &fx_04_all,
-        (Fx*) &fx_05_all,
-        (Fx*) &fx_06_all,
-        (Fx*) &fx_07_all,
-        (Fx*) &fx_08_all,
-        (Fx*) &fx_09_all, // lighting
-        (Fx*) &fx_10_all, // spit
-        (Fx*) &fx_11_all, // lava ball
-        (Fx*) &fx_12_all, // chain // switch // bell
-        (Fx*) &fx_13_all, // close door
-        (Fx*) &fx_14_all, // checkpoint
+        (Sfx*) &sfx_01_all,
+        (Sfx*) &sfx_02_all,
+        (Sfx*) &sfx_03_all,
+        (Sfx*) &sfx_04_all,
+        (Sfx*) &sfx_05_all,
+        (Sfx*) &sfx_06_all,
+        (Sfx*) &sfx_07_all,
+        (Sfx*) &sfx_08_all,
+        (Sfx*) &sfx_09_all, // lighting
+        (Sfx*) &sfx_10_all, // spit
+        (Sfx*) &sfx_11_all, // lava ball
+        (Sfx*) &sfx_12_all, // chain // switch // bell
+        (Sfx*) &sfx_13_all, // close door
+        (Sfx*) &sfx_14_all, // checkpoint
     },
 
     // VERSION_MSX
     {
-        (Fx*) &fx_01_all,
-        (Fx*) &fx_02_all,
-        (Fx*) &fx_03_all,
-        (Fx*) &fx_04_all,
-        (Fx*) &fx_05_all,
-        (Fx*) &fx_06_all,
-        (Fx*) &fx_07_all,
-        (Fx*) &fx_08_all,
-        (Fx*) &fx_09_all, // lighting
-        (Fx*) &fx_10_all, // spit
-        (Fx*) &fx_11_all, // lava ball
-        (Fx*) &fx_12_all, // chain // switch // bell
-        (Fx*) &fx_13_all, // close door
-        (Fx*) &fx_14_all, // checkpoint
+        (Sfx*) &sfx_01_all,
+        (Sfx*) &sfx_02_all,
+        (Sfx*) &sfx_03_all,
+        (Sfx*) &sfx_04_all,
+        (Sfx*) &sfx_05_all,
+        (Sfx*) &sfx_06_all,
+        (Sfx*) &sfx_07_all,
+        (Sfx*) &sfx_08_all,
+        (Sfx*) &sfx_09_all, // lighting
+        (Sfx*) &sfx_10_all, // spit
+        (Sfx*) &sfx_11_all, // lava ball
+        (Sfx*) &sfx_12_all, // chain // switch // bell
+        (Sfx*) &sfx_13_all, // close door
+        (Sfx*) &sfx_14_all, // checkpoint
     },
 
     // VERSION_PCW
     {
-        (Fx*) &fx_01_all,
-        (Fx*) &fx_02_all,
-        (Fx*) &fx_03_all,
-        (Fx*) &fx_04_all,
-        (Fx*) &fx_05_all,
-        (Fx*) &fx_06_all,
-        (Fx*) &fx_07_all,
-        (Fx*) &fx_08_all,
-        (Fx*) &fx_09_all, // lighting
-        (Fx*) &fx_10_all, // spit
-        (Fx*) &fx_11_all, // lava ball
-        (Fx*) &fx_12_all, // chain // switch // bell
-        (Fx*) &fx_13_all, // close door
-        (Fx*) &fx_14_all, // checkpoint
+        (Sfx*) &sfx_01_all,
+        (Sfx*) &sfx_02_all,
+        (Sfx*) &sfx_03_all,
+        (Sfx*) &sfx_04_all,
+        (Sfx*) &sfx_05_all,
+        (Sfx*) &sfx_06_all,
+        (Sfx*) &sfx_07_all,
+        (Sfx*) &sfx_08_all,
+        (Sfx*) &sfx_09_all, // lighting
+        (Sfx*) &sfx_10_all, // spit
+        (Sfx*) &sfx_11_all, // lava ball
+        (Sfx*) &sfx_12_all, // chain // switch // bell
+        (Sfx*) &sfx_13_all, // close door
+        (Sfx*) &sfx_14_all, // checkpoint
     },
 
     // VERSION_GB
     {
-        (Fx*) &fx_01_all,
-        (Fx*) &fx_02_all,
-        (Fx*) &fx_03_all,
-        (Fx*) &fx_04_all,
-        (Fx*) &fx_05_all,
-        (Fx*) &fx_06_all,
-        (Fx*) &fx_07_all,
-        (Fx*) &fx_08_all,
-        (Fx*) &fx_09_all, // lighting
-        (Fx*) &fx_10_all, // spit
-        (Fx*) &fx_11_all, // lava ball
-        (Fx*) &fx_12_all, // chain // switch // bell
-        (Fx*) &fx_13_all, // close door
-        (Fx*) &fx_14_all, // checkpoint
+        (Sfx*) &sfx_01_all,
+        (Sfx*) &sfx_02_all,
+        (Sfx*) &sfx_03_all,
+        (Sfx*) &sfx_04_all,
+        (Sfx*) &sfx_05_all,
+        (Sfx*) &sfx_06_all,
+        (Sfx*) &sfx_07_all,
+        (Sfx*) &sfx_08_all,
+        (Sfx*) &sfx_09_all, // lighting
+        (Sfx*) &sfx_10_all, // spit
+        (Sfx*) &sfx_11_all, // lava ball
+        (Sfx*) &sfx_12_all, // chain // switch // bell
+        (Sfx*) &sfx_13_all, // close door
+        (Sfx*) &sfx_14_all, // checkpoint
     },
 
 //	// VERSION_NES
 //	{
-//            (Fx*) &fx_01_all,
-//            (Fx*) &fx_02_all,
-//            (Fx*) &fx_03_all,
-//            (Fx*) &fx_04_all,
-//            (Fx*) &fx_05_all,
-//            (Fx*) &fx_06_all,
-//            (Fx*) &fx_07_all,
-//            (Fx*) &fx_08_all,
-//            (Fx*) &fx_09_all, // lighting
-//            (Fx*) &fx_10_all, // spit
-//            (Fx*) &fx_11_all, // lava ball
-//            (Fx*) &fx_12_all, // chain // switch // bell
-//            (Fx*) &fx_13_all, // close door
-//            (Fx*) &fx_14_all, // checkpoint
+//            (Sfx*) &sfx_01_all,
+//            (Sfx*) &sfx_02_all,
+//            (Sfx*) &sfx_03_all,
+//            (Sfx*) &sfx_04_all,
+//            (Sfx*) &sfx_05_all,
+//            (Sfx*) &sfx_06_all,
+//            (Sfx*) &sfx_07_all,
+//            (Sfx*) &sfx_08_all,
+//            (Sfx*) &sfx_09_all, // lighting
+//            (Sfx*) &sfx_10_all, // spit
+//            (Sfx*) &sfx_11_all, // lava ball
+//            (Sfx*) &sfx_12_all, // chain // switch // bell
+//            (Sfx*) &sfx_13_all, // close door
+//            (Sfx*) &sfx_14_all, // checkpoint
 //      },
 
     // VERSION_CGA
     {
-        (Fx*) &fx_01_all,
-        (Fx*) &fx_02_all,
-        (Fx*) &fx_03_all,
-        (Fx*) &fx_04_all,
-        (Fx*) &fx_05_all,
-        (Fx*) &fx_06_all,
-        (Fx*) &fx_07_all,
-        (Fx*) &fx_08_all,
-        (Fx*) &fx_09_all, // lighting
-        (Fx*) &fx_10_all, // spit
-        (Fx*) &fx_11_all, // lava ball
-        (Fx*) &fx_12_all, // chain // switch // bell
-        (Fx*) &fx_13_all, // close door
-        (Fx*) &fx_14_all, // checkpoint
+        (Sfx*) &sfx_01_all,
+        (Sfx*) &sfx_02_all,
+        (Sfx*) &sfx_03_all,
+        (Sfx*) &sfx_04_all,
+        (Sfx*) &sfx_05_all,
+        (Sfx*) &sfx_06_all,
+        (Sfx*) &sfx_07_all,
+        (Sfx*) &sfx_08_all,
+        (Sfx*) &sfx_09_all, // lighting
+        (Sfx*) &sfx_10_all, // spit
+        (Sfx*) &sfx_11_all, // lava ball
+        (Sfx*) &sfx_12_all, // chain // switch // bell
+        (Sfx*) &sfx_13_all, // close door
+        (Sfx*) &sfx_14_all, // checkpoint
     },
 
         // VERSION_C64
         {
-            (Fx*) &fx_01_all,
-            (Fx*) &fx_02_all,
-            (Fx*) &fx_03_all,
-            (Fx*) &fx_04_all,
-            (Fx*) &fx_05_all,
-            (Fx*) &fx_06_all,
-            (Fx*) &fx_07_all,
-            (Fx*) &fx_08_all,
-            (Fx*) &fx_09_all, // lighting
-            (Fx*) &fx_10_all, // spit
-            (Fx*) &fx_11_all, // lava ball
-            (Fx*) &fx_12_all, // chain // switch // bell
-            (Fx*) &fx_13_all, // close door
-            (Fx*) &fx_14_all, // checkpoint
+            (Sfx*) &sfx_01_c64,
+            (Sfx*) &sfx_02_c64,
+            (Sfx*) &sfx_03_c64,
+            (Sfx*) &sfx_04_c64,
+            (Sfx*) &sfx_05_c64,
+            (Sfx*) &sfx_06_c64,
+            (Sfx*) &sfx_07_c64,
+            (Sfx*) &sfx_08_c64,
+            (Sfx*) &sfx_09_c64, // lighting
+            (Sfx*) &sfx_10_c64, // spit
+            (Sfx*) &sfx_11_c64, // lava ball
+            (Sfx*) &sfx_12_c64, // chain // switch // bell
+            (Sfx*) &sfx_13_c64, // close door
+            (Sfx*) &sfx_14_c64, // checkpoint
         },
 
 };

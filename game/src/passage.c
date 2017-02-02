@@ -27,7 +27,7 @@ void passage_touched ( )
 
 	if ( p )
 	{
-		play_fx ( FX_DOOR );
+		play_fx ( SFX_DOOR );
 
 		VDP_fadeOutAll ( getHz ( ) / 3, 1 );
 		waitHz ( getHz ( ) / 2 );

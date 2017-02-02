@@ -70,8 +70,9 @@ void cm_start ( )
 	playerUpdate ( &player, PLAYER_STAY );
 	playerSetAction ( &player, PLAYER_STAY );
 
-	SPR_setPosition ( player.go->sprite, 110, 152 ); // update sprite
-	goSetXY ( player.go, 110, 152 );
+	SPR_setHFlip (  player.go->sprite,  0 );
+	SPR_setPosition ( player.go->sprite, 26, 152 ); // update sprite
+	goSetXY ( player.go, 26, 152 );
 
 	JoyReader_init ( 1 );
 

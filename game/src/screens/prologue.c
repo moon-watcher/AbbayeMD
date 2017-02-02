@@ -38,7 +38,7 @@ static void _add_objects (  Objects *objects )
 
 void screen_prologue ( )
 {
-	//if ( DEV ) return;
+	if ( DEV ) return;
 
 	displayOff(0);
 

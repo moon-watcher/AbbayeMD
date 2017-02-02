@@ -2,31 +2,60 @@
 
 
 
+static s16 coco_x;
+static s16 coco_y;
+static s16 player_x;
+static s16 player_y;
+
 
 
 static s16 _get_tartet_x ( GameObject *go )
 {
-	return goGetCenterX ( player.go );
+//	u16 dis_y = ABS ( coco_y - player_y );
+//
+//	if ( coco_y > player_y ) player_x += ( dis_y / 1 );
+//	if ( coco_y < player_y ) player_x -= ( dis_y / 1 );
+
+
+//	u16 dis_x = ABS ( coco_x - player_x );
+//	u16 dis_y = ABS ( coco_y - player_y );
+//
+//	dis_x = ( dis_y + dis_x ) / 2;
+//
+//	if ( coco_y > player_y ) player_x -= ( dis_x );
+//	if ( coco_y < player_y ) player_x += ( dis_x );
+
+
+	player_x += ( ( player_x - coco_x ) / 1 );
+
+
+
+	return player_x;
 }
 
 
 static s16 _get_tartet_y ( GameObject *go )
 {
-	return goGetCenterY ( player.go );
+	player_y += ( ( player_y - coco_y ) / 1 );
+
+
+
+	return player_y;
 }
 
 
 
 void enemy_coco ( GameObject *go )
 {
-	if ( vtimer % 30 )
+	if ( vtimer % 20 ) // % 30
 	{
 		return;
 	}
 
-
-	s16 coco_x = goGetCenterX ( go );
-	s16 coco_y = goGetCenterY ( go );
+	coco_x   = goGetCenterX ( go );
+	coco_y   = goGetCenterY ( go );
+	player_x = goGetCenterX ( player.go );
+	player_y = goGetCenterY ( player.go );
 
 
 	if ( coco_y+scrollVertical > 124 ) goSetY ( go, 156 );
@@ -35,8 +64,8 @@ void enemy_coco ( GameObject *go )
 
 	Vect2D_f32 pos =
 	{
-		FIX32 ( _get_tartet_x(go) - coco_x ),
-		FIX32 ( _get_tartet_y(go) - coco_y )
+		FIX32 ( _get_tartet_x ( go ) - coco_x ),
+		FIX32 ( _get_tartet_y ( go ) - coco_y )
 	};
 
 	Vect2D_f32 abs =

@@ -31,7 +31,7 @@ void _make_jean_jumps ( Player *player, PlayerAction *action )
 
 	if (  !liedown  ||  ( liedown  &&  !_blocks_over_jean ( player ) )  )
 	{
-		play_fx ( FX_JUMP );
+		play_fx ( SFX_JUMP );
 		*action += PLAYER_JUMP_PRESSED;
 	}
 }
@@ -132,7 +132,7 @@ static void _process_burning ( Player *player )
 		if ( player->plunge == 0 )
 		{
 			musicStop ( );
-			play_fx ( FX_HIT );
+			play_fx ( SFX_HIT );
 		}
 
 		//_relocate_player ( player, player->action );
@@ -155,6 +155,11 @@ static void _process_burning ( Player *player )
 	{
 		player->go->vel_y = zero;
 	}
+
+	if ( goGetTop( player->go)  > 200)
+	{
+		goSetActive(player->go, false);
+	}
 }
 
 
@@ -165,7 +170,7 @@ static void _process_plunge ( Player *player )
 		if ( player->burning == 0 )
 		{
 			musicStop ();
-			play_fx ( FX_HIT );
+			play_fx ( SFX_HIT );
 		}
 
 		goSetObject ( player->go, (Object*) &player_actions [ game.version ] [ player->action ] [ game.crusader ] );

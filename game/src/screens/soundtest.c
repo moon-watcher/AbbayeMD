@@ -70,7 +70,7 @@ static void _control ( )
 
 
 		Music *music = (Music*) music_list [ game.version ] [ (u8)track ];
-		Fx    *fx    = (Fx   *) fx_list    [ game.version ] [ (u8)sfx   ];
+		Sfx    *fx    = (Sfx   *) fx_list    [ game.version ] [ (u8)sfx   ];
 
 
 		drawText ( "              ", 14, positions[1] );

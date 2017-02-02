@@ -38,8 +38,8 @@ void enemy_plant ( GameObject *goPlant[], GameObject *goSpit[], u16 pos )
 		spit2->vel_x = +spit2->object->entity->vel_x;
 		spit2->vel_y = -spit2->object->entity->vel_y;
 
-		//play_fx ( FX_SHOT );
-		play_fx ( FX_SPIT );
+		//play_fx ( SFX_SHOT );
+		play_fx ( SFX_SPIT );
 	}
 
 	delay += 30;

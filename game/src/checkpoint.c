@@ -21,6 +21,7 @@ void checkpoint_init ( )
 	if ( game.crusader )
 	{
 		_checkpoint.room_x = 1;
+		_checkpoint.pos_x = 34;
 	}
 }
 

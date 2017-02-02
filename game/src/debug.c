@@ -8,7 +8,7 @@ void debug_info ( )
 
 
 	debug_fps       = getFPS();
-	debug_z80load   = SND_getCPULoad_XGM();
+	//debug_z80load   = SND_getCPULoad_XGM();
 	debug_nbObjects = goManagerCount ( &waObjects );
 
 

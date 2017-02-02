@@ -28,7 +28,7 @@ void enemy_gargoyle ( GameObject *goGargoyle[], GameObject *goSpit[], u16 pos )
 
 		spit->vel_x = -spit->object->entity->vel_x;
 
-		play_fx ( FX_SPIT );
+		play_fx ( SFX_SPIT );
 	}
 
 	if ( gargoyle->counter == 20 )

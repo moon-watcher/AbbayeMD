@@ -11,7 +11,7 @@ void enemy_lighting_init ( GameObject *lighting )
 {
 	if ( game.version == VERSION_PCW )
 	{
-		play_fx ( FX_LIGHTING );
+		play_fx ( SFX_LIGHTING );
 
 		lighting->counter = 1;
 

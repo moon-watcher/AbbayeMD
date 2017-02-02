@@ -70,7 +70,7 @@ void switch_touched ( GameObject *go )
 			goSetObject ( go, checked ? &s->on : &s->off );
 			SPR_update ( );
 
-			play_fx_pause ( FX_CHECKPOINT, getHz() );
+			play_fx_pause ( SFX_CHECKPOINT, getHz() );
 		}
 
 		if ( game.room.x == 2  &&  game.room.y == 3 )
@@ -106,13 +106,13 @@ bool switch_ring_bell ( GameObject *go, Switch *sw )
 {
 	s16 timeout = getHz()*2;
 
-	play_fx ( FX_CHAIN );
+	play_fx ( SFX_CHAIN );
 
 	goSetObject ( go, &sw->transaction );
 	goIncX ( go, -8 );
 	SPR_setPosition ( go->sprite, go->x, go->y );
 
-	SND_pausePlay_XGM();
+	musicPause();
 
 	while ( timeout-- )
 	{
@@ -133,7 +133,7 @@ bool switch_ring_bell ( GameObject *go, Switch *sw )
 	goIncX ( go, +8 );
 	SPR_setPosition ( go->sprite, go->x, go->y );
 
-	SND_resumePlay_XGM();
+	musicResume();
 
 	return false;
 }

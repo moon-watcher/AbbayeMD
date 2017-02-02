@@ -51,41 +51,41 @@
  * @PROJECT:                  =>  #AbbayeMD
  * @START-DATE:               =>  xx-xx-2011
  * @LAST-UPDATE:              =>  xx-xx-2017
- * @LIB:                      =>  SGDK (v1.11) by Stephane Dallongeville
+ * @LIB:                      =>  SGDK (v1.22a) by Stephane Dallongeville
  *
  *
  *
  * --------------------------------------------------------------------------------------------------------------------------------
  *  SPECIAL THANKS TO
  * --------------------------------------------------------------------------------------------------------------------------------
- * @GODFATHER-OF-THIS-RELEASE => Leander                        | Twitter: @leanderpixel      | Mail:
- * @MSX-SKIN                  => Gerardo Herce                  | Twitter: @pipagerardo       | Mail:
- * @NES-SD-SKIN               => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @GB-SKIN                   => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @PCW-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @CGA-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @MD-SKIN                   => Dani Nevado                    | Twitter: @DanySnowyman      | Mail:
- * @C64-SKIN                  => Igor Errazkin                  | Twitter: @Errazking         | Mail:
- * @MUSIC                     => Paolo Arus "DaRkHoRaCe"        | Twitter: @oongamoonga       | Mail:
- * @FX                        => Paolo Arus "DaRkHoRaCe"        | Twitter: @oongamoonga       | Mail:
- * @C64-MUSIC                 => Manuel Gomez "Baron Ashler"    | Twitter: @kbfactory         | Mail:
- * @C64-FX                    => Manuel Gomez "Baron Ashler"    | Twitter: @kbfactory         | Mail:
- * @ILLUSTRATION              => Urza                           | Twitter: @Urza2             | Mail:
- * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @CRUSADER-MODE             => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:
- * @BETA-TESING               => Alfonso Martínez               | Twitter: @_SrPresley_       | Mail:
- * @BETA-TESING               => Ruben Vaquer                   | Twitter: @TitoAdol3         | Mail:
- * @SPECIAL-THANKS-TO         => Stephane Dallongeville         | Twitter: @MegadriveDev      | Mail:
- * @SPECIAL-THANKS-TO         => José Zanni                     | Twitter: @josepzin          | Mail:
- * @SPECIAL-THANKS-TO         => David Lara                     | Twitter: @@nevat            | Mail:
+ * @GODFATHER-OF-THIS-RELEASE => Leander                        | Twitter: @leanderpixel      | Mail:                     |Notes:
+ * @MSX-SKIN                  => Gerardo Herce                  | Twitter: @pipagerardo       | Mail:                     |Notes:
+ * @NES-SD-SKIN               => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes: Skin not available
+ * @GB-SKIN                   => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
+ * @PCW-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
+ * @CGA-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
+ * @MD-SKIN                   => Dani Nevado                    | Twitter: @DanySnowyman      | Mail:                     |Notes:
+ * @C64-SKIN                  => Igor Errazkin                  | Twitter: @Errazking         | Mail:                     |Notes:
+ * @MUSIC                     => Paolo Arus "DaRkHoRaCe"        | Twitter: @oongamoonga       | Mail:                     |Notes:
+ * @FX                        => Paolo Arus "DaRkHoRaCe"        | Twitter: @oongamoonga       | Mail:                     |Notes:
+ * @C64-MUSIC                 => Manuel Gomez "Baron Ashler"    | Twitter: @kbfactory         | Mail:                     |Notes:
+ * @C64-FX                    => Manuel Gomez "Baron Ashler"    | Twitter: @kbfactory         | Mail:                     |Notes:
+ * @ILLUSTRATION              => Urza                           | Twitter: @Urza2             | Mail:                     |Notes:
+ * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
+ * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
+ * @CRUSADER-MODE             => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
+ * @BETA-TESING               => Alfonso Martínez               | Twitter: @_SrPresley_       | Mail:                     |Notes:
+ * @BETA-TESING               => Ruben Vaquer                   | Twitter: @TitoAdol3         | Mail:                     |Notes:
+ * @SPECIAL-THANKS-TO         => Stephane Dallongeville         | Twitter: @MegadriveDev      | Mail:                     |Notes:
+ * @SPECIAL-THANKS-TO         => José Zanni                     | Twitter: @josepzin          | Mail:                     |Notes:
+ * @SPECIAL-THANKS-TO         => David Lara                     | Twitter: @@nevat            | Mail:                     |Notes:
  *
  *
  * --------------------------------------------------------------------------------------------------------------------------------
  *  HOW TO COMPILE
  * --------------------------------------------------------------------------------------------------------------------------------
  *
- * Sega Genesis/Megadrive version of l'Abbaye des morts was created using SGDK v1.22a and GenRes v1.1.
+ * Sega Genesis/Megadrive version of l'Abbaye des morts was created using SGDK v1.21 and GenRes v1.1.
  *
  *  - Go gendev.spritesmind.net/page-genres.html
  *  - Download GenRes v1.1
@@ -111,174 +111,174 @@
 
 static u16 demo1()
 {
-	if ( joy1_pressed_a )
+	if ( !joy1_pressed_a )
 	{
-		extern const struct genresTiles demo_lightfold64;
-
-		u16 pos  = 16;
-		u16 size = demo_lightfold64.width * demo_lightfold64.height;
-		u16 j, i = 0;
-		u16 palette [ 16 ];
-
-
-		SYS_disableInts();
-		VDP_loadTileData ( demo_lightfold64.tiles, pos, size, 0 );
-		VDP_fillTileMapRectInc ( PLAN_B, TILE_ATTR_FULL(PAL0, 0, 0, 0, pos), 0, 0, demo_lightfold64.width, demo_lightfold64.height );
-		VDP_setPalette ( PAL0, palette_black );
-		SYS_enableInts();
-
-		while ( 1 )
-		{
-			for ( j=0; j<16; j++ )
-			{
-				u16 val = ( ( i % 16 ) + j ) % 16;
-
-				palette [ val ] = demo_lightfold64.pal [ j ];
-			}
-
-			SYS_disableInts();
-			VDP_setPaletteColors (  0, palette, 16 );
-			SYS_enableInts();
-
-			waitMs ( 40 );
-
-			JoyReader_update();
-
-			if ( joy1_pressed_abc )
-			{
-				break;
-			}
-
-			VDP_waitVSync();
-
-			++i;
-		}
-
-		VDP_fadeOutAll ( 30, 0 );
-
-		return 1;
+		return 0;
 	}
 
-	return 0;
+	extern const struct genresTiles demo_lightfold64;
+
+	u16 pos  = 16;
+	u16 size = demo_lightfold64.width * demo_lightfold64.height;
+	u16 j, i = 0;
+	u16 palette [ 16 ];
+
+
+	SYS_disableInts();
+	VDP_loadTileData ( demo_lightfold64.tiles, pos, size, 0 );
+	VDP_fillTileMapRectInc ( PLAN_B, TILE_ATTR_FULL(PAL0, 0, 0, 0, pos), 0, 0, demo_lightfold64.width, demo_lightfold64.height );
+	VDP_setPalette ( PAL0, palette_black );
+	SYS_enableInts();
+
+	while ( 1 )
+	{
+		for ( j=0; j<16; j++ )
+		{
+			u16 val = ( ( i % 16 ) + j ) % 16;
+
+			palette [ val ] = demo_lightfold64.pal [ j ];
+		}
+
+		SYS_disableInts();
+		VDP_setPaletteColors (  0, palette, 16 );
+		SYS_enableInts();
+
+		waitMs ( 40 );
+
+		JoyReader_update();
+
+		if ( joy1_pressed_abc )
+		{
+			break;
+		}
+
+		VDP_waitVSync();
+
+		++i;
+	}
+
+	VDP_fadeOutAll ( 30, 0 );
+
+	return 1;
 }
 
 
 static u16 demo2 ( )
 {
-	if ( joy1_pressed_b )
+	if ( !joy1_pressed_b )
 	{
-		extern const struct genresTiles demo_rainbars16b;
-
-		VDP_setScreenWidth256();
-		VDP_setPlanSize(32,32);
-
-		u16 pos  = 16;
-		u16 size = demo_rainbars16b.width * demo_rainbars16b.height;
-
-		SYS_disableInts();
-		VDP_loadTileData ( demo_rainbars16b.tiles, pos, size, 0 );
-		VDP_fillTileMapRectInc ( PLAN_B, TILE_ATTR_FULL(PAL0, 0, 0, 0, pos), 0, 0, demo_rainbars16b.width, demo_rainbars16b.height );
-		SYS_enableInts();
-
-		u16 palette [ 16 ];
-		u16 j, i = 0;
-
-		while ( 1 )
-		{
-			if ( i % 1 == 0 )
-			{
-				for ( j=0; j<16; j++ )
-				{
-					u16 val = ( ( i % 16 ) + j ) % 16;
-
-					palette [ val ] = demo_rainbars16b.pal [ j ];
-				}
-			}
-
-
-			SYS_disableInts();
-			VDP_setHorizontalScroll ( PLAN_B, -i );
-			VDP_setVerticalScroll ( PLAN_B, -i*8 );
-			VDP_setPaletteColors (  0, palette, 16 );
-			SYS_enableInts();
-
-			waitMs(30);
-
-
-			JoyReader_update();
-
-			if ( joy1_pressed_abc )
-			{
-				break;
-			}
-
-
-			VDP_waitVSync();
-
-			++i;
-		}
-
-		VDP_fadeOutAll ( 30, 0 );
-
-		return 1;
+		return 0;
 	}
 
-	return 0;
+	extern const struct genresTiles demo_rainbars16b;
+
+	VDP_setScreenWidth256();
+	VDP_setPlanSize(32,32);
+
+	u16 pos  = 16;
+	u16 size = demo_rainbars16b.width * demo_rainbars16b.height;
+
+	SYS_disableInts();
+	VDP_loadTileData ( demo_rainbars16b.tiles, pos, size, 0 );
+	VDP_fillTileMapRectInc ( PLAN_B, TILE_ATTR_FULL(PAL0, 0, 0, 0, pos), 0, 0, demo_rainbars16b.width, demo_rainbars16b.height );
+	SYS_enableInts();
+
+	u16 palette [ 16 ];
+	u16 j, i = 0;
+
+	while ( 1 )
+	{
+		if ( i % 1 == 0 )
+		{
+			for ( j=0; j<16; j++ )
+			{
+				u16 val = ( ( i % 16 ) + j ) % 16;
+
+				palette [ val ] = demo_rainbars16b.pal [ j ];
+			}
+		}
+
+
+		SYS_disableInts();
+		VDP_setHorizontalScroll ( PLAN_B, -i );
+		VDP_setVerticalScroll ( PLAN_B, -i*8 );
+		VDP_setPaletteColors (  0, palette, 16 );
+		SYS_enableInts();
+
+		waitMs(30);
+
+
+		JoyReader_update();
+
+		if ( joy1_pressed_abc )
+		{
+			break;
+		}
+
+
+		VDP_waitVSync();
+
+		++i;
+	}
+
+	VDP_fadeOutAll ( 30, 0 );
+
+	return 1;
 }
 
 
 static u16 monos()
 {
-	if ( joy1_pressed_c )
+	if ( !joy1_pressed_c )
 	{
-		extern const Image ob_title_monos_mi;
-
-		SYS_disableInts();
-		VDP_loadTileSet ( ob_title_monos_mi.tileset, 16, 0 );
-		VDP_setPalette ( PAL1, ob_title_monos_mi.palette->data );
-		SYS_enableInts();
-
-		u16 x = 0;
-		u16 y = 0;
-
-		while ( 1 )
-		{
-			SYS_disableInts();
-			VDP_setMapEx ( PLAN_A, ob_title_monos_mi.map, TILE_ATTR_FULL(PAL1,0,0,0,16), 14, 10, x*13, y*6, 13, 6 );
-			SYS_enableInts();
-
-			waitMs(100);
-
-			++x;
-
-			if ( x == 10 )
-			{
-				x = 0;
-				++y;
-			}
-
-			if ( x == 6 && y == 6 )
-			{
-				x = 0;
-				y = 0;
-			}
-
-			JoyReader_update();
-
-			if ( joy1_pressed_abc )
-			{
-				break;
-			}
-
-			VDP_waitVSync();
-		}
-
-		VDP_fadeOutAll ( 30, 0 );
-
-		return 1;
+		return 0;
 	}
 
-	return 0;
+	extern const Image ob_title_monos_mi;
+
+	SYS_disableInts();
+	VDP_loadTileSet ( ob_title_monos_mi.tileset, 16, 0 );
+	VDP_setPalette ( PAL1, ob_title_monos_mi.palette->data );
+	SYS_enableInts();
+
+	u16 x = 0;
+	u16 y = 0;
+
+	while ( 1 )
+	{
+		SYS_disableInts();
+		VDP_setMapEx ( PLAN_A, ob_title_monos_mi.map, TILE_ATTR_FULL(PAL1,0,0,0,16), 14, 10, x*13, y*6, 13, 6 );
+		SYS_enableInts();
+
+		waitMs(100);
+
+		++x;
+
+		if ( x == 10 )
+		{
+			x = 0;
+			++y;
+		}
+
+		if ( x == 6 && y == 6 )
+		{
+			x = 0;
+			y = 0;
+		}
+
+		JoyReader_update();
+
+		if ( joy1_pressed_abc )
+		{
+			break;
+		}
+
+		VDP_waitVSync();
+	}
+
+	VDP_fadeOutAll ( 30, 0 );
+
+	return 1;
 }
 
 
@@ -337,7 +337,7 @@ static _voidCallback *vint_callback ( )
 //		showOcb();
 //		showNbObjects();
 //		showZ80Load();
-		showFps();
+//		showFps();
 	}
 
 	return 0;
@@ -348,14 +348,37 @@ static _voidCallback *vint_callback ( )
 
 
 
+static _voidCallback *psgtest_callback ( )
+{
+//	psg_callback();
+	return 0;
+}
 
-
+void psgtest ()
+{
+//	#include "../res/all/sfx.h"
+//	#include "../data/all/sfx/fx5.h"
+//
+//	PSG_init ( );
+//
+	SYS_setVIntCallback ( (_voidCallback*) psgtest_callback );
+//
+//	psg_play ( fx5_data, 0 );
+//
+//	while(1)
+//	{
+//		VDP_waitVSync();
+//	}
+}
 
 
 
 
 int main ( int argc, char *argv[] )
 {
+//	psgtest ();
+
+
 //	// 0 is soft reset
 //	if ( argc == 0 )
 //	{
@@ -377,13 +400,18 @@ int main ( int argc, char *argv[] )
 
 	//VDP_init();
 
-	Z80_loadDriver ( Z80_DRIVER_XGM, true );
-	SND_setForceDelayDMA_XGM (true);
+	//Z80_loadDriver ( Z80_DRIVER_XGM, true );
+	//SND_setForceDelayDMA_XGM (true);
+	//SND_set68KBUSProtection_XGM ( TRUE );
+
+//	Z80_init();
+//	Z80_loadDriver ( Z80_DRIVER_VGM, true );
+
 
     displayInit ( );
     displayOff ( 0 );
 	dev_init ( 0, 0 );
-    fxInit ( );
+    sfxInit ( );
     JOY_setSupport ( PORT_1, JOY_SUPPORT_6BTN );
     JoyReader_init ( 1 );
     SYS_setVIntCallback ( (_voidCallback*) vint_callback );
@@ -392,14 +420,13 @@ int main ( int argc, char *argv[] )
 
 	//psg_test ();
 
+	inSoundTest = false;
 	game.version = VERSION_MD;
 
 
 
 //						dev_init ( 1, 1 );
 //						game.version = VERSION_C64;
-////						//game.version = VERSION_PC;
-
 
 
 
@@ -409,6 +436,9 @@ int main ( int argc, char *argv[] )
 	bool force = false;
 
 	if ( monos() || demo1() || demo2() || (force = force_jack()) ) ;
+
+	VDP_setScreenWidth320 ( );
+	VDP_setPlanSize ( 64, 32 );
 
     screen_disclaimer ( force );
     screen_sega ( );
@@ -466,7 +496,7 @@ int main ( int argc, char *argv[] )
             scrollSet ( SCROLL_INIT );
             itemManagerInit ( &waItems );
 
-//play_fx(FX_SWITCH);waitMs(1000);
+//play_fx(SFX_SWITCH);waitMs(1000);
 
 //						// desde el inicio para matar a Satán
 //						game.version  = VERSION_MD;
@@ -500,7 +530,7 @@ int main ( int argc, char *argv[] )
 
             itemManagerEnd ( &waItems );
 
-			mute ( true, true );
+			mute ( );
 
             if ( game.status == GAME_STATUS_ENDING )
             {
@@ -515,7 +545,7 @@ int main ( int argc, char *argv[] )
                 screen_gameover ( );
             }
 
-            mute ( true, true );
+            mute ( );
         }
         else
         {

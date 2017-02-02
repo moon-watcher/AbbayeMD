@@ -265,7 +265,7 @@ void game_loop ( )
 			VDP_waitVSync ( );
 		}
 
-		mute ( true, false );
+		sfxStop(0);
 
 		displayOff(0);
 

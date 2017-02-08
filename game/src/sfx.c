@@ -4,7 +4,7 @@
 
 void sfxInit ( )
 {
-   int i = FX_MAX;
+   int i = SFX_MAX;
 
    while ( i-- )
    {
@@ -146,7 +146,7 @@ void sfxMute ( )
 //
 //   int i;
 //
-//   for ( i = 0; i < FX_MAX; i++ )
+//   for ( i = 0; i < SFX_MAX; i++ )
 //   {
 //      Sfx *fx =  (Sfx*) fx_list [ game.version ] [ i ];
 //

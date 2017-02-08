@@ -65,8 +65,8 @@ static void _control ( )
 		if ( track == MUSIC_MAX ) track = 0;
 		if ( track ==        -1 ) track = MUSIC_MAX - 1;
 
-		if ( sfx   ==    FX_MAX ) sfx   = 0;
-		if ( sfx   ==        -1 ) sfx   = FX_MAX - 1;
+		if ( sfx   ==   SFX_MAX ) sfx   = 0;
+		if ( sfx   ==        -1 ) sfx   = SFX_MAX - 1;
 
 
 		Music *music = (Music*) music_list [ game.version ] [ (u8)track ];

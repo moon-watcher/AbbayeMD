@@ -141,7 +141,7 @@ enum
 	SFX_CLOSED_DOOR,
 	SFX_CHECKPOINT,
 
-	FX_MAX
+	SFX_MAX
 };
 
 enum
@@ -164,7 +164,7 @@ enum
 
 
 
-const Sfx      *fx_list          [ VERSION_MAX ] [ FX_MAX          ];
+const Sfx     *fx_list          [ VERSION_MAX ] [ SFX_MAX         ];
 const Music   *music_list       [ VERSION_MAX ] [ MUSIC_MAX       ];
 const Hint     hint_list        [ VERSION_MAX ] [ HINT_MAX        ];
 const Switch   switch_list      [ VERSION_MAX ] [ SWITCH_MAX      ];

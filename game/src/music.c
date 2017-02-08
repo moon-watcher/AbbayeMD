@@ -55,31 +55,43 @@ void musicStop ( )
 	if ( SND_isPlaying_XGM() )
 	{
 		SND_stopPlay_XGM();
-
-		SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 ); // prevents long samples
-		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH2 );
-		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH3 );
-		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH4 );
 	}
+
+	SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 ); // prevents long samples
+	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH2 );
+	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH3 );
+	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH4 );
 }
 
 
 void musicPause ( )
 {
+	if ( game.version == VERSION_C64 )
+	{
+		return;
+	}
+
+
 	if ( SND_isPlaying_XGM() )
 	{
 		SND_pausePlay_XGM();
-
-		SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 );  // prevents long samples
-		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH2 );
-		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH3 );
-		//SND_stopPlayPCM_XGM ( SOUND_PCM_CH4 );
 	}
+
+	SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 );  // prevents long samples
+	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH2 );
+	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH3 );
+	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH4 );
 }
 
 
 void musicResume ( )
 {
+	if ( game.version == VERSION_C64 )
+	{
+		return;
+	}
+
+
 	if ( !SND_isPlaying_XGM() )
 	{
 		SND_resumePlay_XGM();

@@ -4,13 +4,14 @@ IMAGE screen_disclaimerLogoLedImage_all "../../data/all/screens/disclaimer/discl
 
 IMAGE screen_prologue_all               "../../data/all/screens/prologue.bmp"                      0
 IMAGE screen_gameover_all               "../../data/all/screens/gameover.bmp"                      0
-IMAGE screen_goto80_all                 "../../data/all/screens/goto80.bmp"                        0
-IMAGE screen_playonretro_all            "../../data/all/screens/playonretro.bmp"                   0
 IMAGE screen_playonretro_00             "../../data/all/screens/playonretro/00.bmp"                0
-IMAGE screen_playonretro_01             "../../data/all/screens/playonretro/01.bmp"                0
-IMAGE screen_playonretro_02             "../../data/all/screens/playonretro/02.bmp"                0
-IMAGE screen_playonretro_03             "../../data/all/screens/playonretro/03.bmp"                0
-IMAGE screen_playonretro_04             "../../data/all/screens/playonretro/04.bmp"                0
+#IMAGE screen_playonretro_01             "../../data/all/screens/playonretro/01.bmp"                0
+#IMAGE screen_playonretro_02             "../../data/all/screens/playonretro/02.bmp"                0
+#IMAGE screen_playonretro_03             "../../data/all/screens/playonretro/03.bmp"                0
+#IMAGE screen_playonretro_04             "../../data/all/screens/playonretro/04.bmp"                0
+
+#IMAGE screen_playonretro_all            "../../data/all/screens/playonretro.bmp"                   0
+#IMAGE screen_goto80_all                 "../../data/all/screens/goto80.bmp"                        0
 
 
 IMAGE screen_ending_1_all               "../../data/all/screens/ending/1.bmp"                      0

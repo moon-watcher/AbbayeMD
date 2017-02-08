@@ -66,10 +66,9 @@
  * @CGA-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
  * @MD-SKIN                   => Dani Nevado                    | Twitter: @DanySnowyman      | Mail:                     |Notes:
  * @C64-SKIN                  => Igor Errazkin                  | Twitter: @Errazking         | Mail:                     |Notes:
- * @MUSIC                     => Paolo Arus "DaRkHoRaCe"        | Twitter: @oongamoonga       | Mail:                     |Notes:
- * @FX                        => Paolo Arus "DaRkHoRaCe"        | Twitter: @oongamoonga       | Mail:                     |Notes:
+ * @MUSIC                     => DaRkHoRaCe                     | Twitter: @oongamoonga       | Mail:                     |Notes:
+ * @FX                        => DaRkHoRaCe                     | Twitter: @oongamoonga       | Mail:                     |Notes:
  * @C64-MUSIC                 => Manuel Gomez "Baron Ashler"    | Twitter: @kbfactory         | Mail:                     |Notes:
- * @C64-FX                    => Manuel Gomez "Baron Ashler"    | Twitter: @kbfactory         | Mail:                     |Notes:
  * @ILLUSTRATION              => Urza                           | Twitter: @Urza2             | Mail:                     |Notes:
  * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
  * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
@@ -78,14 +77,14 @@
  * @BETA-TESING               => Ruben Vaquer                   | Twitter: @TitoAdol3         | Mail:                     |Notes:
  * @SPECIAL-THANKS-TO         => Stephane Dallongeville         | Twitter: @MegadriveDev      | Mail:                     |Notes:
  * @SPECIAL-THANKS-TO         => José Zanni                     | Twitter: @josepzin          | Mail:                     |Notes:
- * @SPECIAL-THANKS-TO         => David Lara                     | Twitter: @@nevat            | Mail:                     |Notes:
+ * @SPECIAL-THANKS-TO         => David Lara                     | Twitter: @nevat             | Mail:                     |Notes:
  *
  *
  * --------------------------------------------------------------------------------------------------------------------------------
  *  HOW TO COMPILE
  * --------------------------------------------------------------------------------------------------------------------------------
  *
- * Sega Genesis/Megadrive version of l'Abbaye des morts was created using SGDK v1.21 and GenRes v1.1.
+ * Sega Genesis/Megadrive version of l'Abbaye des morts was created using SGDK v1.22a and GenRes v1.1.
  *
  *  - Go gendev.spritesmind.net/page-genres.html
  *  - Download GenRes v1.1
@@ -426,7 +425,7 @@ int main ( int argc, char *argv[] )
 
 
 //						dev_init ( 1, 1 );
-//						game.version = VERSION_C64;
+//						game.version = VERSION_GB;
 
 
 

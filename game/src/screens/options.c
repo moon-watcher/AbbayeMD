@@ -102,8 +102,8 @@ static void _change_fx ( bool init )
 	if ( right ) fx++;
 	if ( left  ) fx--;
 
-	if ( fx ==    -1 ) fx = FX_MAX-1;
-	if ( fx == FX_MAX ) fx = 0;
+	if ( fx ==      -1 ) fx = SFX_MAX - 1;
+	if ( fx == SFX_MAX ) fx = 0;
 
 
 	Sfx *m =(Sfx*) fx_list [ game.version ] [ (u8) fx ];

@@ -72,18 +72,18 @@ void screen_credits ( )
 	write ( "MSX skin", PAL1, 1 );
 	write ( "Gerardo Herce @pipagerardo", PAL2, 2  );
 
-	write ( "GB, CGA & PCW skin", PAL1, 1 );
+	write ( "GB, CGA & PCW skins", PAL1, 1 );
 	write ( "Felipe Monge @vakapp", PAL2, 2 );
 
 	write ( "Megadrive skin", PAL1, 1 );
 	write ( "Daniel Nevado @DanySnowyman", PAL2, 2 );
 
-	write ( "C64 skin", PAL1, 1 );
+	write ( "C64 skin & music", PAL1, 1 );
 	write ( "Igor Errazkin @Errazking", PAL2, 1 );
 	write ( "Manuel Gomez 'Baron Ashler'", PAL2, 2 );
 
 	write ( "Music & SFX", PAL1, 1 );
-	write ( "Paolo Arus 'DaRkHoRaCe'", PAL2, 2 );
+	write ( "'DaRkHoRaCe' @oongamoonga", PAL2, 2 );
 
 	write ( "Testers", PAL1, 1 );
 	write ( "Alfonso Martinez @_SrPresley_", PAL2, 1 );

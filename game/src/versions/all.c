@@ -1101,7 +1101,7 @@ const Music *music_list [ VERSION_MAX ] [ MUSIC_MAX ] =
 
 
 
-const Sfx *fx_list [ VERSION_MAX ] [ FX_MAX ] =
+const Sfx *fx_list [ VERSION_MAX ] [ SFX_MAX ] =
 {
     // VERSION_PC
     {

@@ -1,6 +1,9 @@
 #include "../../inc/include.h"
 #include "../../res/all/screens.h"
 
+#define IMAGES  1
+
+
 void screen_playonretro ( )
 {
 	if ( DEV ) return;
@@ -16,37 +19,37 @@ void screen_playonretro ( )
 	resetScroll();
 	resetScreen();
 
-	u16 x = 12;
-	u16 y =  6;
-	u16 i, positions[5];
+
+	const u16 x = 9;
+	const u16 y = 8;
 
 
-	Image *images [ 5 ] =
+	u16 i, vram_pos [ IMAGES ];
+
+
+
+	Image *images [ IMAGES ] =
 	{
-		(Image*) &screen_playonretro_00,
-		(Image*) &screen_playonretro_01,
-		(Image*) &screen_playonretro_02,
-		(Image*) &screen_playonretro_03,
-		(Image*) &screen_playonretro_04
+		(Image*) &screen_playonretro_00
 	};
 
-	for ( i=0; i<5; i++ )
+	for ( i=0; i<IMAGES; i++ )
 	{
 		u16 size = images[i]->tileset->numTile;
-		positions [ i ] = vram_new ( size );
-		VDP_loadTileData ( images[i]->tileset->tiles, positions[i], size, 0 );
+		vram_pos [ i ] = vram_new ( size );
+		VDP_loadTileData ( images[i]->tileset->tiles, vram_pos[i], size, 0 );
 	}
 
 
 	waitHz(20);
 
-	for ( i=0; i<5; i++ )
+	for ( i=0; i<IMAGES; i++ )
 	{
 		waitHz(3);
 
 		SYS_disableInts();
 		VDP_setPalette ( PAL1, images[i]->palette->data );
-		VDP_setMap ( PLAN_A, images[i]->map,TILE_ATTR_FULL ( PAL1, 0, 0, 0, positions[i] ), x, y );
+		VDP_setMap ( PLAN_A, images[i]->map,TILE_ATTR_FULL ( PAL1, 0, 0, 0, vram_pos[i] ), x, y );
 		SYS_enableInts();
 	}
 

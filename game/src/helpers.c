@@ -776,7 +776,7 @@ u16 in_array ( u16 needle, u16 array[] )
 
 void play_fx ( u8 fx )
 {
-    sfxPlay ( (Sfx*) fx_list [ game.version ] [ fx ] );
+    sfxPlay ( (Sfx*) sfx_list [ game.version ] [ fx ] );
 }
 
 

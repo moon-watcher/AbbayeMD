@@ -8,7 +8,7 @@ void sfxInit ( )
 
    while ( i-- )
    {
-      Sfx *sfx =  (Sfx*) fx_list [ game.version ] [ i ];
+      Sfx *sfx =  (Sfx*) sfx_list [ game.version ] [ i ];
 
       SND_setPCM_XGM ( 64 + sfx->id, sfx->data, sfx->length );
    }

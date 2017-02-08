@@ -70,14 +70,14 @@ static void _control ( )
 
 
 		Music *music = (Music*) music_list [ game.version ] [ (u8)track ];
-		Sfx    *fx    = (Sfx   *) fx_list    [ game.version ] [ (u8)sfx   ];
+		Sfx   *sfx0   = (Sfx  *) sfx_list   [ game.version ] [ (u8)sfx   ];
 
 
 		drawText ( "              ", 14, positions[1] );
 		drawText ( music->title,     14, positions[1] );
 
 		drawText ( "              ", 14, positions[2] );
-		drawText ( fx->title,        14, positions[2] );
+		drawText ( sfx0->title,      14, positions[2] );
 
 		if ( joy1_pressed_abc | joy1_pressed_start )
 		{

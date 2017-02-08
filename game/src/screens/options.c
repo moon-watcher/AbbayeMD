@@ -106,7 +106,7 @@ static void _change_fx ( bool init )
 	if ( fx == SFX_MAX ) fx = 0;
 
 
-	Sfx *m =(Sfx*) fx_list [ game.version ] [ (u8) fx ];
+	Sfx *m =(Sfx*) sfx_list [ game.version ] [ (u8) fx ];
 
 	drawText ( "                       ", 16, 17 );
 	drawText ( m->title, 16, 17 );

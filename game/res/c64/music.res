@@ -1,8 +1,3 @@
-#XGM music_hell_c64     "../../data/c64/music/hell.xgm"
-#XGM music_satan_c64    "../../data/c64/music/satan.xgm"
-#XGM music_gameover_c64 "../../data/c64/music/gameover.xgm"
-#XGM music_start_c64    "../../data/c64/music/start.xgm"
-
 XGM music_church_c64   "../../data/c64/music/Abbaye64-Area I Church.vgm"
 XGM music_caves_c64    "../../data/c64/music/Abbaye64-Area II Caves.vgm"
 XGM music_manhunt_c64  "../../data/c64/music/Abbaye64-Manhunt.vgm"
@@ -10,3 +5,7 @@ XGM music_title_c64    "../../data/c64/music/Abbaye64-Main title_v2.vgm"
 XGM music_hope_c64     "../../data/c64/music/Abbaye64-Prayer of Hope.vgm"
 XGM music_woods_c64    "../../data/c64/music/Abbaye64-Manhunt wood.vgm"
 XGM music_hangman_c64  "../../data/c64/music/Abbaye64-Hangman Tree.vgm"
+XGM music_hell_c64     "../../data/c64/music/Abbaye64-Area III Hell.vgm"
+
+#XGM music_satan_c64    "../../data/c64/music/satan.xgm"
+

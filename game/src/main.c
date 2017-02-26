@@ -69,7 +69,7 @@
  * @MUSIC                     => DaRkHoRaCe                     | Twitter: @oongamoonga       | Mail:                     |Notes:
  * @FX                        => DaRkHoRaCe                     | Twitter: @oongamoonga       | Mail:                     |Notes:
  * @C64-MUSIC                 => Manuel Gomez "Baron Ashler"    | Twitter: @kbfactory         | Mail:                     |Notes:
- * @ILLUSTRATION              => Urza                           | Twitter: @Urza2             | Mail:                     |Notes:
+ * @ILLUSTRATIONS             => Urza                           | Twitter: @Urza2             | Mail:                     |Notes:
  * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
  * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
  * @CRUSADER-MODE             => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
@@ -90,7 +90,7 @@
  *  - Download GenRes v1.1
  *  - Extract and replace all genres.* files in the zip into SGDK's bin directory
  *  - Compile #AbbayeMD
- *  - Tadah!
+ *  - Ta-dah!
  *
  *
  *

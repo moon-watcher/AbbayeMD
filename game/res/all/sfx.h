@@ -8,7 +8,6 @@ extern const u8 sfx_jump_all[5888];
 extern const u8 sfx_shoot_all[16384];
 extern const u8 sfx_slash_all[6144];
 extern const u8 sfx_switch_all[24320];
-extern const u8 sfx_tree_all[31232];
 extern const u8 sfx_lighting_all[79104];
 extern const u8 sfx_spit_all[4608];
 extern const u8 sfx_lavaball_all[9728];

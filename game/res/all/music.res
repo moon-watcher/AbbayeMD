@@ -11,4 +11,4 @@ XGM music_caves_all    "../../data/all/music/caves.vgm"
 XGM music_satan_all    "../../data/all/music/evilfight.vgm"
 XGM music_hell_all     "../../data/all/music/hell.vgm"
 
-XGM music_bombjack_all "../../data/all/music/03 Ringo no Mori no Koneko Tachi (BGM 1).vgm"
+#XGM music_bombjack_all "../../data/all/music/03 Ringo no Mori no Koneko Tachi (BGM 1).vgm"

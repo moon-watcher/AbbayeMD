@@ -10,6 +10,5 @@ extern const u8 music_hangman_all[3946];
 extern const u8 music_caves_all[6085];
 extern const u8 music_satan_all[3945];
 extern const u8 music_hell_all[6839];
-extern const u8 music_bombjack_all[2647];
 
 #endif // _GAME_RES_ALL_MUSIC_H_

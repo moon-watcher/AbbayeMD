@@ -5,7 +5,7 @@ WAV sfx_jump_all       "../../data/all/sfx/jeanjump.wav"       XMG
 WAV sfx_shoot_all      "../../data/all/sfx/shoot.wav"          XMG
 WAV sfx_slash_all      "../../data/all/sfx/slash.wav"          XMG
 WAV sfx_switch_all     "../../data/all/sfx/switch.wav"         XMG
-WAV sfx_tree_all       "../../data/all/sfx/tree.wav"           XMG
+#WAV sfx_tree_all       "../../data/all/sfx/tree.wav"           XMG
 WAV sfx_lighting_all   "../../data/all/sfx/titlelightning.wav" XMG
 WAV sfx_spit_all       "../../data/all/sfx/spit.wav"           XMG
 WAV sfx_lavaball_all   "../../data/all/sfx/lavaballs.wav"      XMG

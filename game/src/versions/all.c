@@ -180,7 +180,7 @@ const Sfx sfx_04_all = { SFX_JUMP,        "Jump",        (u8*) sfx_jump_all,    
 const Sfx sfx_05_all = { SFX_SHOT,        "Shot",        (u8*) sfx_shoot_all,      SOUND_PCM_CH4, sizeof(sfx_shoot_all),      14, Z80_DRIVER_XGM };
 const Sfx sfx_06_all = { SFX_SLASH,       "Slash",       (u8*) sfx_slash_all,      SOUND_PCM_CH3, sizeof(sfx_slash_all),      14, Z80_DRIVER_XGM };
 const Sfx sfx_07_all = { SFX_SWITCH,      "Switch",      (u8*) sfx_switch_all,     SOUND_PCM_CH2, sizeof(sfx_switch_all),     13, Z80_DRIVER_XGM };
-const Sfx sfx_08_all = { SFX_TREE,        "Tree",        (u8*) sfx_tree_all,       SOUND_PCM_CH4, sizeof(sfx_tree_all),       12, Z80_DRIVER_XGM };
+//const Sfx sfx_08_all = { SFX_TREE,        "Tree",        (u8*) sfx_tree_all,       SOUND_PCM_CH4, sizeof(sfx_tree_all),       12, Z80_DRIVER_XGM };
 const Sfx sfx_09_all = { SFX_LIGHTING,    "Lighting",    (u8*) sfx_lighting_all,   SOUND_PCM_CH2, sizeof(sfx_lighting_all),   12, Z80_DRIVER_XGM };
 const Sfx sfx_10_all = { SFX_SPIT,        "Spit",        (u8*) sfx_spit_all,       SOUND_PCM_CH4, sizeof(sfx_spit_all),       14, Z80_DRIVER_XGM };
 const Sfx sfx_11_all = { SFX_LAVABALL,    "Lava ball",   (u8*) sfx_lavaball_all,   SOUND_PCM_CH3, sizeof(sfx_lavaball_all),   13, Z80_DRIVER_XGM };
@@ -188,20 +188,6 @@ const Sfx sfx_12_all = { SFX_CHAIN,       "Bell",        (u8*) sfx_chain_all,   
 const Sfx sfx_13_all = { SFX_CLOSED_DOOR, "Closed door", (u8*) sfx_close_door_all, SOUND_PCM_CH2, sizeof(sfx_close_door_all), 13, Z80_DRIVER_XGM };
 const Sfx sfx_14_all = { SFX_CHECKPOINT,  "Checkpoint",  (u8*) sfx_checkpoint_all, SOUND_PCM_CH2, sizeof(sfx_checkpoint_all), 11, Z80_DRIVER_XGM };
 
-//const Sfx sfx_01_all = { SFX_DOOR,        "Door",        (u8*) fx_door_all,       SOUND_PCM_CH2, sizeof(fx_door_all),       14 };
-//const Sfx sfx_02_all = { SFX_HIT,         "Hit",         (u8*) fx_hit_all,        SOUND_PCM_CH2, sizeof(fx_hit_all),        15 };
-//const Sfx sfx_03_all = { SFX_ITEM,        "Item",        (u8*) psg_item_all,                  0, sizeof(psg_item_all),       0, 1, 0 };
-//const Sfx sfx_04_all = { SFX_JUMP,        "Jump",        (u8*) fx_jump_all,       SOUND_PCM_CH2, sizeof(fx_jump_all),       10 };
-//const Sfx sfx_05_all = { SFX_SHOT,        "Shot",        (u8*) fx_shoot_all,      SOUND_PCM_CH4, sizeof(fx_shoot_all),      14 };
-//const Sfx sfx_06_all = { SFX_SLASH,       "Slash",       (u8*) fx_slash_all,      SOUND_PCM_CH3, sizeof(fx_slash_all),      14 };
-//const Sfx sfx_07_all = { SFX_SWITCH,      "Switch",      (u8*) fx_switch_all,     SOUND_PCM_CH3, sizeof(fx_switch_all),     13 };
-//const Sfx sfx_08_all = { SFX_TREE,        "Tree",        (u8*) fx_tree_all,       SOUND_PCM_CH4, sizeof(fx_tree_all),       12 };
-//const Sfx sfx_09_all = { SFX_LIGHTING,    "Lighting",    (u8*) fx_lighting_all,   SOUND_PCM_CH2, sizeof(fx_lighting_all),   12 };
-//const Sfx sfx_10_all = { SFX_SPIT,        "Spit",        (u8*) fx_spit_all,       SOUND_PCM_CH4, sizeof(fx_spit_all),       14 };
-//const Sfx sfx_11_all = { SFX_LAVABALL,    "Lava ball",   (u8*) fx_lavaball_all,   SOUND_PCM_CH3, sizeof(fx_lavaball_all),   13 };
-//const Sfx sfx_12_all = { SFX_CHAIN,       "Bell",        (u8*) psg_chain_all,                 0, sizeof(psg_chain_all),      0, 1, 0 };
-//const Sfx sfx_13_all = { SFX_CLOSED_DOOR, "Closed door", (u8*) fx_close_door_all, SOUND_PCM_CH2, sizeof(fx_close_door_all), 13 };
-//const Sfx sfx_14_all = { SFX_CHECKPOINT,  "Checkpoint",  (u8*) fx_checkpoint_all, SOUND_PCM_CH2, sizeof(fx_checkpoint_all), 11 };
 
 
 
@@ -1112,7 +1098,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_05_all,
         (Sfx*) &sfx_06_all,
         (Sfx*) &sfx_07_all,
-        (Sfx*) &sfx_08_all,
+        //(Sfx*) &sfx_08_all,
         (Sfx*) &sfx_09_all, // lighting
         (Sfx*) &sfx_10_all, // spit
         (Sfx*) &sfx_11_all, // lava ball
@@ -1130,7 +1116,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_05_all,
         (Sfx*) &sfx_06_all,
         (Sfx*) &sfx_07_all,
-        (Sfx*) &sfx_08_all,
+        //(Sfx*) &sfx_08_all,
         (Sfx*) &sfx_09_all, // lighting
         (Sfx*) &sfx_10_all, // spit
         (Sfx*) &sfx_11_all, // lava ball
@@ -1148,7 +1134,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_05_all,
         (Sfx*) &sfx_06_all,
         (Sfx*) &sfx_07_all,
-        (Sfx*) &sfx_08_all,
+        //(Sfx*) &sfx_08_all,
         (Sfx*) &sfx_09_all, // lighting
         (Sfx*) &sfx_10_all, // spit
         (Sfx*) &sfx_11_all, // lava ball
@@ -1166,7 +1152,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_05_all,
         (Sfx*) &sfx_06_all,
         (Sfx*) &sfx_07_all,
-        (Sfx*) &sfx_08_all,
+        //(Sfx*) &sfx_08_all,
         (Sfx*) &sfx_09_all, // lighting
         (Sfx*) &sfx_10_all, // spit
         (Sfx*) &sfx_11_all, // lava ball
@@ -1184,7 +1170,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_05_all,
         (Sfx*) &sfx_06_all,
         (Sfx*) &sfx_07_all,
-        (Sfx*) &sfx_08_all,
+        //(Sfx*) &sfx_08_all,
         (Sfx*) &sfx_09_all, // lighting
         (Sfx*) &sfx_10_all, // spit
         (Sfx*) &sfx_11_all, // lava ball
@@ -1220,7 +1206,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_05_all,
         (Sfx*) &sfx_06_all,
         (Sfx*) &sfx_07_all,
-        (Sfx*) &sfx_08_all,
+        //(Sfx*) &sfx_08_all,
         (Sfx*) &sfx_09_all, // lighting
         (Sfx*) &sfx_10_all, // spit
         (Sfx*) &sfx_11_all, // lava ball
@@ -1238,7 +1224,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
             (Sfx*) &sfx_05_c64,
             (Sfx*) &sfx_06_c64,
             (Sfx*) &sfx_07_c64,
-            (Sfx*) &sfx_08_c64,
+            //(Sfx*) &sfx_08_c64,
             (Sfx*) &sfx_09_c64, // lighting
             (Sfx*) &sfx_10_c64, // spit
             (Sfx*) &sfx_11_c64, // lava ball

@@ -9,7 +9,7 @@
 #IMAGE screen_ending_6_cga   "../../data/cga/screens/ending/6.bmp"          0
 #IMAGE screen_ending_7_cga   "../../data/cga/screens/ending/7.bmp"          0
 
-IMAGE screen_burnhim_cga    "../../data/cga/screens/ending/burnhim.bmp"    0
+IMAGE screen_burnhim_cga    "../../data/cga/screens/ending/burnhim.bmp"    1
 
 IMAGE screen_abbey_cga      "../../data/cga/screens/title/abbey.bmp"       0
 IMAGE screen_title_cga      "../../data/cga/screens/title/title.bmp"       0

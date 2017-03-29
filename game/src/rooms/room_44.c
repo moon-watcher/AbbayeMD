@@ -463,3 +463,8 @@ void room_funct_44_all ( Room *room, u8 action )
 	}
 }
 
+
+s8 room_44_get_sequence ( )
+{
+	return sequence;
+}

@@ -14,5 +14,6 @@ extern const u8 sfx_lavaball_all[3584];
 extern const u8 sfx_chain_all[14592];
 extern const u8 sfx_close_door_all[4608];
 extern const u8 sfx_checkpoint_all[8960];
+extern const u8 sfx_dragonbreath_all[48128];
 
 #endif // _GAME_RES_ALL_SFX_H_

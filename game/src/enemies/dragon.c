@@ -23,6 +23,7 @@ void enemy_dragon ( GameObject *head, GameObject *body, GameObject *fire, GameOb
 
 	if ( head->counter == data->timer[0] ) // head up
 	{
+		play_sfx ( SFX_DRAGONBREATH );
 		goIncY ( head, -2 );
 	}
 
@@ -48,8 +49,6 @@ void enemy_dragon ( GameObject *head, GameObject *body, GameObject *fire, GameOb
 		setActive ( fire, 1 );
 
 		goIncY ( head, +6 );
-
-		play_sfx ( SFX_SHOT );
 	}
 
 	else if ( head->counter == data->timer[2] ) // rest

@@ -173,20 +173,21 @@ const Music music_11_all = { MUSIC_HANGMAN,  "Hangman tree",   (u8*) music_hangm
 
 
 
-const Sfx sfx_01_all = { SFX_DOOR,        "Door",        (u8*) sfx_door_all,       SOUND_PCM_CH2, sizeof(sfx_door_all),       14, Z80_DRIVER_XGM };
-const Sfx sfx_02_all = { SFX_HIT,         "Hit",         (u8*) sfx_hit_all,        SOUND_PCM_CH1, sizeof(sfx_hit_all),        15, Z80_DRIVER_XGM };
-const Sfx sfx_03_all = { SFX_ITEM,        "Item",        (u8*) sfx_item_all,       SOUND_PCM_CH2, sizeof(sfx_item_all),       15, Z80_DRIVER_XGM };
-const Sfx sfx_04_all = { SFX_JUMP,        "Jump",        (u8*) sfx_jump_all,       SOUND_PCM_CH1, sizeof(sfx_jump_all),       14, Z80_DRIVER_XGM };
-const Sfx sfx_05_all = { SFX_SHOT,        "Shot",        (u8*) sfx_shoot_all,      SOUND_PCM_CH4, sizeof(sfx_shoot_all),      14, Z80_DRIVER_XGM };
-const Sfx sfx_06_all = { SFX_SLASH,       "Slash",       (u8*) sfx_slash_all,      SOUND_PCM_CH3, sizeof(sfx_slash_all),      14, Z80_DRIVER_XGM };
-const Sfx sfx_07_all = { SFX_SWITCH,      "Switch",      (u8*) sfx_switch_all,     SOUND_PCM_CH2, sizeof(sfx_switch_all),     13, Z80_DRIVER_XGM };
-//const Sfx sfx_08_all = { SFX_TREE,        "Tree",        (u8*) sfx_tree_all,       SOUND_PCM_CH4, sizeof(sfx_tree_all),       12, Z80_DRIVER_XGM };
-const Sfx sfx_09_all = { SFX_LIGHTING,    "Lighting",    (u8*) sfx_lighting_all,   SOUND_PCM_CH2, sizeof(sfx_lighting_all),   12, Z80_DRIVER_XGM };
-const Sfx sfx_10_all = { SFX_SPIT,        "Spit",        (u8*) sfx_spit_all,       SOUND_PCM_CH4, sizeof(sfx_spit_all),       14, Z80_DRIVER_XGM };
-const Sfx sfx_11_all = { SFX_LAVABALL,    "Lava ball",   (u8*) sfx_lavaball_all,   SOUND_PCM_CH3, sizeof(sfx_lavaball_all),   13, Z80_DRIVER_XGM };
-const Sfx sfx_12_all = { SFX_CHAIN,       "Bell",        (u8*) sfx_chain_all,      SOUND_PCM_CH2, sizeof(sfx_chain_all),      11, Z80_DRIVER_XGM };
-const Sfx sfx_13_all = { SFX_CLOSED_DOOR, "Closed door", (u8*) sfx_close_door_all, SOUND_PCM_CH2, sizeof(sfx_close_door_all), 13, Z80_DRIVER_XGM };
-const Sfx sfx_14_all = { SFX_CHECKPOINT,  "Checkpoint",  (u8*) sfx_checkpoint_all, SOUND_PCM_CH2, sizeof(sfx_checkpoint_all), 11, Z80_DRIVER_XGM };
+const Sfx sfx_01_all = { SFX_DOOR,         "Door",          (u8*) sfx_door_all,         SOUND_PCM_CH2, sizeof(sfx_door_all),         14, Z80_DRIVER_XGM };
+const Sfx sfx_02_all = { SFX_HIT,          "Hit",           (u8*) sfx_hit_all,          SOUND_PCM_CH1, sizeof(sfx_hit_all),          15, Z80_DRIVER_XGM };
+const Sfx sfx_03_all = { SFX_ITEM,         "Item",          (u8*) sfx_item_all,         SOUND_PCM_CH2, sizeof(sfx_item_all),         15, Z80_DRIVER_XGM };
+const Sfx sfx_04_all = { SFX_JUMP,         "Jump",          (u8*) sfx_jump_all,         SOUND_PCM_CH1, sizeof(sfx_jump_all),         14, Z80_DRIVER_XGM };
+const Sfx sfx_05_all = { SFX_SHOT,         "Shot",          (u8*) sfx_shoot_all,        SOUND_PCM_CH4, sizeof(sfx_shoot_all),        14, Z80_DRIVER_XGM };
+const Sfx sfx_06_all = { SFX_SLASH,        "Slash",         (u8*) sfx_slash_all,        SOUND_PCM_CH3, sizeof(sfx_slash_all),        14, Z80_DRIVER_XGM };
+const Sfx sfx_07_all = { SFX_SWITCH,       "Switch",        (u8*) sfx_switch_all,       SOUND_PCM_CH2, sizeof(sfx_switch_all),       13, Z80_DRIVER_XGM };
+//const Sfx sfx_08_all = { SFX_TREE,         "Tree",          (u8*) sfx_tree_all,         SOUND_PCM_CH4, sizeof(sfx_tree_all),         12, Z80_DRIVER_XGM };
+const Sfx sfx_09_all = { SFX_LIGHTING,     "Lighting",      (u8*) sfx_lighting_all,     SOUND_PCM_CH2, sizeof(sfx_lighting_all),     12, Z80_DRIVER_XGM };
+const Sfx sfx_10_all = { SFX_SPIT,         "Spit",          (u8*) sfx_spit_all,         SOUND_PCM_CH4, sizeof(sfx_spit_all),         14, Z80_DRIVER_XGM };
+const Sfx sfx_11_all = { SFX_LAVABALL,     "Lava ball",     (u8*) sfx_lavaball_all,     SOUND_PCM_CH3, sizeof(sfx_lavaball_all),     13, Z80_DRIVER_XGM };
+const Sfx sfx_12_all = { SFX_CHAIN,        "Bell",          (u8*) sfx_chain_all,        SOUND_PCM_CH2, sizeof(sfx_chain_all),        11, Z80_DRIVER_XGM };
+const Sfx sfx_13_all = { SFX_CLOSED_DOOR,  "Closed door",   (u8*) sfx_close_door_all,   SOUND_PCM_CH2, sizeof(sfx_close_door_all),   13, Z80_DRIVER_XGM };
+const Sfx sfx_14_all = { SFX_CHECKPOINT,   "Checkpoint",    (u8*) sfx_checkpoint_all,   SOUND_PCM_CH2, sizeof(sfx_checkpoint_all),   11, Z80_DRIVER_XGM };
+const Sfx sfx_15_all = { SFX_DRAGONBREATH, "Dragon breath", (u8*) sfx_dragonbreath_all, SOUND_PCM_CH4, sizeof(sfx_dragonbreath_all), 14, Z80_DRIVER_XGM  };
 
 
 
@@ -1105,6 +1106,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_12_all, // chain // switch // bell
         (Sfx*) &sfx_13_all, // close door
         (Sfx*) &sfx_14_all, // checkpoint
+        (Sfx*) &sfx_15_all, // dragon breath
     },
 
     // VERSION_MD
@@ -1123,6 +1125,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_12_all, // chain // switch // bell
         (Sfx*) &sfx_13_all, // close door
         (Sfx*) &sfx_14_all, // checkpoint
+        (Sfx*) &sfx_15_all, // dragon breath
     },
 
     // VERSION_MSX
@@ -1141,6 +1144,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_12_all, // chain // switch // bell
         (Sfx*) &sfx_13_all, // close door
         (Sfx*) &sfx_14_all, // checkpoint
+        (Sfx*) &sfx_15_all, // dragon breath
     },
 
     // VERSION_PCW
@@ -1159,6 +1163,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_12_all, // chain // switch // bell
         (Sfx*) &sfx_13_all, // close door
         (Sfx*) &sfx_14_all, // checkpoint
+        (Sfx*) &sfx_15_all, // dragon breath
     },
 
     // VERSION_GB
@@ -1177,6 +1182,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_12_all, // chain // switch // bell
         (Sfx*) &sfx_13_all, // close door
         (Sfx*) &sfx_14_all, // checkpoint
+        (Sfx*) &sfx_15_all, // dragon breath
     },
 
 //	// VERSION_NES
@@ -1195,6 +1201,7 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
 //            (Sfx*) &sfx_12_all, // chain // switch // bell
 //            (Sfx*) &sfx_13_all, // close door
 //            (Sfx*) &sfx_14_all, // checkpoint
+//            (Sfx*) &sfx_15_all, // dragon breath
 //      },
 
     // VERSION_CGA
@@ -1213,24 +1220,26 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
         (Sfx*) &sfx_12_all, // chain // switch // bell
         (Sfx*) &sfx_13_all, // close door
         (Sfx*) &sfx_14_all, // checkpoint
+        (Sfx*) &sfx_15_all, // dragon breath
     },
 
         // VERSION_C64
         {
-            (Sfx*) &sfx_01_c64,
-            (Sfx*) &sfx_02_c64,
-            (Sfx*) &sfx_03_c64,
-            (Sfx*) &sfx_04_c64,
-            (Sfx*) &sfx_05_c64,
-            (Sfx*) &sfx_06_c64,
-            (Sfx*) &sfx_07_c64,
-            //(Sfx*) &sfx_08_c64,
-            (Sfx*) &sfx_09_c64, // lighting
-            (Sfx*) &sfx_10_c64, // spit
-            (Sfx*) &sfx_11_c64, // lava ball
-            (Sfx*) &sfx_12_c64, // chain // switch // bell
-            (Sfx*) &sfx_13_c64, // close door
-            (Sfx*) &sfx_14_c64, // checkpoint
+            (Sfx*) &sfx_01_all,
+            (Sfx*) &sfx_02_all,
+            (Sfx*) &sfx_03_all,
+            (Sfx*) &sfx_04_all,
+            (Sfx*) &sfx_05_all,
+            (Sfx*) &sfx_06_all,
+            (Sfx*) &sfx_07_all,
+            //(Sfx*) &sfx_08_all,
+            (Sfx*) &sfx_09_all, // lighting
+            (Sfx*) &sfx_10_all, // spit
+            (Sfx*) &sfx_11_all, // lava ball
+            (Sfx*) &sfx_12_all, // chain // switch // bell
+            (Sfx*) &sfx_13_all, // close door
+            (Sfx*) &sfx_14_all, // checkpoint
+            (Sfx*) &sfx_15_all, // dragon breath
         },
 
 };

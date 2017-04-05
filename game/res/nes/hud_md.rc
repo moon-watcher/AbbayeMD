@@ -1,5 +1,0 @@
-BITMAP hud_heart_nes    "game/data/nes/hud/heart.bmp"    0
-BITMAP hud_cross_nes    "game/data/nes/hud/cross.bmp"    0
-BITMAP hud_numbers_nes  "game/data/nes/hud/numbers.bmp"  0
-BITMAP hud_blackbar_nes "game/data/nes/hud/blackbar.bmp" 0
-;

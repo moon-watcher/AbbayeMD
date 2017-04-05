@@ -761,23 +761,6 @@ const Music music_10_c64 = { MUSIC_HOPE,     "Prayer of Hope", (u8*) music_hope_
 const Music music_11_c64 = { MUSIC_HANGMAN,  "Hangman tree",   (u8*) music_hangman_c64, Z80_DRIVER_XGM,  0 };
 
 
-const Sfx sfx_01_c64 = { SFX_DOOR,        "Door",        (u8*) sfx_door_all,       SOUND_PCM_CH2, sizeof(sfx_door_all),       14, Z80_DRIVER_XGM  };
-const Sfx sfx_02_c64 = { SFX_HIT,         "Hit",         (u8*) sfx_hit_all,        SOUND_PCM_CH2, sizeof(sfx_hit_all),        15, Z80_DRIVER_XGM  };
-const Sfx sfx_03_c64 = { SFX_ITEM,        "Item",        (u8*) sfx_item_all,       SOUND_PCM_CH4, sizeof(sfx_item_all),       20, Z80_DRIVER_XGM  };
-const Sfx sfx_04_c64 = { SFX_JUMP,        "Jump",        (u8*) sfx_jump_all,       SOUND_PCM_CH2, sizeof(sfx_jump_all),       10, Z80_DRIVER_XGM  };
-const Sfx sfx_05_c64 = { SFX_SHOT,        "Shot",        (u8*) sfx_shoot_all,      SOUND_PCM_CH4, sizeof(sfx_shoot_all),      14, Z80_DRIVER_XGM  };
-const Sfx sfx_06_c64 = { SFX_SLASH,       "Slash",       (u8*) sfx_slash_all,      SOUND_PCM_CH3, sizeof(sfx_slash_all),      14, Z80_DRIVER_XGM  };
-const Sfx sfx_07_c64 = { SFX_SWITCH,      "Switch",      (u8*) sfx_switch_all,     SOUND_PCM_CH3, sizeof(sfx_switch_all),     13, Z80_DRIVER_XGM  };
-//const Sfx sfx_08_c64 = { SFX_TREE,        "Tree",        (u8*) sfx_tree_all,       SOUND_PCM_CH4, sizeof(sfx_tree_all),       12, Z80_DRIVER_XGM  };
-const Sfx sfx_09_c64 = { SFX_LIGHTING,    "Lighting",    (u8*) sfx_lighting_all,   SOUND_PCM_CH2, sizeof(sfx_lighting_all),   12, Z80_DRIVER_XGM  };
-const Sfx sfx_10_c64 = { SFX_SPIT,        "Spit",        (u8*) sfx_spit_all,       SOUND_PCM_CH4, sizeof(sfx_spit_all),       14, Z80_DRIVER_XGM  };
-const Sfx sfx_11_c64 = { SFX_LAVABALL,    "Lava ball",   (u8*) sfx_lavaball_all,   SOUND_PCM_CH3, sizeof(sfx_lavaball_all),   13, Z80_DRIVER_XGM  };
-const Sfx sfx_12_c64 = { SFX_CHAIN,       "Bell",        (u8*) sfx_chain_all,      SOUND_PCM_CH3, sizeof(sfx_chain_all),      20, Z80_DRIVER_XGM  };
-const Sfx sfx_13_c64 = { SFX_CLOSED_DOOR, "Closed door", (u8*) sfx_close_door_all, SOUND_PCM_CH2, sizeof(sfx_close_door_all), 13, Z80_DRIVER_XGM  };
-const Sfx sfx_14_c64 = { SFX_CHECKPOINT,  "Checkpoint",  (u8*) sfx_checkpoint_all, SOUND_PCM_CH2, sizeof(sfx_checkpoint_all), 11, Z80_DRIVER_XGM  };
-
-
-
 
 
 const Room room_00_c64 = { (Image*) &room_00_f_c64, NULL,                    (Objects*) &objects_null,   (Mask*) &mask_00_all, (Image*) &text_00_c64, (Music*) &music_00_c64,         room_null };

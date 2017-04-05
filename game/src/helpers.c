@@ -1142,7 +1142,7 @@ void mute ( )
 
 void player_freeze_at_44 ( )
 {
-	if ( game.room.x == 4  && game.room.y == 4 && room_44_get_sequence() > 5 )
+	if ( game.room.x == 4  && game.room.y == 4 )
 	{
 		SPR_setPosition ( player.go->sprite, player.go->sprite->x, 128 );
 

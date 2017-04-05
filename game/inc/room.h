@@ -67,9 +67,6 @@ void room_funct_24_all    ( Room *room, u8 action );
 void room_funct_34_all    ( Room *room, u8 action );
 void room_funct_44_all    ( Room *room, u8 action );
 
-// ñapa
-s8   room_44_get_sequence ( );
-
 
 
 #endif

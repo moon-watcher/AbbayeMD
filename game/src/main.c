@@ -59,22 +59,25 @@
  *  SPECIAL THANKS TO
  * --------------------------------------------------------------------------------------------------------------------------------
  * @GODFATHER-OF-THIS-RELEASE => Leander                        | Twitter: @leanderpixel      | Mail:                     |Notes:
+ *
  * @MSX-SKIN                  => Gerardo Herce                  | Twitter: @pipagerardo       | Mail:                     |Notes:
- * @NES-SD-SKIN               => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes: Skin not available
  * @GB-SKIN                   => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
  * @PCW-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
  * @CGA-SKIN                  => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
  * @MD-SKIN                   => Dani Nevado                    | Twitter: @DanySnowyman      | Mail:                     |Notes:
  * @C64-SKIN                  => Igor Errazkin                  | Twitter: @Errazking         | Mail:                     |Notes:
  * @MUSIC                     => DaRkHoRaCe                     | Twitter: @oongamoonga       | Mail:                     |Notes:
- * @FX                        => DaRkHoRaCe                     | Twitter: @oongamoonga       | Mail:                     |Notes:
+ * @SFX                       => DaRkHoRaCe                     | Twitter: @oongamoonga       | Mail:                     |Notes:
  * @C64-MUSIC                 => Manuel Gomez "Baron Ashler"    | Twitter: @kbfactory         | Mail:                     |Notes:
+ *
+ * @BETA-TESING               => Alfonso Martínez               | Twitter: @_SrPresley_       | Mail:                     |Notes:
+ * @BETA-TESING               => Ruben Vaquer                   | Twitter: @TitoAdol3         | Mail:                     |Notes:
+ *
  * @ILLUSTRATIONS             => Urza                           | Twitter: @Urza2             | Mail:                     |Notes:
  * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
  * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
  * @CRUSADER-MODE             => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
- * @BETA-TESING               => Alfonso Martínez               | Twitter: @_SrPresley_       | Mail:                     |Notes:
- * @BETA-TESING               => Ruben Vaquer                   | Twitter: @TitoAdol3         | Mail:                     |Notes:
+ *
  * @SPECIAL-THANKS-TO         => Stephane Dallongeville         | Twitter: @MegadriveDev      | Mail:                     |Notes:
  * @SPECIAL-THANKS-TO         => José Zanni                     | Twitter: @josepzin          | Mail:                     |Notes:
  * @SPECIAL-THANKS-TO         => David Lara                     | Twitter: @nevat             | Mail:                     |Notes:

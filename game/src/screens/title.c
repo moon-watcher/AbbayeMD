@@ -54,7 +54,7 @@ static void _blink_option ( )
 	VDP_getPaletteColors (  0, saved_b, 16 );
 	VDP_getPaletteColors ( 16, saved_a, 16 );
 
-	play_fx ( SFX_LIGHTING );
+	play_sfx ( SFX_LIGHTING );
 
 	_lighting(1);      // white
 

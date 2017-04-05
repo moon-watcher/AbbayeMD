@@ -141,7 +141,7 @@ static void _show_starts ( )
 				VDP_setTileMapXY ( PLAN_A, TILE_ATTR_FULL ( cross->object->entity->palette, 0, 0, 0, cross->vram ), x, y );
 
 
-				play_fx ( SFX_DOOR );
+				play_sfx ( SFX_DOOR );
 
 				if ( !DEV )
 				{
@@ -165,7 +165,7 @@ static void _close_door ( )
 		setActive ( door, 1 );
 		SPR_update ( );
 
-		play_fx_pause ( SFX_DOOR, getHz() );
+		play_sfx_pause ( SFX_DOOR, getHz() );
 
 		_inc_secuence ( true );
 		setDoor(door,1);
@@ -188,7 +188,7 @@ static void _update_door ( )
 
 	else if ( door->x == 0  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
 	{
-		play_fx ( SFX_CLOSED_DOOR );
+		play_sfx ( SFX_CLOSED_DOOR );
 		goIncX ( door, 2 );
 	}
 }
@@ -327,7 +327,7 @@ static void _activate_crusaders ( )
 
 	waitSc ( 1 );
 	setActive ( door, 0 );
-	play_fx(SFX_DOOR);
+	play_sfx ( SFX_DOOR );
 
 
 	_inc_secuence ( true );

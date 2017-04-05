@@ -133,8 +133,8 @@ void  VDP_fillGenresSpriteAsImage ( VDPPlan plan, u16 basetile, u16 x, u16 y, u1
 
 u16   in_array                    ( u16 needle, u16 array[] );
 
-void  play_fx                     ( u8 fx );
-void  play_fx_pause               ( u8 fx, u16 hzs );
+void  play_sfx                    ( u8 fx );
+void  play_sfx_pause              ( u8 fx, u16 hzs );
 void  play_music                  ( u8 track );
 
 s16   set_value_in                ( s16 value, s16 value_min, s16 value_max );

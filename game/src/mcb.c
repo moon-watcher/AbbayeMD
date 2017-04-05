@@ -544,7 +544,7 @@ void mcb_fireball ( void *data )
 
 		if ( go->vel_y < 0  )
 		{
-			play_fx(SFX_LAVABALL);
+			play_sfx(SFX_LAVABALL);
 		}
 	}
 }

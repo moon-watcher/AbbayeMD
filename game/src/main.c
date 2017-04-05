@@ -495,7 +495,7 @@ int main ( int argc, char *argv[] )
             scrollSet ( SCROLL_INIT );
             itemManagerInit ( &waItems );
 
-//play_fx(SFX_SWITCH);waitMs(1000);
+//play_sfx(SFX_SWITCH);waitMs(1000);
 
 //						// desde el inicio para matar a Satán
 //						game.version  = VERSION_MD;

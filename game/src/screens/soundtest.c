@@ -82,7 +82,7 @@ static void _control ( )
 		if ( joy1_pressed_abc | joy1_pressed_start )
 		{
 			if ( opcion == 0 ) play_music ( track );
-			if ( opcion == 1 ) play_fx    ( sfx   );
+			if ( opcion == 1 ) play_sfx    ( sfx   );
 			if ( opcion == 2 ) repeat = false;
 		}
 

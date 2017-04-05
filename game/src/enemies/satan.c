@@ -72,7 +72,7 @@ void enemy_satan ( GameObject *satan, GameObject *bullet[] )
 			o->vel_y = data[i].vel_y;
 		}
 
-		play_fx ( SFX_SHOT );
+		play_sfx ( SFX_SHOT );
 	}
 
 	if ( satan->counter == 20 )

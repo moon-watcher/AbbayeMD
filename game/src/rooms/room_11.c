@@ -179,7 +179,7 @@ static void _room_stay ( Room *room )
 
 			else if ( door->x == 248  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
 			{
-				play_fx ( SFX_CLOSED_DOOR );
+				play_sfx ( SFX_CLOSED_DOOR );
 				goIncX ( door, 2 );
 
 				goIncX ( crusader[0], 3 );

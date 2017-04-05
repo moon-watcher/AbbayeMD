@@ -774,17 +774,17 @@ u16 in_array ( u16 needle, u16 array[] )
 
 
 
-void play_fx ( u8 fx )
+void play_sfx ( u8 fx )
 {
     sfxPlay ( (Sfx*) sfx_list [ game.version ] [ fx ] );
 }
 
 
-void play_fx_pause ( u8 fx, u16 hz )
+void play_sfx_pause ( u8 fx, u16 hz )
 {
     musicPause();
 
-    play_fx ( fx );
+    play_sfx ( fx );
     waitHz ( hz );
 
 	musicResume();
@@ -890,7 +890,7 @@ void hide_door ( GameObject *door )
 
     SPR_update ( );
 
-    play_fx_pause( SFX_DOOR, 35 );
+    play_sfx_pause ( SFX_DOOR, 35 );
 }
 
 

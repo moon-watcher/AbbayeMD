@@ -23,12 +23,14 @@ void enemy_dragon ( GameObject *head, GameObject *body, GameObject *fire, GameOb
 
 	if ( head->counter == data->timer[0] ) // head up
 	{
-		play_sfx ( SFX_DRAGONBREATH );
+		play_sfx ( SFX_DRAGONBREATHE );
 		goIncY ( head, -2 );
 	}
 
 	else if ( head->counter == data->timer[1] ) // head down
 	{
+		play_sfx ( SFX_DRAGONFLAME );
+
 		if ( body  &&  body->sprite->animation[0].numFrame == 2 )
 		{
 			SPR_setFrame (body->sprite, 1 );
@@ -53,6 +55,8 @@ void enemy_dragon ( GameObject *head, GameObject *body, GameObject *fire, GameOb
 
 	else if ( head->counter == data->timer[2] ) // rest
 	{
+		sfxStop ( sfx_list [ game.version ] [ SFX_DRAGONFLAME ]->channel );
+
 		if ( body )
 		{
 			SPR_setFrame (body->sprite, 0 );

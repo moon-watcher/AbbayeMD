@@ -120,7 +120,7 @@ void screen_burning ( )
 
 		if ( count == hzm4 )
 		{
-			play_fx ( SFX_HIT );
+			play_sfx ( SFX_HIT );
 			SPR_setAnim ( jean->sprite, 3 );
 		}
 

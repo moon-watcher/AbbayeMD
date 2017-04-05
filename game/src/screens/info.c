@@ -39,7 +39,7 @@ static void _draw_screen()
 	displayOff(0);
 
 
-	play_fx(SFX_ITEM);
+	play_sfx ( SFX_ITEM );
 	palette_init();
 
 	resetScroll ( );

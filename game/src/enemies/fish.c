@@ -50,7 +50,7 @@ void enemy_fish ( GameObject *goFish[], GameObject *goSplash[], u16 pos )
 			fish->vel_y = -FIX32(4.0);
 			fish->grabity = true;
 
-			play_fx ( SFX_SLASH );
+			play_sfx ( SFX_SLASH );
 
 			SPR_setHFlip ( fish->sprite, 0 );
 			SPR_setVFlip ( fish->sprite, 0 );

@@ -32,7 +32,7 @@ void enemy_death ( GameObject *death, GameObject *goScythe[] )
 
 		if ( player.action != PLAYER_BURNS )
 		{
-			play_fx ( SFX_SHOT );
+			play_sfx ( SFX_SHOT );
 		}
 
 		goSetXY ( scythe,  death->x + 8,  death->y + 24 ) ;

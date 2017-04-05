@@ -65,7 +65,7 @@ static void _room_stay ( Room *room )
 		{
 			//waitHz(getHz());
 			setActive ( door, 0 );
-			play_fx ( SFX_DOOR );
+			play_sfx ( SFX_DOOR );
 			SPR_update ( );
 
 			waitSc(1);
@@ -86,7 +86,7 @@ static void _room_stay ( Room *room )
 
 		else if ( door->x == 248  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
 		{
-			play_fx ( SFX_CLOSED_DOOR );
+			play_sfx ( SFX_CLOSED_DOOR );
 			goIncX ( door, 2 );
 
 			goIncX ( philippe[3], 3 );

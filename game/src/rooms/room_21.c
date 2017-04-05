@@ -62,7 +62,7 @@ static void _room_stay ( Room *room )
 
 		itemSetChecked ( door->item, 1 );
 
-		play_fx_pause ( SFX_DOOR, getHz() );
+		play_sfx_pause ( SFX_DOOR, getHz() );
 
 		_deactivate_leafs = true;
 	}
@@ -74,7 +74,7 @@ static void _room_stay ( Room *room )
 
 	else if ( DOOR_IS_CLOSED  &&  door->x == 0  &&  ( vtimer % 30 == 0 )  &&  ( random() % 2 == 0 ) )
 	{
-		play_fx ( SFX_CLOSED_DOOR );
+		play_sfx ( SFX_CLOSED_DOOR );
 		goIncX ( door, 2 );
 	}
 
@@ -89,7 +89,7 @@ static void _room_stay ( Room *room )
 
 			itemSetChecked ( door->item, 0 );
 
-			play_fx ( SFX_DOOR );
+			play_sfx ( SFX_DOOR );
 			waitHz ( getHz() );
 
 

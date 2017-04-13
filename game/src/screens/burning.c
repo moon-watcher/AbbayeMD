@@ -61,7 +61,7 @@ void screen_burning ( )
 		pack_vram_add ( go );
 	}
 
-	if ( cm_is_activated() )
+	if ( game.version == VERSION_MD && ( !cm_is_activated ( ) || cm_getSuccess ( ) ) )
 	{
 		GameObject *go = goManagerAdd ( &lObjects, (Object*)&s->objects->array [ 0 ] );
 		Sprite     *sp = &lSprites [ lSpriteCounter++];

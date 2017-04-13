@@ -1084,6 +1084,7 @@ void alternate_color_in_cm ( )
     };
 
     u8 i = session.rnd % 2;
+    i = 1; // force purple, looks better
 
     prepareColor ( variations[i].pos1, variations[i].color1 );
     prepareColor ( variations[i].pos2, variations[i].color2 );

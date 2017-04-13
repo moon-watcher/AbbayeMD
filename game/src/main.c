@@ -49,8 +49,8 @@
  *
  * @CODE:                     =>  Mun                           | Twitter: @MoonWatcherMD
  * @PROJECT:                  =>  #AbbayeMD
- * @START-DATE:               =>  xx-xx-2011
- * @LAST-UPDATE:              =>  xx-xx-2017
+ * @START-DATE:               =>  2011XXXX
+ * @LAST-UPDATE:              =>  20170412
  * @LIB:                      =>  SGDK (v1.22a) by Stephane Dallongeville
  *
  *
@@ -58,6 +58,7 @@
  * --------------------------------------------------------------------------------------------------------------------------------
  *  SPECIAL THANKS TO
  * --------------------------------------------------------------------------------------------------------------------------------
+ *
  * @GODFATHER-OF-THIS-RELEASE => Leander                        | Twitter: @leanderpixel      | Mail:                     |Notes:
  *
  * @MSX-SKIN                  => Gerardo Herce                  | Twitter: @pipagerardo       | Mail:                     |Notes:
@@ -72,15 +73,24 @@
  *
  * @BETA-TESING               => Alfonso Martínez               | Twitter: @_SrPresley_       | Mail:                     |Notes:
  * @BETA-TESING               => Ruben Vaquer                   | Twitter: @TitoAdol3         | Mail:                     |Notes:
- *
- * @ILLUSTRATIONS             => Urza                           | Twitter: @Urza2             | Mail:                     |Notes:
- * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
- * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
- * @CRUSADER-MODE             => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
+ * @BETA-TESING               =>                                | Twitter: @TodoMegaDrive     | Mail:                     |Notes:
  *
  * @SPECIAL-THANKS-TO         => Stephane Dallongeville         | Twitter: @MegadriveDev      | Mail:                     |Notes:
  * @SPECIAL-THANKS-TO         => José Zanni                     | Twitter: @josepzin          | Mail:                     |Notes:
  * @SPECIAL-THANKS-TO         => David Lara                     | Twitter: @nevat             | Mail:                     |Notes:
+ *
+ * @CRUSADER-MODE             => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
+ *
+ *
+ *
+ * --------------------------------------------------------------------------------------------------------------------------------
+ *  PLAYONRETRO'S PHYSICAL RELEASE
+ * --------------------------------------------------------------------------------------------------------------------------------
+ *
+ * @ILLUSTRATIONS             => Urza                           | Twitter: @Urza2             | Mail:                     |Notes:
+ * @COVER                     => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
+ * @INSTRUCTION-MANUAL        => Felipe Monge Corbalán          | Twitter: @vakapp            | Mail:                     |Notes:
+ *
  *
  *
  * --------------------------------------------------------------------------------------------------------------------------------
@@ -98,9 +108,18 @@
  *
  *
  * --------------------------------------------------------------------------------------------------------------------------------
+ *  KNOWN BUGS
+ * --------------------------------------------------------------------------------------------------------------------------------
+ *
+ * - Several music issues related to the sound driver
+ * - You can not pass (and fall) between narrow blocks at room 4,3
+ *
+ *
+ *
+ * --------------------------------------------------------------------------------------------------------------------------------
  *  CHANGELOG
  * --------------------------------------------------------------------------------------------------------------------------------
- * xx-xx-2017 » First release
+ * 12-04-2017 » First release
  * --------------------------------------------------------------------------------------------------------------------------------
  *
  */

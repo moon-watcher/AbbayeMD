@@ -70,6 +70,7 @@ static void _room_stay ( Room *room )
 
 			waitSc(1);
 			displayOff ( getHz()*2 );
+			cm_setSuccess ( true );
 
 			//game.crusader = 0;
 			game.room.x = 4;

@@ -2,13 +2,15 @@
 
 
 
-static u8 _started = 0;
+static u8 _status = 0;
+static bool _success = false;
 
 
 
 void cm_init ( )
 {
-	_started      = 0;
+	_status       = 0;
+	_success      = false;
 	game.crusader = false;
 }
 
@@ -25,7 +27,8 @@ void cm_activate ( )
 	game.room.x   = 1;
 	game.room.y   = 1;
 	game.status   = GAME_STATUS_GONEXT;
-	_started      = 1;
+	_status       = 1;
+	_success      = false;
 
 //	// no va!
 //	goSetXY ( player.go, 110, 152 );
@@ -42,7 +45,7 @@ u16 cm_can_be_activated ( )
 		game.version  == VERSION_MD  &&
 		game.crusader ==      false  &&
 		session.level ==          1  &&
-		_started      ==          0
+		_status       ==          0
 	);
 }
 
@@ -51,12 +54,13 @@ u16 cm_can_be_activated ( )
 
 void cm_start ( )
 {
-	if ( _started != 1 )
+	if ( _status != 1 )
 	{
 		return;
 	}
 
-	_started = 2;
+	_status  = 2;
+	_success = false;
 
 	checkpoint_init ( );
 
@@ -130,7 +134,7 @@ void cm_start ( )
 
 bool cm_is_activated ( )
 {
-	if ( _started == 2 )
+	if ( _status == 2 )
 	{
 		Item *iDoorAt21 = (Item*) itemManagerFind ( &waItems, 0, 2, 1 ); // door at 2,0
 
@@ -140,3 +144,14 @@ bool cm_is_activated ( )
 	return false;
 }
 
+
+void cm_setSuccess ( bool s )
+{
+    _success = s;
+}
+
+
+bool cm_getSuccess ( )
+{
+    return _success;
+}

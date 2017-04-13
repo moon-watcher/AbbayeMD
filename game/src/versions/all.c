@@ -1233,22 +1233,22 @@ const Sfx *sfx_list [ VERSION_MAX ] [ SFX_MAX ] =
 
         // VERSION_C64
         {
-            (Sfx*) &sfx_01_all,
-            (Sfx*) &sfx_02_all,
-            (Sfx*) &sfx_03_all,
-            (Sfx*) &sfx_04_all,
-            (Sfx*) &sfx_05_all,
-            (Sfx*) &sfx_06_all,
-            (Sfx*) &sfx_07_all,
-            //(Sfx*) &sfx_08_all,
-            (Sfx*) &sfx_09_all, // lighting
-            (Sfx*) &sfx_10_all, // spit
-            (Sfx*) &sfx_11_all, // lava ball
-            (Sfx*) &sfx_12_all, // chain // switch // bell
-            (Sfx*) &sfx_13_all, // close door
-            (Sfx*) &sfx_14_all, // checkpoint
-            (Sfx*) &sfx_15_all, // dragon breathe
-            (Sfx*) &sfx_16_all, // dragon flame
+            (Sfx*) &sfx_01_c64,
+            (Sfx*) &sfx_02_c64,
+            (Sfx*) &sfx_03_c64,
+            (Sfx*) &sfx_04_c64,
+            (Sfx*) &sfx_05_c64,
+            (Sfx*) &sfx_06_c64,
+            (Sfx*) &sfx_07_c64,
+            //(Sfx*) &sfx_08_c64,
+            (Sfx*) &sfx_09_c64, // lighting
+            (Sfx*) &sfx_10_c64, // spit
+            (Sfx*) &sfx_11_c64, // lava ball
+            (Sfx*) &sfx_12_c64, // chain // switch // bell
+            (Sfx*) &sfx_13_c64, // close door
+            (Sfx*) &sfx_14_c64, // checkpoint
+            (Sfx*) &sfx_15_c64, // dragon breathe
+            (Sfx*) &sfx_16_c64, // dragon flame
         },
 
 };

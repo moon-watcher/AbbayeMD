@@ -40,7 +40,7 @@ void ocb_collisions ( GameObject *go, Player *player )
 	switch ( goType )
 	{
 		case ENTITY_ENEMY:
-
+            //break;
 			if ( DEV && player->invulnerable )
 			{
 				break;

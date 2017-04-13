@@ -212,4 +212,23 @@ const Music music_09_c64;
 const Music music_10_c64;
 const Music music_11_c64;
 
+
+const Sfx sfx_01_c64;
+const Sfx sfx_02_c64;
+const Sfx sfx_03_c64;
+const Sfx sfx_04_c64;
+const Sfx sfx_05_c64;
+const Sfx sfx_06_c64;
+const Sfx sfx_07_c64;
+const Sfx sfx_08_c64;
+const Sfx sfx_09_c64;
+const Sfx sfx_10_c64;
+const Sfx sfx_11_c64;
+const Sfx sfx_12_c64;
+const Sfx sfx_13_c64;
+const Sfx sfx_14_c64;
+const Sfx sfx_15_c64;
+const Sfx sfx_16_c64;
+
+
 #endif // _VERSIONS_C64_

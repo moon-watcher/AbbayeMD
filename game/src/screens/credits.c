@@ -88,7 +88,7 @@ void screen_credits ( )
 	write ( "Testers", PAL1, 1 );
 	write ( "Alfonso Martinez @_SrPresley_", PAL2, 1 );
 	write ( "Ruben Vaquer @TitoAdol3", PAL2, 1 );
-	write ( "@TodoMegaDrive", PAL2, 2 );
+	write ( "Jimy @TodoMegaDrive", PAL2, 2 );
 
 	write ( "Special thanks to", PAL1, 1 );
 	write ( "Leander @leanderpixel", PAL2, 1 );

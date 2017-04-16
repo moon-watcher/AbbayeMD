@@ -73,7 +73,7 @@
  *
  * @BETA-TESING               => Alfonso Martínez               | Twitter: @_SrPresley_       | Mail:                     |Notes:
  * @BETA-TESING               => Ruben Vaquer                   | Twitter: @TitoAdol3         | Mail:                     |Notes:
- * @BETA-TESING               =>                                | Twitter: @TodoMegaDrive     | Mail:                     |Notes:
+ * @BETA-TESING               => Jimy                           | Twitter: @TodoMegaDrive     | Mail:                     |Notes:
  *
  * @SPECIAL-THANKS-TO         => Stephane Dallongeville         | Twitter: @MegadriveDev      | Mail:                     |Notes:
  * @SPECIAL-THANKS-TO         => José Zanni                     | Twitter: @josepzin          | Mail:                     |Notes:

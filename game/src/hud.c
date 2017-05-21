@@ -102,7 +102,7 @@ void hudIncCrosses ( s8 inc )
 
 void hudIncHearts ( s8 inc )
 {
-	if ( DEV )
+	if ( INVULNERABLE )
 	{
 		return;
 	}

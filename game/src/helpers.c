@@ -1136,6 +1136,8 @@ void mute ( )
     // hay que parar también los sfx
 
     musicStop();
+
+    //psg_pause();
 }
 
 
@@ -1154,3 +1156,23 @@ void player_freeze_at_44 ( )
 		SPR_update();
 	}
 }
+
+
+
+
+//void crusarder_jump ( )
+//{
+//    #include "../data/all/psg/jump.h"
+//
+//    psg_play ( (u8*)jump_data, 0 );
+//}
+//
+//
+//void menu_select ( )
+//{
+//    #include "../data/all/psg/select.h"
+//
+//    psg_play ( (u8*)select_data, 0 );
+//}
+
+

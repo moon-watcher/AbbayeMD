@@ -35,6 +35,7 @@ void screen_ending ( )
 	vram_destroy();
 
 	waitSc(6);
+	mute();
 	waitJoySc(7);
 
 	displayOff(0);

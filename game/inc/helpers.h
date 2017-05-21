@@ -166,5 +166,8 @@ void mute                         ( );
 
 void player_freeze_at_44          ( );
 
+void crusarder_jump               ( );
+void menu_select                  ( );
+
 
 #endif

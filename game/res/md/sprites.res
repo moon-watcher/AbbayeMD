@@ -18,8 +18,9 @@ SPRITE rat_2x2_md           "../../data/md/sprites/grupo07/rat_2x2.bmp"         
 
 SPRITE dragon_3x6_md        "../../data/md/sprites/grupo08/dragon_3x6.bmp"        3 6 0   3
 SPRITE dragon_4x5_md        "../../data/md/sprites/grupo08/dragon_4x5.bmp"        4 5 0   0
-SPRITE dragon_12x5_md       "../../data/md/sprites/grupo08/dragon_12x5.bmp"      12 5 0   0
+SPRITE dragon_8x5_md        "../../data/md/sprites/grupo08/dragon_8x5.bmp"        8 5 0   0
 SPRITE dragon_2x2_md        "../../data/md/sprites/grupo08/dragon_2x2.bmp"        2 2 0   3
+SPRITE dragon_2x1_md        "../../data/md/sprites/grupo08/dragon_2x1.bmp"        2 1 0   0
 
 SPRITE enemies_2x1_md       "../../data/md/sprites/grupo09/enemies_2x1.bmp"       2 1 0   5
 SPRITE enemies_2x2_md       "../../data/md/sprites/grupo09/enemies_2x2.bmp"       2 2 0   8

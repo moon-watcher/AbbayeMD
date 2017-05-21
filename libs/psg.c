@@ -3,7 +3,7 @@
 /* gcc version 12.12.07 */
 
 /* Modified by @MoonWatcherMD at 20151019. Thanks, Shiru! */
-/* Modified by @MoonWatcherMD at 20170126. Added psg_stop() */
+/* Modified by @MoonWatcherMD at 20170313. Added pause/resume */
 
 
 #include <genesis.h>
@@ -12,8 +12,8 @@
 
 
 
-#define PSG_DATA	 0xc00011
-#define PSG_VCH_MAX	 4
+#define PSG_DATA     0xc00011
+#define PSG_VCH_MAX  4
 
 
 
@@ -35,9 +35,9 @@ static struct
 	}
 	chn[4];
 }
-_psg = { };
+psg = { };
 
-static int stopped = 0;
+static int playing = 0;
 
 
 
@@ -55,7 +55,7 @@ static void _addch ( u16 chn, u16 off )
 
 			for(j=0;j<PSG_VCH_MAX;j++)
 			{
-				if(_psg.chn[i].slot[j].ptr>=0)
+				if(psg.chn[i].slot[j].ptr>=0)
 				{
 					vcnt++;
 				}
@@ -78,7 +78,7 @@ static void _addch ( u16 chn, u16 off )
 
 	for(i=0;i<PSG_VCH_MAX;i++)
 	{
-		if(_psg.chn[chn].slot[i].ptr<0)
+		if(psg.chn[chn].slot[i].ptr<0)
 		{
 			vchn=i;
 			break;
@@ -91,7 +91,7 @@ static void _addch ( u16 chn, u16 off )
 
 		for(i=0;i<PSG_VCH_MAX;i++)
 		{
-			ntime=_psg.chn[chn].slot[i].time;
+			ntime=psg.chn[chn].slot[i].time;
 
 			if(ntime>tmax)
 			{
@@ -101,9 +101,9 @@ static void _addch ( u16 chn, u16 off )
 		}
 	}
 
-	_psg.chn[chn].slot[vchn].ptr=off;
-	_psg.chn[chn].slot[vchn].wait=0;
-	_psg.chn[chn].slot[vchn].time=0;
+	psg.chn[chn].slot[vchn].ptr=off;
+	psg.chn[chn].slot[vchn].wait=0;
+	psg.chn[chn].slot[vchn].time=0;
 }
 
 
@@ -115,7 +115,7 @@ void _frame ( void )
 	s16 pchn, vchn, rchn, mvol, nvol;
 	u16 div;
 
-	if ( !_psg.data )
+	if ( !psg.data )
 	{
 		return;
 	}
@@ -126,35 +126,35 @@ void _frame ( void )
 	{
 		for(vchn=0;vchn<PSG_VCH_MAX;vchn++)
 		{
-			if(_psg.chn[pchn].slot[vchn].ptr<0)
+			if(psg.chn[pchn].slot[vchn].ptr<0)
 			{
 				continue;
 			}
 
-			_psg.chn[pchn].slot[vchn].time++;
+			psg.chn[pchn].slot[vchn].time++;
 
-			if(_psg.chn[pchn].slot[vchn].wait)
+			if(psg.chn[pchn].slot[vchn].wait)
 			{
-				_psg.chn[pchn].slot[vchn].wait--;
+				psg.chn[pchn].slot[vchn].wait--;
 				continue;
 			}
 
-			mbyte=_psg.data[_psg.chn[pchn].slot[vchn].ptr++];
+			mbyte=psg.data[psg.chn[pchn].slot[vchn].ptr++];
 
 			switch(mbyte&0xc0)
 			{
 				case 0x00:/*0=eof 1..31=wait*/
-					if(!mbyte) _psg.chn[pchn].slot[vchn].ptr=-1; else _psg.chn[pchn].slot[vchn].wait=mbyte-1;
+					if(!mbyte) psg.chn[pchn].slot[vchn].ptr=-1; else psg.chn[pchn].slot[vchn].wait=mbyte-1;
 					break;
 				case 0x40:/*vol only*/
-					_psg.chn[pchn].slot[vchn].vol=mbyte&0x0f;
+					psg.chn[pchn].slot[vchn].vol=mbyte&0x0f;
 					break;
 				case 0x80:/*div only*/
-					_psg.chn[pchn].slot[vchn].div=((u16)mbyte<<8)|_psg.data[_psg.chn[pchn].slot[vchn].ptr++];
+					psg.chn[pchn].slot[vchn].div=((u16)mbyte<<8)|psg.data[psg.chn[pchn].slot[vchn].ptr++];
 					break;
 				case 0xc0:/*vol and div*/
-					_psg.chn[pchn].slot[vchn].vol=(mbyte>>2)&0x0f;
-					_psg.chn[pchn].slot[vchn].div=((u16)(mbyte&0x03)<<8)|_psg.data[_psg.chn[pchn].slot[vchn].ptr++];
+					psg.chn[pchn].slot[vchn].vol=(mbyte>>2)&0x0f;
+					psg.chn[pchn].slot[vchn].div=((u16)(mbyte&0x03)<<8)|psg.data[psg.chn[pchn].slot[vchn].ptr++];
 					break;
 			}
 		}
@@ -164,12 +164,12 @@ void _frame ( void )
 
 		for ( vchn = 0; vchn < PSG_VCH_MAX; vchn++ )
 		{
-			if ( _psg.chn[pchn].slot[vchn].ptr < 0 )
+			if ( psg.chn[pchn].slot[vchn].ptr < 0 )
 			{
 				continue;
 			}
 
-			nvol=_psg.chn[pchn].slot[vchn].vol;
+			nvol=psg.chn[pchn].slot[vchn].vol;
 
 			if(nvol<mvol)
 			{
@@ -182,8 +182,8 @@ void _frame ( void )
 		{
 			vchn=rchn;
 			rchn=pchn<<5;
-			*pb=0x80|0x10|rchn|_psg.chn[pchn].slot[vchn].vol;
-			div=_psg.chn[pchn].slot[vchn].div;
+			*pb=0x80|0x10|rchn|psg.chn[pchn].slot[vchn].vol;
+			div=psg.chn[pchn].slot[vchn].div;
 			*pb=0x80|rchn|(div&0x0f);
 			*pb=div>>4;
 		}
@@ -191,15 +191,8 @@ void _frame ( void )
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-void psg_play ( u8 *data, u8 track )
+static void _play ( u8 *data, u8 track )
 {
-	stopped = 0;
-
 	volatile u8 *pb;
 
 	s16 chn, eoff, doff, chcnt;
@@ -213,42 +206,62 @@ void psg_play ( u8 *data, u8 track )
 	*pb = 0xdf;
 	*pb = 0xff;
 
-	_psg.data = (u8*) data;
+	psg.data = (u8*) data;
 
 	for(i=0;i<4;i++)
 	{
 		for(j=0;j<PSG_VCH_MAX;j++)
 		{
-			_psg.chn[i].slot[j].ptr=-1;
-			_psg.chn[i].slot[j].wait=0;
+			psg.chn[i].slot[j].ptr=-1;
+			psg.chn[i].slot[j].wait=0;
 		}
 	}
 
 
 	eoff  = 2 + ( track << 1 );
-	doff  = ( _psg.data [ eoff ] << 8 ) + _psg.data [ eoff + 1 ];
-	chcnt = _psg.data [ doff++ ];
+	doff  = ( psg.data [ eoff ] << 8 ) + psg.data [ eoff + 1 ];
+	chcnt = psg.data [ doff++ ];
 
 	for ( i = 0; i < chcnt; i++ )
 	{
-		eoff=(_psg.data[doff++]<<8);
-		eoff+=_psg.data[doff++];
-		chn=_psg.data[eoff++];
+		eoff=(psg.data[doff++]<<8);
+		eoff+=psg.data[doff++];
+		chn=psg.data[eoff++];
 		_addch(chn,eoff);
 	}
 }
 
 
-void psg_stop ( )
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+void psg_play ( u8 *data, u8 track )
 {
-	stopped = 1;
+	playing = 1;
+
+	_play ( data, track );
 }
 
 
 void psg_callback ()
 {
-	if ( !stopped && ( IS_PALSYSTEM || ( vtimer % 6 ) ) )
+	if ( playing && ( IS_PALSYSTEM || ( vtimer % 6 ) ) )
 	{
-		_frame();
+		_frame ( );
 	}
 }
+
+
+void psg_pause ( )
+{
+	playing = 0;
+}
+
+
+void psg_resume ( )
+{
+	playing = 1;
+}
+

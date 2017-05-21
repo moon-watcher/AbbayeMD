@@ -56,7 +56,7 @@ const Entity entity_44_md  = { 44, "Bell (on)",               15, (SpriteDefinit
 const Entity entity_45_md  = { 45, "Switch (on)",              3, (SpriteDefinition*) &objects_2x2_md,   PAL3, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  0,  0,  0,  0 } };
 const Entity entity_46_md  = { 46, "Passage",                  8, (SpriteDefinition*) &jean_2x3_md,      PAL3, ENTITY_PASSAGE,              0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, { 16,  7,  0,  7 } };
 const Entity entity_47_md  = { 47, "Dragon head",              0, (SpriteDefinition*) &dragon_4x5_md,    PAL2, ENTITY_ENEMY,                0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  } };
-const Entity entity_48_md  = { 48, "Dragon body",              0, (SpriteDefinition*) &dragon_12x5_md,   PAL2, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  } };
+const Entity entity_48_md  = { 48, "Dragon body",              0, (SpriteDefinition*) &dragon_8x5_md,    PAL2, ENTITY_NULL,                 0,           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  } };
 const Entity entity_49_md  = { 49, "Dragon fire",              0, (SpriteDefinition*) &dragon_3x6_md,    PAL2, ENTITY_ENEMY,                0,           0,           0, 0, 1, 0, NULL, mcb_null,        0, {  0,  2,  0,  2 } };
 const Entity entity_50_md  = { 50, "Running fire",             0, (SpriteDefinition*) &dragon_2x2_md,    PAL2, ENTITY_ENEMY,      FIX32(0.30),           0,           0, 0, 0, 0, NULL, mcb_null,        0, {  7,  0,  0,  0 } };
 const Entity entity_51_md  = { 51, "Gargoyle",                 8, (SpriteDefinition*) &enemies_2x2_md,   PAL2, ENTITY_ENEMY,                0,           0,           0, 0, 1, 0, NULL, mcb_null,        0, {  7,  2,  0,  2 } };
@@ -98,6 +98,8 @@ const Entity entity_md_96  = { 96, "Leaf (2,1)",               0, (SpriteDefinit
 const Entity entity_md_97  = { 97, "Philippe like crusaders",  1, (SpriteDefinition*) &philippe_2x3_md,  PAL3, ENTITY_NULL,       FIX32(0.60),           0,            0, 0, 1, 0, NULL, mcb_null,        0, {  5,  5,  0,  5 } };
 
 const Entity entity_md_98  = { 98, "Evil Jean",                0, (SpriteDefinition*) &evil_jean_2x3_md, PAL3, ENTITY_NULL,                 0,           0,            0, 0, 1, 0, NULL, mcb_null,        0, {  } };
+const Entity entity_md_99  = { 99, "Dragon claw",              0, (SpriteDefinition*) &dragon_2x1_md,    PAL2, ENTITY_NULL,                 0,           0,            0, 0, 0, 0, NULL, mcb_null,        0, {  } };
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -300,7 +302,7 @@ const Objects objects_02_md = // Pestilent beast // OK
 {
       {
             { (Entity*) &entity_47_md, 120,  10,  0,  0 }, // Dragon head #0
-            { (Entity*) &entity_48_md, 112,   8,  0,  0 }, // Dragon body #1
+            { (Entity*) &entity_48_md, 144,   8,  0,  0 }, // Dragon body #1
             { (Entity*) &entity_49_md, 125,  51,  0,  0 }, // Dragon fire #2
 
             { (Entity*) &entity_50_md, -40, -40,  0, +1 }, // Runnig fire #3
@@ -316,6 +318,8 @@ const Objects objects_02_md = // Pestilent beast // OK
 
             //{ (Entity*) &entity_46_md, 184, 136,  0,  0 }, // Passage
             { (Entity*) &entity_md_83, 184, 136,  0,  0 }, // Passage
+
+            { (Entity*) &entity_md_99, 112,  40,  0,  0 }, // Dragon claw
 
             { (Entity*) &entity_md_97,  16,  24,  0,  0 }, // Philippe like crusaders
             { (Entity*) &entity_md_97, 164, 136,  0,  0 }, // Philippe like crusaders

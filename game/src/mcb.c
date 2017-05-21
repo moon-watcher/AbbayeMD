@@ -406,18 +406,21 @@ void mcb_crusader ( void *data )
 
 	if ( game.room.x == 2 && ( x == 16 ) )
 	{
+	    //crusarder_jump ( );
 		go->vel_y = -FIX32 ( 1.9 );
 		return;
 	}
 
 	if ( game.room.x == 1 && ( x == 78 || x == 126 || x == 158 ) )
 	{
+	    //crusarder_jump ( );
 		go->vel_y = -FIX32 ( 3.3 );
 		return;
 	}
 
 	if ( game.room.x == 0 && ( x == 206 ) )
 	{
+	    //crusarder_jump ( );
 		go->vel_y = -FIX32 ( 2.5 );
 		return;
 	}
@@ -445,6 +448,7 @@ void mcb_crusader ( void *data )
 		{
 			if ( collisions_v.values[i] == 1 )
 			{
+			    //crusarder_jump ( );
 				go->vel_y = -FIX32(2.1);
 				return;
 			}

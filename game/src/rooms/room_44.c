@@ -344,6 +344,7 @@ static void _move_crusaders ( )
 
 		JoyReader_init(1);
 
+		mute();
 		hint_show ( false );
 
 		JoyReader_init(0);

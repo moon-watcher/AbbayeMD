@@ -112,7 +112,7 @@ static void _room_stay ( Room *room )
 
 			itemSetChecked ( itemManagerFind(&waItems,0,1,1), false );
 
-			_wait_cm = getHz() * 3;
+			_wait_cm = getHz() * 4;
 			play_music ( MUSIC_WOODS );
 
 			JoyReader_pause();

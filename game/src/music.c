@@ -36,6 +36,7 @@ void musicPlay ( Music *track )
 			#endif // SGDKv122a
 		}
 
+		SND_setMusicTempo_XGM ( 60 );
 		SND_startPlay_XGM ( track->track );
 		SND_setForceDelayDMA_XGM ( true );
 

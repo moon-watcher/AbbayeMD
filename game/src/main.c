@@ -379,7 +379,7 @@ static _voidCallback *vint_callback ( )
 {
 	//psg_callback();
 
-	SND_setMusicTempo_XGM ( 60 );
+	//SND_setMusicTempo_XGM ( 60 );
 
 	if ( DEV )
 	{

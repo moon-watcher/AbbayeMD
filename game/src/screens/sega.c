@@ -8,6 +8,7 @@
 
 void screen_sega ( )
 {
+    return;
 	if ( DEV ) return;
 
 	extern const struct genresTiles logo_sega;

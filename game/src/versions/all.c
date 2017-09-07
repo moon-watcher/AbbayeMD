@@ -174,9 +174,9 @@ const Music music_11_all = { MUSIC_HANGMAN,  "Hangman tree",   (u8*) music_hangm
 
 
 const Sfx sfx_01_all = { SFX_DOOR,          "Door",           (u8*) sfx_door_all,          SOUND_PCM_CH2, sizeof(sfx_door_all),          14, Z80_DRIVER_XGM };
-const Sfx sfx_02_all = { SFX_HIT,           "Hit",            (u8*) sfx_hit_all,           SOUND_PCM_CH1, sizeof(sfx_hit_all),           15, Z80_DRIVER_XGM };
+const Sfx sfx_02_all = { SFX_HIT,           "Hit",            (u8*) sfx_hit_all,           SOUND_PCM_CH3, sizeof(sfx_hit_all),           15, Z80_DRIVER_XGM };
 const Sfx sfx_03_all = { SFX_ITEM,          "Item",           (u8*) sfx_item_all,          SOUND_PCM_CH2, sizeof(sfx_item_all),          15, Z80_DRIVER_XGM };
-const Sfx sfx_04_all = { SFX_JUMP,          "Jump",           (u8*) sfx_jump_all,          SOUND_PCM_CH1, sizeof(sfx_jump_all),          14, Z80_DRIVER_XGM };
+const Sfx sfx_04_all = { SFX_JUMP,          "Jump",           (u8*) sfx_jump_all,          SOUND_PCM_CH3, sizeof(sfx_jump_all),          15, Z80_DRIVER_XGM };
 const Sfx sfx_05_all = { SFX_SHOT,          "Shot",           (u8*) sfx_shoot_all,         SOUND_PCM_CH4, sizeof(sfx_shoot_all),         14, Z80_DRIVER_XGM };
 const Sfx sfx_06_all = { SFX_SLASH,         "Slash",          (u8*) sfx_slash_all,         SOUND_PCM_CH3, sizeof(sfx_slash_all),         14, Z80_DRIVER_XGM };
 const Sfx sfx_07_all = { SFX_SWITCH,        "Switch",         (u8*) sfx_switch_all,        SOUND_PCM_CH2, sizeof(sfx_switch_all),        13, Z80_DRIVER_XGM };

@@ -428,7 +428,7 @@ void mcb_crusader ( void *data )
 
 
 
-	go->x += 8;
+	go->x += 7;
 	_collisions ( go, &collisions_v, &collisions_h );
 	go->x = aux_x;
 

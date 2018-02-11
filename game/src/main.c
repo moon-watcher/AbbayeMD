@@ -503,7 +503,7 @@ int main ( int argc, char *argv[] )
 
 		musicInit ( );
 
-    	screen_playonretro ( );
+    	//screen_playonretro ( );
         screen_credits ( );
 
 		if ( screen_title ( ) )

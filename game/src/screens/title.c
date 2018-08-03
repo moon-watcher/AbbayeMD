@@ -215,7 +215,7 @@ static void _version_add ( s8 inc )
 
 static s8 _control ( )
 {
-	VDP_setSpriteFull ( 0, -10, -1, 1, TILE_ATTR_FULL ( PAL3, 0, 0, 0, TILE_FONTINDEX+95 ), 0 );
+	VDP_setSpriteFull ( 0, -10, -1, SPRITE_SIZE(1,1), TILE_ATTR_FULL ( PAL3, 0, 0, 0, TILE_FONTINDEX+95 ), 0 );
 
 	while ( true )
 	{

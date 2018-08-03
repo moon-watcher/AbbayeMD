@@ -14,7 +14,7 @@ out/
 sgdk/
 AbbayeMD*.*
 *.bat
-*.gen
+#*.gen
 *.conf
 
 

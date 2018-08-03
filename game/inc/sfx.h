@@ -6,7 +6,7 @@
 typedef struct
 {
 	u8   id;
-	u8  *title;
+	char *title;
 	u8  *data;
 	u8   channel; // XGM
 	u32  length;

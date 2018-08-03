@@ -6,7 +6,7 @@
 typedef struct
 {
 	u8  id;
-	u8 *title;
+	char *title;
 	u8 *track;
 	u8  driver;
 	s8  loop;

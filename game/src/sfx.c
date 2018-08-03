@@ -8,9 +8,9 @@ void sfxInit ( )
 
    while ( i-- )
    {
-      Sfx *sfx =  (Sfx*) sfx_list [ game.version ] [ i ];
+      Sfx *sfx = (Sfx*) sfx_list [ game.version ] [ i ];
 
-      SND_setPCM_XGM ( 64 + sfx->id, sfx->data, sfx->length );
+      XGM_setPCM ( sfx->id + 64, sfx->data, sfx->length );
    }
 }
 
@@ -28,7 +28,7 @@ void sfxPlay ( Sfx *fx )
 
    sfxStop ( channel );
 
-   SND_startPlayPCM_XGM ( 64 + fx->id, priority, channel );
+   XGM_startPlayPCM ( 64 + fx->id, priority, channel );
 }
 
 
@@ -39,9 +39,9 @@ void sfxStop ( s8 channel )
       channel = SOUND_PCM_CH2;
    }
 
-   if ( SND_isPlayingPCM_XGM ( channel ) )
+   if ( XGM_isPlayingPCM ( channel ) )
    {
-      SND_stopPlayPCM_XGM ( channel );
+      XGM_stopPlayPCM ( channel );
    }
 }
 

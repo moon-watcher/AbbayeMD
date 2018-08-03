@@ -180,7 +180,7 @@ u16 goManagerFindAllByEntityIds ( listptr *list, GameObject *gos[], u16 id, ... 
 			node = node->next;
 		}
 
-		id = va_arg ( ap, unsigned int );
+		id = va_arg ( ap, u16 );
 	}
 
    va_end ( ap );

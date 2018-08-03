@@ -109,7 +109,7 @@ void insline (void)
 // Writes a character.
 void putch ( char ch )
 {
-	u8 string[2] = { ch };
+	char string[2] = { ch };
 
 	VDP_drawText ( string, ABSOLUTEX, ABSOLUTEY );
 

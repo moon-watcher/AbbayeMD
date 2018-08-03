@@ -22,27 +22,22 @@ void musicPlay ( Music *track )
 	}
 	else if ( track->id != current->id || inSoundTest )
 	{
-		u8 playing = SND_isPlaying_XGM();
+		u8 playing = XGM_isPlaying();
 
 		musicStop();
 
 		if ( playing )
 		{
 			VDP_waitVSync();
-
-			#ifdef SGDKv122a
 			VDP_waitVSync();
 			VDP_waitVSync();
-			#endif // SGDKv122a
 		}
 
-		SND_setMusicTempo_XGM ( 60 );
-		SND_startPlay_XGM ( track->track );
-		SND_setForceDelayDMA_XGM ( true );
+		XGM_setMusicTempo ( 60 );
+		XGM_startPlay ( track->track );
+		XGM_setForceDelayDMA ( true );
 
-		#ifdef SGDKv122a
 		XGM_setLoopNumber ( track->loop );
-		#endif // SGDKv122a
 
 		current = track;
 	}
@@ -53,12 +48,12 @@ void musicStop ( )
 {
 	musicInit ( );
 
-	if ( SND_isPlaying_XGM() )
+	if ( XGM_isPlaying() )
 	{
-		SND_stopPlay_XGM();
+		XGM_stopPlay();
 	}
 
-	SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 ); // prevents long samples
+	XGM_stopPlayPCM ( SOUND_PCM_CH1 ); // prevents long samples
 	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH2 );
 	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH3 );
 	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH4 );
@@ -73,12 +68,12 @@ void musicPause ( )
 	}
 
 
-	if ( SND_isPlaying_XGM() )
+	if ( XGM_isPlaying() )
 	{
-		SND_pausePlay_XGM();
+		XGM_pausePlay();
 	}
 
-	SND_stopPlayPCM_XGM ( SOUND_PCM_CH1 );  // prevents long samples
+	XGM_stopPlayPCM ( SOUND_PCM_CH1 );  // prevents long samples
 	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH2 );
 	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH3 );
 	//SND_stopPlayPCM_XGM ( SOUND_PCM_CH4 );
@@ -93,9 +88,9 @@ void musicResume ( )
 	}
 
 
-	if ( !SND_isPlaying_XGM() )
+	if ( !XGM_isPlaying() )
 	{
-		SND_resumePlay_XGM();
+		XGM_resumePlay();
 	}
 }
 

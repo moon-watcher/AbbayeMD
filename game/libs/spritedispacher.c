@@ -96,7 +96,7 @@ u16 sd_next ( )
 }
 
 
-inline void sd_delete ( u16 i )
+void sd_delete ( u16 i )
 {
    _list [ i ] = FALSE;
 }

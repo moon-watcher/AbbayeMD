@@ -20,7 +20,7 @@ static s8 fx = 0;
 void _show_version ( )
 {
 	drawText ( "          ", 16, 13 );
-	drawText ( versions_list [ game.version ],  16, 13 );
+	drawText ( (char*)versions_list [ game.version ],  16, 13 );
 }
 
 
@@ -64,13 +64,13 @@ void _change_difficult ( bool update )
 		session.level %= 2;
 	}
 
-	const u8 *str [ 2 ] =
+	const char *str [ 2 ] =
 	{
 		"Normal",
 		"Hard  "
 	};
 
-	drawText ( str[session.level], 16, 11 );
+	drawText ( (char*)str[session.level], 16, 11 );
 }
 
 

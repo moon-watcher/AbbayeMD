@@ -83,7 +83,7 @@ static void _blink_option ( )
 
 static void _show_version ( )
 {
-	drawText ( versions_upper_list [ game.version ], 13, 18 );
+	drawText ( (char*)versions_upper_list [ game.version ], 13, 18 );
 }
 
 
@@ -155,7 +155,7 @@ static void _draw_screen ( )
 
 	if ( DEV )
 	{
-		drawText ( SGDK_VERSION, 0,0 );
+//		drawText ( SGDK_VERSION, 0,0 );
 	}
 
 	//drawText ( "      #AbbayeMD 1.0-BETA      ",    1, 1 );

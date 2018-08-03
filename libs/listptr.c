@@ -1,38 +1,17 @@
-#include "listptr.h"
-
-
-
-//
-// for SGDK compatibility
-//
-#define malloc MEM_alloc
-#define free   MEM_free
-
 #include <genesis.h>
-//
-//
-//
+#define malloc MEM_alloc // for SGDK compatibility
+#define free   MEM_free  // for SGDK compatibility
 
+
+#include "listptr.h"
 
 
 void listptr_new ( listptr *list, listptrFunction freeFn )
 {
-	/*
-		Destruye la lista al iniciarse.
-
-		Lo quito. Si lo dejo ejecutar, al pulsar reset, entra
-		en el bucle (a pesar de que no es un puntero válido y
-		su memoria acaba de ser eliminada) y ejecuta MEM_free,
-		el cual hace fallar la ejecución del programa.
-
-		listptr_destroy ( list );
-	*/
-
 	list->length = 0;
-	list->head   = ((void*) 0);
+	list->head   = ((void*)0);
 	list->freeFn = freeFn;
 }
-
 
 
 void listptr_destroy ( listptr *list )
@@ -49,7 +28,6 @@ void listptr_destroy ( listptr *list )
 }
 
 
-
 listptrNode *listptr_append ( listptr *list, void *element )
 {
 	listptrNode *node = (listptrNode *) malloc ( sizeof ( listptrNode ) );
@@ -58,14 +36,13 @@ listptrNode *listptr_append ( listptr *list, void *element )
 	node->prev       = ((void*) 0);
 	node->next       = list->head;
 
-	list->head->prev = node;
 	list->head       = node;
+	list->head->prev = node;
 
 	++list->length;
 
 	return node;
 }
-
 
 
 void listptr_foreach ( listptr *list, listptrFunction iterator )
@@ -80,12 +57,10 @@ void listptr_foreach ( listptr *list, listptrFunction iterator )
 }
 
 
-
 int listptr_size ( listptr *list )
 {
 	return list->length;
 }
-
 
 
 void listptr_remove ( listptr *list, listptrNode *node )
@@ -95,13 +70,13 @@ void listptr_remove ( listptr *list, listptrNode *node )
 		list->freeFn ( node->pointer );
 	}
 
-   if ( !node->prev )
-   {
-      list->head = node->next;
+	if ( node->prev )
+	{
+		node->prev->next = node->next;
 	}
 	else
 	{
-		node->prev->next = node->next;
+		list->head = node->next;
 	}
 
 	if ( node->next )

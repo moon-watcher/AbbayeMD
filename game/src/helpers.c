@@ -1,32 +1,6 @@
 #include "../inc/include.h"
 
 
-#ifdef SGDKv122a
-
-    #define APLAN_ADDR   aplan_addr
-    #define BPLAN_ADDR   bplan_addr
-
-    #define PLAN_VALUE   plan.value
-    #define PLAN_A_VALUE PLAN_A.value
-    #define PLAN_B_VALUE PLAN_B.value
-
-#endif // SGDKv122a
-
-
-
-#ifdef SGDKv121
-
-    #define APLAN_ADDR   aplan_adr
-    #define BPLAN_ADDR   bplan_adr
-
-    #define PLAN_VALUE   plan.plan
-    #define PLAN_A_VALUE PLAN_A.plan
-    #define PLAN_B_VALUE PLAN_B.plan
-
-#endif // SGDKv121
-
-
-
 //void my_SPR_setFrame ( GameObject go, s16 frame)
 //{
 //	u16 pos = vc_get ( go->object->entity->id, frame );
@@ -271,7 +245,7 @@ u16 VDP_getTile ( VDPPlan plan, u16 x, u16 y )
 
     u16 plan_dir = VDP_PLAN_A;
 
-    if ( PLAN_VALUE == PLAN_B_VALUE )
+    if ( plan.value == PLAN_B.value )
     {
         plan_dir = VDP_PLAN_B;
     }
@@ -325,7 +299,7 @@ s16 VDP_getHorizontalScroll ( VDPPlan plan )
     pl = (u32 *) GFX_CTRL_PORT;
 
     addr = VDP_HSCROLL_TABLE;
-    if ( PLAN_VALUE == PLAN_B_VALUE ) addr += 2;
+    if ( plan.value == PLAN_B.value ) addr += 2;
 
     *pl = GFX_READ_VRAM_ADDR(addr);
 
@@ -345,7 +319,7 @@ s16 VDP_getVerticalScroll ( VDPPlan plan )
     pl = (u32 *) GFX_CTRL_PORT;
 
     addr = 0;
-    if ( PLAN_VALUE == PLAN_B_VALUE ) addr += 2;
+    if ( plan.value == PLAN_B.value ) addr += 2;
 
     *pl = GFX_READ_VSRAM_ADDR(addr);
 
@@ -359,20 +333,20 @@ void VDP_fillGenresSpriteAsImage ( VDPPlan plan, u16 basetile, u16 x, u16 y, u16
    u32 width;
    u16 i, j;
 
-   switch ( PLAN_VALUE )
+   switch ( plan.value )
    {
       case CONST_PLAN_A:
-         addr = APLAN_ADDR + ((x + (y << planWidthSft)) * 2);
+         addr = aplan_addr + ((x + (y << planWidthSft)) * 2);
          width = planWidth;
          break;
 
       case CONST_PLAN_B:
-         addr = BPLAN_ADDR + ((x + (y << planWidthSft)) * 2);
+         addr = bplan_addr + ((x + (y << planWidthSft)) * 2);
          width = planWidth;
          break;
 
       case CONST_PLAN_WINDOW:
-         addr = BPLAN_ADDR + ((x + (y << windowWidthSft)) * 2);
+         addr = bplan_addr + ((x + (y << windowWidthSft)) * 2);
          width = windowWidth;
          break;
 
@@ -409,12 +383,12 @@ void VDP_fillGenresSpriteAsImage ( VDPPlan plan, u16 basetile, u16 x, u16 y, u16
 
 // idea de http://stackoverflow.com/questions/28931379/implementation-of-strtok-function
 
-static u8 *_my_strtok_string;
+static char *_my_strtok_string;
 
-u8 *my_strtok ( u8 *string, u8 delimitador )
+char *my_strtok ( char *string, char delimitador )
 {
     u8  i = 0;
-    u8 *part = (u8*) MEM_alloc ( sizeof(u8) * 100 ) ;
+    char *part = (char*) MEM_alloc ( sizeof(char) * 100 ) ;
 
     if ( string != NULL )
     {
@@ -423,7 +397,7 @@ u8 *my_strtok ( u8 *string, u8 delimitador )
 
     while ( _my_strtok_string )
     {
-        u8 chr = *_my_strtok_string++;
+        char chr = *_my_strtok_string++;
 
         if ( chr == delimitador )
         {
@@ -443,7 +417,7 @@ u8 *my_strtok ( u8 *string, u8 delimitador )
 
 
 
-u32 my_strtol ( u8 *cadena )
+u32 my_strtol ( char *cadena )
 {
     u8  len = strlen ( cadena );
     u32 val = 0;
@@ -460,13 +434,13 @@ u32 my_strtol ( u8 *cadena )
 
 
 // copied from uintToStr_()
-void my_strpad ( u8 *str, const u8 size, u8 type )
+void my_strpad ( char *str, const u8 size, u8 type )
 {
     if ( type == 0 )  // Left padding
     {
         u8 i = 0;
         s8 len = strlen(str);
-        u8 string[size];
+        char string[size];
         u8 diff = size - len;
 
         for ( i=0; i<size; i++ )
@@ -490,10 +464,10 @@ void my_strpad ( u8 *str, const u8 size, u8 type )
 //
 // Returns 1 if both strings are equal. Else 0
 //
-u16 my_strcmp ( u8 *str1, u8 *str2 )
+u16 my_strcmp ( char *str1, char *str2 )
 {
-    u8 *s1 = str1;
-    u8 *s2 = str2;
+    char *s1 = str1;
+    char *s2 = str2;
 
     u32 l1 = strlen ( s1 );
     u32 l2 = strlen ( s2 );
@@ -518,7 +492,7 @@ u16 my_strcmp ( u8 *str1, u8 *str2 )
 
 
 
-void drawText ( const char *str, u16 x, u16 y )
+void drawText ( char *str, u16 x, u16 y )
 {
     SYS_disableInts();
     VDP_drawText ( str, x, y );
@@ -528,7 +502,7 @@ void drawText ( const char *str, u16 x, u16 y )
 
 void drawInt ( u32 nb, u8 x, u8 y, u8 zeros )
 {
-    u8 str [ zeros+1 ];
+    char str [ zeros+1 ];
     intToStr ( nb, str, zeros );
 
     SYS_disableInts();
@@ -539,7 +513,7 @@ void drawInt ( u32 nb, u8 x, u8 y, u8 zeros )
 
 void drawUInt ( u32 nb, u8 x, u8 y, u8 zeros )
 {
-    u8 str [ zeros+1 ];
+    char str [ zeros+1 ];
     uintToStr ( nb, str, zeros );
 
     SYS_disableInts();
@@ -550,7 +524,7 @@ void drawUInt ( u32 nb, u8 x, u8 y, u8 zeros )
 
 void drawFix32 ( fix32 nb, u8 x, u8 y, u8 zeros )
 {
-    u8 str [ zeros+1 ];
+    char str [ zeros+1 ];
     fix32ToStr ( nb, str, zeros );
 
     SYS_disableInts();
@@ -561,7 +535,7 @@ void drawFix32 ( fix32 nb, u8 x, u8 y, u8 zeros )
 
 void drawUIntBG ( u32 nb, u8 x, u8 y, u8 zeros, VDPPlan plan, u16 flags )
 {
-    u8 str [ zeros+1 ];
+    char str [ zeros+1 ];
     uintToStr ( nb, str, zeros );
 
     SYS_disableInts();
@@ -592,7 +566,7 @@ u16 drawImageXY ( Image *image, VDPPlan plan, u16 x, u16 y )
     }
 
     u16 pos = vram_new ( image->tileset->numTile );
-    u16 pal = ( PLAN_VALUE == PLAN_A_VALUE ) ? PAL1 : PAL0;
+    u16 pal = ( plan.value == PLAN_A.value ) ? PAL1 : PAL0;
 
     SYS_disableInts();
     VDP_drawImageEx ( plan, image, TILE_ATTR_FULL ( pal, 0, 0, 0, pos ), x, y, 0, 0 );

@@ -438,7 +438,7 @@ static void _room_stay ( Room *room )
 
 
 
-static void _room_leave ( room )
+static void _room_leave ( )
 {
 	enemy_bullet_delete ( );
 	_md_palette_stop ( );

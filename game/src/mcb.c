@@ -72,7 +72,7 @@ static u8 _find_values ( Mcb *collisions, u8 value, ... )
 			break;
 		}
 
-		value = va_arg ( ap, int );
+		value = va_arg ( ap, u8 );
    }
 
    va_end ( ap );

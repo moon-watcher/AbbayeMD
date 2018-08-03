@@ -16,9 +16,7 @@ static u16          _base  = 0;
 static u16          _count = 0;
 
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 void vram_init ( u16 base )
@@ -27,7 +25,6 @@ void vram_init ( u16 base )
 	_base  = base ? base : VRAM_DEFAULT;
 	_count = 0;
 }
-
 
 
 void vram_destroy ( )
@@ -46,9 +43,6 @@ void vram_destroy ( )
 }
 
 
-
-
-
 u16 vram_new ( u16 tiles )
 {
 	u16          pos  = _base;
@@ -56,36 +50,36 @@ u16 vram_new ( u16 tiles )
 	struct vram *new  = MEM_alloc ( sizeof ( struct vram ) );
 	struct vram *next = NULL;
 
-	if ( !node )
+	if ( node )
 	{
-		_list = new;
-	}
-
-	while ( node )
-	{
-		pos  = node->pos + node->tiles;
-		next = node->next;
-
-		if ( next == NULL || next->pos >= pos + tiles )
+		while ( node )
 		{
-			break;
+			pos  = node->pos + node->tiles;
+			next = node->next;
+
+			if ( next == NULL || next->pos >= pos + tiles )
+			{
+				break;
+			}
+
+			node = next;
 		}
 
-		node = next;
+		node->next = new;
+	}
+	else
+	{
+		_list = new;
 	}
 
 	new->pos   = pos;
 	new->tiles = tiles;
 	new->next  = next;
 
-	node->next = new;
-
 	++_count;
-
 
 	return pos;
 }
-
 
 
 void vram_delete ( u16 pos )
@@ -100,9 +94,7 @@ void vram_delete ( u16 pos )
 			prev->next = node->next;
 			MEM_free ( node );
 
-			--_count;
-
-			if ( _count == 0 )
+			if ( --_count == 0 )
 			{
 				_list = NULL;
 			}
@@ -116,12 +108,10 @@ void vram_delete ( u16 pos )
 }
 
 
-
 u16 vram_count ( )
 {
 	return _count;
 }
-
 
 
 void vram_info ()
@@ -129,7 +119,7 @@ void vram_info ()
 	struct vram *aux = _list;
 
 	u8 i = 3;
-	u8 str[10];
+	char str[10];
 
 	VDP_drawText ( " Nb   Pos   Tiles ", 1, 0 );
 	VDP_drawText ( "---- ----- -------", 1, 1 );
@@ -151,24 +141,23 @@ void vram_info ()
 }
 
 
+void vram_sample ( void )
+{
+	vram_init(0);
 
-//void vram_sample ( void )
-//{
-//	vram_init(0);
-//	vram_new(7);
-//	u16 x = vram_new(13);
-//	vram_new(927);
-//	vram_delete ( x );
-//	vram_new(2);
-//	u16 y = vram_new(5);
-//	vram_new(1);
-//	vram_new(8);
-//	vram_delete ( y );
-//	vram_new(3);
-//	vram_new(2);
-//	vram_new(1);
-//	vram_new(3);
-//
-//
-//	vram_info();
-//}
+	vram_new(9);
+	s16 x = vram_new(3);
+	vram_new(927);
+	vram_delete ( x );
+	vram_new(2);
+	u16 y = vram_new(5);
+	vram_new(1);
+	vram_new(8);
+	vram_delete ( y );
+	vram_new(3);
+	vram_new(2);
+	vram_new(1);
+	vram_new(3);
+
+	vram_info();
+}

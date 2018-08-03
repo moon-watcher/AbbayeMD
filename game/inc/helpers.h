@@ -89,12 +89,12 @@ u16   SPR_countFrames             ( Sprite *sprite );
 //u8   SPR_getVFlip                 ( Sprite *sprite );
 //u8   SPR_getHFlip                 ( Sprite *sprite );
 
-u8   *my_strtok                   ( u8 *string, u8 delimitador );
-u32   my_strtol                   ( u8 *cadena );
-void  my_strpad                   ( u8 *str, const u8 size, u8 type );
-u16   my_strcmp                   ( u8 *str1, u8 *str2 );
+char *my_strtok                   ( char *string, char delimitador );
+u32   my_strtol                   ( char *cadena );
+void  my_strpad                   ( char *str, const u8 size, u8 type );
+u16   my_strcmp                   ( char *str1, char *str2 );
 
-void  drawText                    ( const char *str, u16 x, u16 y );
+void  drawText                    ( char *str, u16 x, u16 y );
 void  drawInt                     ( u32 number, u8 x, u8 y, u8 leading_zeros );
 void  drawUInt                    ( u32 number, u8 x, u8 y, u8 leading_zeros );
 void  drawUIntBG                  ( u32 number, u8 x, u8 y, u8 leading_zeros, VDPPlan plan, u16 flags );

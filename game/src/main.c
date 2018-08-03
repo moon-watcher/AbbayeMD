@@ -49,9 +49,9 @@
  *
  * @CODE:                     =>  Mun                           | Twitter: @MoonWatcherMD
  * @PROJECT:                  =>  #AbbayeMD
- * @START-DATE:               =>  2011XXXX
- * @LAST-UPDATE:              =>  20170412
- * @LIB:                      =>  SGDK (v1.22a) by Stephane Dallongeville
+ * @START-DATE:               =>  2011XXXX?
+ * @LAST-UPDATE:              =>  20180803
+ * @LIB:                      =>  SGDK (v1.34) by Stephane Dallongeville
  *
  *
  *
@@ -100,8 +100,10 @@
  * Sega Genesis/Megadrive version of l'Abbaye des morts was created using SGDK v1.22a and GenRes v1.1.
  *
  *  - Go gendev.spritesmind.net/page-genres.html
- *  - Download GenRes v1.1
- *  - Extract and replace all genres.* files in the zip into SGDK's bin directory
+ *  - Download Genres
+ *  - Copy genres.exe to sgkd/bin
+ *  - Copy genres.h to sgdk/inc
+ *  - Use custom makefile
  *  - Compile #AbbayeMD
  *  - Ta-dah!
  *
@@ -119,7 +121,8 @@
  * --------------------------------------------------------------------------------------------------------------------------------
  *  CHANGELOG
  * --------------------------------------------------------------------------------------------------------------------------------
- * 12-04-2017 » First release
+ * 20170412 » First release
+ * 20180803 » Modified to copile with SGDK 1.34
  * --------------------------------------------------------------------------------------------------------------------------------
  *
  */
@@ -396,7 +399,9 @@ static _voidCallback *vint_callback ( )
 
 
 
-int main ( int argc, char *argv[] )
+//int main ( int argc, char *argv[] )
+//int main ( u16 hard )
+extern int main(int hard)
 {
 //	psgtest ();
 

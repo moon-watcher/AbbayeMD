@@ -75,7 +75,7 @@ const bool high_priority_policy [ VERSION_MAX ] =
 
 
 
-const u8 versions_list [ VERSION_MAX ] [ 15 ] =
+const char versions_list [ VERSION_MAX ] [ 15 ] =
 {
     "Original",
     "Mega Drive",
@@ -88,7 +88,7 @@ const u8 versions_list [ VERSION_MAX ] [ 15 ] =
 };
 
 
-const u8 versions_upper_list [ VERSION_MAX ] [ 15 ] =
+const char versions_upper_list [ VERSION_MAX ] [ 15 ] =
 {
     "ORIGINAL  ",
     "MEGA DRIVE",

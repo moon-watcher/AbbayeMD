@@ -44,7 +44,7 @@ EntityType;
 typedef struct
 {
 	u8                id;
-	u8               *name;
+	char             *name;
 	u8                animation;
 	SpriteDefinition *sd;
 	u16               palette;

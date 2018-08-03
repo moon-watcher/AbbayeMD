@@ -1,6 +1,6 @@
 #include "types.h"
 
-
+__attribute__((externally_visible))
 const struct
 {
     char console[16];               /* Console Name (16) */
@@ -23,10 +23,10 @@ const struct
     char region[16];                /* Country Support (16) */
 } rom_header = {
     "SEGA MEGA DRIVE ",
-    "(C)LGM 2010-2017",
+    "(C)LGM 2010-2018",
     "L'Abbaye des morts for Sega Genesis/Megadrive   ",
     "L'Abbaye des morts for Sega Genesis/Megadrive   ",
-    "LGM-01-0 v1.00",
+    "LGM-01-0 v1.01",
     0x0000,
     "JD              ",
     0x00000000,

@@ -8,7 +8,7 @@ static s16 y = 0;
 
 
 
-void write ( const char *str, u16 pal, s16 inc )
+void write ( char *str, u16 pal, s16 inc )
 {
 	u16 x = ( screenWidth  >> 4 ) - ( strlen(str) >> 1 );
 
